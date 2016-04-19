@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Roomies</string>
+    <string name="username">USERNAME</string>
+    <string name="password">PASSWORD</string>
+    <string name="firstname">FIRST NAME</string>
+    <string name="lastname">LAST NAME</string>
+    <string name="email">EMAIL ADDRESS</string>
+    <string name="submit">SUBMIT!</string>
 </resources>
