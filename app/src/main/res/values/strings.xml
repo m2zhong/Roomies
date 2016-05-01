@@ -14,6 +14,6 @@
     <string name="unhint">username</string>
     <string name="pwhint">password</string>
     <string name="login">Login</string>
-    <string name="reg">Register</string>
+    <string name="reg">Not a user? Sign up now!</string>
     <string name="forgotpw">Forgot Password?</string>
 </resources>

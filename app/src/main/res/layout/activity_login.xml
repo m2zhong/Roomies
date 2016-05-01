@@ -28,19 +28,23 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal|bottom">
 
-            <!-- App title -->
-            <TextView android:id="@+id/appname"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/app_name"
-                android:textSize="60sp"
-                android:fontFamily="cursive"
-                android:textColor="@color/text"
-                android:gravity="center_horizontal"
-                android:layout_marginTop="40dp"
-                android:layout_marginBottom="40dp" />
+            <ImageView android:id="@+id/appname"
+                android:layout_height="100dp"
+                android:layout_width="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_alignStart="@+id/username"
+                android:layout_alignRight="@id/username"
+                android:layout_alignLeft="@id/username"
+                android:layout_alignEnd="@id/username"
+                android:background="@drawable/logo"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                />
 
             <EditText android:id="@+id/username"
                 android:layout_width="match_parent"
@@ -53,7 +57,7 @@
                 android:textColorHint="@color/text"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp" />
+                android:layout_marginTop="5dp" />
 
             <EditText android:id="@+id/password"
                 android:layout_width="match_parent"
@@ -66,7 +70,7 @@
                 android:hint="@string/pwhint"
                 android:textSize="20dp"
                 android:textColorHint="@color/text"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginBottom="10dp" />
 
             <Button android:id="@+id/loginbtn"
@@ -83,15 +87,27 @@
 
                 android:text="@string/login"/>
 
-            <TextView
-                android:layout_width="match_parent"
+            <TextView android:id="@+id/forgotpw"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/loginbtn"
-                android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
-
+                android:layout_centerHorizontal="true"
                 android:text="@string/forgotpw"
+                android:textColor="@color/text"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/forgotpw"
+                android:layout_marginBottom="20dp"
+                android:gravity="center|bottom"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="30dp"
+
+                android:text="@string/reg"
                 android:textColor="@color/text"
                 android:textSize="16sp"/>
 
