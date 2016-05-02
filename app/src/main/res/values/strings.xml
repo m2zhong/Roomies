@@ -10,4 +10,6 @@
     <string name="title_activity_create_user">CreateUser</string>
 
     <string name="title_activity_password_recovery">PasswordRecovery</string>
+
+    <string name="title_activity_create_room">CreateRoom</string>
 </resources>

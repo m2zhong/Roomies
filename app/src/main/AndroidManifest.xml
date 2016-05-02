@@ -35,7 +35,7 @@
                 android:value="com.rip.roomies.activities.login.Login" />
         </activity>
         <activity
-            android:name=".activities.login.PassRecovery"
+            android:name=".activities.login.PassRetrieve"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_password_recovery"
             android:parentActivityName=".activities.login.Login"
@@ -44,6 +44,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.rip.roomies.activities.login.Login" />
         </activity>
+        <activity
+            android:name=".activities.rooms.CreateRoom"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_create_room"
+            android:theme="@style/FullscreenTheme"></activity>
     </application>
 
 </manifest>
