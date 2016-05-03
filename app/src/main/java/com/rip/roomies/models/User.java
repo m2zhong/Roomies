@@ -7,6 +7,8 @@ import com.rip.roomies.sql.SQLLogin;
  * Created by Kanurame on 4/25/2016.
  */
 public class User {
+    public static User loggedInUser;
+
     public int id = 0;
     public String firstName = "";
     public String lastName = "";
@@ -45,7 +47,8 @@ public class User {
 
     public boolean login() {
         if (SQLLogin.login(this)) {
-            this.password = "";
+            password = "";
+            loggedInUser = this;
             return true;
         }
         else
