@@ -2,18 +2,25 @@ package com.rip.roomies.activities.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 
 import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
 
 public class SplashScreen extends GenericActivity {
+    private static final long SPLASH_SCREEN_DELAY = 3000;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        // No timer -- temporary bypass
-        Intent intent = new Intent(this, Login.class);
-        startActivity(intent);
+        // Delayed switch to login screen
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                toLogin();
+            }
+        }, SPLASH_SCREEN_DELAY);
     }
 }
