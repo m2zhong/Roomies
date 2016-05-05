@@ -1,20 +1,32 @@
 package com.rip.roomies.controllers;
 
+import com.rip.roomies.models.User;
+
 /**
  * Created by Kanurame on 4/25/2016.
  */
 public class LoginController {
-    public boolean createUser(String firstName, String lastName, String username,
-                          String email, String passwd) {
-        return false;
+    private static LoginController controller;
+
+    public static LoginController getController() {
+        if (controller == null) {
+            controller = new LoginController();
+        }
+
+        return controller;
     }
 
-    public boolean login(String username, String passwd) {
-        return false;
+    public User createUser(String firstName, String lastName, String username,
+                           String email, String passwd) {
+        return null;
     }
 
-    public boolean logoff() {
-        return false;
+    public User login(String username, String passwd) {
+        return null;
+    }
+
+    public void logoff() {
+
     }
 
     public boolean passRetrieve(String email) {

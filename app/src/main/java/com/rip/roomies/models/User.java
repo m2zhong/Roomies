@@ -4,6 +4,12 @@ package com.rip.roomies.models;
  * Created by Kanurame on 4/25/2016.
  */
 public class User {
+    private static User activeUser;
+
+    public static User getActiveUser() {
+        return activeUser;
+    }
+
     //------- CONSTRUCTORS -------//
 
     public User(String username, String passwd) {
@@ -21,30 +27,45 @@ public class User {
 
     //------- DATABASE METHODS -------//
 
-    public boolean createUser() {
-        return false;
+    public User addToGroup() {
+        return null;
     }
 
-    public boolean login() {
-        return false;
+    public User createUser() {
+        return null;
+    }
+
+    public User login() {
+        return null;
     }
 
     public boolean passRetrieve() {
         return false;
     }
 
-    public boolean update() {
-        return false;
-    }
-
     //------- OBJECT METHODS -------//
 
-    public void setFields(int id, String firstName, String lastName, String username,
-                          String email) {
-
+    public String getEmail() {
+        return null;
     }
 
-    public void setRoom(int roomId) {
+    public String getFirstName() {
+        return null;
+    }
 
+    public int getGroupId() {
+        return 0;
+    }
+
+    public int getId() {
+        return 0;
+    }
+
+    public String getLastName() {
+        return null;
+    }
+
+    public String getUsername() {
+        return null;
     }
 }

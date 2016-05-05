@@ -1,6 +1,5 @@
 package com.rip.roomies.activities.login;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
