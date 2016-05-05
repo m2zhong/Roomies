@@ -23,7 +23,7 @@ public class SQLQuery {
      * @return True if the connection was successful, false otherwise
      * @throws SQLException if the database cannot be connected to
      */
-    private static void connect() throws SQLException {
+    private synchronized static void connect() throws SQLException {
         conn = DriverManager.getConnection(CONN_STRING);
     }
 
@@ -35,7 +35,7 @@ public class SQLQuery {
      * @return The result set of the query
      * @throws SQLException if the database cannot be connected to or statement fails
      */
-    public static ResultSet execute(String query) throws SQLException {
+    public synchronized static ResultSet execute(String query) throws SQLException {
         if (conn == null) {
             connect();
         }
