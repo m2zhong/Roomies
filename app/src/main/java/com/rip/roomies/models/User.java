@@ -7,8 +7,6 @@ import com.rip.roomies.sql.SQLLogin;
  * Created by Kanurame on 4/25/2016.
  */
 public class User {
-    public static User loggedInUser;
-
     public int id = 0;
     public String firstName = "";
     public String lastName = "";
@@ -16,6 +14,12 @@ public class User {
     public String email = "";
     private String password = "";
     public int room;
+
+    private static User activeUser;
+
+    public static User getActiveUser() {
+        return activeUser;
+    }
 
     //------- CONSTRUCTORS -------//
 
@@ -41,27 +45,27 @@ public class User {
 
     //------- DATABASE METHODS -------//
 
-    public boolean createUser() {
+    public User addToGroup() {
+        //TODO
+        return null;
+    }
+
+    public User createUser() {
         return SQLCreate.createUser(this);
     }
 
-    public boolean login() {
-        if (SQLLogin.login(this)) {
+    public User login() {
+        User loggedIn = SQLLogin.login(this);
+
+        if (loggedIn != null) {
             password = "";
-            loggedInUser = this;
-            return true;
+            activeUser = this;
         }
-        else
-            return false;
+        return loggedIn;
     }
 
     public boolean passRetrieve() {
         return SQLLogin.passRetrieve(this);
-    }
-
-    public boolean update() {
-        //TODO
-        return false;
     }
 
     //------- OBJECT METHODS -------//
@@ -77,5 +81,30 @@ public class User {
 
     public void setRoom(int roomId) {
         this.room = roomId;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public int getGroupId() {
+        //TODO
+        return 0;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getUsername() {
+        return username;
     }
 }

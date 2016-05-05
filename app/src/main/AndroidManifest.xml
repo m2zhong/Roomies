@@ -45,7 +45,7 @@
                 android:value="com.rip.roomies.activities.login.Login" />
         </activity>
         <activity
-            android:name=".activities.rooms.CreateRoom"
+            android:name=".activities.groups.CreateGroup"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_create_room"
             android:theme="@style/FullscreenTheme"></activity>

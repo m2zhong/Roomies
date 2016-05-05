@@ -6,11 +6,11 @@ import com.rip.roomies.models.User;
  * Created by Kanurame on 4/25/2016.
  */
 public class SQLLogin {
-    public static boolean login(User usr) {
-        return false;
+    public static User login(User user) {
+        return null;
     }
 
-    public static boolean passRetrieve(User usr) {
+    public static boolean passRetrieve(User user) {
         return false;
     }
 }
