@@ -1,6 +1,8 @@
 package com.rip.roomies.views;
 
 import android.content.Context;
+import android.util.AttributeSet;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -14,14 +16,24 @@ public class UserView extends LinearLayout {
     private User user;
 
     /**
-     * Creates a new UserView based on the User object given.
-     * @param context The activity that is displaying this object
-     * @param user The user whose properties are to be displayed on the screen
+     * @see android.view.View(Context)
      */
-    public UserView(Context context, User user) {
+    public UserView(Context context) {
         super(context);
-        this.user = user;
-        setupLayout();
+    }
+
+    /**
+     * @see android.view.View(Context, AttributeSet )
+     */
+    public UserView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
+
+    /**
+     * @see android.view.View(Context, AttributeSet, int)
+     */
+    public UserView(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
     }
 
     /**
@@ -33,9 +45,21 @@ public class UserView extends LinearLayout {
     }
 
     /**
+     * Set the user of this object whose information this view will display
+     * @param user The user object to display
+     */
+    public void setUser(User user) {
+        this.user = user;
+        setupLayout();
+    }
+
+    /**
      * Sets up the layout for this UserView.
      */
     private void setupLayout() {
+        setLayoutParams(new ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT));
         setOrientation(LinearLayout.VERTICAL);
 
         TextView name = new TextView(getContext());

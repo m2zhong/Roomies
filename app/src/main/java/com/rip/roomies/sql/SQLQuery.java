@@ -3,11 +3,10 @@ package com.rip.roomies.sql;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * This is a SQLQuery helper class which will handle connecting to and exectuing
+ * This is a SQLQuery helper class which will handle connecting to and executing
  * statements from the database.
  */
 public class SQLQuery {
@@ -15,16 +14,18 @@ public class SQLQuery {
     private static Connection conn = null;
 
     // The connection string to connect to database
-    private static final String CONN_STRING = "jdbc:sqlserver://rationallyimpairedprogrammers.database.windows.net:1433;database=cse110_dev;user=roomies_app@rationallyimpairedprogrammers;password=#room1es4lyfe;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
+    private static final String CONN_STRING = "jdbc:jtds:sqlserver://rationallyimpairedprogrammers.database.windows.net:1433/cse110_dev;user=roomies_app;password=#room1es4lyfe;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;instance=SQLEXPRESS;";
 
     /**
      * Helper class that initiates the connection to the database, setting the
      * conn object to a non-null value if successful.
-     * @return True if the connection was successful, false otherwise
-     * @throws SQLException if the database cannot be connected to
+     * @throws Exception if the database cannot be connected to
      */
-    private synchronized static void connect() throws SQLException {
-        conn = DriverManager.getConnection(CONN_STRING);
+    private synchronized static void connect() throws Exception {
+        if (conn != null) {
+            Class.forName("net.sourceforge.jtds.jdbc.Driver");
+            conn = DriverManager.getConnection(CONN_STRING);
+        }
     }
 
     /**
@@ -33,12 +34,10 @@ public class SQLQuery {
      * will be thrown to the caller.
      * @param query The sql string to attempt to execute
      * @return The result set of the query
-     * @throws SQLException if the database cannot be connected to or statement fails
+     * @throws Exception if the database cannot be connected to or statement fails
      */
-    public synchronized static ResultSet execute(String query) throws SQLException {
-        if (conn == null) {
-            connect();
-        }
+    public static ResultSet execute(String query) throws Exception {
+        connect();
 
         Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                 ResultSet.CONCUR_UPDATABLE);
