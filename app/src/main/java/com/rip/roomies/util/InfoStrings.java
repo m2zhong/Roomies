@@ -9,7 +9,7 @@ public class InfoStrings {
 	private static final Logger log = Logger.getLogger(InfoStrings.class.getName());
 
 	public static final String SWITCH_ACTIVITY = "Switching to activity %s";
-	public static final String SWITCH_ACTIVITY_DELAYED = "Switching to activity %s after %ld ms delay";
+	public static final String SWITCH_ACTIVITY_DELAYED = "Switching to activity %s after %d ms delay";
 
 	public static final String DATABASE_CONNECT = "Connecting to the database...";
 	public static final String DATABASE_QUERY = "Querying database: \"%s\"";
