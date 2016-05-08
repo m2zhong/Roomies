@@ -1,50 +1,75 @@
 package com.rip.roomies.models;
 
+import java.util.logging.Logger;
+
 /**
  * Created by Kanurame on 4/25/2016.
  */
 public class User {
-    //------- CONSTRUCTORS -------//
+	private static final Logger log = Logger.getLogger(User.class.getName());
 
-    public User(String username, String passwd) {
+	private static User activeUser;
 
-    }
+	public static User getActiveUser() {
+		return activeUser;
+	}
 
-    public User(int id, String username, String email) {
+	//------- CONSTRUCTORS -------//
 
-    }
+	public User(String username, String passwd) {
 
-    public User(String firstName, String lastName, String username, String email,
-                String passwd) {
+	}
 
-    }
+	public User(int id, String username, String email) {
 
-    //------- DATABASE METHODS -------//
+	}
 
-    public boolean createUser() {
-        return false;
-    }
+	public User(String firstName, String lastName, String username, String email,
+	            String passwd) {
 
-    public boolean login() {
-        return false;
-    }
+	}
 
-    public boolean passRetrieve() {
-        return false;
-    }
+	//------- DATABASE METHODS -------//
 
-    public boolean update() {
-        return false;
-    }
+	public User addToGroup() {
+		return null;
+	}
 
-    //------- OBJECT METHODS -------//
+	public User createUser() {
+		return null;
+	}
 
-    public void setFields(int id, String firstName, String lastName, String username,
-                          String email) {
+	public User login() {
+		return null;
+	}
 
-    }
+	public boolean passRetrieve() {
+		return false;
+	}
 
-    public void setRoom(int roomId) {
+	//------- OBJECT METHODS -------//
 
-    }
+	public String getEmail() {
+		return null;
+	}
+
+	public String getFirstName() {
+		return null;
+	}
+
+	public int getGroupId() {
+		return 0;
+	}
+
+	public int getId() {
+		return 0;
+	}
+
+	public String getLastName() {
+		return null;
+	}
+
+	public String getUsername() {
+		return null;
+	}
 }

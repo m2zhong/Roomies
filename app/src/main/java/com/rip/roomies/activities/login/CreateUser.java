@@ -5,11 +5,15 @@ import android.os.Bundle;
 import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
 
-public class CreateUser extends GenericActivity {
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+import java.util.logging.Logger;
 
-        setContentView(R.layout.activity_create_user);
-    }
+public class CreateUser extends GenericActivity {
+	private static final Logger log = Logger.getLogger(CreateUser.class.getName());
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
+		setContentView(R.layout.activity_create_user);
+	}
 }

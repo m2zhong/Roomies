@@ -11,7 +11,10 @@ import com.rip.roomies.sql.SQLQuery;
 
 import java.sql.SQLException;
 
+import java.util.logging.Logger;
+
 public class Login extends GenericActivity {
+<<<<<<< HEAD
     Button login;
     Button create_user;
     EditText user_name;
@@ -29,4 +32,14 @@ public class Login extends GenericActivity {
             e.printStackTrace();
         }
     }
+=======
+	private static final Logger log = Logger.getLogger(Login.class.getName());
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
+		setContentView(R.layout.activity_login);
+	}
+>>>>>>> e93fc9c26712ad29c4ae31baa6682dbdddc56c20
 }
