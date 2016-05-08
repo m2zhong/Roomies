@@ -1,71 +1,75 @@
 package com.rip.roomies.models;
 
+import java.util.logging.Logger;
+
 /**
  * Created by Kanurame on 4/25/2016.
  */
 public class User {
-    private static User activeUser;
+	private static final Logger log = Logger.getLogger(User.class.getName());
 
-    public static User getActiveUser() {
-        return activeUser;
-    }
+	private static User activeUser;
 
-    //------- CONSTRUCTORS -------//
+	public static User getActiveUser() {
+		return activeUser;
+	}
 
-    public User(String username, String passwd) {
+	//------- CONSTRUCTORS -------//
 
-    }
+	public User(String username, String passwd) {
 
-    public User(int id, String username, String email) {
+	}
 
-    }
+	public User(int id, String username, String email) {
 
-    public User(String firstName, String lastName, String username, String email,
-                String passwd) {
+	}
 
-    }
+	public User(String firstName, String lastName, String username, String email,
+	            String passwd) {
 
-    //------- DATABASE METHODS -------//
+	}
 
-    public User addToGroup() {
-        return null;
-    }
+	//------- DATABASE METHODS -------//
 
-    public User createUser() {
-        return null;
-    }
+	public User addToGroup() {
+		return null;
+	}
 
-    public User login() {
-        return null;
-    }
+	public User createUser() {
+		return null;
+	}
 
-    public boolean passRetrieve() {
-        return false;
-    }
+	public User login() {
+		return null;
+	}
 
-    //------- OBJECT METHODS -------//
+	public boolean passRetrieve() {
+		return false;
+	}
 
-    public String getEmail() {
-        return null;
-    }
+	//------- OBJECT METHODS -------//
 
-    public String getFirstName() {
-        return null;
-    }
+	public String getEmail() {
+		return null;
+	}
 
-    public int getGroupId() {
-        return 0;
-    }
+	public String getFirstName() {
+		return null;
+	}
 
-    public int getId() {
-        return 0;
-    }
+	public int getGroupId() {
+		return 0;
+	}
 
-    public String getLastName() {
-        return null;
-    }
+	public int getId() {
+		return 0;
+	}
 
-    public String getUsername() {
-        return null;
-    }
+	public String getLastName() {
+		return null;
+	}
+
+	public String getUsername() {
+		return null;
+	}
 }

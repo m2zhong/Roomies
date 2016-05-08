@@ -7,71 +7,80 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.rip.roomies.models.User;
+import com.rip.roomies.util.InfoStrings;
+
+import java.util.logging.Logger;
 
 /**
  * This class is a displayable view that represents a User object. It will display
  * any necessary information as well as style once implemented.
  */
 public class UserView extends LinearLayout {
-    private User user;
+	private static final Logger log = Logger.getLogger(UserView.class.getName());
 
-    /**
-     * @see android.view.View(Context)
-     */
-    public UserView(Context context) {
-        super(context);
-    }
+	private User user;
 
-    /**
-     * @see android.view.View(Context, AttributeSet )
-     */
-    public UserView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-    }
+	/**
+	 * @see android.view.View(Context)
+	 */
+	public UserView(Context context) {
+		super(context);
+	}
 
-    /**
-     * @see android.view.View(Context, AttributeSet, int)
-     */
-    public UserView(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
-    }
+	/**
+	 * @see android.view.View(Context, AttributeSet )
+	 */
+	public UserView(Context context, AttributeSet attrs) {
+		super(context, attrs);
+	}
 
-    /**
-     * Get the User object that this class represents
-     * @return The User object in question
-     */
-    public User getUser() {
-        return user;
-    }
+	/**
+	 * @see android.view.View(Context, AttributeSet, int)
+	 */
+	public UserView(Context context, AttributeSet attrs, int defStyle) {
+		super(context, attrs, defStyle);
+	}
 
-    /**
-     * Set the user of this object whose information this view will display
-     * @param user The user object to display
-     */
-    public void setUser(User user) {
-        this.user = user;
-        setupLayout();
-    }
+	/**
+	 * Get the User object that this class represents
+	 *
+	 * @return The User object in question
+	 */
+	public User getUser() {
+		return user;
+	}
 
-    /**
-     * Sets up the layout for this UserView.
-     */
-    private void setupLayout() {
-        setLayoutParams(new ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT));
-        setOrientation(LinearLayout.VERTICAL);
+	/**
+	 * Set the user of this object whose information this view will display
+	 *
+	 * @param user The user object to display
+	 */
+	public void setUser(User user) {
+		this.user = user;
+		setupLayout();
+	}
 
-        TextView name = new TextView(getContext());
-        TextView username = new TextView(getContext());
-        TextView email = new TextView(getContext());
+	/**
+	 * Sets up the layout for this UserView.
+	 */
+	private void setupLayout() {
+		log.info(String.format(InfoStrings.VIEW_SETUP, UserView.class.getSimpleName()));
 
-        name.setText(user.getFirstName() + " " + user.getLastName());
-        username.setText(user.getUsername());
-        email.setText(user.getEmail());
+		setLayoutParams(new ViewGroup.LayoutParams(
+				ViewGroup.LayoutParams.MATCH_PARENT,
+				ViewGroup.LayoutParams.WRAP_CONTENT));
+		setOrientation(LinearLayout.VERTICAL);
 
-        addView(name);
-        addView(username);
-        addView(email);
-    }
+		TextView name = new TextView(getContext());
+		TextView username = new TextView(getContext());
+		TextView email = new TextView(getContext());
+
+		name.setText(user.getFirstName() + " " + user.getLastName());
+		username.setText(user.getUsername());
+		email.setText(user.getEmail());
+
+		addView(name);
+		addView(username);
+		addView(email);
+	}
 }

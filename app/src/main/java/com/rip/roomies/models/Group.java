@@ -1,32 +1,36 @@
 package com.rip.roomies.models;
 
+import java.util.logging.Logger;
+
 /**
  * Created by Kanurame on 5/2/2016.
  */
 public class Group {
-    //------- CONSTRUCTORS -------//
+	private static final Logger log = Logger.getLogger(Group.class.getName());
 
-    public Group(String name, String description) {
+	//------- CONSTRUCTORS -------//
 
-    }
+	public Group(String name, String description) {
 
-    //------- DATABASE METHODS -------//
+	}
 
-    public Group createGroup() {
-        return null;
-    }
+	//------- DATABASE METHODS -------//
 
-    //------- OBJECT METHODS -------//
+	public Group createGroup() {
+		return null;
+	}
 
-    public String getDescription() {
-        return null;
-    }
+	//------- OBJECT METHODS -------//
 
-    public int getId() {
-        return 0;
-    }
+	public String getDescription() {
+		return null;
+	}
 
-    public String getName() {
-        return null;
-    }
+	public int getId() {
+		return 0;
+	}
+
+	public String getName() {
+		return null;
+	}
 }

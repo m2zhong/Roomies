@@ -5,11 +5,15 @@ import android.os.Bundle;
 import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
 
-public class PassRetrieve extends GenericActivity {
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+import java.util.logging.Logger;
 
-        setContentView(R.layout.activity_pass_retrieve);
-    }
+public class PassRetrieve extends GenericActivity {
+	private static final Logger log = Logger.getLogger(PassRetrieve.class.getName());
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
+		setContentView(R.layout.activity_pass_retrieve);
+	}
 }

@@ -5,21 +5,29 @@ import android.os.Handler;
 
 import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
+import com.rip.roomies.util.InfoStrings;
+
+import java.util.logging.Logger;
 
 public class SplashScreen extends GenericActivity {
-    private static final long SPLASH_SCREEN_DELAY = 3000;
+	private static final Logger log = Logger.getLogger(SplashScreen.class.getName());
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash_screen);
+	private static final long SPLASH_SCREEN_DELAY = 3000;
 
-        // Delayed switch to login screen
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                toLogin();
-            }
-        }, SPLASH_SCREEN_DELAY);
-    }
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_splash_screen);
+
+		log.info(String.format(InfoStrings.SWITCH_ACTIVITY_DELAYED,
+				Login.class.getName(), SPLASH_SCREEN_DELAY));
+
+		// Delayed switch to login screen
+		new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				toLogin();
+			}
+		}, SPLASH_SCREEN_DELAY);
+	}
 }
