@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0099cc"
+    android:background="@color/colorPrimary"
     tools:context="com.rip.roomies.activities.login.Login">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
@@ -14,10 +14,10 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:keepScreenOn="true"
-        android:text="@string/dummy_content"
         android:textColor="#33b5e5"
         android:textSize="50sp"
         android:textStyle="bold" />
+
 
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->
@@ -26,25 +26,96 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="true">
 
-        <LinearLayout
-            android:id="@+id/fullscreen_content_controls"
-            style="?metaButtonBarStyle"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:background="@color/black_overlay"
-            android:orientation="horizontal"
-            tools:ignore="UselessParent">
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal|bottom">
 
-            <Button
-                android:id="@+id/dummy_button"
-                style="?metaButtonBarButtonStyle"
-                android:layout_width="0dp"
+            <ImageView android:id="@+id/appname"
+                android:layout_height="100dp"
+                android:layout_width="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_alignStart="@+id/username"
+                android:layout_alignRight="@id/username"
+                android:layout_alignLeft="@id/username"
+                android:layout_alignEnd="@id/username"
+                android:background="@drawable/logo"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                />
+
+            <EditText android:id="@+id/username"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/dummy_button" />
+                android:paddingLeft="10dp"
+                android:layout_below="@id/appname"
+                android:inputType="text"
+                android:hint="@string/unhint"
+                android:textSize="20dp"
+                android:textColorHint="@color/text"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="5dp" />
 
-        </LinearLayout>
+            <EditText android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:paddingLeft="10dp"
+                android:layout_below="@id/username"
+                android:inputType="textPassword"
+                android:hint="@string/pwhint"
+                android:textSize="20dp"
+                android:textColorHint="@color/text"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp" />
+
+            <LinearLayout android:id="@+id/btns"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/password"
+                android:layout_alignLeft="@id/password"
+                android:layout_alignRight="@id/password"
+                android:layout_alignStart="@id/password"
+                android:layout_alignEnd="@id/password">
+
+                <Button android:id="@+id/loginbtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:background="@color/black_overlay"
+                    android:text="@string/login"
+                    android:textColor="@color/text"/>
+
+                <Button android:id="@+id/regbtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:background="@color/black_overlay"
+                    android:text="@string/reg"
+                    android:textColor="@color/text"/>
+            </LinearLayout>
+
+            <TextView android:id="@+id/forgotpw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btns"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:text="@string/forgotpw"
+                android:textColor="@color/text"
+                android:textSize="16sp"/>
+
+
+        </RelativeLayout>
+
     </FrameLayout>
 
 </FrameLayout>
