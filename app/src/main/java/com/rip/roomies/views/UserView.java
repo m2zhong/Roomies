@@ -7,12 +7,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.rip.roomies.models.User;
+import com.rip.roomies.util.InfoStrings;
+
+import java.util.logging.Logger;
 
 /**
  * This class is a displayable view that represents a User object. It will display
  * any necessary information as well as style once implemented.
  */
 public class UserView extends LinearLayout {
+	private static final Logger log = Logger.getLogger(UserView.class.getName());
+
 	private User user;
 
 	/**
@@ -59,6 +64,8 @@ public class UserView extends LinearLayout {
 	 * Sets up the layout for this UserView.
 	 */
 	private void setupLayout() {
+		log.info(String.format(InfoStrings.VIEW_SETUP, UserView.class.getSimpleName()));
+
 		setLayoutParams(new ViewGroup.LayoutParams(
 				ViewGroup.LayoutParams.MATCH_PARENT,
 				ViewGroup.LayoutParams.WRAP_CONTENT));

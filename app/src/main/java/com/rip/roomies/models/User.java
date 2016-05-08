@@ -1,9 +1,13 @@
 package com.rip.roomies.models;
 
+import java.util.logging.Logger;
+
 /**
  * Created by Kanurame on 4/25/2016.
  */
 public class User {
+	private static final Logger log = Logger.getLogger(User.class.getName());
+
 	private static User activeUser;
 
 	public static User getActiveUser() {

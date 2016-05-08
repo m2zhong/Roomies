@@ -5,12 +5,17 @@ import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
 import com.rip.roomies.models.User;
+import com.rip.roomies.util.InfoStrings;
+
+import java.util.logging.Logger;
 
 /**
  * This class represents a container for multiple UserView objects that can
  * be displayed in a dynamic group.
  */
 public class UserContainer extends LinearLayout {
+	private static final Logger log = Logger.getLogger(UserContainer.class.getName());
+
 	/**
 	 * @see android.view.View(Context)
 	 */
@@ -38,6 +43,9 @@ public class UserContainer extends LinearLayout {
 	 * @param newUser The new User to add
 	 */
 	public void addUser(User newUser) {
+		log.info(String.format(InfoStrings.CONTAINER_ADD,
+				UserView.class.getSimpleName(), UserContainer.class.getSimpleName()));
+
 		UserView userView = new UserView(getContext());
 		userView.setUser(newUser);
 		addView(userView);

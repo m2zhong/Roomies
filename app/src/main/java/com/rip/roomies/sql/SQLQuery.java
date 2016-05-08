@@ -1,15 +1,20 @@
 package com.rip.roomies.sql;
 
+import com.rip.roomies.util.InfoStrings;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.logging.Logger;
 
 /**
  * This is a SQLQuery helper class which will handle connecting to and executing
  * statements from the database.
  */
 public class SQLQuery {
+	private static final Logger log = Logger.getLogger(SQLQuery.class.getName());
+
 	// Connection to the database
 	private static Connection conn = null;
 
@@ -24,6 +29,8 @@ public class SQLQuery {
 	 */
 	private synchronized static void connect() throws Exception {
 		if (conn == null) {
+			log.info(InfoStrings.DATABASE_CONNECT);
+
 			Class.forName("net.sourceforge.jtds.jdbc.Driver");
 			conn = DriverManager.getConnection(CONN_STRING);
 		}
@@ -43,6 +50,7 @@ public class SQLQuery {
 			connect();
 		}
 
+		log.info(String.format(InfoStrings.DATABASE_QUERY, query));
 		Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
 				ResultSet.CONCUR_UPDATABLE);
 		return stmt.executeQuery(query);
