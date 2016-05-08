@@ -6,30 +6,30 @@ import com.rip.roomies.models.User;
  * Created by Kanurame on 4/25/2016.
  */
 public class LoginController {
-    private static LoginController controller;
+	private static LoginController controller;
 
-    public static LoginController getController() {
-        if (controller == null) {
-            controller = new LoginController();
-        }
+	public static LoginController getController() {
+		if (controller == null) {
+			controller = new LoginController();
+		}
 
-        return controller;
-    }
+		return controller;
+	}
 
-    public User createUser(String firstName, String lastName, String username,
-                           String email, String passwd) {
-        return null;
-    }
+	public User createUser(String firstName, String lastName, String username,
+	                       String email, String passwd) {
+		return null;
+	}
 
-    public User login(String username, String passwd) {
-        return null;
-    }
+	public User login(String username, String passwd) {
+		return null;
+	}
 
-    public void logoff() {
+	public void logoff() {
 
-    }
+	}
 
-    public boolean passRetrieve(String email) {
-        return false;
-    }
+	public boolean passRetrieve(String email) {
+		return false;
+	}
 }

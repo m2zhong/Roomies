@@ -11,34 +11,35 @@ import com.rip.roomies.models.User;
  * be displayed in a dynamic group.
  */
 public class UserContainer extends LinearLayout {
-    /**
-     * @see android.view.View(Context)
-     */
-    public UserContainer(Context context) {
-        super(context);
-    }
+	/**
+	 * @see android.view.View(Context)
+	 */
+	public UserContainer(Context context) {
+		super(context);
+	}
 
-    /**
-     * @see android.view.View(Context, AttributeSet)
-     */
-    public UserContainer(Context context, AttributeSet attrs) {
-        super(context, attrs);
-    }
+	/**
+	 * @see android.view.View(Context, AttributeSet)
+	 */
+	public UserContainer(Context context, AttributeSet attrs) {
+		super(context, attrs);
+	}
 
-    /**
-     * @see android.view.View(Context, AttributeSet, int)
-     */
-    public UserContainer(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
-    }
+	/**
+	 * @see android.view.View(Context, AttributeSet, int)
+	 */
+	public UserContainer(Context context, AttributeSet attrs, int defStyle) {
+		super(context, attrs, defStyle);
+	}
 
-    /**
-     * Adds a new user to the UserContainer at the end of the list.
-     * @param newUser The new User to add
-     */
-    public void addUser(User newUser) {
-        UserView userView = new UserView(getContext());
-        userView.setUser(newUser);
-        addView(userView);
-    }
+	/**
+	 * Adds a new user to the UserContainer at the end of the list.
+	 *
+	 * @param newUser The new User to add
+	 */
+	public void addUser(User newUser) {
+		UserView userView = new UserView(getContext());
+		userView.setUser(newUser);
+		addView(userView);
+	}
 }

@@ -10,12 +10,12 @@ import com.rip.roomies.views.UserContainer;
  * Created by Kanurame on 5/2/2016.
  */
 public class CreateGroupListener implements View.OnClickListener {
-    public CreateGroupListener(GenericActivity context, EditText name, EditText description,
-                               UserContainer container) {
+	public CreateGroupListener(GenericActivity context, EditText name, EditText description,
+	                           UserContainer container) {
 
-    }
+	}
 
-    public void onClick(View v) {
+	public void onClick(View v) {
 
-    }
+	}
 }

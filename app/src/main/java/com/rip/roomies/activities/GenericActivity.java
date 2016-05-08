@@ -11,17 +11,17 @@ import com.rip.roomies.activities.login.Login;
  * These methods can be overriden if some extra functionality is needed.
  */
 public abstract class GenericActivity extends Activity {
-    /**
-     * Transitions to the main login page.
-     */
-    public void toLogin() {
-        startActivity(new Intent(this, Login.class));
-    }
+	/**
+	 * Transitions to the main login page.
+	 */
+	public void toLogin() {
+		startActivity(new Intent(this, Login.class));
+	}
 
-    /**
-     * Transitions to the home screen.
-     */
-    public void toHome() {
-        // TODO once home screen has been created
-    }
+	/**
+	 * Transitions to the home screen.
+	 */
+	public void toHome() {
+		// TODO once home screen has been created
+	}
 }
