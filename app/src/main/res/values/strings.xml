@@ -1,15 +1,7 @@
 <resources>
 	<string name="app_name">Roomies</string>
 
-<<<<<<< HEAD
-    <string name="title_activity_splash_screen">SplashScreen</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
-=======
 	<string name="title_activity_splash_screen">Roomies</string>
-	<string name="dummy_button">Dummy Button</string>
-	<string name="dummy_content">DUMMY\nCONTENT</string>
->>>>>>> e93fc9c26712ad29c4ae31baa6682dbdddc56c20
 
 	<string name="title_activity_login">Login</string>
 
@@ -17,13 +9,10 @@
 
 	<string name="title_activity_password_recovery">PasswordRecovery</string>
 
-<<<<<<< HEAD
     <string name="unhint">username</string>
     <string name="pwhint">password</string>
     <string name="login">Login</string>
     <string name="reg">SIGN UP</string>
     <string name="forgotpw">Forgot Password?</string>
-=======
 	<string name="title_activity_create_group">CreateGroup</string>
->>>>>>> e93fc9c26712ad29c4ae31baa6682dbdddc56c20
 </resources>
