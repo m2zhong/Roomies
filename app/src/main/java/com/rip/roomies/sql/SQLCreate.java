@@ -16,7 +16,7 @@ public class SQLCreate {
 	public static Group createGroup(Group group) {
 
 		//declare the execution query code for TSQL to login
-		final String queryStr = "EXEC CreateGroup @name = '"+ group.getName() +
+		final String queryStr = "EXEC CreateGroup @name = '" + group.getName() +
 				"', @description = '" + group.getDescription() + "'";
 
 		ResultSet rset = null;
@@ -26,7 +26,7 @@ public class SQLCreate {
 			rset = SQLQuery.execute(queryStr);
 
 			// group already exist
-			if(rset == null || rset.getRow() == 0) {
+			if (rset == null || rset.getRow() == 0) {
 				//debug statement
 				log.info(InfoStrings.CREATEGROUP_FAILED);
 				return null;
@@ -47,7 +47,7 @@ public class SQLCreate {
 
 			}
 		}
-		catch(Exception e){
+		catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -69,7 +69,7 @@ public class SQLCreate {
 			rset = SQLQuery.execute(queryStr);
 
 			// group already exist
-			if(rset == null || rset.getRow() == 0) {
+			if (rset == null || rset.getRow() == 0) {
 				//debug statement
 				log.info(InfoStrings.CREATEUSER_FAILED);
 				return null;
@@ -92,7 +92,7 @@ public class SQLCreate {
 
 			}
 		}
-		catch(Exception e){
+		catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}

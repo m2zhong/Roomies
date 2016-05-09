@@ -19,7 +19,7 @@ public class InfoStrings {
 	public static final String VIEW_SETUP = "Setting up view %s";
 
 	public static final String LOGIN_SUCCESSFULL = "Login successfull!! \n" +
-							"LastName: %s\nFirstName: %s\nUsername: %s\nEmail: %s";
+			"LastName: %s\nFirstName: %s\nUsername: %s\nEmail: %s";
 	public static final String LOGIN_FAILED = "Login FAILED!!";
 
 	public static final String CREATEUSER_SUCCESSFULL = "CreateUser successfull!! \n" +
