@@ -14,36 +14,29 @@ import java.sql.SQLException;
 
 import java.util.logging.Logger;
 
+/**
+ * Login Activity
+ */
 public class Login extends GenericActivity {
-    private static final Logger log = Logger.getLogger(Login.class.getName());
+	private static final Logger log = Logger.getLogger(Login.class.getName());
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        Button login;
-        Button create_user;
-        EditText user_name;
-        EditText password;
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		Button login;
+		Button create_user;
+		EditText user_name;
+		EditText password;
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_login);
 
-        user_name = (EditText) findViewById(R.id.username);
-        password = (EditText) findViewById(R.id.password);
-        login = (Button) findViewById(R.id.loginbtn);
-        create_user = (Button) findViewById(R.id.regbtn);
+		/* Linking xml objects to java */
+		user_name = (EditText) findViewById(R.id.username);
+		password = (EditText) findViewById(R.id.password);
+		login = (Button) findViewById(R.id.loginbtn);
+		create_user = (Button) findViewById(R.id.regbtn);
 
-        login.setOnClickListener(new LoginListener(this,user_name,password));
+		login.setOnClickListener(new LoginListener(this, user_name, password));
 
-        try {
-            SQLQuery.execute("EXEC PROC CreateUser");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    protected void switch_regscreen(){
-
-
-
-    }
+	}
 }
