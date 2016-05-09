@@ -17,4 +17,17 @@ public class InfoStrings {
 	public static final String CONTAINER_ADD = "Adding view %s to container %s";
 
 	public static final String VIEW_SETUP = "Setting up view %s";
+
+	public static final String LOGIN_SUCCESSFULL = "Login successfull!! \n" +
+							"LastName: %s\nFirstName: %s\nUsername: %s\nEmail: %s";
+	public static final String LOGIN_FAILED = "Login FAILED!!";
+
+	public static final String CREATEUSER_SUCCESSFULL = "CreateUser successfull!! \n" +
+			"LastName: %s\nFirstName: %s\nUsername: %s\nEmail: %s";
+	public static final String CREATEUSER_FAILED = "CreateUser Failed!!";
+
+	public static final String CREATEGROUP_SUCCESSFULL = "CreateGroup successfull!! \n" +
+			"Name: %s\nDescription: %s";
+	public static final String CREATEGROUP_FAILED = "CreateGroup Failed!!";
+
 }

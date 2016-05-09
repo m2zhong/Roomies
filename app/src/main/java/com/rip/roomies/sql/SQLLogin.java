@@ -1,6 +1,7 @@
 package com.rip.roomies.sql;
 
 import com.rip.roomies.models.User;
+import com.rip.roomies.util.InfoStrings;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,6 +27,8 @@ public class SQLLogin {
 
 			// either username doesn't exist or password incorrect
 			if(rset == null || rset.getRow() == 0) {
+                //debug statement
+                log.info(InfoStrings.LOGIN_FAILED);
 				return null;
 			}
 			//if there's a rset
@@ -38,6 +41,10 @@ public class SQLLogin {
 				String resultFirstName = rset.getString(3);
 				String resultUsername = rset.getString(4);
 				String resultEmail = rset.getString(5);
+
+                //debug message
+                log.info(String.format(InfoStrings.LOGIN_SUCCESSFULL, resultLastName,
+                        resultFirstName, resultUsername, resultEmail));
 
 				return new User(resultFirstName, resultLastName, resultUsername, resultEmail, null);
 
