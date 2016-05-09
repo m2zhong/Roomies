@@ -2,6 +2,7 @@ package com.rip.roomies.models;
 
 import com.rip.roomies.sql.SQLCreate;
 import com.rip.roomies.sql.SQLLogin;
+import java.util.logging.Logger;
 
 /**
  * Created by Kanurame on 4/25/2016.
@@ -16,12 +17,13 @@ public class User {
     public int room;
 
     private static User activeUser;
+	private static final Logger log = Logger.getLogger(User.class.getName());
 
-    public static User getActiveUser() {
-        return activeUser;
-    }
+	public static User getActiveUser() {
+		return activeUser;
+	}
 
-    //------- CONSTRUCTORS -------//
+	//------- CONSTRUCTORS -------//
 
     public User(String username, String passwd) {
         this.username = username;
@@ -43,7 +45,7 @@ public class User {
         this.password = passwd;
     }
 
-    //------- DATABASE METHODS -------//
+	//------- DATABASE METHODS -------//
 
     public User addToGroup() {
         //TODO
@@ -68,7 +70,7 @@ public class User {
         return SQLLogin.passRetrieve(this);
     }
 
-    //------- OBJECT METHODS -------//
+	//------- OBJECT METHODS -------//
 
     public void setFields(int id, String firstName, String lastName, String username,
                           String email) {
@@ -106,5 +108,9 @@ public class User {
 
     public String getUsername() {
         return username;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }

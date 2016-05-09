@@ -1,6 +1,7 @@
 package com.rip.roomies.models;
 
 import com.rip.roomies.sql.SQLCreate;
+import java.util.logging.Logger;
 
 /**
  * Created by Kanurame on 5/2/2016.
@@ -16,6 +17,8 @@ public class Group {
         this.description = description;
     }
 
+    private static final Logger log = Logger.getLogger(Group.class.getName());
+
     //------- DATABASE METHODS -------//
 
     public Group createGroup() {
@@ -24,6 +27,10 @@ public class Group {
 
     //------- OBJECT METHODS -------//
 
+    public String getName() {
+        return name;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -31,9 +38,5 @@ public class Group {
     public int getId() {
         //TODO
         return 0;
-    }
-
-    public String getName() {
-        return name;
     }
 }

@@ -2,34 +2,38 @@ package com.rip.roomies.controllers;
 
 import com.rip.roomies.models.User;
 
+import java.util.logging.Logger;
+
 /**
  * Created by Kanurame on 4/25/2016.
  */
 public class LoginController {
-    private static LoginController controller;
+	private static final Logger log = Logger.getLogger(LoginController.class.getName());
 
-    public static LoginController getController() {
-        if (controller == null) {
-            controller = new LoginController();
-        }
+	private static LoginController controller;
 
-        return controller;
-    }
+	public static LoginController getController() {
+		if (controller == null) {
+			controller = new LoginController();
+		}
 
-    public User createUser(String firstName, String lastName, String username,
-                           String email, String passwd) {
-        return null;
-    }
+		return controller;
+	}
 
-    public User login(String username, String passwd) {
-        return null;
-    }
+	public User createUser(String firstName, String lastName, String username,
+	                       String email, String passwd) {
+		return null;
+	}
 
-    public void logoff() {
+	public User login(String username, String passwd) {
+		return null;
+	}
 
-    }
+	public void logoff() {
 
-    public boolean passRetrieve(String email) {
-        return false;
-    }
+	}
+
+	public boolean passRetrieve(String email) {
+		return false;
+	}
 }
