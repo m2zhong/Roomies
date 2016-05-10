@@ -34,6 +34,11 @@ public class SQLAdd {
 				usersString += SQLStrings.LIST_DELINEATOR;
 			}
 
+			// Can only take max length of 1000
+			if (usersString.length() > 1000) {
+				return null;
+			}
+
 			// Log adding user to group
 			log.info(InfoStrings.ADD_USERS_TO_GROUP_SQL);
 
