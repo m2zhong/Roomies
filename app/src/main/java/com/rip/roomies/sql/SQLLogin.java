@@ -26,6 +26,9 @@ public class SQLLogin {
 		ResultSet rset;
 
 		try {
+			//debug statement
+			log.info(InfoStrings.LOGIN_SQL);
+
 			// get the result table from query execution through sql
 			rset = SQLQuery.execute(String.format(SQLStrings.LOGIN,
 					user.getUsername(), user.getPassword()));
@@ -42,11 +45,11 @@ public class SQLLogin {
 			else {
 				//second column is lastname, third is firstname
 				//so pass the column number accordingly to get the info about user
-				int resultID = rset.getInt(1);
-				String resultLastName = rset.getString(2);
-				String resultFirstName = rset.getString(3);
-				String resultUsername = rset.getString(4);
-				String resultEmail = rset.getString(5);
+				int resultID = rset.getInt("ID");
+				String resultLastName = rset.getString("LastName");
+				String resultFirstName = rset.getString("FirstName");
+				String resultUsername = rset.getString("Username");
+				String resultEmail = rset.getString("Email");
 
 				//debug message
 				log.info(String.format(Locale.US, InfoStrings.LOGIN_SUCCESSFULL, resultID, resultLastName,

@@ -27,6 +27,9 @@ public class SQLCreate {
 		ResultSet rset;
 
 		try {
+			//debug statement
+			log.info(InfoStrings.CREATEGROUP_SQL);
+
 			// get the result table from query execution through sql
 			rset = SQLQuery.execute(String.format(Locale.US, SQLStrings.CREATE_GROUP,
 					group.getName(), group.getDescription()));
@@ -42,9 +45,9 @@ public class SQLCreate {
 			else {
 				//first column is id, second is lastname, third is firstname
 				//so pass the column number accordingly to get the info about user
-				int resultID = rset.getInt(1);
-				String resultName = rset.getString(2);
-				String resultDescription = rset.getString(3);
+				int resultID = rset.getInt("ID");
+				String resultName = rset.getString("Name");
+				String resultDescription = rset.getString("Description");
 
 				//debug statement
 				log.info(String.format(Locale.US, InfoStrings.CREATEGROUP_SUCCESSFULL,
@@ -71,6 +74,8 @@ public class SQLCreate {
 		ResultSet rset;
 
 		try {
+			log.info(InfoStrings.CREATEUSER_SQL);
+
 			// get the result table from query execution through sql
 			rset = SQLQuery.execute(String.format(Locale.US, SQLStrings.CREATE_USER,
 					user.getFirstName(), user.getLastName(), user.getUsername(),
@@ -88,11 +93,11 @@ public class SQLCreate {
 
 				//second column is lastname, third is firstname
 				//so pass the column number accordingly to get the info about user
-				int resultID = rset.getInt(1);
-				String resultLastName = rset.getString(2);
-				String resultFirstName = rset.getString(3);
-				String resultUsername = rset.getString(4);
-				String resultEmail = rset.getString(5);
+				int resultID = rset.getInt("ID");
+				String resultLastName = rset.getString("LastName");
+				String resultFirstName = rset.getString("FirstName");
+				String resultUsername = rset.getString("Username");
+				String resultEmail = rset.getString("Email");
 
 				//debug statement
 				log.info(String.format(Locale.US, InfoStrings.CREATEUSER_SUCCESSFULL, resultID,

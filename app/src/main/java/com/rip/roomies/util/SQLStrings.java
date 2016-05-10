@@ -12,4 +12,9 @@ public class SQLStrings {
 	public static final String CREATE_USER = "EXEC CreateUser " +
 			"@firstName = '%s', @lastName = '%s', @username = '%s', " +
 			"@email= '%s', @password = '%s'";
+
+	public static final String ADD_USERS_TO_GROUP = "EXEC AddUsersToGroup " +
+			"@groupId = %d, @userIds = '%s'";
+
+	public static final char LIST_DELINEATOR = '|';
 }
