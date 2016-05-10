@@ -101,11 +101,19 @@ public class User {
 	}
 
 	/**
+	 * Logs off the user by removing the static activeUser field.
+	 */
+	public static void logoff() {
+		activeUser = null;
+	}
+
+	/**
 	 * Connects to the database, adding this User to an existing Group.
 	 *
+	 * @param groupId The ID of the group this user is being added to
 	 * @return The new User instance, with its Group set.
 	 */
-	public User addToGroup() {
+	public User addToGroup(int groupId) {
 		//TODO
 		return null;
 	}

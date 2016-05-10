@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.rip.roomies.activities.GenericActivity;
+import com.rip.roomies.models.Group;
 import com.rip.roomies.views.UserContainer;
 
 import java.util.logging.Logger;
@@ -19,7 +20,16 @@ public class CreateGroupListener implements View.OnClickListener {
 
 	}
 
+	@Override
 	public void onClick(View v) {
+
+	}
+
+	public void createGroupFail() {
+
+	}
+
+	public void createGroupSuccess(Group group) {
 
 	}
 }

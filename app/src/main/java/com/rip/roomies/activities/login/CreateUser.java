@@ -33,7 +33,7 @@ public class CreateUser extends GenericActivity {
 		email = (EditText) findViewById(R.id.email);
 		password = (EditText) findViewById(R.id.password);
 		confirm_password = (EditText) findViewById(R.id.confirmPass);
-		create_user = (Button) findViewById(R.id.btnsubmit);
+		create_user = (Button) findViewById(R.id.btnSubmit);
 
 
 		create_user.setOnClickListener(
