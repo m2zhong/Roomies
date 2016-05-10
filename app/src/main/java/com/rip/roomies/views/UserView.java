@@ -75,7 +75,8 @@ public class UserView extends LinearLayout {
 		TextView username = new TextView(getContext());
 		TextView email = new TextView(getContext());
 
-		name.setText(user.getFirstName() + " " + user.getLastName());
+		String fullName = user.getFirstName() + " " + user.getLastName();
+		name.setText(fullName);
 		username.setText(user.getUsername());
 		email.setText(user.getEmail());
 
