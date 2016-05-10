@@ -4,7 +4,6 @@ import com.rip.roomies.models.User;
 import com.rip.roomies.util.InfoStrings;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.logging.Logger;
 
 /**
