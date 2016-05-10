@@ -26,4 +26,7 @@ public class DisplayStrings {
 			"Check the logs for error.";
 	public static final String PASS_RETRIEVE_SUCCESS = "Password reset successful.\n" +
 			"Please check your email for your temporary password.";
+
+	public static final String FIND_USER_FAIL = "Could not find that user.\n" +
+			"Make sure the username entered is correct.";
 }

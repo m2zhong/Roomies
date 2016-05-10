@@ -55,4 +55,13 @@ public class InfoStrings {
 	public static final String ADD_USERS_TO_GROUP_SQL = "Adding users to group...";
 	public static final String ADD_USERS_TO_GROUP_CONTROLLER = "Adding users to group from user given list:\n" +
 			"Group ID: %d\nGroup Name: %s\nUsers: %s";
+
+	public static final String FIND_USER_SUCESSFUL = "FindUser sucessful!! \n" +
+			"ID: %d\nLastName: %s\nFirstName: %s\nUsername: %s\nEmail: %s";
+	public static final String FIND_USER_FAILED = "FindUser Failed!!";
+	public static final String FIND_USER_MODEL = "Finding user based off the current object as a search key.";
+	public static final String FIND_USER_SQL = "Finding user...";
+	public static final String FIND_USER_CONTROLLER = "Finding user based on a unique parameter from user:" +
+			"ID: %d\nUsername: %s\nEmail: %s";
+	public static final String FIND_USER_EVENT = "Validation passed. Attempting to find user.";
 }

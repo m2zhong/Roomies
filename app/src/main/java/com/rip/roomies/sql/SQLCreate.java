@@ -11,7 +11,7 @@ import java.util.Locale;
 import java.util.logging.Logger;
 
 /**
- * A class that contains static methods for executing database comands relating to creation.
+ * A class that contains static methods for executing database commands relating to creation.
  */
 public class SQLCreate {
 	private static final Logger log = Logger.getLogger(SQLCreate.class.getName());
@@ -34,9 +34,8 @@ public class SQLCreate {
 			rset = SQLQuery.execute(String.format(Locale.US, SQLStrings.CREATE_GROUP,
 					group.getName(), group.getDescription()));
 
-			rset.next();
 			// group already exist
-			if (rset.getRow() == 0) {
+			if (!rset.next()) {
 				//debug statement
 				log.info(InfoStrings.CREATEGROUP_FAILED);
 				return null;
@@ -81,9 +80,8 @@ public class SQLCreate {
 					user.getFirstName(), user.getLastName(), user.getUsername(),
 					user.getEmail(), user.getPassword()));
 
-			rset.next();
 			// group already exist
-			if (rset.getRow() == 0) {
+			if (!rset.next()) {
 				//debug statement
 				log.info(InfoStrings.CREATEUSER_FAILED);
 				return null;

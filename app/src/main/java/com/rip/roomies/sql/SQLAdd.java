@@ -50,10 +50,9 @@ public class SQLAdd {
 			// Execute SQL
 			rs = SQLQuery.execute(String.format(Locale.US, SQLStrings.ADD_USERS_TO_GROUP,
 					group.getId(), usersString));
-			rs.next();
 
 			// If no rows, then adding failed
-			if (rs.getRow() == 0) {
+			if (!rs.next()) {
 				log.info(InfoStrings.ADD_USERS_TO_GROUP_FAILED);
 				return null;
 			}

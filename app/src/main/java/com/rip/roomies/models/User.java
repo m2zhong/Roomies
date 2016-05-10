@@ -1,6 +1,7 @@
 package com.rip.roomies.models;
 
 import com.rip.roomies.sql.SQLCreate;
+import com.rip.roomies.sql.SQLFind;
 import com.rip.roomies.sql.SQLLogin;
 import com.rip.roomies.util.InfoStrings;
 
@@ -119,6 +120,16 @@ public class User {
 	public User createUser() {
 		log.info(InfoStrings.CREATEUSER_MODEL);
 		return SQLCreate.createUser(this);
+	}
+
+	/**
+	 * Connects to the database, and attempts to find a user with one of the unique fields
+	 * of this class.
+	 * @return If found, the whole user will be returned. Otherwise, null is returned
+	 */
+	public User findUser() {
+		log.info(InfoStrings.FIND_USER_MODEL);
+		return SQLFind.findUser(this);
 	}
 
 	/**

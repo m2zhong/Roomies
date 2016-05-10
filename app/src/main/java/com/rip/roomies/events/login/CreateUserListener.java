@@ -7,7 +7,7 @@ import android.widget.Toast;
 
 import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.activities.login.Login;
-import com.rip.roomies.controllers.LoginController;
+import com.rip.roomies.controllers.UserController;
 import com.rip.roomies.models.User;
 import com.rip.roomies.util.DisplayStrings;
 import com.rip.roomies.util.InfoStrings;
@@ -85,7 +85,7 @@ public class CreateUserListener implements View.OnClickListener {
 
 		log.info(InfoStrings.CREATEUSER_EVENT);
 
-		LoginController.getController().createUser(this, fName, lName, uname, emailAddr, password);
+		UserController.getController().createUser(this, fName, lName, uname, emailAddr, password);
 	}
 
 	public void createUserFail() {
