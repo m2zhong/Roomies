@@ -8,6 +8,7 @@ import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.util.DisplayStrings;
 import com.rip.roomies.util.InfoStrings;
 
+import java.util.Locale;
 import java.util.logging.Logger;
 
 public class SplashScreen extends GenericActivity {
@@ -18,7 +19,7 @@ public class SplashScreen extends GenericActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash_screen);
 
-		log.info(String.format(InfoStrings.SWITCH_ACTIVITY_DELAYED,
+		log.info(String.format(Locale.US, InfoStrings.SWITCH_ACTIVITY_DELAYED,
 				Login.class.getName(), DisplayStrings.TOAST_LONG_LENGTH));
 
 		// Delayed switch to login screen
