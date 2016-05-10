@@ -4,7 +4,6 @@ import com.rip.roomies.models.User;
 import com.rip.roomies.util.InfoStrings;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.logging.Logger;
 
 /**
@@ -13,6 +12,14 @@ import java.util.logging.Logger;
 public class SQLLogin {
 	private static final Logger log = Logger.getLogger(SQLLogin.class.getName());
 
+	/**
+	 * Use SQLQuery class to create an connection and find the user's info from the database
+	 * to log in, if is successful the User object will be returned, otherwise return null
+	 *
+	 * @param user
+	 * @return User - the User object with all the user info
+	 * @throws Exception if the database cannot be connected to or statement fails
+	 */
 	public static User login(User user) {
 
 		//declare the execution query code for TSQL to login
@@ -25,6 +32,8 @@ public class SQLLogin {
 			// get the result table from query execution through sql
 			rset = SQLQuery.execute(queryStr);
 
+			//get the next row, kind of like scanner.nextLine()
+			rset.next();
 			// either username doesn't exist or password incorrect
 			if (rset == null || rset.getRow() == 0) {
 				//debug statement
@@ -33,8 +42,6 @@ public class SQLLogin {
 			}
 			//if there's a rset
 			else {
-				//get the next row, kind of like scanner.nextLine()
-				rset.next();
 				//second column is lastname, third is firstname
 				//so pass the column number accordingly to get the info about user
 				String resultLastName = rset.getString(2);
