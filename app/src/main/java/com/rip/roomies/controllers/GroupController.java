@@ -3,7 +3,9 @@ package com.rip.roomies.controllers;
 import com.rip.roomies.events.groups.CreateGroupListener;
 import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
+import com.rip.roomies.util.InfoStrings;
 
+import java.util.Locale;
 import java.util.logging.Logger;
 
 /**
@@ -40,6 +42,10 @@ public class GroupController {
 		new Thread() {
 			@Override
 			public void run() {
+				// Debug user entered fields
+				log.info(String.format(Locale.US, InfoStrings.CREATEGROUP_CONTROLLER,
+						name, description));
+
 				// Create request group and get response from createGroup()
 				Group request = new Group(name, description);
 				Group response = request.createGroup();
@@ -50,13 +56,35 @@ public class GroupController {
 				}
 				else {
 					// Add the current user and all invitees to the newly created group
-					User.getActiveUser().addToGroup(response.getId());
+					User[] users = new User[invitees.length + 1];
+					System.arraycopy(invitees, 0, users, 0, invitees.length);
+					users[invitees.length] = User.getActiveUser();
 
-					for (User req : invitees) {
-						req.addToGroup(response.getId());
+					String usersString = "[";
+					for (int i = 0; i < users.length; ++i) {
+						usersString += users[i].getFirstName() + " " + users[i].getLastName();
+
+						if (i != users.length - 1) {
+							usersString += ", ";
+						}
+					}
+					usersString += "]";
+
+					log.info(String.format(Locale.US, InfoStrings.ADD_USERS_TO_GROUP_CONTROLLER,
+							response.getId(), response.getName(), usersString));
+
+					response = response.addUsers(users);
+
+					// If this call fails, whole thing fails
+					if (response == null) {
+						listener.createGroupFail();
 					}
 
-					listener.createGroupSuccess(response);
+					// Otherwise, print success
+					else {
+						Group.setActiveGroup(response);
+						listener.createGroupSuccess(response);
+					}
 				}
 			}
 		}.start();

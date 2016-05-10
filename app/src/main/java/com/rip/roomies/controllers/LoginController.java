@@ -4,7 +4,9 @@ import com.rip.roomies.events.login.CreateUserListener;
 import com.rip.roomies.events.login.LoginListener;
 import com.rip.roomies.events.login.PassRetrieveListener;
 import com.rip.roomies.models.User;
+import com.rip.roomies.util.InfoStrings;
 
+import java.util.Locale;
 import java.util.logging.Logger;
 
 /**
@@ -42,6 +44,9 @@ public class LoginController {
 		new Thread() {
 			@Override
 			public void run() {
+				log.info(String.format(Locale.US, InfoStrings.CREATEUSER_CONTROLLER,
+						lastName, firstName, username, email));
+
 				// Create request user and get response from createUser()
 				User request = new User(firstName, lastName, username, email, passwd);
 				User response = request.createUser();
@@ -68,6 +73,8 @@ public class LoginController {
 		new Thread() {
 			@Override
 			public void run() {
+				log.info(String.format(Locale.US, InfoStrings.LOGIN_CONTROLLER, username));
+
 				// Create request user and get response from login()
 				User request = new User(username, passwd);
 				User response = request.login();
@@ -102,6 +109,8 @@ public class LoginController {
 			public void run() {
 				// Create request user
 				User request = new User(0, null, email);
+
+				log.info(String.format(Locale.US, InfoStrings.PASSRETRIEVE_CONTROLLER, email));
 
 				// If fail, call fail callback. Otherwise, call success callback
 				if (!request.passRetrieve()) {

@@ -19,26 +19,36 @@ public class InfoStrings {
 	public static final String LOGIN_FAILED = "Login FAILED!!";
 	public static final String LOGIN_MODEL = "Logging in based off the current object.";
 	public static final String LOGIN_SQL = "Logging in...";
+	public static final String LOGIN_CONTROLLER = "Logging in from user input:\n" +
+			"Username: %s\nPassword: XXXXXXXX";
 
 	public static final String CREATEUSER_SUCCESSFULL = "CreateUser successfull!! \n" +
 			"ID: %d\nLastName: %s\nFirstName: %s\nUsername: %s\nEmail: %s";
 	public static final String CREATEUSER_FAILED = "CreateUser Failed!!";
 	public static final String CREATEUSER_MODEL = "Creating a new user based off the current object.";
 	public static final String CREATEUSER_SQL = "Creating user...";
+	public static final String CREATEUSER_CONTROLLER = "Creating user from user given fields:\n" +
+			"LastName: %s\nFirstName: %s\nUsername: %s\nEmail: %s\nPassword: XXXXXXXX";
 
 	public static final String CREATEGROUP_SUCCESSFULL = "CreateGroup successfull!! \n" +
 			"ID: %d\nName: %s\nDescription: %s";
 	public static final String CREATEGROUP_FAILED = "CreateGroup Failed!!";
 	public static final String CREATEGROUP_MODEL = "Creating a new group based off the current object.";
 	public static final String CREATEGROUP_SQL = "Creating group...";
+	public static final String CREATEGROUP_CONTROLLER = "Creating group from user given fields:\n" +
+			"Name: %s\nDescription: %s";
 
 	public static final String LOGOFF = "Logging off.";
 
 	public static final String PASSRETRIEVE_MODEL = "Retrieving a new password via email based off the current object.";
+	public static final String PASSRETRIEVE_CONTROLLER = "Retrieving password from user input:\n" +
+			"Email: %s";
 
 	public static final String ADD_USERS_TO_GROUP_SUCCESSFULL = "AddUsersToGroup successfull!! \n" +
 			"ID: %d\nName: %s\nDescription: %s";
 	public static final String ADD_USERS_TO_GROUP_FAILED = "AddUsersToGroup Failed!!";
 	public static final String ADD_USERS_TO_GROUP_MODEL = "Adding users to an existing group based off the current objects.";
 	public static final String ADD_USERS_TO_GROUP_SQL = "Adding users to group...";
+	public static final String ADD_USERS_TO_GROUP_CONTROLLER = "Adding users to group from user given list:\n" +
+			"Group ID: %d\nGroup Name: %s\nUsers: %s";
 }

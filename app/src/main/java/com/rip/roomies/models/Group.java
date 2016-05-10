@@ -15,6 +15,7 @@ public class Group {
     private int id;
 	private User[] members;
 
+	private static Group activeGroup;
 	private static final Logger log = Logger.getLogger(Group.class.getName());
 
 	//------- CONSTRUCTORS -------//
@@ -70,6 +71,7 @@ public class Group {
 		log.info(InfoStrings.ADD_USERS_TO_GROUP_MODEL);
 		Group group = SQLAdd.addUsersToGroup(users, this);
 
+		// We add members to this object in case it is activeGroup
 		if (group != null) {
 			members = group.getMembers();
 		}
@@ -89,6 +91,14 @@ public class Group {
 	}
 
 	//------- OBJECT METHODS -------//
+
+	public static Group getActiveGroup() {
+		return activeGroup;
+	}
+
+	public static void setActiveGroup(Group group) {
+		activeGroup = group;
+	}
 
 	public String getName() {
 		return name;
