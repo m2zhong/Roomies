@@ -1,7 +1,7 @@
 package com.rip.roomies.controllers;
 
-import com.rip.roomies.events.login.LoginListener;
-import com.rip.roomies.events.login.PassRetrieveListener;
+import com.rip.roomies.functions.LoginFunction;
+import com.rip.roomies.functions.PassRetrieveFunction;
 import com.rip.roomies.models.User;
 import com.rip.roomies.util.InfoStrings;
 
@@ -30,11 +30,11 @@ public class LoginController {
 
 	/**
 	 * Attempts to login the user with the specified credentials.
-	 * @param listener The listener to post results to
+	 * @param funct The funct to post results to
 	 * @param username The username to check
 	 * @param passwd The password to check
 	 */
-	public void login(final LoginListener listener, final String username, final String passwd) {
+	public void login(final LoginFunction funct, final String username, final String passwd) {
 		// Create and run a new thread
 		new Thread() {
 			@Override
@@ -47,10 +47,10 @@ public class LoginController {
 
 				// If fail, call fail callback. Otherwise, call success callback
 				if (response == null) {
-					listener.loginFail();
+					funct.loginFail();
 				}
 				else {
-					listener.loginSuccess(response);
+					funct.loginSuccess(response);
 				}
 			}
 		}.start();
@@ -65,10 +65,10 @@ public class LoginController {
 
 	/**
 	 * Attempts to retrieve the password of a registered user using the specified email.
-	 * @param listener The listener to post results to
+	 * @param funct The funct to post results to
 	 * @param email The email to attempt to password recover
 	 */
-	public void passRetrieve(final PassRetrieveListener listener, final String email) {
+	public void passRetrieve(final PassRetrieveFunction funct, final String email) {
 		// Create and run a new thread
 		new Thread() {
 			@Override
@@ -80,10 +80,10 @@ public class LoginController {
 
 				// If fail, call fail callback. Otherwise, call success callback
 				if (!request.passRetrieve()) {
-					listener.passRetrieveFail();
+					funct.passRetrieveFail();
 				}
 				else {
-					listener.passRetrieveSuccess();
+					funct.passRetrieveSuccess();
 				}
 			}
 		}.start();

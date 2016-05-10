@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.controllers.GroupController;
+import com.rip.roomies.functions.CreateGroupFunction;
 import com.rip.roomies.models.Group;
 import com.rip.roomies.util.DisplayStrings;
 import com.rip.roomies.util.InfoStrings;
@@ -18,7 +19,7 @@ import java.util.logging.Logger;
 /**
  * This class represents the listener for when the "Create Group" button is pressed.
  */
-public class CreateGroupListener implements View.OnClickListener {
+public class CreateGroupListener implements View.OnClickListener, CreateGroupFunction {
 	private static final Logger log = Logger.getLogger(CreateGroupListener.class.getName());
 
 	private GenericActivity context;
@@ -54,10 +55,12 @@ public class CreateGroupListener implements View.OnClickListener {
 				description.getText().toString(), container.getUsers());
 	}
 
+	@Override
 	public void createGroupFail() {
 		Toast.makeText(context, DisplayStrings.CREATE_GROUP_FAIL, Toast.LENGTH_LONG).show();
 	}
 
+	@Override
 	public void createGroupSuccess(Group group) {
 		Toast.makeText(context, String.format(Locale.US, DisplayStrings.CREATE_GROUP_SUCCESS,
 				group.getName()), Toast.LENGTH_SHORT).show();

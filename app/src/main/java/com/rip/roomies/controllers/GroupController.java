@@ -1,6 +1,6 @@
 package com.rip.roomies.controllers;
 
-import com.rip.roomies.events.groups.CreateGroupListener;
+import com.rip.roomies.functions.CreateGroupFunction;
 import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
 import com.rip.roomies.util.InfoStrings;
@@ -31,13 +31,13 @@ public class GroupController {
 	/**
 	 * Creates a new group with the parameters specified, and adds the current user
 	 * along with all the invitees afterwards.
-	 * @param listener The listener to post the results to
+	 * @param funct The funct to post the results to
 	 * @param name The name of the group to create
 	 * @param description The description of the group to create
 	 * @param invitees The list of invitees exclusing the active user
 	 */
-	public void createGroup(final CreateGroupListener listener, final String name,
-	                         final String description, final User[] invitees) {
+	public void createGroup(final CreateGroupFunction funct, final String name,
+	                        final String description, final User[] invitees) {
 		// Create and run a new thread
 		new Thread() {
 			@Override
@@ -52,7 +52,7 @@ public class GroupController {
 
 				// If fail, call fail callback. Otherwise, call success callback
 				if (response == null) {
-					listener.createGroupFail();
+					funct.createGroupFail();
 				}
 				else {
 					// Add the current user and all invitees to the newly created group
@@ -77,13 +77,13 @@ public class GroupController {
 
 					// If this call fails, whole thing fails
 					if (response == null) {
-						listener.createGroupFail();
+						funct.createGroupFail();
 					}
 
 					// Otherwise, print success
 					else {
 						Group.setActiveGroup(response);
-						listener.createGroupSuccess(response);
+						funct.createGroupSuccess(response);
 					}
 				}
 			}

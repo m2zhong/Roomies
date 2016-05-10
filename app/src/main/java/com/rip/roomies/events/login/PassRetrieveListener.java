@@ -8,6 +8,7 @@ import android.widget.Toast;
 import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.activities.login.Login;
 import com.rip.roomies.controllers.LoginController;
+import com.rip.roomies.functions.PassRetrieveFunction;
 import com.rip.roomies.util.DisplayStrings;
 import com.rip.roomies.util.InfoStrings;
 
@@ -17,7 +18,7 @@ import java.util.logging.Logger;
 /**
  * This class represents the listener for when the "Retrieve Password" button is pressed.
  */
-public class PassRetrieveListener implements View.OnClickListener {
+public class PassRetrieveListener implements View.OnClickListener, PassRetrieveFunction {
 	private static final Logger log = Logger.getLogger(PassRetrieveListener.class.getName());
 
 	private GenericActivity context;
@@ -47,10 +48,12 @@ public class PassRetrieveListener implements View.OnClickListener {
 		LoginController.getController().passRetrieve(this, email.getText().toString());
 	}
 
+	@Override
 	public void passRetrieveFail() {
 		Toast.makeText(context, DisplayStrings.PASS_RETRIEVE_FAIL, Toast.LENGTH_LONG).show();
 	}
 
+	@Override
 	public void passRetrieveSuccess() {
 		Toast.makeText(context, DisplayStrings.PASS_RETRIEVE_SUCCESS, Toast.LENGTH_SHORT).show();
 

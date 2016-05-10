@@ -1,7 +1,7 @@
 package com.rip.roomies.controllers;
 
-import com.rip.roomies.events.login.AddInviteeListener;
-import com.rip.roomies.events.login.CreateUserListener;
+import com.rip.roomies.functions.CreateUserFunction;
+import com.rip.roomies.functions.FindUserFunction;
 import com.rip.roomies.models.User;
 import com.rip.roomies.util.InfoStrings;
 
@@ -29,15 +29,15 @@ public class UserController {
 	}
 
 	/**
-	 * Creates a user with the parameters specified and posts results to listener.
-	 * @param listener The listener to post the results to
+	 * Creates a user with the parameters specified and posts results to funct.
+	 * @param funct The funct to post the results to
 	 * @param firstName The first name of the user to create
 	 * @param lastName The last name of the user to create
 	 * @param username The username of the user to create
 	 * @param email The email of the user to create
 	 * @param passwd The password of the user to submit
 	 */
-	public void createUser(final CreateUserListener listener, final String firstName, final String lastName,
+	public void createUser(final CreateUserFunction funct, final String firstName, final String lastName,
 	                       final String username, final String email, final String passwd) {
 		// Create and run a new thread
 		new Thread() {
@@ -52,10 +52,10 @@ public class UserController {
 
 				// If fail, call fail callback. Otherwise, call success callback
 				if (response == null) {
-					listener.createUserFail();
+					funct.createUserFail();
 				}
 				else {
-					listener.createUserSuccess(response);
+					funct.createUserSuccess(response);
 				}
 			}
 		}.start();
@@ -63,12 +63,12 @@ public class UserController {
 
 	/**
 	 * Finds a user using one or more of the three unique parameters given.
-	 * @param listener The listener to post results to
+	 * @param funct The funct to post results to
 	 * @param id The unique ID of the user to find
 	 * @param username The unique username of the user to find
 	 * @param email The unique email of the user to find
 	 */
-	public void findUser(final AddInviteeListener listener, final int id, final String username, final String email) {
+	public void findUser(final FindUserFunction funct, final int id, final String username, final String email) {
 		// Create and run a new thread
 		new Thread() {
 			@Override
@@ -82,10 +82,10 @@ public class UserController {
 
 				// If fail, call fail callback. Otherwise, call success callback
 				if (response == null) {
-					listener.findUserFail();
+					funct.findUserFail();
 				}
 				else {
-					listener.findUserSuccess(response);
+					funct.findUserSuccess(response);
 				}
 			}
 		}.start();

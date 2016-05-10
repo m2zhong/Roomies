@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.controllers.UserController;
+import com.rip.roomies.functions.FindUserFunction;
 import com.rip.roomies.models.User;
 import com.rip.roomies.util.DisplayStrings;
 import com.rip.roomies.util.InfoStrings;
@@ -17,7 +18,7 @@ import java.util.logging.Logger;
 /**
  * This class represents the listener for when the "+" button is pressed on the create room page.
  */
-public class AddInviteeListener implements View.OnClickListener {
+public class AddInviteeListener implements View.OnClickListener, FindUserFunction {
 	private static final Logger log = Logger.getLogger(AddInviteeListener.class.getName());
 
 	private GenericActivity context;
@@ -49,10 +50,12 @@ public class AddInviteeListener implements View.OnClickListener {
 		UserController.getController().findUser(this, 0, username.getText().toString(), null);
 	}
 
+	@Override
 	public void findUserFail() {
 		Toast.makeText(context, DisplayStrings.FIND_USER_FAIL, Toast.LENGTH_LONG).show();
 	}
 
+	@Override
 	public void findUserSuccess(User user) {
 		container.addUser(user);
 	}
