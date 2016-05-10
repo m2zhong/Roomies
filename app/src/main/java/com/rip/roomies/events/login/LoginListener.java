@@ -19,9 +19,10 @@ public class LoginListener implements View.OnClickListener {
 
 	/**
 	 * Login Listenr Constructor
-	 * @param context Activity that is using the listener
+	 *
+	 * @param context  Activity that is using the listener
 	 * @param username Username entered by user
-	 * @param passwd Password entered by user
+	 * @param passwd   Password entered by user
 	 */
 	public LoginListener(GenericActivity context, EditText username, EditText passwd) {
 		this.username = username;
@@ -31,6 +32,7 @@ public class LoginListener implements View.OnClickListener {
 
 	/**
 	 * login.onClickListener
+	 *
 	 * @param v the View object passed in by Login activty
 	 */
 
@@ -44,7 +46,7 @@ public class LoginListener implements View.OnClickListener {
 		}
 		/*Check if user entered password*/
 		if (password.getText().toString().isEmpty()) {
-			errMessage.append("Empty Password" + '\n');
+			errMessage.append("Empty Password");
 		}
 		/* Check if error occured*/
 		if (errMessage.length() != 0) {
