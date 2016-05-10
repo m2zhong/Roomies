@@ -5,6 +5,7 @@ import com.rip.roomies.models.User;
 import com.rip.roomies.util.Exceptions;
 import com.rip.roomies.util.InfoStrings;
 import com.rip.roomies.util.SQLStrings;
+import com.rip.roomies.util.WarningStrings;
 
 import java.sql.ResultSet;
 import java.util.Locale;
@@ -16,6 +17,7 @@ import java.util.logging.Logger;
  */
 public class SQLAdd {
 	private static final Logger log = Logger.getLogger(SQLAdd.class.getName());
+	private static final int MAX_USERS_STRING_LENGTH = 1000;
 
 	/**
 	 * Adds an existing user to an existing group.
@@ -31,12 +33,15 @@ public class SQLAdd {
 			// Turn users array into a delineated string
 			for (User user : users) {
 				usersString += user.getId();
-				usersString += SQLStrings.LIST_DELINEATOR;
+				usersString += SQLStrings.LIST_DELIMITER;
 			}
 
-			// Can only take max length of 1000
-			if (usersString.length() > 1000) {
-				return null;
+			// Can only take max length of 1000, so truncate
+			if (usersString.length() > MAX_USERS_STRING_LENGTH) {
+				log.warning(String.format(Locale.US, WarningStrings.ADD_USERS_TO_GROUP_TRUNCATE,
+						MAX_USERS_STRING_LENGTH));
+				usersString = usersString.substring(0, MAX_USERS_STRING_LENGTH);
+				usersString = usersString.substring(0, usersString.lastIndexOf(SQLStrings.LIST_DELIMITER) + 1);
 			}
 
 			// Log adding user to group
