@@ -5,15 +5,20 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.rip.roomies.activities.GenericActivity;
+import com.rip.roomies.controllers.LoginController;
 import com.rip.roomies.models.User;
+import com.rip.roomies.util.DisplayStrings;
+import com.rip.roomies.util.InfoStrings;
 
+import java.util.Locale;
 import java.util.logging.Logger;
 
 /**
- * Created by Kanurame on 5/1/2016.
+ * This class represents the listener for when the "Login" button is pressed.
  */
 public class LoginListener implements View.OnClickListener {
 	private static final Logger log = Logger.getLogger(LoginListener.class.getName());
+
 	private EditText username;
 	private EditText password;
 	private GenericActivity activity;
@@ -40,32 +45,35 @@ public class LoginListener implements View.OnClickListener {
 	@Override
 	public void onClick(View v) {
 		/*String Buffer for Error Message*/
-		StringBuffer errMessage = new StringBuffer();
+		StringBuilder errMessage = new StringBuilder();
 
 		/* Check if user entered username*/
 		if (username.getText().toString().isEmpty()) {
-			errMessage.append("Empty Username" + '\n');
+			errMessage.append(String.format(Locale.US, DisplayStrings.MISSING_FIELD, "Username"));
 		}
 		/*Check if user entered password*/
 		if (password.getText().toString().isEmpty()) {
-			errMessage.append("Empty Password");
+			errMessage.append(String.format(Locale.US, DisplayStrings.MISSING_FIELD, "Password"));
 		}
 		/* Check if error occured*/
 		if (errMessage.length() != 0) {
-			Toast.makeText(activity, errMessage, Toast.LENGTH_SHORT).show();
+			String errMsg = errMessage.substring(0, errMessage.length() - 1);
+			Toast.makeText(activity, errMsg, Toast.LENGTH_SHORT).show();
 			return;
 		}
 
+		log.info(InfoStrings.LOGIN_EVENT);
+
 		/* Login Activity*/
-
-
+		LoginController.getController().login(this, username.getText().toString(),
+				password.getText().toString());
 	}
 
 	public void loginFail() {
-
+		Toast.makeText(activity, DisplayStrings.LOGIN_FAIL, Toast.LENGTH_LONG).show();
 	}
 
 	public void loginSuccess(User user) {
-
+		activity.toHome();
 	}
 }

@@ -21,6 +21,7 @@ public class InfoStrings {
 	public static final String LOGIN_SQL = "Logging in...";
 	public static final String LOGIN_CONTROLLER = "Logging in from user input:\n" +
 			"Username: %s\nPassword: XXXXXXXX";
+	public static final String LOGIN_EVENT = "Validation passed. Attempting to login.";
 
 	public static final String CREATEUSER_SUCCESSFULL = "CreateUser successfull!! \n" +
 			"ID: %d\nLastName: %s\nFirstName: %s\nUsername: %s\nEmail: %s";
@@ -29,6 +30,7 @@ public class InfoStrings {
 	public static final String CREATEUSER_SQL = "Creating user...";
 	public static final String CREATEUSER_CONTROLLER = "Creating user from user given fields:\n" +
 			"LastName: %s\nFirstName: %s\nUsername: %s\nEmail: %s\nPassword: XXXXXXXX";
+	public static final String CREATEUSER_EVENT = "Validation passed. Attempting to create a new user.";
 
 	public static final String CREATEGROUP_SUCCESSFULL = "CreateGroup successfull!! \n" +
 			"ID: %d\nName: %s\nDescription: %s";
@@ -37,12 +39,14 @@ public class InfoStrings {
 	public static final String CREATEGROUP_SQL = "Creating group...";
 	public static final String CREATEGROUP_CONTROLLER = "Creating group from user given fields:\n" +
 			"Name: %s\nDescription: %s";
+	public static final String CREATEGROUP_EVENT = "Validation passed. Attempting to create a new group.";
 
 	public static final String LOGOFF = "Logging off.";
 
 	public static final String PASSRETRIEVE_MODEL = "Retrieving a new password via email based off the current object.";
 	public static final String PASSRETRIEVE_CONTROLLER = "Retrieving password from user input:\n" +
 			"Email: %s";
+	public static final String PASSRETRIEVE_EVENT = "Validation passed. Attempting to retreieve password.";
 
 	public static final String ADD_USERS_TO_GROUP_SUCCESSFULL = "AddUsersToGroup successfull!! \n" +
 			"ID: %d\nName: %s\nDescription: %s";

@@ -7,6 +7,7 @@ import android.widget.LinearLayout;
 import com.rip.roomies.models.User;
 import com.rip.roomies.util.InfoStrings;
 
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 /**
@@ -15,6 +16,8 @@ import java.util.logging.Logger;
  */
 public class UserContainer extends LinearLayout {
 	private static final Logger log = Logger.getLogger(UserContainer.class.getName());
+
+	private ArrayList<User> users = new ArrayList<>();
 
 	/**
 	 * @see android.view.View(Context)
@@ -46,8 +49,18 @@ public class UserContainer extends LinearLayout {
 		log.info(String.format(InfoStrings.CONTAINER_ADD,
 				UserView.class.getSimpleName(), UserContainer.class.getSimpleName()));
 
+		users.add(newUser);
+
 		UserView userView = new UserView(getContext());
 		userView.setUser(newUser);
 		addView(userView);
+	}
+
+	/**
+	 * Get the users held by this UserContainer
+	 * @return An array of users
+	 */
+	public User[] getUsers() {
+		return (User[]) users.toArray();
 	}
 }

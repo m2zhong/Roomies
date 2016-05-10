@@ -2,6 +2,7 @@ package com.rip.roomies.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.widget.Toast;
 
 import com.rip.roomies.activities.login.Login;
 import com.rip.roomies.util.InfoStrings;
@@ -30,5 +31,6 @@ public abstract class GenericActivity extends Activity {
 	 */
 	public void toHome() {
 		// TODO once home screen has been created
+		Toast.makeText(this, "Switch to home screen, once implemented.", Toast.LENGTH_LONG).show();
 	}
 }
