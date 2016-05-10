@@ -1,9 +1,9 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             android:background="@color/colorPrimary"
-             tools:context="com.rip.roomies.activities.login.Login">
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/colorPrimary"
+	tools:context="com.rip.roomies.activities.login.Login">
 
 	<!-- The primary full-screen view. This can be replaced with whatever view
 		 is needed to present your content, e.g. VideoView, SurfaceView,
@@ -12,11 +12,12 @@
 		android:id="@+id/fullscreen_content"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
+		android:clickable='true'
 		android:gravity="center"
 		android:keepScreenOn="true"
 		android:textColor="#33b5e5"
 		android:textSize="50sp"
-		android:textStyle="bold"/>
+		android:textStyle="bold" />
 
 
 	<!-- This FrameLayout insets its children based on system windows using
@@ -40,7 +41,7 @@
 				android:layout_marginLeft="60dp"
 				android:layout_marginRight="60dp"
 				android:layout_marginTop="50dp"
-				android:background="@drawable/logo"/>
+				android:background="@drawable/logo" />
 
 			<EditText
 				android:id="@+id/username"
@@ -54,7 +55,7 @@
 				android:inputType="text"
 				android:paddingLeft="10dp"
 				android:textColorHint="@color/text"
-				android:textSize="20dp"/>
+				android:textSize="20dp" />
 
 			<EditText
 				android:id="@+id/password"
@@ -69,7 +70,7 @@
 				android:inputType="textPassword"
 				android:paddingLeft="10dp"
 				android:textColorHint="@color/text"
-				android:textSize="20dp"/>
+				android:textSize="20dp" />
 
 			<LinearLayout
 				android:id="@+id/btns"
@@ -91,7 +92,7 @@
 					android:layout_weight="1"
 					android:background="@color/black_overlay"
 					android:text="@string/login"
-					android:textColor="@color/text"/>
+					android:textColor="@color/text" />
 
 				<Button
 					android:id="@+id/regbtn"
@@ -102,7 +103,7 @@
 					android:layout_weight="1"
 					android:background="@color/black_overlay"
 					android:text="@string/reg"
-					android:textColor="@color/text"/>
+					android:textColor="@color/text" />
 			</LinearLayout>
 
 			<TextView
@@ -115,7 +116,7 @@
 				android:gravity="center"
 				android:text="@string/forgotpw"
 				android:textColor="@color/text"
-				android:textSize="16sp"/>
+				android:textSize="16sp" />
 
 
 		</RelativeLayout>
