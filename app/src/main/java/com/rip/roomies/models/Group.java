@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 public class Group {
 	private String name = "";
 	private String description = "";
+    private int id;
 
 	private static final Logger log = Logger.getLogger(Group.class.getName());
 
@@ -25,6 +26,19 @@ public class Group {
 		this.name = name;
 		this.description = description;
 	}
+
+    /**
+     * Constructor that creates a new Group.
+     *
+     * @param id          This Group's unique id.
+     * @param name        The name of this Group.
+     * @param description The description of the Group.
+     */
+    public Group(int id, String name, String description) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+    }
 
 	//------- DATABASE METHODS -------//
 
@@ -49,7 +63,6 @@ public class Group {
 	}
 
 	public int getId() {
-		//TODO
-		return 0;
+		return id;
 	}
 }
