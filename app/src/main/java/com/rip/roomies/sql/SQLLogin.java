@@ -1,13 +1,16 @@
 package com.rip.roomies.sql;
 
 import com.rip.roomies.models.User;
+import com.rip.roomies.util.Exceptions;
 import com.rip.roomies.util.InfoStrings;
+import com.rip.roomies.util.SQLStrings;
 
 import java.sql.ResultSet;
+import java.util.Locale;
 import java.util.logging.Logger;
 
 /**
- * Created by Kanurame on 4/25/2016.
+ * This class contains static methods for executing database procedures relating to login actions.
  */
 public class SQLLogin {
 	private static final Logger log = Logger.getLogger(SQLLogin.class.getName());
@@ -16,26 +19,21 @@ public class SQLLogin {
 	 * Use SQLQuery class to create an connection and find the user's info from the database
 	 * to log in, if is successful the User object will be returned, otherwise return null
 	 *
-	 * @param user
+	 * @param user The request User object to attempt to login with
 	 * @return User - the User object with all the user info
-	 * @throws Exception if the database cannot be connected to or statement fails
 	 */
 	public static User login(User user) {
-
-		//declare the execution query code for TSQL to login
-		final String queryStr = "EXEC Login @username = '" + user.getUsername() +
-				"', @password = '" + user.getPassword() + "'";
-
-		ResultSet rset = null;
+		ResultSet rset;
 
 		try {
 			// get the result table from query execution through sql
-			rset = SQLQuery.execute(queryStr);
+			rset = SQLQuery.execute(String.format(SQLStrings.LOGIN,
+					user.getUsername(), user.getPassword()));
 
 			//get the next row, kind of like scanner.nextLine()
 			rset.next();
 			// either username doesn't exist or password incorrect
-			if (rset == null || rset.getRow() == 0) {
+			if (rset.getRow() == 0) {
 				//debug statement
 				log.info(InfoStrings.LOGIN_FAILED);
 				return null;
@@ -51,7 +49,7 @@ public class SQLLogin {
 				String resultEmail = rset.getString(5);
 
 				//debug message
-				log.info(String.format(InfoStrings.LOGIN_SUCCESSFULL, resultLastName,
+				log.info(String.format(Locale.US, InfoStrings.LOGIN_SUCCESSFULL, resultID, resultLastName,
 						resultFirstName, resultUsername, resultEmail));
 
 				return new User(resultID, resultFirstName, resultLastName,
@@ -60,11 +58,19 @@ public class SQLLogin {
 			}
 		}
 		catch (Exception e) {
+			log.severe(Exceptions.stacktraceToString(e));
 			return null;
 		}
 	}
 
+	/**
+	 * This method attempts to do a password retrieval by sending an email to the email address
+	 * specified in the User parameter.
+	 * @param user The user object with email to send recovery to
+	 * @return True if successful, false otherwise
+	 */
 	public static boolean passRetrieve(User user) {
+		// TODO
 		return false;
 	}
 }
