@@ -71,7 +71,7 @@ public class Group {
 		log.info(InfoStrings.ADD_USERS_TO_GROUP_MODEL);
 		Group group = SQLAdd.addUsersToGroup(users, this);
 
-		// We add members to this object in case it is activeGroup
+		// We add members to this object in case it is already activeGroup
 		if (group != null) {
 			members = group.getMembers();
 		}
