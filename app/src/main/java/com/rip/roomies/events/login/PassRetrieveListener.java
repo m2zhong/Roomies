@@ -17,7 +17,16 @@ public class PassRetrieveListener implements View.OnClickListener {
 
 	}
 
+	@Override
 	public void onClick(View v) {
+
+	}
+
+	public void passRetrieveFail() {
+
+	}
+
+	public void passRetrieveSuccess() {
 
 	}
 }

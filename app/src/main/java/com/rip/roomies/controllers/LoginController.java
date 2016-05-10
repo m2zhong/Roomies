@@ -1,17 +1,24 @@
 package com.rip.roomies.controllers;
 
+import com.rip.roomies.events.login.CreateUserListener;
+import com.rip.roomies.events.login.LoginListener;
+import com.rip.roomies.events.login.PassRetrieveListener;
 import com.rip.roomies.models.User;
 
 import java.util.logging.Logger;
 
 /**
- * Created by Kanurame on 4/25/2016.
+ * The controller to handle login related events.
  */
 public class LoginController {
 	private static final Logger log = Logger.getLogger(LoginController.class.getName());
 
 	private static LoginController controller;
 
+	/**
+	 * Gets the singleton login controller.
+	 * @return The login controller
+	 */
 	public static LoginController getController() {
 		if (controller == null) {
 			controller = new LoginController();
@@ -20,20 +27,90 @@ public class LoginController {
 		return controller;
 	}
 
-	public User createUser(String firstName, String lastName, String username,
-	                       String email, String passwd) {
-		return null;
+	/**
+	 * Creates a user with the parameters specified and posts results to listener.
+	 * @param listener The listener to post the results to
+	 * @param firstName The first name of the user to create
+	 * @param lastName The last name of the user to create
+	 * @param username The username of the user to create
+	 * @param email The email of the user to create
+	 * @param passwd The password of the user to submit
+	 */
+	public void createUser(final CreateUserListener listener, final String firstName, final String lastName,
+	                       final String username, final String email, final String passwd) {
+		// Create and run a new thread
+		new Thread() {
+			@Override
+			public void run() {
+				// Create request user and get response from createUser()
+				User request = new User(firstName, lastName, username, email, passwd);
+				User response = request.createUser();
+
+				// If fail, call fail callback. Otherwise, call success callback
+				if (response == null) {
+					listener.createUserFail();
+				}
+				else {
+					listener.createUserSuccess(response);
+				}
+			}
+		}.start();
 	}
 
-	public User login(String username, String passwd) {
-		return null;
+	/**
+	 * Attempts to login the user with the specified credentials.
+	 * @param listener The listener to post results to
+	 * @param username The username to check
+	 * @param passwd The password to check
+	 */
+	public void login(final LoginListener listener, final String username, final String passwd) {
+		// Create and run a new thread
+		new Thread() {
+			@Override
+			public void run() {
+				// Create request user and get response from login()
+				User request = new User(username, passwd);
+				User response = request.login();
+
+				// If fail, call fail callback. Otherwise, call success callback
+				if (response == null) {
+					listener.loginFail();
+				}
+				else {
+					listener.loginSuccess(response);
+				}
+			}
+		}.start();
 	}
 
+	/**
+	 * Logs off the user by calling User's static logoff().
+	 */
 	public void logoff() {
-
+		User.logoff();
 	}
 
-	public boolean passRetrieve(String email) {
-		return false;
+	/**
+	 * Attempts to retrieve the password of a registered user using the specified email.
+	 * @param listener The listener to post results to
+	 * @param email The email to attempt to password recover
+	 */
+	public void passRetrieve(final PassRetrieveListener listener, final String email) {
+		// Create and run a new thread
+		new Thread() {
+			@Override
+			public void run() {
+				// Create request user
+				User request = new User(0, null, email);
+
+				// If fail, call fail callback. Otherwise, call success callback
+				if (!request.passRetrieve()) {
+					listener.passRetrieveFail();
+				}
+				else {
+					listener.passRetrieveSuccess();
+				}
+			}
+		}.start();
 	}
 }

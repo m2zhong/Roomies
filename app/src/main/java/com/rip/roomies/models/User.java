@@ -101,6 +101,13 @@ public class User {
 	}
 
 	/**
+	 * Logs off the user by removing the static activeUser field.
+	 */
+	public static void logoff() {
+		activeUser = null;
+	}
+
+	/**
 	 * Connects to the database, adding this User to an existing Group.
 	 *
 	 * @return The new User instance, with its Group set.

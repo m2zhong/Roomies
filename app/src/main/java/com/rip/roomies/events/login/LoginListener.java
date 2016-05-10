@@ -5,6 +5,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.rip.roomies.activities.GenericActivity;
+import com.rip.roomies.models.User;
 
 import java.util.logging.Logger;
 
@@ -36,6 +37,7 @@ public class LoginListener implements View.OnClickListener {
 	 * @param v the View object passed in by Login activty
 	 */
 
+	@Override
 	public void onClick(View v) {
 		/*String Buffer for Error Message*/
 		StringBuffer errMessage = new StringBuffer();
@@ -56,6 +58,14 @@ public class LoginListener implements View.OnClickListener {
 
 		/* Login Activity*/
 
+
+	}
+
+	public void loginFail() {
+
+	}
+
+	public void loginSuccess(User user) {
 
 	}
 }

@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.rip.roomies.activities.GenericActivity;
+import com.rip.roomies.models.User;
 
 import java.util.logging.Logger;
 
@@ -19,7 +20,16 @@ public class CreateUserListener implements View.OnClickListener {
 
 	}
 
+	@Override
 	public void onClick(View v) {
+
+	}
+
+	public void createUserFail() {
+
+	}
+
+	public void createUserSuccess(User user) {
 
 	}
 }
