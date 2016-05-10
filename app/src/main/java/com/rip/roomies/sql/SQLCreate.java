@@ -2,13 +2,16 @@ package com.rip.roomies.sql;
 
 import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
+import com.rip.roomies.util.Exceptions;
 import com.rip.roomies.util.InfoStrings;
+import com.rip.roomies.util.SQLStrings;
 
 import java.sql.ResultSet;
+import java.util.Locale;
 import java.util.logging.Logger;
 
 /**
- * Created by Kanurame on 5/1/2016.
+ * A class that contains static methods for executing database commands relating to creation.
  */
 public class SQLCreate {
 	private static final Logger log = Logger.getLogger(SQLCreate.class.getName());
@@ -17,25 +20,22 @@ public class SQLCreate {
 	 * Use SQLQuery class to create an connection and insert a group into the group table on the
 	 * database, if is successful the User object will be returned, otherwise return null
 	 *
-	 * @param group
+	 * @param group The group that should be created on the database
 	 * @return Group - the Group object with all the group info just been created
-	 * @throws Exception if the database cannot be connected to or statement fails
 	 */
 	public static Group createGroup(Group group) {
-
-		//declare the execution query code for TSQL to login
-		final String queryStr = "EXEC CreateGroup @name = '" + group.getName() +
-				"', @description = '" + group.getDescription() + "'";
-
-		ResultSet rset = null;
+		ResultSet rset;
 
 		try {
-			// get the result table from query execution through sql
-			rset = SQLQuery.execute(queryStr);
+			//debug statement
+			log.info(InfoStrings.CREATEGROUP_SQL);
 
-			rset.next();
+			// get the result table from query execution through sql
+			rset = SQLQuery.execute(String.format(Locale.US, SQLStrings.CREATE_GROUP,
+					group.getName(), group.getDescription()));
+
 			// group already exist
-			if (rset == null || rset.getRow() == 0) {
+			if (!rset.next()) {
 				//debug statement
 				log.info(InfoStrings.CREATEGROUP_FAILED);
 				return null;
@@ -44,19 +44,20 @@ public class SQLCreate {
 			else {
 				//first column is id, second is lastname, third is firstname
 				//so pass the column number accordingly to get the info about user
-				int resultID = rset.getInt(1);
-				String resultName = rset.getString(2);
-				String resultDescription = rset.getString(3);
+				int resultID = rset.getInt("ID");
+				String resultName = rset.getString("Name");
+				String resultDescription = rset.getString("Description");
 
 				//debug statement
-				log.info(String.format(InfoStrings.CREATEGROUP_SUCCESSFULL,
-						resultName, resultDescription));
+				log.info(String.format(Locale.US, InfoStrings.CREATEGROUP_SUCCESSFULL,
+						resultID, resultName, resultDescription));
 
 				return new Group(resultID, resultName, resultDescription);
 
 			}
 		}
 		catch (Exception e) {
+			log.severe(Exceptions.stacktraceToString(e));
 			return null;
 		}
 	}
@@ -65,27 +66,22 @@ public class SQLCreate {
 	 * Use SQLQuery class to create an connection and insert a user into the user table on the
 	 * database, if is successful the User object will be returned, otherwise return null
 	 *
-	 * @param user
+	 * @param user The user to be created on the database
 	 * @return User - the User object with all the user info just been created
-	 * @throws Exception if the database cannot be connected to or statement fails
 	 */
 	public static User createUser(User user) {
-
-		//declare the execution query code for TSQL to login
-		final String queryStr = "EXEC CreateUser @firstName = '" + user.getFirstName() +
-				"', @lastName = '" + user.getLastName() +
-				"', @username = '" + user.getUsername() +
-				"', @email= '" + user.getEmail() +
-				"', @password = '" + user.getPassword() + "'";
-
-		ResultSet rset = null;
+		ResultSet rset;
 
 		try {
+			log.info(InfoStrings.CREATEUSER_SQL);
+
 			// get the result table from query execution through sql
-			rset = SQLQuery.execute(queryStr);
-			rset.next();
+			rset = SQLQuery.execute(String.format(Locale.US, SQLStrings.CREATE_USER,
+					user.getFirstName(), user.getLastName(), user.getUsername(),
+					user.getEmail(), user.getPassword()));
+
 			// group already exist
-			if (rset == null || rset.getRow() == 0) {
+			if (!rset.next()) {
 				//debug statement
 				log.info(InfoStrings.CREATEUSER_FAILED);
 				return null;
@@ -95,15 +91,15 @@ public class SQLCreate {
 
 				//second column is lastname, third is firstname
 				//so pass the column number accordingly to get the info about user
-				int resultID = rset.getInt(1);
-				String resultLastName = rset.getString(2);
-				String resultFirstName = rset.getString(3);
-				String resultUsername = rset.getString(4);
-				String resultEmail = rset.getString(5);
+				int resultID = rset.getInt("ID");
+				String resultLastName = rset.getString("LastName");
+				String resultFirstName = rset.getString("FirstName");
+				String resultUsername = rset.getString("Username");
+				String resultEmail = rset.getString("Email");
 
 				//debug statement
-				log.info(String.format(InfoStrings.CREATEUSER_SUCCESSFULL, resultLastName,
-						resultFirstName, resultUsername, resultEmail));
+				log.info(String.format(Locale.US, InfoStrings.CREATEUSER_SUCCESSFULL, resultID,
+						resultLastName, resultFirstName, resultUsername, resultEmail));
 
 				return new User(resultID, resultFirstName,
 						resultLastName, resultUsername, resultEmail, null);
@@ -111,6 +107,7 @@ public class SQLCreate {
 			}
 		}
 		catch (Exception e) {
+			log.severe(Exceptions.stacktraceToString(e));
 			return null;
 		}
 	}

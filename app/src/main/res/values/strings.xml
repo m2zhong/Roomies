@@ -9,10 +9,22 @@
 
 	<string name="title_activity_password_recovery">PasswordRecovery</string>
 
+	<string name="plus">+</string>
+	<string name="submit">Submit</string>
+
     <string name="unhint">username</string>
     <string name="pwhint">password</string>
     <string name="login">Login</string>
     <string name="reg">SIGN UP</string>
     <string name="forgotpw">Forgot Password?</string>
 	<string name="title_activity_create_group">CreateGroup</string>
+
+	<string name="create_group_header">Create Group</string>
+	<string name="group_name_hint">Name</string>
+	<string name="group_desription_hint">Description</string>
+	<string name="invitees_header">Invitees</string>
+	<string name="invitee_add_hint">Invitee Username</string>
+
+	<string name="pass_retreive_header">Password Reset</string>
+	<string name="email_hint">Email</string>
 </resources>

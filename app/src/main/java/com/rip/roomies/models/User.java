@@ -1,12 +1,14 @@
 package com.rip.roomies.models;
 
 import com.rip.roomies.sql.SQLCreate;
+import com.rip.roomies.sql.SQLFind;
 import com.rip.roomies.sql.SQLLogin;
+import com.rip.roomies.util.InfoStrings;
 
 import java.util.logging.Logger;
 
 /**
- * Created by Kanurame on 4/25/2016.
+ * This class represents a potential user of the Roomies system.
  */
 public class User {
 	private int id = 0;
@@ -91,12 +93,14 @@ public class User {
 	 * @return The newly logged-in user.
 	 */
 	public User login() {
+		log.info(InfoStrings.LOGIN_MODEL);
 		User loggedIn = SQLLogin.login(this);
 
 		if (loggedIn != null) {
-			password = "";
-			activeUser = this;
+			activeUser = loggedIn;
 		}
+
+		password = "";
 		return loggedIn;
 	}
 
@@ -104,18 +108,8 @@ public class User {
 	 * Logs off the user by removing the static activeUser field.
 	 */
 	public static void logoff() {
+		log.info(InfoStrings.LOGOFF);
 		activeUser = null;
-	}
-
-	/**
-	 * Connects to the database, adding this User to an existing Group.
-	 *
-	 * @param groupId The ID of the group this user is being added to
-	 * @return The new User instance, with its Group set.
-	 */
-	public User addToGroup(int groupId) {
-		//TODO
-		return null;
 	}
 
 	/**
@@ -124,7 +118,18 @@ public class User {
 	 * @return The newly created User.
 	 */
 	public User createUser() {
+		log.info(InfoStrings.CREATEUSER_MODEL);
 		return SQLCreate.createUser(this);
+	}
+
+	/**
+	 * Connects to the database, and attempts to find a user with one of the unique fields
+	 * of this class.
+	 * @return If found, the whole user will be returned. Otherwise, null is returned
+	 */
+	public User findUser() {
+		log.info(InfoStrings.FIND_USER_MODEL);
+		return SQLFind.findUser(this);
 	}
 
 	/**
@@ -133,28 +138,11 @@ public class User {
 	 * @return true if the information used to retrieve the password was valid.
 	 */
 	public boolean passRetrieve() {
+		log.info(InfoStrings.PASSRETRIEVE_MODEL);
 		return SQLLogin.passRetrieve(this);
 	}
 
 	//------- OBJECT METHODS -------//
-
-	/**
-	 * Unified mutator, setting all fields except for the password.
-	 *
-	 * @param id        The unique ID identifying this User in the database.
-	 * @param firstName The User's first name.
-	 * @param lastName  The User's last name.
-	 * @param username  The User's login username.
-	 * @param email     The email address used to contact this User.
-	 */
-	public void setFields(int id, String firstName, String lastName, String username,
-	                      String email) {
-		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.username = username;
-		this.email = email;
-	}
 
 	public static User getActiveUser() {
 		return activeUser;
@@ -182,10 +170,5 @@ public class User {
 
 	public int getId() {
 		return id;
-	}
-
-	public int getGroupId() {
-		//TODO
-		return 0;
 	}
 }

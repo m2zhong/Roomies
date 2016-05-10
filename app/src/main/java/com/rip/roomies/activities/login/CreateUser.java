@@ -15,28 +15,27 @@ public class CreateUser extends GenericActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		Button create_user;
-		EditText first_name;
-		EditText last_name;
-		EditText user_name;
+		Button createUser;
+		EditText firstName;
+		EditText lastName;
+		EditText username;
 		EditText email;
 		EditText password;
-		EditText confirm_password;
+		EditText confirmPassword;
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_create_user);
 
 		/* Linking xml objects to java */
-		first_name = (EditText) findViewById(R.id.firstName);
-		last_name = (EditText) findViewById(R.id.lastName);
-		user_name = (EditText) findViewById(R.id.username);
+		firstName = (EditText) findViewById(R.id.firstName);
+		lastName = (EditText) findViewById(R.id.lastName);
+		username = (EditText) findViewById(R.id.username);
 		email = (EditText) findViewById(R.id.email);
 		password = (EditText) findViewById(R.id.password);
-		confirm_password = (EditText) findViewById(R.id.confirmPass);
-		create_user = (Button) findViewById(R.id.btnSubmit);
+		confirmPassword = (EditText) findViewById(R.id.confirmPass);
+		createUser = (Button) findViewById(R.id.btnSubmit);
 
-
-		create_user.setOnClickListener(
-				new CreateUserListener(this, first_name, last_name, user_name, email, password, confirm_password));
+		createUser.setOnClickListener(new CreateUserListener(this, firstName, lastName,
+				username, email, password, confirmPassword));
 	}
 }
