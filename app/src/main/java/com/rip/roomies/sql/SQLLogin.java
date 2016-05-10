@@ -44,6 +44,7 @@ public class SQLLogin {
 			else {
 				//second column is lastname, third is firstname
 				//so pass the column number accordingly to get the info about user
+				int resultID = rset.getInt(1);
 				String resultLastName = rset.getString(2);
 				String resultFirstName = rset.getString(3);
 				String resultUsername = rset.getString(4);
@@ -53,12 +54,12 @@ public class SQLLogin {
 				log.info(String.format(InfoStrings.LOGIN_SUCCESSFULL, resultLastName,
 						resultFirstName, resultUsername, resultEmail));
 
-				return new User(resultFirstName, resultLastName, resultUsername, resultEmail, null);
+				return new User(resultID, resultFirstName, resultLastName,
+						resultUsername, resultEmail, null);
 
 			}
 		}
 		catch (Exception e) {
-			e.printStackTrace();
 			return null;
 		}
 	}
