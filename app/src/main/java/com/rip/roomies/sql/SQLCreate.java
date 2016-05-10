@@ -13,6 +13,14 @@ import java.util.logging.Logger;
 public class SQLCreate {
 	private static final Logger log = Logger.getLogger(SQLCreate.class.getName());
 
+	/**
+	 * Use SQLQuery class to create an connection and insert a group into the group table on the
+	 * database, if is successful the User object will be returned, otherwise return null
+	 *
+	 * @param group
+	 * @return Group - the Group object with all the group info just been created
+	 * @throws Exception if the database cannot be connected to or statement fails
+	 */
 	public static Group createGroup(Group group) {
 
 		//declare the execution query code for TSQL to login
@@ -25,6 +33,7 @@ public class SQLCreate {
 			// get the result table from query execution through sql
 			rset = SQLQuery.execute(queryStr);
 
+			rset.next();
 			// group already exist
 			if (rset == null || rset.getRow() == 0) {
 				//debug statement
@@ -33,7 +42,6 @@ public class SQLCreate {
 			}
 			//if there's a rset
 			else {
-				rset.next();
 				//first column is id, second is lastname, third is firstname
 				//so pass the column number accordingly to get the info about user
 				String resultName = rset.getString(2);
@@ -53,6 +61,14 @@ public class SQLCreate {
 		}
 	}
 
+	/**
+	 * Use SQLQuery class to create an connection and insert a user into the user table on the
+	 * database, if is successful the User object will be returned, otherwise return null
+	 *
+	 * @param user
+	 * @return User - the User object with all the user info just been created
+	 * @throws Exception if the database cannot be connected to or statement fails
+	 */
 	public static User createUser(User user) {
 
 		//declare the execution query code for TSQL to login
@@ -67,7 +83,7 @@ public class SQLCreate {
 		try {
 			// get the result table from query execution through sql
 			rset = SQLQuery.execute(queryStr);
-
+			rset.next();
 			// group already exist
 			if (rset == null || rset.getRow() == 0) {
 				//debug statement
@@ -76,7 +92,7 @@ public class SQLCreate {
 			}
 			//if there's a rset
 			else {
-				rset.next();
+
 				//second column is lastname, third is firstname
 				//so pass the column number accordingly to get the info about user
 				String resultLastName = rset.getString(2);

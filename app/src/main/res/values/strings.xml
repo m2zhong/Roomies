@@ -2,8 +2,6 @@
 	<string name="app_name">Roomies</string>
 
 	<string name="title_activity_splash_screen">Roomies</string>
-	<string name="dummy_button">Dummy Button</string>
-	<string name="dummy_content">DUMMY\nCONTENT</string>
 
 	<string name="title_activity_login">Login</string>
 
@@ -11,5 +9,10 @@
 
 	<string name="title_activity_password_recovery">PasswordRecovery</string>
 
+    <string name="unhint">username</string>
+    <string name="pwhint">password</string>
+    <string name="login">Login</string>
+    <string name="reg">SIGN UP</string>
+    <string name="forgotpw">Forgot Password?</string>
 	<string name="title_activity_create_group">CreateGroup</string>
 </resources>
