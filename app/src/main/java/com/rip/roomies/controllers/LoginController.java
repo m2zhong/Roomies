@@ -28,6 +28,15 @@ public class LoginController {
 		return controller;
 	}
 
+	public void connect() {
+		new Thread() {
+			@Override
+			public void run() {
+				User.connect();
+			}
+		}.start();
+	}
+
 	/**
 	 * Attempts to login the user with the specified credentials.
 	 * @param funct The funct to post results to

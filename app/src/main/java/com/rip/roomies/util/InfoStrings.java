@@ -8,6 +8,7 @@ public class InfoStrings {
 	public static final String SWITCH_ACTIVITY_DELAYED = "Switching to activity %s after %d ms delay";
 
 	public static final String DATABASE_CONNECT = "Connecting to the database...";
+	public static final String DATABASE_CONNECTED = "Connected to the database!";
 	public static final String DATABASE_QUERY = "Querying database: \"%s\"";
 
 	public static final String CONTAINER_ADD = "Adding view %s to container %s";

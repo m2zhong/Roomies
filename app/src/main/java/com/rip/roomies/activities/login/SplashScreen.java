@@ -5,6 +5,7 @@ import android.os.Handler;
 
 import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
+import com.rip.roomies.controllers.LoginController;
 import com.rip.roomies.util.DisplayStrings;
 import com.rip.roomies.util.InfoStrings;
 
@@ -18,6 +19,8 @@ public class SplashScreen extends GenericActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash_screen);
+
+		LoginController.getController().connect();
 
 		log.info(String.format(Locale.US, InfoStrings.SWITCH_ACTIVITY_DELAYED,
 				Login.class.getName(), DisplayStrings.TOAST_LONG_LENGTH));

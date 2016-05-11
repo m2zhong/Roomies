@@ -87,6 +87,10 @@ public class User {
 
 	//------- DATABASE METHODS -------//
 
+	public static boolean connect() {
+		return SQLLogin.connect();
+	}
+
 	/**
 	 * Connects to the database, logging in with information provided at the login prompt.
 	 *
