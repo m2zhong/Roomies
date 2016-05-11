@@ -29,7 +29,6 @@
 		android:inputType="text"
 		android:paddingLeft="10dp"
 		android:textColorHint="@color/text"
-		android:textIsSelectable="true"
 		android:textSize="20sp"
 		/>
 
