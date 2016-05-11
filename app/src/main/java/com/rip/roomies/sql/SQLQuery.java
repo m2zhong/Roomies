@@ -33,6 +33,8 @@ public class SQLQuery {
 
 			Class.forName("net.sourceforge.jtds.jdbc.Driver");
 			conn = DriverManager.getConnection(CONN_STRING);
+
+			log.info(InfoStrings.DATABASE_CONNECTED);
 		}
 	}
 
@@ -48,6 +50,10 @@ public class SQLQuery {
 	public static ResultSet execute(String query) throws Exception {
 		if (conn == null) {
 			connect();
+		}
+
+		if (query == null) {
+			return null;
 		}
 
 		log.info(String.format(InfoStrings.DATABASE_QUERY, query));

@@ -15,6 +15,17 @@ import java.util.logging.Logger;
 public class SQLLogin {
 	private static final Logger log = Logger.getLogger(SQLLogin.class.getName());
 
+	public static boolean connect() {
+		try {
+			SQLQuery.execute(null);
+			return true;
+		}
+		catch (Exception e) {
+			log.severe(Exceptions.stacktraceToString(e));
+			return false;
+		}
+	}
+
 	/**
 	 * Use SQLQuery class to create an connection and find the user's info from the database
 	 * to log in, if is successful the User object will be returned, otherwise return null
