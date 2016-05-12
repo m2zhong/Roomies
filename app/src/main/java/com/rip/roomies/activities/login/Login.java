@@ -38,9 +38,10 @@ public class Login extends GenericActivity {
 		createUser = (Button) findViewById(R.id.regbtn);
 		forgotPass = (TextView) findViewById(R.id.forgotpw);
 
+		final Activity self = this;
+
 		login.setOnClickListener(new LoginListener(this, username, password));
 
-		final Activity self = this;
 		createUser.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
