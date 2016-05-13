@@ -41,7 +41,7 @@
 				android:layout_marginLeft="60dp"
 				android:layout_marginRight="60dp"
 				android:layout_marginTop="50dp"
-				android:background="@drawable/logo" />
+				android:background="@drawable/logo"/>
 
 			<EditText
 				android:id="@+id/username"
@@ -49,13 +49,15 @@
 				android:layout_height="wrap_content"
 				android:layout_marginLeft="20dp"
 				android:layout_marginRight="20dp"
-				android:layout_marginTop="25dp"
+				android:layout_marginTop="70dp"
+				android:paddingTop="10dp"
+				android:paddingBottom="10dp"
 				android:hint="@string/unhint"
 				android:inputType="text"
-				android:paddingLeft="10dp"
+				android:paddingLeft="20dp"
 				android:textColorHint="@color/text"
 				android:textSize="20dp"
-				android:background="@color/colorPrimary"
+				android:background="@drawable/edittext"
 			    android:textColor="@color/text"
 				/>
 
@@ -66,13 +68,15 @@
 				android:layout_marginBottom="10dp"
 				android:layout_marginLeft="20dp"
 				android:layout_marginRight="20dp"
-				android:layout_marginTop="20dp"
+				android:layout_marginTop="30dp"
+				android:paddingTop="10dp"
+				android:paddingBottom="10dp"
 				android:hint="@string/pwhint"
 				android:inputType="textPassword"
-				android:paddingLeft="10dp"
+				android:paddingLeft="20dp"
 				android:textColorHint="@color/text"
 				android:textSize="20dp"
-				android:background="@color/colorPrimary"
+				android:background="@drawable/edittext"
 			    android:textColor="@color/text"
 				/>
 
@@ -80,7 +84,8 @@
 				android:id="@+id/btns"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:orientation="horizontal">
+				android:orientation="horizontal"
+				android:layout_marginTop="30dp">
 
 				<Button
 					android:theme="@android:style/Theme.Holo"
@@ -89,11 +94,10 @@
 					android:layout_height="wrap_content"
 					android:layout_marginLeft="20dp"
 					android:layout_marginRight="2dp"
-					android:layout_marginTop="20dp"
 					android:layout_weight="1"
-					android:background="@color/black_overlay"
+					android:background="@drawable/buttons"
 					android:text="@string/login"
-					android:textColor="@color/text" />
+					android:textColor="@color/colorPrimary" />
 
 				<Button
 					android:theme="@android:style/Theme.Holo"
@@ -102,11 +106,10 @@
 					android:layout_height="wrap_content"
 					android:layout_marginLeft="2dp"
 					android:layout_marginRight="20dp"
-					android:layout_marginTop="20dp"
 					android:layout_weight="1"
-					android:background="@color/black_overlay"
+					android:background="@drawable/buttons"
 					android:text="@string/reg"
-					android:textColor="@color/text" />
+					android:textColor="@color/colorPrimary" />
 			</LinearLayout>
 
 			<TextView
