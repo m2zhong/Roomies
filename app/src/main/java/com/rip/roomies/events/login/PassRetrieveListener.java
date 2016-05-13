@@ -1,10 +1,13 @@
 package com.rip.roomies.events.login;
 
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.activities.login.Login;
 import com.rip.roomies.controllers.LoginController;
@@ -31,6 +34,7 @@ public class PassRetrieveListener implements View.OnClickListener, PassRetrieveF
 
 	@Override
 	public void onClick(View v) {
+
 		String errMsg = "";
 
 		if (email.getText().toString().isEmpty()) {

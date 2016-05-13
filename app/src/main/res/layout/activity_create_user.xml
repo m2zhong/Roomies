@@ -2,21 +2,14 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="#0099cc"
+              android:background="@color/colorPrimary"
               android:orientation="vertical"
               tools:context="com.rip.roomies.activities.login.CreateUser">
 
-	<TextView
-		android:id="@+id/title"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_gravity="center_horizontal|top"
-		android:layout_marginBottom="5dp"
-		android:layout_marginTop="25dp"
-		android:gravity="center_horizontal"
-		android:text="Sign Up"
-		android:textAppearance="?android:attr/textAppearanceLarge"
-		android:textSize="40sp"/>
+	<ImageView
+		android:layout_width="wrap_content"
+		android:layout_height="100dp"
+		android:src="@drawable/logo"/>
 
 	<EditText
 		android:id="@+id/firstName"
@@ -25,10 +18,12 @@
 		android:layout_marginBottom="10dp"
 		android:layout_marginLeft="20dp"
 		android:layout_marginRight="20dp"
-		android:layout_marginTop="10dp"
+		android:layout_marginTop="30dp"
 		android:hint="First Name"
+		android:background="@drawable/underline"
 		android:inputType="text"
 		android:paddingLeft="10dp"
+		android:paddingBottom="5dp"
 		android:textColorHint="@color/text"
 		android:textSize="20sp"
 		/>
@@ -40,10 +35,12 @@
 		android:layout_marginBottom="10dp"
 		android:layout_marginLeft="20dp"
 		android:layout_marginRight="20dp"
-		android:layout_marginTop="5dp"
+		android:layout_marginTop="30dp"
 		android:hint="Last Name"
 		android:inputType="text"
 		android:paddingLeft="10dp"
+		android:paddingBottom="5dp"
+		android:background="@drawable/underline"
 		android:textColorHint="@color/text"
 		android:textSize="20sp"/>
 
@@ -54,10 +51,12 @@
 		android:layout_marginBottom="10dp"
 		android:layout_marginLeft="20dp"
 		android:layout_marginRight="20dp"
-		android:layout_marginTop="5dp"
+		android:layout_marginTop="30dp"
 		android:hint="Username"
 		android:inputType="text"
 		android:paddingLeft="10dp"
+		android:paddingBottom="5dp"
+		android:background="@drawable/underline"
 		android:textColorHint="@color/text"
 		android:textSize="20sp"/>
 
@@ -68,9 +67,11 @@
 		android:layout_marginBottom="10dp"
 		android:layout_marginLeft="20dp"
 		android:layout_marginRight="20dp"
-		android:layout_marginTop="5dp"
+		android:layout_marginTop="30dp"
 		android:hint="Email Address"
 		android:paddingLeft="10dp"
+		android:paddingBottom="5dp"
+		android:background="@drawable/underline"
 		android:textColorHint="@color/text"
 		android:textSize="20sp"
 		android:inputType="textEmailAddress"/>
@@ -82,10 +83,12 @@
 		android:layout_marginBottom="10dp"
 		android:layout_marginLeft="20dp"
 		android:layout_marginRight="20dp"
-		android:layout_marginTop="5dp"
+		android:layout_marginTop="30dp"
 		android:hint="Password"
 		android:inputType="textPassword"
 		android:paddingLeft="10dp"
+		android:paddingBottom="5dp"
+		android:background="@drawable/underline"
 		android:textColorHint="@color/text"
 		android:textSize="20sp"/>
 
@@ -96,12 +99,14 @@
 		android:layout_marginBottom="10dp"
 		android:layout_marginLeft="20dp"
 		android:layout_marginRight="20dp"
-		android:layout_marginTop="5dp"
+		android:layout_marginTop="30dp"
 		android:hint="Confirm Password"
 		android:inputType="textPassword"
 		android:paddingLeft="10dp"
+		android:paddingBottom="5dp"
+		android:background="@drawable/underline"
 		android:textColorHint="@color/text"
-		android:textSize="20sp"/>
+		android:textSize="20sp" />
 
 	<Button
 		android:id="@+id/btnSubmit"
@@ -109,11 +114,11 @@
 		android:layout_height="wrap_content"
 		android:layout_marginLeft="20dp"
 		android:layout_marginRight="20dp"
-		android:layout_marginTop="10dp"
-		android:background="@color/black_overlay"
+		android:layout_marginTop="30dp"
 		android:text="Submit"
-		android:textColor="@color/text"
+		android:textColor="@color/colorPrimary"
 		android:textSize="24sp"
+		android:background="@drawable/buttons"
 		android:paddingTop="5dp"
 		android:paddingBottom="5dp"/>
 </LinearLayout>
