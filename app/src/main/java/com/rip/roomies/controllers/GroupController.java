@@ -1,5 +1,7 @@
 package com.rip.roomies.controllers;
 
+import android.os.AsyncTask;
+
 import com.rip.roomies.functions.CreateGroupFunction;
 import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
@@ -39,9 +41,9 @@ public class GroupController {
 	public void createGroup(final CreateGroupFunction funct, final String name,
 	                        final String description, final User[] invitees) {
 		// Create and run a new thread
-		new Thread() {
+		new AsyncTask<Void, Void, Group>() {
 			@Override
-			public void run() {
+			protected Group doInBackground(Void... params) {
 				// Debug user entered fields
 				log.info(String.format(Locale.US, InfoStrings.CREATEGROUP_CONTROLLER,
 						name, description));
@@ -52,7 +54,7 @@ public class GroupController {
 
 				// If fail, call fail callback. Otherwise, call success callback
 				if (response == null) {
-					funct.createGroupFail();
+					return null;
 				}
 				else {
 					// Add the current user and all invitees to the newly created group
@@ -73,20 +75,23 @@ public class GroupController {
 					log.info(String.format(Locale.US, InfoStrings.ADD_USERS_TO_GROUP_CONTROLLER,
 							response.getId(), response.getName(), usersString));
 
-					response = response.addUsers(users);
-
-					// If this call fails, whole thing fails
-					if (response == null) {
-						funct.createGroupFail();
-					}
-
-					// Otherwise, print success
-					else {
-						Group.setActiveGroup(response);
-						funct.createGroupSuccess(response);
-					}
+					return response.addUsers(users);
 				}
 			}
-		}.start();
+
+			@Override
+			protected void onPostExecute(Group response) {
+				// If this call fails, whole thing fails
+				if (response == null) {
+					funct.createGroupFail();
+				}
+
+				// Otherwise, print success
+				else {
+					Group.setActiveGroup(response);
+					funct.createGroupSuccess(response);
+				}
+			}
+		}.execute();
 	}
 }
