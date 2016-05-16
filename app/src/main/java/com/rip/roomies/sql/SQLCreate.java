@@ -35,7 +35,7 @@ public class SQLCreate {
 					group.getName(), group.getDescription(), user.getId()));
 
 			// group already exist
-			if (!rset.next()) {
+			if (rset == null || !rset.next()) {
 				//debug statement
 				log.info(InfoStrings.CREATEGROUP_FAILED);
 				return null;
@@ -81,7 +81,7 @@ public class SQLCreate {
 					user.getEmail(), user.getPassword()));
 
 			// group already exist
-			if (!rset.next()) {
+			if (rset == null || !rset.next()) {
 				//debug statement
 				log.info(InfoStrings.CREATEUSER_FAILED);
 				return null;

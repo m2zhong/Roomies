@@ -20,7 +20,6 @@ public class SQLStrings {
 
 	public static final String FIND_USER = "EXEC FindUser " +
 			"@id = %d, @username = '%s', @email = '%s'";
-
 	public static final String FIND_GROUP = "EXEC FindGroup " +
-			"@name = %s";
+			"@id = %d, @name = '%s'";
 }
