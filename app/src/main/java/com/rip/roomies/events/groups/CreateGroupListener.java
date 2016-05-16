@@ -52,7 +52,7 @@ public class CreateGroupListener implements View.OnClickListener, CreateGroupFun
 		log.info(InfoStrings.CREATEGROUP_EVENT);
 
 		GroupController.getController().createGroup(this, name.getText().toString(),
-				description.getText().toString(), container.getUsers());
+				description.getText().toString());
 	}
 
 	@Override

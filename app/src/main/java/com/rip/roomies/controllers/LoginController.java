@@ -7,7 +7,6 @@ import com.rip.roomies.functions.PassRetrieveFunction;
 import com.rip.roomies.models.User;
 import com.rip.roomies.util.InfoStrings;
 
-import java.sql.ResultSet;
 import java.util.Locale;
 import java.util.logging.Logger;
 
@@ -90,21 +89,22 @@ public class LoginController {
 	 */
 	public void passRetrieve(final PassRetrieveFunction funct, final String email) {
 		// Create and run a new thread
-		new AsyncTask<Void, Void, User>() {
+		new AsyncTask<Void, Void, Boolean>() {
 			@Override
-			public User doInBackground(Void... v) {
+			public Boolean doInBackground(Void... v) {
 				// Create request user
 				User request = new User(0, null, email);
 
 				log.info(String.format(Locale.US, InfoStrings.PASSRETRIEVE_CONTROLLER, email));
 
 				//need proper return type
-				return request;
+				return request.passRetrieve();
 			}
 
 			// If fail, call fail callback. Otherwise, call success callback
-			public void onPostExecute(User request) {
-					if (!request.passRetrieve()) {
+			@Override
+			public void onPostExecute(Boolean request) {
+				if (!request) {
 					funct.passRetrieveFail();
 				}
 				else {

@@ -8,7 +8,7 @@ public class SQLStrings {
 			"@username = '%s', @password = '%s'";
 
 	public static final String CREATE_GROUP = "EXEC CreateGroup " + "" +
-			"@name = '%s', @description = '%s'";
+			"@name = '%s', @description = '%s', @userId = %d";
 	public static final String CREATE_USER = "EXEC CreateUser " +
 			"@firstName = '%s', @lastName = '%s', @username = '%s', " +
 			"@email= '%s', @password = '%s'";
@@ -23,4 +23,7 @@ public class SQLStrings {
 
 	public static final String LEAVE_GROUP = "EXEC LeaveGroup " +
 			"@groupId = %d, @userId = %d";
+
+	public static final String FIND_GROUP = "EXEC FindGroup " +
+			"@id = %d, @name = '%s'";
 }

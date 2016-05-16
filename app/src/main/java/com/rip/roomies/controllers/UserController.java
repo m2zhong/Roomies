@@ -1,10 +1,13 @@
 package com.rip.roomies.controllers;
 
+import android.os.AsyncTask;
+
 import com.rip.roomies.functions.CreateUserFunction;
 import com.rip.roomies.functions.FindUserFunction;
 import com.rip.roomies.models.User;
 import com.rip.roomies.util.InfoStrings;
 
+import java.net.URL;
 import java.util.Locale;
 import java.util.logging.Logger;
 
@@ -40,25 +43,29 @@ public class UserController {
 	public void createUser(final CreateUserFunction funct, final String firstName, final String lastName,
 	                       final String username, final String email, final String passwd) {
 		// Create and run a new thread
-		new Thread() {
+		new AsyncTask<Void, Void, User>() {
 			@Override
-			public void run() {
+			protected User doInBackground(Void... v) {
 				log.info(String.format(Locale.US, InfoStrings.CREATEUSER_CONTROLLER,
 						lastName, firstName, username, email));
 
 				// Create request user and get response from createUser()
 				User request = new User(firstName, lastName, username, email, passwd);
 				User response = request.createUser();
+				return response;
+			}
 
+			@Override
+			protected void onPostExecute(User result) {
 				// If fail, call fail callback. Otherwise, call success callback
-				if (response == null) {
+				if (result == null) {
 					funct.createUserFail();
 				}
 				else {
-					funct.createUserSuccess(response);
+					funct.createUserSuccess(result);
 				}
 			}
-		}.start();
+		}.execute();
 	}
 
 	/**

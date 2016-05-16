@@ -50,6 +50,38 @@
 			android:name=".activities.groups.CreateGroup"
 			android:configChanges="orientation|keyboardHidden|screenSize"
 			android:label="@string/title_activity_create_group"
+			android:theme="@style/FullscreenTheme">
+			<meta-data
+				android:name="android.support.PARENT_ACTIVITY"
+				android:value="com.rip.roomies.activities.groups.GroupChoice" />
+		</activity>
+		<activity
+			android:name=".activities.groups.GroupChoice"
+			android:configChanges="orientation|keyboardHidden|screenSize"
+			android:label="@string/title_activity_group_choice"
+			android:theme="@style/FullscreenTheme">
+			<meta-data
+				android:name="android.support.PARENT_ACTIVITY"
+				android:value="com.rip.roomies.activities.home.Home" />
+		</activity>
+		<activity
+			android:name=".activities.home.Home"
+			android:configChanges="orientation|keyboardHidden|screenSize"
+			android:label="@string/title_activity_home"
+			android:theme="@style/FullscreenTheme" />
+		<activity
+			android:name=".activities.groups.JoinGroup"
+			android:configChanges="orientation|keyboardHidden|screenSize"
+			android:label="@string/title_activity_join_group"
+			android:theme="@style/FullscreenTheme">
+			<meta-data
+				android:name="android.support.PARENT_ACTIVITY"
+				android:value="com.rip.roomies.activities.groups.GroupChoice" />
+		</activity>
+		<activity
+			android:name=".activities.groups.InviteUsers"
+			android:configChanges="orientation|keyboardHidden|screenSize"
+			android:label="@string/title_activity_invite_users"
 			android:theme="@style/FullscreenTheme" />
 	</application>
 

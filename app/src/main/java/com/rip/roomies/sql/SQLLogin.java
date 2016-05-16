@@ -46,7 +46,7 @@ public class SQLLogin {
 
 			//get the next row, kind of like scanner.nextLine()
 			// either username doesn't exist or password incorrect
-			if (!rset.next()) {
+			if (rset == null || !rset.next()) {
 				//debug statement
 				log.info(InfoStrings.LOGIN_FAILED);
 				return null;
