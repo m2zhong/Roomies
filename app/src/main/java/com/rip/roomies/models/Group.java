@@ -85,9 +85,9 @@ public class Group {
 	 *
 	 * @return The newly created Group.
 	 */
-	public Group createGroup() {
+	public Group createGroup(User user) {
 		log.info(InfoStrings.CREATEGROUP_MODEL);
-		return SQLCreate.createGroup(this);
+		return SQLCreate.createGroup(this, user);
 	}
 
 	//------- OBJECT METHODS -------//

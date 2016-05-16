@@ -33,7 +33,7 @@ public class SQLFind {
 					user.getId(), user.getUsername(), user.getEmail()));
 
 			// If no rows, then finding failed
-			if (!rs.next()) {
+			if (rs == null || !rs.next()) {
 				log.info(InfoStrings.FIND_USER_FAILED);
 				return null;
 			}
@@ -77,21 +77,20 @@ public class SQLFind {
 		ResultSet rs;
 
 		try {
-			// Log finding user
+			// Log finding group
 			log.info(InfoStrings.FIND_GROUP_SQL);
 
 			// Execute SQL
-			rs = SQLQuery.execute(String.format(Locale.US, SQLStrings.FIND_USER,
-					group.getName()));
+			rs = SQLQuery.execute(String.format(Locale.US, SQLStrings.FIND_GROUP,
+					group.getId(), group.getName()));
 
 			// If no rows, then finding failed
-			if (!rs.next()) {
+			if (rs == null || !rs.next()) {
 				log.info(InfoStrings.FIND_GROUP_FAILED);
 				return null;
 			}
 			else {
-				// Get results of SQL statement. Columns are ID, last name, first name
-				// username, and email.
+				// Get results of SQL statement. Columns are ID, name, and description
 				int resultID = rs.getInt("ID");
 				String resultName = rs.getString("Name");
 				String resultDescription = rs.getString("Description");
@@ -106,7 +105,7 @@ public class SQLFind {
 				log.info(String.format(Locale.US, InfoStrings.FIND_GROUP_SUCESSFUL,
 						resultID, resultName, resultDescription));
 
-				// Return a new user object
+				// Return a new group object
 				return new Group(resultID, resultName, resultDescription);
 			}
 		}

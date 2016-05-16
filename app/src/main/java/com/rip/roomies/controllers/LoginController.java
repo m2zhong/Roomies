@@ -7,7 +7,6 @@ import com.rip.roomies.functions.PassRetrieveFunction;
 import com.rip.roomies.models.User;
 import com.rip.roomies.util.InfoStrings;
 
-import java.sql.ResultSet;
 import java.util.Locale;
 import java.util.logging.Logger;
 
@@ -105,7 +104,7 @@ public class LoginController {
 			// If fail, call fail callback. Otherwise, call success callback
 			@Override
 			public void onPostExecute(Boolean request) {
-					if (!request) {
+				if (!request) {
 					funct.passRetrieveFail();
 				}
 				else {
