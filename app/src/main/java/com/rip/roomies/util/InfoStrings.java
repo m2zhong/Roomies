@@ -65,4 +65,9 @@ public class InfoStrings {
 	public static final String FIND_USER_CONTROLLER = "Finding user based on a unique parameter from user:" +
 			"ID: %d\nUsername: %s\nEmail: %s";
 	public static final String FIND_USER_EVENT = "Validation passed. Attempting to find user.";
+
+	public static final String FIND_GROUP_SUCESSFUL = "FindGroup sucessful!! \n" +
+			"ID: %d\nName: %s\nDescription: %s";
+	public static final String FIND_GROUP_FAILED = "FindGroup Failed!!";
+	public static final String FIND_GROUP_SQL = "Finding group...";
 }
