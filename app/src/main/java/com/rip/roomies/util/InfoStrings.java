@@ -66,6 +66,10 @@ public class InfoStrings {
 			"ID: %d\nUsername: %s\nEmail: %s";
 	public static final String FIND_USER_EVENT = "Validation passed. Attempting to find user.";
 
+	public static final String REMOVE_USER_FROM_GROUP_SQL = "Removing user from group...";
+	public static final String REMOVE_USER_FROM_GROUP_SUCCESSFUL = "LeaveGroup successfull! \n" +
+			"ID: %d\nLastName: %s\nFirstName: %s\nUsername: %s\nEmail: %s";
+	
 	public static final String FIND_GROUP_SUCESSFUL = "FindGroup sucessful!! \n" +
 			"ID: %d\nName: %s\nDescription: %s";
 	public static final String FIND_GROUP_FAILED = "FindGroup Failed!!";
