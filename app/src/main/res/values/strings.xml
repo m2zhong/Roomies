@@ -9,6 +9,7 @@
 
 	<string name="title_activity_password_recovery">PasswordRecovery</string>
 
+	<string name="title_activity_shared_items">SharedItems</string>
 	<string name="plus">+</string>
 	<string name="submit">Submit</string>
 
@@ -18,6 +19,8 @@
     <string name="reg">Sign Up</string>
     <string name="forgotpw">Forgot Password?</string>
 	<string name="title_activity_create_group">CreateGroup</string>
+	<string name="remind">Remind</string>
+	<string name="delete">Delete</string>
 
 	<string name="create_group_header">Create Group</string>
 	<string name="group_name_hint">name</string>
