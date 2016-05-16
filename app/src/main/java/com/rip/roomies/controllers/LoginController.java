@@ -1,5 +1,7 @@
 package com.rip.roomies.controllers;
 
+import android.os.AsyncTask;
+
 import com.rip.roomies.functions.LoginFunction;
 import com.rip.roomies.functions.PassRetrieveFunction;
 import com.rip.roomies.models.User;
@@ -29,12 +31,14 @@ public class LoginController {
 	}
 
 	public void connect() {
-		new Thread() {
+		new AsyncTask<Void, Void, Void>() {
 			@Override
-			public void run() {
+			public Void doInBackground(Void... v) {
 				User.connect();
+				//return
+				return null;
 			}
-		}.start();
+		}.execute();
 	}
 
 	/**
@@ -45,16 +49,22 @@ public class LoginController {
 	 */
 	public void login(final LoginFunction funct, final String username, final String passwd) {
 		// Create and run a new thread
-		new Thread() {
+		new AsyncTask<Void, Void, User>() {
 			@Override
-			public void run() {
+			public User doInBackground(Void... v) {
 				log.info(String.format(Locale.US, InfoStrings.LOGIN_CONTROLLER, username));
 
 				// Create request user and get response from login()
 				User request = new User(username, passwd);
 				User response = request.login();
 
-				// If fail, call fail callback. Otherwise, call success callback
+				//need proper return type
+				return response;
+			}
+
+			// If fail, call fail callback. Otherwise, call success callback
+			@Override
+			public void onPostExecute(User response) {
 				if (response == null) {
 					funct.loginFail();
 				}
@@ -62,7 +72,7 @@ public class LoginController {
 					funct.loginSuccess(response);
 				}
 			}
-		}.start();
+		}.execute();
 	}
 
 	/**
@@ -79,22 +89,28 @@ public class LoginController {
 	 */
 	public void passRetrieve(final PassRetrieveFunction funct, final String email) {
 		// Create and run a new thread
-		new Thread() {
+		new AsyncTask<Void, Void, Boolean>() {
 			@Override
-			public void run() {
+			public Boolean doInBackground(Void... v) {
 				// Create request user
 				User request = new User(0, null, email);
 
 				log.info(String.format(Locale.US, InfoStrings.PASSRETRIEVE_CONTROLLER, email));
 
-				// If fail, call fail callback. Otherwise, call success callback
-				if (!request.passRetrieve()) {
+				//need proper return type
+				return request.passRetrieve();
+			}
+
+			// If fail, call fail callback. Otherwise, call success callback
+			@Override
+			public void onPostExecute(Boolean request) {
+				if (!request) {
 					funct.passRetrieveFail();
 				}
 				else {
 					funct.passRetrieveSuccess();
 				}
 			}
-		}.start();
+		}.execute();
 	}
 }

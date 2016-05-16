@@ -23,7 +23,7 @@ public class SQLCreate {
 	 * @param group The group that should be created on the database
 	 * @return Group - the Group object with all the group info just been created
 	 */
-	public static Group createGroup(Group group) {
+	public static Group createGroup(Group group, User user) {
 		ResultSet rset;
 
 		try {
@@ -32,10 +32,10 @@ public class SQLCreate {
 
 			// get the result table from query execution through sql
 			rset = SQLQuery.execute(String.format(Locale.US, SQLStrings.CREATE_GROUP,
-					group.getName(), group.getDescription()));
+					group.getName(), group.getDescription(), user.getId()));
 
 			// group already exist
-			if (!rset.next()) {
+			if (rset == null || !rset.next()) {
 				//debug statement
 				log.info(InfoStrings.CREATEGROUP_FAILED);
 				return null;
@@ -81,7 +81,7 @@ public class SQLCreate {
 					user.getEmail(), user.getPassword()));
 
 			// group already exist
-			if (!rset.next()) {
+			if (rset == null || !rset.next()) {
 				//debug statement
 				log.info(InfoStrings.CREATEUSER_FAILED);
 				return null;
