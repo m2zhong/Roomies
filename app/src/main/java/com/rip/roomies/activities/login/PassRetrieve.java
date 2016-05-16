@@ -1,6 +1,5 @@
 package com.rip.roomies.activities.login;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
