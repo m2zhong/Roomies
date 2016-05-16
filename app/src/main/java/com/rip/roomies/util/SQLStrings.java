@@ -19,7 +19,7 @@ public class SQLStrings {
 	public static final char LIST_DELIMITER = '|';
 
 	public static final String FIND_USER = "EXEC FindUser " +
-			"@id = %d, @username = %s, @email = %s";
+			"@id = %d, @username = '%s', @email = '%s'";
 
 	public static final String LEAVE_GROUP = "EXEC LeaveGroup " +
 			"@groupId = %d, @userId = %d";
