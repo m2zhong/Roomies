@@ -1,4 +1,4 @@
-package com.rip.roomies.events.login;
+package com.rip.roomies.events.groups;
 
 import android.view.View;
 import android.widget.EditText;
