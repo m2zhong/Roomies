@@ -49,8 +49,10 @@ public class SQLGet {
 				//debug statement
 				log.info(String.format(Locale.US, InfoStrings.GET_GROUPS_SUCCESSFUL));
 
+				Group[] temp = new Group[groups.size()];
+
 				// Return a new user object
-				return (Group[]) groups.toArray();
+				return groups.toArray(temp);
 			}
 		}
 		catch (Exception e) {
