@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	tools:context="com.rip.roomies.activities.groups.JoinGroup">
+	tools:context="com.rip.roomies.activities.groups.JoinGroup"
+	android:orientation="vertical"
+	android:gravity="center">
 
-</RelativeLayout>
+	<EditText
+		android:id="@+id/group_name_field"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:hint="Group Name"/>
+
+	<Button
+		android:id="@+id/join_group_btn"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="Join Group" />
+
+</LinearLayout>

@@ -4,8 +4,10 @@ import android.os.AsyncTask;
 
 import com.rip.roomies.functions.InviteUsersFunction;
 import com.rip.roomies.functions.CreateGroupFunction;
+import com.rip.roomies.functions.JoinGroupFunction;
 import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
+import com.rip.roomies.sql.SQLFind;
 import com.rip.roomies.util.InfoStrings;
 
 import java.util.Locale;
@@ -104,5 +106,13 @@ public class GroupController {
 				}
 			}
 		}.execute();
+	}
+
+	public void joinGroup(final JoinGroupFunction funct, String name) {
+		Group group = new Group(name, "");
+		Group databaseGroup = group.findGroup();
+		User activeUser = User.getActiveUser();
+		if (activeUser != null)
+			databaseGroup.addUsers(activeUser);
 	}
 }
