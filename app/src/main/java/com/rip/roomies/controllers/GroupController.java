@@ -108,11 +108,31 @@ public class GroupController {
 		}.execute();
 	}
 
-	public void joinGroup(final JoinGroupFunction funct, String name) {
-		Group group = new Group(name, "");
-		Group databaseGroup = group.findGroup();
-		User activeUser = User.getActiveUser();
-		if (activeUser != null)
-			databaseGroup.addUsers(activeUser);
+	public void joinGroup(final JoinGroupFunction funct, final String name) {
+		// Create and run a new thread
+		new AsyncTask<Void, Void, Group>() {
+			@Override
+			public Group doInBackground(Void... v) {
+				Group group = new Group(name, "");
+				Group databaseGroup = group.findGroup();
+				if (databaseGroup == null)
+					return null;
+
+				User activeUser = User.getActiveUser();
+				if (activeUser != null)
+					databaseGroup.addUsers(activeUser);
+				
+				return databaseGroup;
+			}
+
+			@Override
+			public void onPostExecute(Group group) {
+				if (group == null)
+					funct.joinGroupFail();
+				else {
+					funct.joinGroupSuccess(group);
+				}
+			}
+		}.execute();
 	}
 }
