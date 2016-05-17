@@ -47,7 +47,7 @@ public class SQLGet {
 				} while(rs.next());
 
 				//debug statement
-				log.info(String.format(Locale.US, InfoStrings.GET_GROUPS_SUCCESSFUL));
+				log.info(InfoStrings.GET_GROUPS_SUCCESSFUL);
 
 				Group[] temp = new Group[groups.size()];
 
