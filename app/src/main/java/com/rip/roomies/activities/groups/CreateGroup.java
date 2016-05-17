@@ -7,7 +7,7 @@ import android.widget.EditText;
 import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.events.groups.CreateGroupListener;
-import com.rip.roomies.events.login.AddInviteeListener;
+import com.rip.roomies.events.groups.AddInviteeListener;
 import com.rip.roomies.views.UserContainer;
 
 import java.util.logging.Logger;
