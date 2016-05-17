@@ -110,7 +110,7 @@ public class GroupController {
 
 	public void joinGroup(final JoinGroupFunction funct, String name) {
 		Group group = new Group(name, "");
-		Group databaseGroup = SQLFind.findGroup(group);
+		Group databaseGroup = group.findGroup();
 		User activeUser = User.getActiveUser();
 		if (activeUser != null)
 			databaseGroup.addUsers(activeUser);

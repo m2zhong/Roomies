@@ -24,12 +24,10 @@ public class JoinGroupListener implements View.OnClickListener, JoinGroupFunctio
 
 	private GenericActivity context;
 	private EditText name;
-	private UserContainer container;
 
-	public JoinGroupListener(GenericActivity context, EditText name, UserContainer container) {
+	public JoinGroupListener(GenericActivity context, EditText name) {
 		this.context = context;
 		this.name = name;
-		this.container = container;
 	}
 
 	@Override
@@ -64,11 +62,6 @@ public class JoinGroupListener implements View.OnClickListener, JoinGroupFunctio
 		log.info(String.format(Locale.US, InfoStrings.SWITCH_ACTIVITY_DELAYED,
 				"[Home Class Goes Here]", DisplayStrings.TOAST_LONG_LENGTH));
 
-		new Handler().postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				context.toHome();
-			}
-		}, DisplayStrings.TOAST_SHORT_LENGTH);
+		context.toHome();
 	}
 }
