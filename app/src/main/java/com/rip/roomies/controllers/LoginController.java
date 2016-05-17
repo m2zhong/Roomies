@@ -61,7 +61,7 @@ public class LoginController {
 
 				if (response != null) {
 					Group[] groups = response.getGroups();
-					if (groups.length > 0) {
+					if (groups != null && groups.length > 0) {
 						Group.setActiveGroup(groups[0]);
 					}
 				}
