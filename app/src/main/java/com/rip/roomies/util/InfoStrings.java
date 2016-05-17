@@ -74,4 +74,6 @@ public class InfoStrings {
 			"ID: %d\nName: %s\nDescription: %s";
 	public static final String FIND_GROUP_FAILED = "FindGroup Failed!!";
 	public static final String FIND_GROUP_SQL = "Finding group...";
+
+	public static final String INVITE_USERS = "Inviting user(s)...";
 }

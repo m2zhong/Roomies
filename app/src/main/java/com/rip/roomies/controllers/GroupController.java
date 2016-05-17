@@ -2,7 +2,7 @@ package com.rip.roomies.controllers;
 
 import android.os.AsyncTask;
 
-import com.rip.roomies.functions.AddUsersToGroupFunction;
+import com.rip.roomies.functions.InviteUsersFunction;
 import com.rip.roomies.functions.CreateGroupFunction;
 import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
@@ -69,7 +69,7 @@ public class GroupController {
 		}.execute();
 	}
 
-	public void addUsersToGroup(final AddUsersToGroupFunction funct, final User[] users) {
+	public void addUsersToGroup(final InviteUsersFunction funct, final User[] users) {
 		// Create and run a new thread
 		new AsyncTask<Void, Void, Group>() {
 			@Override
@@ -97,10 +97,10 @@ public class GroupController {
 			@Override
 			public void onPostExecute(Group group) {
 				if (group == null) {
-					funct.addUsersToGroupFail();
+					funct.inviteUsersFail();
 				}
 				else {
-					funct.addUsersToGroupSuccess(group);
+					funct.inviteUsersSuccess(group);
 				}
 			}
 		}.execute();
