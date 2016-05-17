@@ -1,12 +1,15 @@
 package com.rip.roomies.events.login;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.rip.roomies.activities.GenericActivity;
+import com.rip.roomies.activities.groups.GroupChoice;
 import com.rip.roomies.controllers.LoginController;
 import com.rip.roomies.functions.LoginFunction;
+import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
 import com.rip.roomies.util.DisplayStrings;
 import com.rip.roomies.util.InfoStrings;
@@ -77,6 +80,11 @@ public class LoginListener implements View.OnClickListener, LoginFunction {
 
 	@Override
 	public void loginSuccess(User user) {
-		activity.toHome();
+		if (Group.getActiveGroup() == null) {
+			activity.startActivity(new Intent(activity, GroupChoice.class));
+		}
+		else {
+			activity.toHome();
+		}
 	}
 }
