@@ -1,11 +1,14 @@
 package com.rip.roomies.events.groups;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.rip.roomies.activities.GenericActivity;
+import com.rip.roomies.activities.groups.InviteUsers;
+import com.rip.roomies.activities.home.Home;
 import com.rip.roomies.controllers.GroupController;
 import com.rip.roomies.functions.CreateGroupFunction;
 import com.rip.roomies.models.Group;
@@ -25,14 +28,11 @@ public class CreateGroupListener implements View.OnClickListener, CreateGroupFun
 	private GenericActivity context;
 	private EditText name;
 	private EditText description;
-	private UserContainer container;
 
-	public CreateGroupListener(GenericActivity context, EditText name, EditText description,
-	                           UserContainer container) {
+	public CreateGroupListener(GenericActivity context, EditText name, EditText description) {
 		this.context = context;
 		this.name = name;
 		this.description = description;
-		this.container = container;
 	}
 
 	@Override
@@ -62,17 +62,9 @@ public class CreateGroupListener implements View.OnClickListener, CreateGroupFun
 
 	@Override
 	public void createGroupSuccess(Group group) {
-		Toast.makeText(context, String.format(Locale.US, DisplayStrings.CREATE_GROUP_SUCCESS,
-				group.getName()), Toast.LENGTH_SHORT).show();
-
 		log.info(String.format(Locale.US, InfoStrings.SWITCH_ACTIVITY_DELAYED,
-				"[Home Class Goes Here]", DisplayStrings.TOAST_LONG_LENGTH));
+				InviteUsers.class.getName(), DisplayStrings.TOAST_LONG_LENGTH));
 
-		new Handler().postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				context.toHome();
-			}
-		}, DisplayStrings.TOAST_SHORT_LENGTH);
+		context.startActivity(new Intent(context, InviteUsers.class));
 	}
 }
