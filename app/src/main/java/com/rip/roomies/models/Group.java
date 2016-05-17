@@ -67,7 +67,7 @@ public class Group {
 	 * @param users The list of users to add to this group
 	 * @return The group returned by the SQL call
 	 */
-	public Group addUsers(User[] users) {
+	public Group addUsers(User... users) {
 		log.info(InfoStrings.ADD_USERS_TO_GROUP_MODEL);
 		Group group = SQLAdd.addUsersToGroup(users, this);
 
