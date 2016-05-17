@@ -61,6 +61,7 @@ public class UserContainer extends LinearLayout {
 	 * @return An array of users
 	 */
 	public User[] getUsers() {
-		return (User[]) users.toArray();
+		User[] temp = new User[users.size()];
+		return users.toArray(temp);
 	}
 }

@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  * This class represents the listener for when the "Send Invites" button is pressed.
  */
 public class InviteUserListener implements View.OnClickListener, InviteUsersFunction {
-	private static final Logger log = Logger.getLogger(AddInviteeListener.class.getName());
+	private static final Logger log = Logger.getLogger(InviteUserListener.class.getName());
 
 	private GenericActivity context;
 	private UserContainer container;
