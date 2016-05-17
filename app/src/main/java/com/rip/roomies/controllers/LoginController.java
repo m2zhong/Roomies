@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 
 import com.rip.roomies.functions.LoginFunction;
 import com.rip.roomies.functions.PassRetrieveFunction;
+import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
 import com.rip.roomies.util.InfoStrings;
 
@@ -57,6 +58,13 @@ public class LoginController {
 				// Create request user and get response from login()
 				User request = new User(username, passwd);
 				User response = request.login();
+
+				if (response != null) {
+					Group[] groups = response.getGroups();
+					if (groups.length > 0) {
+						Group.setActiveGroup(groups[0]);
+					}
+				}
 
 				//need proper return type
 				return response;

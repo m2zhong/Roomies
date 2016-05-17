@@ -13,4 +13,9 @@ public class Home extends GenericActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 	}
+
+	@Override
+	public void onBackPressed() {
+		// This is supposed to do nothing
+	}
 }

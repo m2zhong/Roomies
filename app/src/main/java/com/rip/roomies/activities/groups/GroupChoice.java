@@ -35,4 +35,9 @@ public class GroupChoice extends GenericActivity {
 			}
 		});
 	}
+
+	@Override
+	public void onBackPressed() {
+		// This is supposed to do nothing
+	}
 }
