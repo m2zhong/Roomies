@@ -7,7 +7,6 @@ import com.rip.roomies.functions.CreateGroupFunction;
 import com.rip.roomies.functions.JoinGroupFunction;
 import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
-import com.rip.roomies.sql.SQLFind;
 import com.rip.roomies.util.InfoStrings;
 
 import java.util.Locale;

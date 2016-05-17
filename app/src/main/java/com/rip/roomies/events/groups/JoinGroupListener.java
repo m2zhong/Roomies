@@ -1,17 +1,16 @@
 package com.rip.roomies.events.groups;
 
-import android.os.Handler;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.rip.roomies.activities.GenericActivity;
+import com.rip.roomies.activities.home.Home;
 import com.rip.roomies.controllers.GroupController;
 import com.rip.roomies.functions.JoinGroupFunction;
 import com.rip.roomies.models.Group;
 import com.rip.roomies.util.DisplayStrings;
 import com.rip.roomies.util.InfoStrings;
-import com.rip.roomies.views.UserContainer;
 
 import java.util.Locale;
 import java.util.logging.Logger;
@@ -56,11 +55,8 @@ public class JoinGroupListener implements View.OnClickListener, JoinGroupFunctio
 
 	@Override
 	public void joinGroupSuccess(Group group) {
-		Toast.makeText(context, String.format(Locale.US, DisplayStrings.JOIN_GROUP_SUCCESS,
-				group.getName()), Toast.LENGTH_SHORT).show();
-
 		log.info(String.format(Locale.US, InfoStrings.SWITCH_ACTIVITY_DELAYED,
-				"[Home Class Goes Here]", DisplayStrings.TOAST_LONG_LENGTH));
+				Home.class.getName(), DisplayStrings.TOAST_LONG_LENGTH));
 
 		context.toHome();
 	}

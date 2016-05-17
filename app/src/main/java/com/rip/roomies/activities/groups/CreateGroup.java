@@ -23,12 +23,8 @@ public class CreateGroup extends GenericActivity {
 
 		EditText name = (EditText) findViewById(R.id.group_name);
 		EditText description = (EditText) findViewById(R.id.group_description);
-		EditText inviteeField = (EditText) findViewById(R.id.invitee_add_field);
-		UserContainer inviteeContainer = (UserContainer) findViewById(R.id.invitee_container);
-		Button addInvitee = (Button) findViewById(R.id.invitee_add_btn);
 		Button submit = (Button) findViewById(R.id.create_group_submit);
 
-		addInvitee.setOnClickListener(new AddInviteeListener(this, inviteeContainer, inviteeField));
-		submit.setOnClickListener(new CreateGroupListener(this, name, description, inviteeContainer));
+		submit.setOnClickListener(new CreateGroupListener(this, name, description));
 	}
 }
