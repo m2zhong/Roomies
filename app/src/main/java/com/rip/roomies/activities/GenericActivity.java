@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.widget.Toast;
 
+import com.rip.roomies.activities.home.Home;
 import com.rip.roomies.activities.login.Login;
 import com.rip.roomies.util.InfoStrings;
 
@@ -30,7 +31,8 @@ public abstract class GenericActivity extends Activity {
 	 * Transitions to the home screen.
 	 */
 	public void toHome() {
-		// TODO once home screen has been created
-		Toast.makeText(this, "Switch to home screen, once implemented.", Toast.LENGTH_LONG).show();
+		log.info(String.format(InfoStrings.SWITCH_ACTIVITY, Home.class.getName()));
+
+		startActivity(new Intent(this, Home.class));
 	}
 }
