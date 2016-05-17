@@ -74,4 +74,7 @@ public class InfoStrings {
 			"ID: %d\nName: %s\nDescription: %s";
 	public static final String FIND_GROUP_FAILED = "FindGroup Failed!!";
 	public static final String FIND_GROUP_SQL = "Finding group...";
+
+	public static final String JOINGROUP_EVENT = "Validation passed. Attempting to join group.";
+	public static final String JOINGROUP_MODEL = "Joining a group based off the current object.";
 }

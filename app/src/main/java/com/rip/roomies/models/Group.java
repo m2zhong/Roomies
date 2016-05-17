@@ -2,6 +2,7 @@ package com.rip.roomies.models;
 
 import com.rip.roomies.sql.SQLAdd;
 import com.rip.roomies.sql.SQLCreate;
+import com.rip.roomies.sql.SQLFind;
 import com.rip.roomies.util.InfoStrings;
 
 import java.util.logging.Logger;
@@ -67,7 +68,7 @@ public class Group {
 	 * @param users The list of users to add to this group
 	 * @return The group returned by the SQL call
 	 */
-	public Group addUsers(User[] users) {
+	public Group addUsers(User... users) {
 		log.info(InfoStrings.ADD_USERS_TO_GROUP_MODEL);
 		Group group = SQLAdd.addUsersToGroup(users, this);
 
@@ -88,6 +89,16 @@ public class Group {
 	public Group createGroup(User user) {
 		log.info(InfoStrings.CREATEGROUP_MODEL);
 		return SQLCreate.createGroup(this, user);
+	}
+
+	/**
+	 * Connects to the database and locates the Group with the properties of this group.
+	 *
+	 * @return The Group read from the database.
+	 */
+	public Group findGroup() {
+		log.info(InfoStrings.JOINGROUP_MODEL);
+		return SQLFind.findGroup(this);
 	}
 
 	//------- OBJECT METHODS -------//
