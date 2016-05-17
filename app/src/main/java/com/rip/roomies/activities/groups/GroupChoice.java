@@ -8,8 +8,9 @@ import android.view.View;
 import android.widget.Button;
 
 import com.rip.roomies.R;
+import com.rip.roomies.activities.GenericActivity;
 
-public class GroupChoice extends Activity {
+public class GroupChoice extends GenericActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
