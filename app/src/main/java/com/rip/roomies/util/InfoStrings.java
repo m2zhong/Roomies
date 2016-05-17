@@ -69,14 +69,18 @@ public class InfoStrings {
 	public static final String REMOVE_USER_FROM_GROUP_SQL = "Removing user from group...";
 	public static final String REMOVE_USER_FROM_GROUP_SUCCESSFUL = "LeaveGroup successfull! \n" +
 			"ID: %d\nLastName: %s\nFirstName: %s\nUsername: %s\nEmail: %s";
-	
+
 	public static final String FIND_GROUP_SUCESSFUL = "FindGroup sucessful!! \n" +
 			"ID: %d\nName: %s\nDescription: %s";
 	public static final String FIND_GROUP_FAILED = "FindGroup Failed!!";
 	public static final String FIND_GROUP_SQL = "Finding group...";
-	
+
 	public static final String INVITE_USERS = "Inviting user(s)...";
 
 	public static final String JOINGROUP_EVENT = "Validation passed. Attempting to join group.";
 	public static final String JOINGROUP_MODEL = "Joining a group based off the current object.";
+
+	public static final String GET_GROUPS_SQL = "Getting groups...";
+	public static final String GET_GROUPS_SUCCESSFUL = "GetGroups successful!";
+	public static final String GET_GROUPS_FAILED = "GetGroups failed!!";
 }
