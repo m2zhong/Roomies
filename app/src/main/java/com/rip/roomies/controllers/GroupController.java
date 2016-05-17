@@ -129,6 +129,7 @@ public class GroupController {
 				if (group == null)
 					funct.joinGroupFail();
 				else {
+					Group.setActiveGroup(group);
 					funct.joinGroupSuccess(group);
 				}
 			}

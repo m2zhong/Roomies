@@ -137,6 +137,14 @@ public class User {
 	}
 
 	/**
+	 * Connects to the database, and finds all of the Groups this User is in.
+	 * @return Returns an array of Groups that this user is in.
+	 */
+	public Group[] getGroups() {
+		return SQLGet.getGroups(this);
+	}
+
+	/**
 	 * Connects to the database and emails the User their password, which they have forgotten.
 	 *
 	 * @return true if the information used to retrieve the password was valid.
