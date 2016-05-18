@@ -4,10 +4,10 @@ import android.os.AsyncTask;
 
 import com.rip.roomies.functions.LoginFunction;
 import com.rip.roomies.functions.PassRetrieveFunction;
+import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
 import com.rip.roomies.util.InfoStrings;
 
-import java.sql.ResultSet;
 import java.util.Locale;
 import java.util.logging.Logger;
 
@@ -59,6 +59,13 @@ public class LoginController {
 				User request = new User(username, passwd);
 				User response = request.login();
 
+				if (response != null) {
+					Group[] groups = response.getGroups();
+					if (groups != null && groups.length > 0) {
+						Group.setActiveGroup(groups[0]);
+					}
+				}
+
 				//need proper return type
 				return response;
 			}
@@ -105,7 +112,7 @@ public class LoginController {
 			// If fail, call fail callback. Otherwise, call success callback
 			@Override
 			public void onPostExecute(Boolean request) {
-					if (!request) {
+				if (!request) {
 					funct.passRetrieveFail();
 				}
 				else {

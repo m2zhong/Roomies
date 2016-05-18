@@ -1,18 +1,20 @@
 <resources>
 	<string name="app_name">Roomies</string>
-
 	<string name="title_activity_splash_screen">Roomies</string>
-
 	<string name="title_activity_login">Login</string>
-
-	<string name="title_activity_create_user">CreateUser</string>
-
-	<string name="title_activity_password_recovery">PasswordRecovery</string>
+	<string name="title_activity_create_user">Create User</string>
+	<string name="title_activity_password_recovery">Password Recovery</string>
+	<string name="title_activity_home">Home</string>
+	<string name="title_activity_join_group">Join Group</string>
+	<string name="title_activity_group_choice">Group Choice</string>
+	<string name="title_activity_invite_users">Invite Users</string>
+	<string name="title_activity_create_group">CreateGroup</string>
 
 	<string name="title_activity_shared_items">SharedItems</string>
 	<string name="plus">+</string>
 	<string name="submit">Submit</string>
 
+<<<<<<< HEAD
     <string name="unhint">username</string>
     <string name="pwhint">password</string>
     <string name="login">Login</string>
@@ -21,6 +23,13 @@
 	<string name="title_activity_create_group">CreateGroup</string>
 	<string name="remind">Remind</string>
 	<string name="delete">Delete</string>
+=======
+	<string name="unhint">username</string>
+	<string name="pwhint">password</string>
+	<string name="login">Login</string>
+	<string name="reg">Sign Up</string>
+	<string name="forgotpw">Forgot Password?</string>
+>>>>>>> b7892a6c3aee50c4b15035c5770c8fccdcd39a57
 
 	<string name="create_group_header">Create Group</string>
 	<string name="group_name_hint">name</string>

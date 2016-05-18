@@ -52,7 +52,7 @@ public class SQLAdd {
 					group.getId(), usersString));
 
 			// If no rows, then adding failed
-			if (!rs.next()) {
+			if (rs == null || !rs.next()) {
 				log.info(InfoStrings.ADD_USERS_TO_GROUP_FAILED);
 				return null;
 			}

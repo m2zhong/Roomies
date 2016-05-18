@@ -8,7 +8,7 @@ public class SQLStrings {
 			"@username = '%s', @password = '%s'";
 
 	public static final String CREATE_GROUP = "EXEC CreateGroup " + "" +
-			"@name = '%s', @description = '%s'";
+			"@name = '%s', @description = '%s', @userId = %d";
 	public static final String CREATE_USER = "EXEC CreateUser " +
 			"@firstName = '%s', @lastName = '%s', @username = '%s', " +
 			"@email= '%s', @password = '%s'";
@@ -19,5 +19,14 @@ public class SQLStrings {
 	public static final char LIST_DELIMITER = '|';
 
 	public static final String FIND_USER = "EXEC FindUser " +
-			"@id = %d, @username = %s, @email = %s";
+			"@id = %d, @username = '%s', @email = '%s'";
+
+	public static final String LEAVE_GROUP = "EXEC LeaveGroup " +
+			"@groupId = %d, @userId = %d";
+
+	public static final String FIND_GROUP = "EXEC FindGroup " +
+			"@id = %d, @name = '%s'";
+
+	public static final String GET_GROUPS = "EXEC GetGroups " +
+			"@userId = %d";
 }
