@@ -23,16 +23,6 @@
                 android:layout_weight=".95"
                 android:id="@+id/textView" />
 
-        <Button
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:text="+"
-            android:id="@+id/addItem"
-            android:layout_margin="5dp"
-            android:layout_weight="0.05"
-            android:textSize="20dp"
-            android:textColor="@color/colorPrimary"
-            android:background="@drawable/circle" />
 
     </LinearLayout>
 
@@ -46,7 +36,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Scheduled"
-            android:id="@+id/textView2"
+            android:id="@+id/textView"
             android:textSize="20dp"
             android:layout_gravity="center_horizontal" />
 
@@ -158,6 +148,19 @@
             android:textSize="30dp"
             android:gravity="center|left"
             android:textColor="@color/colorPrimary"/>
+
+        <Button
+            android:theme="@android:style/Theme.Holo"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="220dp"
+            android:background="@drawable/circle3"
+            android:text="@string/plus"
+            android:textSize="20dp"
+            android:textColor="@color/colorAccent" />
     </LinearLayout>
 
     <!--    android:layout_height="wrap_content" -->
