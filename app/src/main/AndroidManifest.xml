@@ -83,6 +83,26 @@
 			android:configChanges="orientation|keyboardHidden|screenSize"
 			android:label="@string/title_activity_invite_users"
 			android:theme="@style/FullscreenTheme" />
+		<activity
+			android:name=".activities.duties.CreateDuty"
+			android:configChanges="orientation|keyboardHidden|screenSize"
+			android:theme="@style/FullscreenTheme" />
+		<activity
+			android:name=".activities.duties.ListAllDuties"
+			android:configChanges="orientation|keyboardHidden|screenSize"
+			android:theme="@style/FullscreenTheme" />
+		<activity
+			android:name=".activities.duties.ListMyDuties"
+			android:configChanges="orientation|keyboardHidden|screenSize"
+			android:theme="@style/FullscreenTheme" />
+		<activity
+			android:name=".activities.duties.ModifyDuty"
+			android:configChanges="orientation|keyboardHidden|screenSize"
+			android:theme="@style/FullscreenTheme" />
+		<activity
+			android:name=".activities.duties.ViewDuty"
+			android:configChanges="orientation|keyboardHidden|screenSize"
+			android:theme="@style/FullscreenTheme" />
 	</application>
 
 </manifest>
