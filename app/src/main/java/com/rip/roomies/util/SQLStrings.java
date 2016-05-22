@@ -29,4 +29,9 @@ public class SQLStrings {
 
 	public static final String GET_GROUPS = "EXEC GetGroups " +
 			"@userId = %d";
+
+	public static final String CREATE_BILL = "EXEC CreateBill " +
+			"@name = '%s', @description = '%s', @amount = '%s', ";
+
+
 }

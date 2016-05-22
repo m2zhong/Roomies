@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
+import com.rip.roomies.activities.bills.Bills;
 import com.rip.roomies.events.login.LoginListener;
 
 import java.util.logging.Logger;
@@ -30,6 +31,9 @@ public class Login extends GenericActivity {
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
+
+		startActivity(new Intent(this, Bills.class));
+
 
 		/* Linking xml objects to java */
 		username = (EditText) findViewById(R.id.username);

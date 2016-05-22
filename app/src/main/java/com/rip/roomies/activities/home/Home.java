@@ -1,6 +1,5 @@
 package com.rip.roomies.activities.home;
 
-import android.app.Activity;
 import android.os.Bundle;
 
 import com.rip.roomies.R;

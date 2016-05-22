@@ -1,30 +1,31 @@
 <resources>
-	<string name="app_name">Roomies</string>
-	<string name="title_activity_splash_screen">Roomies</string>
-	<string name="title_activity_login">Login</string>
-	<string name="title_activity_create_user">Create User</string>
-	<string name="title_activity_password_recovery">Password Recovery</string>
-	<string name="title_activity_home">Home</string>
-	<string name="title_activity_join_group">Join Group</string>
-	<string name="title_activity_group_choice">Group Choice</string>
-	<string name="title_activity_invite_users">Invite Users</string>
-	<string name="title_activity_create_group">CreateGroup</string>
+    <string name="app_name">Roomies</string>
+    <string name="title_activity_splash_screen">Roomies</string>
+    <string name="title_activity_login">Login</string>
+    <string name="title_activity_create_user">Create User</string>
+    <string name="title_activity_password_recovery">Password Recovery</string>
+    <string name="title_activity_home">Home</string>
+    <string name="title_activity_join_group">Join Group</string>
+    <string name="title_activity_group_choice">Group Choice</string>
+    <string name="title_activity_invite_users">Invite Users</string>
+    <string name="title_activity_create_group">CreateGroup</string>
 
-	<string name="plus">+</string>
-	<string name="submit">Submit</string>
+    <string name="plus">+</string>
+    <string name="submit">Submit</string>
 
-	<string name="unhint">username</string>
-	<string name="pwhint">password</string>
-	<string name="login">Login</string>
-	<string name="reg">Sign Up</string>
-	<string name="forgotpw">Forgot Password?</string>
+    <string name="unhint">username</string>
+    <string name="pwhint">password</string>
+    <string name="login">Login</string>
+    <string name="reg">Sign Up</string>
+    <string name="forgotpw">Forgot Password?</string>
 
-	<string name="create_group_header">Create Group</string>
-	<string name="group_name_hint">name</string>
-	<string name="group_desription_hint">description</string>
-	<string name="invitees_header">invitees</string>
-	<string name="invitee_add_hint">invitee isername</string>
+    <string name="create_group_header">Create Group</string>
+    <string name="group_name_hint">name</string>
+    <string name="group_desription_hint">description</string>
+    <string name="invitees_header">invitees</string>
+    <string name="invitee_add_hint">invitee isername</string>
 
-	<string name="pass_retreive">Get my password</string>
-	<string name="email_hint">email</string>
+    <string name="pass_retreive">Get my password</string>
+    <string name="email_hint">email</string>
+    <string name="title_activity_add_bill">AddBill</string>
 </resources>

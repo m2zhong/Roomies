@@ -1,5 +1,6 @@
 package com.rip.roomies.sql;
 
+import com.rip.roomies.models.Bill;
 import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
 import com.rip.roomies.util.Exceptions;
@@ -110,5 +111,37 @@ public class SQLCreate {
 			log.severe(Exceptions.stacktraceToString(e));
 			return null;
 		}
+	}
+
+
+	public static Bill createBill(Bill bill) {
+		ResultSet rset;
+
+		try {
+			log.info(InfoStrings.CREATEBILL_SQL);
+
+			// get the result table from query execution through sql
+			rset = SQLQuery.execute(String.format(Locale.US, SQLStrings.CREATE_BILL,
+					bill.getName(), bill.getDescription(), bill.getAmount()));
+
+			//second column is name, third is description, 4th is amount
+			//so pass the column number accordingly to get the info about the bill
+			int resultID = rset.getInt("ID");
+			String resultName = rset.getString("name");
+			String resultDescription = rset.getString("Description");
+			int resultAmount = rset.getInt("Amount");
+
+
+			//debug statement
+			log.info(String.format(Locale.US, InfoStrings.CREATEBILL_SUCCESSFULL, resultID,
+					resultName, resultDescription, resultAmount));
+
+			return new Bill(resultID, resultName, resultDescription, resultAmount);
+		}
+		catch (Exception e) {
+			log.severe(Exceptions.stacktraceToString(e));
+			return null;
+		}
+
 	}
 }
