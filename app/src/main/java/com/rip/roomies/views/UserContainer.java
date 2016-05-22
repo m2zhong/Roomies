@@ -3,6 +3,7 @@ package com.rip.roomies.views;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 import com.rip.roomies.models.User;
 import com.rip.roomies.util.InfoStrings;
@@ -14,16 +15,19 @@ import java.util.logging.Logger;
  * This class represents a container for multiple UserView objects that can
  * be displayed in a dynamic group.
  */
-public class UserContainer extends LinearLayout {
+public class UserContainer extends ScrollView {
 	private static final Logger log = Logger.getLogger(UserContainer.class.getName());
 
 	private ArrayList<User> users = new ArrayList<>();
+	private LinearLayout userLayout;
 
 	/**
 	 * @see android.view.View(Context)
 	 */
 	public UserContainer(Context context) {
 		super(context);
+		userLayout = new LinearLayout(context);
+		addView(userLayout);
 	}
 
 	/**
@@ -31,6 +35,8 @@ public class UserContainer extends LinearLayout {
 	 */
 	public UserContainer(Context context, AttributeSet attrs) {
 		super(context, attrs);
+		userLayout = new LinearLayout(context, attrs);
+		addView(userLayout);
 	}
 
 	/**
@@ -38,6 +44,8 @@ public class UserContainer extends LinearLayout {
 	 */
 	public UserContainer(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
+		userLayout = new LinearLayout(context, attrs, defStyle);
+		addView(userLayout);
 	}
 
 	/**
@@ -53,7 +61,7 @@ public class UserContainer extends LinearLayout {
 
 		UserView userView = new UserView(getContext());
 		userView.setUser(newUser);
-		addView(userView);
+		userLayout.addView(userView);
 	}
 
 	/**
