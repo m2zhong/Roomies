@@ -52,7 +52,6 @@ public class SQLCreate {
 			// get the result table from query execution through sql
 			rset = SQLQuery.execute(String.format(Locale.US, SQLStrings.CREATE_DUTY,
 					duty.getName(), duty.getDescription(), usersString));
-			// ^ replace null with proper parameters
 
 			// error happened when contacting sql server
 			if(rset == null || !rset.next()) {
