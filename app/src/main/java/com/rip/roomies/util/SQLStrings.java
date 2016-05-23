@@ -34,5 +34,8 @@ public class SQLStrings {
 			"@owner_id = %d, " +
 			"@name = '%s', @description = '%s', @amount = %.2f;";
 
+	public static final String DELETE_BILL = "EXEC DeleteBill " +
+			"@ID = %d;";
+
 
 }

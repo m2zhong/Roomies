@@ -144,7 +144,7 @@ public class SQLCreate {
 			log.info(String.format(Locale.US, InfoStrings.CREATEBILL_SUCCESSFULL, resultID,
 					resultName, resultDescription, resultAmount));
 
-			return new Bill(resultID, resultName, resultDescription, resultAmount);
+			return new Bill(resultOwnerID, resultID, resultName, resultDescription, resultAmount);
 		}
 		catch (Exception e) {
 			log.severe(Exceptions.stacktraceToString(e));

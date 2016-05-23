@@ -1,7 +1,7 @@
 package com.rip.roomies.models;
 
 import com.rip.roomies.sql.SQLCreate;
-import com.rip.roomies.sql.SQLLogin;
+import com.rip.roomies.sql.SQLRemove;
 import com.rip.roomies.util.InfoStrings;
 
 import java.util.logging.Logger;
@@ -11,7 +11,8 @@ import java.util.logging.Logger;
  */
 public class Bill {
 
-    private int id = 0;
+    private int ownerID = 0;
+    private int rowID = 0;
     private String name = "";
     private String description = "";
     private float amount = 0;
@@ -21,6 +22,7 @@ public class Bill {
     private static final Logger log = Logger.getLogger(Bill.class.getName());
 
     //------- CONSTRUCTORS -------//
+
     public Bill() {}
 
     /**
@@ -37,16 +39,19 @@ public class Bill {
         this.amount = amount;
     }
 
+
     /**
      * Constructor used when returning a Bill inserted into the DB from SQLCreate.createBill
      *
-     * @param id The id from the resultset returned from the CreateBill SQL procedure.
+     * @param ownerID The ownerID from the resultset returned from the CreateBill SQL procedure.
+     * @param rowID The unique bill ID.
      * @param name The name associated with this bill.
      * @param description The description associated with this bill.
      * @param amount The amount associated with this bill.
      */
-    public Bill(int id, String name, String description, float amount) {
-        this.id = id;
+    public Bill(int ownerID, int rowID, String name, String description, float amount) {
+        this.ownerID = ownerID;
+        this.rowID = rowID;
         this.name = name;
         this.description = description;
         this.amount = amount;
@@ -54,11 +59,6 @@ public class Bill {
 
 
     //------- DATABASE METHODS -------//
-
-    public static boolean connect() {
-        return SQLLogin.connect();
-    }
-
 
     /**
      * Connects to the database, creating a new Bill with the information provided.
@@ -70,6 +70,13 @@ public class Bill {
 
         return SQLCreate.createBill(this);
     }
+
+    public Bill removeBill(int rowID) {
+        //log statement
+        return SQLRemove.removeBill(rowID);
+    }
+
+
 
     /**
      * Connects to the database, and attempts to find a user with one of the unique fields
@@ -83,9 +90,7 @@ public class Bill {
 
 
 
-    //------- OBJECT METHODS -------//
-
-
+    //-------------Getter methods------------//
 
     public String getName() {
         return name;
@@ -97,14 +102,9 @@ public class Bill {
 
     public float getAmount() { return amount; }
 
-    public int getId() {
-        return id;
-    }
+    public int getOwnerID() { return ownerID; }
 
+    public int getRowID() { return rowID; }
 
-    //ehh
-//    public static User getActiveUser() {
-//        return activeUser;
-//    }
 
 }

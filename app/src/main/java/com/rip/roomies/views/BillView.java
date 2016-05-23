@@ -93,7 +93,7 @@ public class BillView extends LinearLayout {
         editBill.setText("Edit Bill");
 
         //set the removeBill/editbill listeners
-        removeBill.setOnClickListener(new RemoveBillListener(this, removeBill, editBill, name, amount, description));
+        removeBill.setOnClickListener(new RemoveBillListener(this, bill, removeBill, editBill, name, amount, description));
         editBill.setOnClickListener(new ModifyBillListener(activity, this, name, amount, description));
 
 

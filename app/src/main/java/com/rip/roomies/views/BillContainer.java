@@ -7,6 +7,7 @@ import android.widget.ScrollView;
 
 import com.rip.roomies.activities.bills.Bills;
 import com.rip.roomies.models.Bill;
+import com.rip.roomies.util.InfoStrings;
 
 import java.util.ArrayList;
 import java.util.logging.Logger;
@@ -55,15 +56,28 @@ public class BillContainer extends ScrollView {
      * @param newBill The new Bill to add
      */
     public void addBill(Bill newBill) {
-   //     log.info(String.format(InfoStrings.CONTAINER_ADD,
- //               BillView.class.getSimpleName(),  BillContainer.class.getSimpleName()));
+        log.info(String.format(InfoStrings.CONTAINER_ADD,
+                BillView.class.getName(),  BillContainer.class.getName()));
 
+        //add our newly created bill to our dynamic arraylist of bills.
         bills.add(newBill);
 
         BillView billView = new BillView(getContext(), (Bills)getContext());
         billView.setBill(newBill);
         billLayout.addView(billView);
     }
+
+    public void removeBill(Bill billToRemove) {
+        //log statement
+
+        //remove the bill from the dynamic list of bills
+        for (int i = 0; i < bills.size(); i++) {
+            if (bills.get(i).getRowID() == billToRemove.getRowID()) {
+                    bills.remove(i);
+            }
+        }
+    }
+
 
     /**
      * Get the bills held by this BillContainer
