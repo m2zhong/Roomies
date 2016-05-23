@@ -84,8 +84,22 @@ public class InfoStrings {
 	public static final String GET_GROUPS_SUCCESSFUL = "GetGroups successful!";
 	public static final String GET_GROUPS_FAILED = "GetGroups failed!!";
 
+
 	public static final String CREATEDUTY_SQL = "Creating duty...";
 	public static final String CREATEDUTY_SUCCESSFUL = "CreateDuty successful!! \n" +
 			"ID: %d\nName: %s\nDescription: %s";
 	public static final String CREATEDUTY_FAILED = "CreateDuty failed!!";
+
+	public static final String CREATE_DUTY_MODEL = "Creating a duty based off the current object.";
+
+	public static final String MODIFY_DUTY_MODEL = "Modifying a duty based off the current object.";
+
+	public static final String REMOVE_DUTY_MODEL = "Removing a duty based off the current object.";
+
+	public static final String COMPLETE_DUTY_MODEL = "Completing a duty based off the current object.";
+
+	public static final String GET_GROUP_DUTIES_MODEL = "Getting a list of duties for a group.";
+
+	public static final String GET_USER_DUTIES_MODEL = "Getting a list of duties for a user.";
+
 }
