@@ -14,6 +14,8 @@ import java.util.logging.Logger;
 public class Duty extends Task<DutyLog, Duty> {
 	private static final Logger log = Logger.getLogger(Duty.class.getName());
 
+	//------- CONSTRUCTORS -------//
+
 	/** @inheritDoc **/
 	public Duty(int id) {
 		super(id);
@@ -37,36 +39,42 @@ public class Duty extends Task<DutyLog, Duty> {
 	//------- DATABASE METHODS -------//
 
 	/** @inheritDoc **/
+	@Override
 	public Duty create() {
 		log.info(InfoStrings.CREATE_DUTY_MODEL);
 		return SQLCreate.createDuty(this);
 	}
 
 	/** @inheritDoc **/
+	@Override
 	public Duty modify() {
 		log.info(InfoStrings.MODIFY_DUTY_MODEL);
 		return SQLModify.modifyDuty(this);
 	}
 
 	/** @inheritDoc **/
+	@Override
 	public Duty remove() {
 		log.info(InfoStrings.REMOVE_DUTY_MODEL);
 		return SQLRemove.removeDuty(this);
 	}
 
 	/** @inheritDoc **/
+	@Override
 	public DutyLog complete() {
 		log.info(InfoStrings.COMPLETE_DUTY_MODEL);
 		return SQLModify.completeDuty(this);
 	}
 
 	/** @inheritDoc **/
+	@Override
 	public Duty[] getGroupTasks(int groupId) {
 		log.info(InfoStrings.GET_GROUP_DUTIES_MODEL);
 		return SQLGet.getGroupDuties(groupId);
 	}
 
 	/** @inheritDoc **/
+	@Override
 	public Duty[] getUserTasks(int groupId, int userId) {
 		log.info(InfoStrings.GET_USER_DUTIES_MODEL);
 		return SQLGet.getUserDuties(groupId, userId);
