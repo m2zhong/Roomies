@@ -32,4 +32,10 @@ public class SQLStrings {
 
 	public static final String CREATE_DUTY = "EXEC CreateDuty " +
 			"@name = '%s', @desc = '%s', @group = %d, @userIds = '%s'";
+
+	public static final String COMPLETE_DUTY = "EXEC CompleteDuty " +
+			"@dutyid = %d";
+
+	public static final String REMOVE_DUTY = "EXEC RemoveDuty " +
+			"@dutyID = %d";
 }

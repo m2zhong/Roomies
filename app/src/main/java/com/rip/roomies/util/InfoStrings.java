@@ -69,6 +69,7 @@ public class InfoStrings {
 	public static final String REMOVE_USER_FROM_GROUP_SQL = "Removing user from group...";
 	public static final String REMOVE_USER_FROM_GROUP_SUCCESSFUL = "LeaveGroup successfull! \n" +
 			"ID: %d\nLastName: %s\nFirstName: %s\nUsername: %s\nEmail: %s";
+	public static final String REMOVE_USER_FROM_GROUP_FAILED = "LeaveGroup failed!!";
 
 	public static final String FIND_GROUP_SUCESSFUL = "FindGroup sucessful!! \n" +
 			"ID: %d\nName: %s\nDescription: %s";
@@ -87,8 +88,18 @@ public class InfoStrings {
 
 	public static final String CREATEDUTY_SQL = "Creating duty...";
 	public static final String CREATEDUTY_SUCCESSFUL = "CreateDuty successful!! \n" +
-			"ID: %d\nName: %s\nDescription: %s";
+			"ID: %d\nName: %s\nDescription: %s\nGroup Id: %d";
 	public static final String CREATEDUTY_FAILED = "CreateDuty failed!!";
+
+	public static final String COMPLETEDUTY_SQL = "Completing duty...";
+	public static final String COMPLETEDUTY_SUCCESSFUL = "CompleteDuty successful!! \n" +
+			"ID: %d\nName: %s\nDescription: %s\n"; // TODO ADD MORE LATER
+	public static final String COMPLETEDUTY_FAILED = "CompleteDuty failed!!";
+
+	public static final String REMOVEDUTY_SQL = "Removing duty...";
+	public static final String REMOVEDUTY_SUCCESSFUL = "RemoveDuty successful!! \n" +
+			"ID: %d\nName: %s\nDescription: %s\nGroup Id: %d";
+	public static final String REMOVEDUTY_FAILED = "RemoveDuty failed!!";
 
 	public static final String CREATE_DUTY_MODEL = "Creating a duty based off the current object.";
 

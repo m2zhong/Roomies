@@ -1,6 +1,7 @@
 package com.rip.roomies.sql;
 
 import com.rip.roomies.models.Duty;
+import com.rip.roomies.models.DutyLog;
 import com.rip.roomies.util.Exceptions;
 import com.rip.roomies.util.InfoStrings;
 import com.rip.roomies.util.SQLStrings;
@@ -27,7 +28,7 @@ public class SQLModify {
 
 			// get the result table from query execution through sql
 			rset = SQLQuery.execute(String.format(Locale.US, SQLStrings.COMPLETE_DUTY,
-					null);
+					duty.getId()));
 
 			// error happened when contacting sql server
 			if(rset == null || !rset.next()) {
@@ -44,7 +45,7 @@ public class SQLModify {
 				//add more columns?
 
 				// debug statement
-				log.info(String.format(Locale.US, InfoStrings.CREATEDUTY_SUCCESSFUL,
+				log.info(String.format(Locale.US, InfoStrings.COMPLETEDUTY_SUCCESSFUL,
 						resultId, resultName, resultDescription));
 
 				return new DutyLog();

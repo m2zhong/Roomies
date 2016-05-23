@@ -33,7 +33,7 @@ public class SQLCreate {
 
 		try {
 			// Turn users array into a delineated string
-			for (User user : Duty.getUsers()) {
+			for (User user : duty.getUsers()) {
 				usersString += user.getId();
 				usersString += SQLStrings.LIST_DELIMITER;
 			}
@@ -65,13 +65,14 @@ public class SQLCreate {
 				int resultId = rset.getInt("ID");
 				String resultName = rset.getString("Name");
 				String resultDescription = rset.getString("Description");
-				//add more columns?
+				int resultGroup = rset.getInt("DutyGroupID");
 
 				// debug statement
 				log.info(String.format(Locale.US, InfoStrings.CREATEDUTY_SUCCESSFUL,
-						resultId, resultName, resultDescription));
+						resultId, resultName, resultDescription, resultGroup));
 
-				return new Duty();
+				return new Duty(resultId, resultName, resultDescription, resultGroup,
+						duty.getUsers());
 			}
 		}
 		catch (Exception e) {
