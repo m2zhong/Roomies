@@ -88,6 +88,6 @@ public class InfoStrings {
 	public static final String CREATEBILL_MODEL = "Creating a new bill based off the current object.";
 	public static final String CREATEBILL_SQL = "Creating bill...";
 	public static final String CREATEBILL_SUCCESSFULL = "CreateBill successfull!! \n" +
-			"ID: %d\nName: %s\nDescription: %s\nAmount: %d";
+			"ID: %d\nName: %s\nDescription: %s\nAmount: %.2f";
 
 }

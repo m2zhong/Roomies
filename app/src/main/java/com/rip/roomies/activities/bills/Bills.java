@@ -7,8 +7,8 @@ import android.widget.TextView;
 
 import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
+import com.rip.roomies.controllers.BillController;
 import com.rip.roomies.events.bills.AddBillListener;
-import com.rip.roomies.models.Bill;
 import com.rip.roomies.views.BillContainer;
 
 public class Bills extends GenericActivity {
@@ -110,7 +110,8 @@ public class Bills extends GenericActivity {
             String newDescription = data.getStringExtra("Key_New_Description");
             String newAmount = data.getStringExtra("Key_New_Amount");
 
-            bills.addBill(new Bill(newName, newDescription, Integer.parseInt(newAmount)));
+            //the args are all OK to be inserted into the database, ie amount is a parsable float
+            BillController.getController().createBill(newName, newDescription, newAmount, bills);
         }
     }
 

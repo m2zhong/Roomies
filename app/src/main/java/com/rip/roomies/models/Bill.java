@@ -14,13 +14,14 @@ public class Bill {
     private int id = 0;
     private String name = "";
     private String description = "";
-    private int amount = 0;
+    private float amount = 0;
 
 
    // private static User activeUser;
     private static final Logger log = Logger.getLogger(Bill.class.getName());
 
     //------- CONSTRUCTORS -------//
+    public Bill() {}
 
     /**
      * Constructor used when logging in. Constructs the current active user using only the
@@ -30,7 +31,7 @@ public class Bill {
      * @param description The descipriton associated with this bill.
      * @param amount The amount associated with this bill.
      */
-    public Bill(String name, String description, int amount) {
+    public Bill(String name, String description, float amount) {
         this.name = name;
         this.description = description;
         this.amount = amount;
@@ -44,7 +45,7 @@ public class Bill {
      * @param description The description associated with this bill.
      * @param amount The amount associated with this bill.
      */
-    public Bill(int id, String name, String description, int amount) {
+    public Bill(int id, String name, String description, float amount) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -66,6 +67,7 @@ public class Bill {
      */
     public Bill createBill() {
         log.info(InfoStrings.CREATEBILL_MODEL);
+
         return SQLCreate.createBill(this);
     }
 
@@ -93,7 +95,7 @@ public class Bill {
         return description;
     }
 
-    public int getAmount() { return amount; }
+    public float getAmount() { return amount; }
 
     public int getId() {
         return id;

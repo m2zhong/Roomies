@@ -31,7 +31,8 @@ public class SQLStrings {
 			"@userId = %d";
 
 	public static final String CREATE_BILL = "EXEC CreateBill " +
-			"@name = '%s', @description = '%s', @amount = '%s', ";
+			"@owner_id = %d, " +
+			"@name = '%s', @description = '%s', @amount = %.2f;";
 
 
 }

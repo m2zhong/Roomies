@@ -1,8 +1,6 @@
 package com.rip.roomies.events.bills;
 
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 
 import com.rip.roomies.activities.bills.Bills;
 import com.rip.roomies.util.InfoStrings;
@@ -34,10 +32,9 @@ public class AddBillListener implements View.OnClickListener {
 
         activity.toAddBillScreen();
 
-//        for (int i = 0; i < 10; i++) {
-//            container.addBill(new Bill("Tony", "he lent me money for gas" + i, 5));
-//
-//        }
 
     }
+
+
+
 }

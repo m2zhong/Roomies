@@ -120,16 +120,24 @@ public class SQLCreate {
 		try {
 			log.info(InfoStrings.CREATEBILL_SQL);
 
+			String temp = String.format(Locale.US, SQLStrings.CREATE_BILL,18,
+					bill.getName(), bill.getDescription(), bill.getAmount());
+
+
 			// get the result table from query execution through sql
 			rset = SQLQuery.execute(String.format(Locale.US, SQLStrings.CREATE_BILL,
-					bill.getName(), bill.getDescription(), bill.getAmount()));
+					18, bill.getName(), bill.getDescription(), bill.getAmount()));
+
+
+			rset.next();
 
 			//second column is name, third is description, 4th is amount
 			//so pass the column number accordingly to get the info about the bill
 			int resultID = rset.getInt("ID");
+			int resultOwnerID = rset.getInt("OwnerID");
 			String resultName = rset.getString("name");
 			String resultDescription = rset.getString("Description");
-			int resultAmount = rset.getInt("Amount");
+			float resultAmount = rset.getFloat("Amount");
 
 
 			//debug statement
@@ -140,6 +148,9 @@ public class SQLCreate {
 		}
 		catch (Exception e) {
 			log.severe(Exceptions.stacktraceToString(e));
+
+			System.out.println(e.getMessage());
+
 			return null;
 		}
 
