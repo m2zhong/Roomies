@@ -1,10 +1,12 @@
 package com.rip.roomies.sql;
 
+import com.rip.roomies.models.Duty;
 import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
 import com.rip.roomies.util.Exceptions;
 import com.rip.roomies.util.InfoStrings;
 import com.rip.roomies.util.SQLStrings;
+import com.rip.roomies.util.WarningStrings;
 
 import java.sql.ResultSet;
 import java.util.Locale;
@@ -15,6 +17,69 @@ import java.util.logging.Logger;
  */
 public class SQLCreate {
 	private static final Logger log = Logger.getLogger(SQLCreate.class.getName());
+	private static final int MAX_USERS_STRING_LENGTH = 1000;
+
+	/**
+	 * Use SQLQuery class to create an connection and insert a duty into the duty table on the
+	 * database. Additionally, the user rotation order is inserted into the users_duty table.
+	 * If successful the Duty object will be returned, otherwise return null
+	 *
+	 * @param duty The duty that should be created on the database
+	 * @return Duty - the Duty object with all the group info just been created
+	 */
+	public static Duty createDuty(Duty duty) {
+		ResultSet rset;
+		String usersString = "";
+
+		try {
+			// Turn users array into a delineated string
+			for (User user : Duty.getUsers()) {
+				usersString += user.getId();
+				usersString += SQLStrings.LIST_DELIMITER;
+			}
+
+			// Can only take max length of 1000, so truncate
+			if (usersString.length() > MAX_USERS_STRING_LENGTH) {
+				log.warning(String.format(Locale.US, WarningStrings.ADD_USERS_TO_GROUP_TRUNCATE,
+						MAX_USERS_STRING_LENGTH));
+				usersString = usersString.substring(0, MAX_USERS_STRING_LENGTH);
+				usersString = usersString.substring(0, usersString.lastIndexOf(SQLStrings.LIST_DELIMITER) + 1);
+			}
+
+			//debug statement
+			log.info(InfoStrings.CREATEDUTY_SQL);
+
+			// get the result table from query execution through sql
+			rset = SQLQuery.execute(String.format(Locale.US, SQLStrings.CREATE_DUTY,
+					duty.getName(), duty.getDescription(), usersString));
+			// ^ replace null with proper parameters
+
+			// error happened when contacting sql server
+			if(rset == null || !rset.next()) {
+				// debug statement
+				log.info(InfoStrings.CREATEDUTY_FAILED);
+				return null;
+			}
+			// if there is a rset
+			else {
+				//explain what each column corresponds to
+				int resultId = rset.getInt("ID");
+				String resultName = rset.getString("Name");
+				String resultDescription = rset.getString("Description");
+				//add more columns?
+
+				// debug statement
+				log.info(String.format(Locale.US, InfoStrings.CREATEDUTY_SUCCESSFUL,
+						resultId, resultName, resultDescription));
+
+				return new Duty();
+			}
+		}
+		catch (Exception e) {
+			log.severe(Exceptions.stacktraceToString(e));
+			return null;
+		}
+	}
 
 	/**
 	 * Use SQLQuery class to create an connection and insert a group into the group table on the

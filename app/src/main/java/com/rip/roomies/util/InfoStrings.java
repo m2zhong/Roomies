@@ -83,4 +83,9 @@ public class InfoStrings {
 	public static final String GET_GROUPS_SQL = "Getting groups...";
 	public static final String GET_GROUPS_SUCCESSFUL = "GetGroups successful!";
 	public static final String GET_GROUPS_FAILED = "GetGroups failed!!";
+
+	public static final String CREATEDUTY_SQL = "Creating duty...";
+	public static final String CREATEDUTY_SUCCESSFUL = "CreateDuty successful!! \n" +
+			"ID: %d\nName: %s\nDescription: %s";
+	public static final String CREATEDUTY_FAILED = "CreateDuty failed!!";
 }

@@ -29,4 +29,7 @@ public class SQLStrings {
 
 	public static final String GET_GROUPS = "EXEC GetGroups " +
 			"@userId = %d";
+
+	public static final String CREATE_DUTY = "EXEC CreateDuty " +
+			"@name = '%s', @desc = '%s', @group = %d, @userIds = '%s'";
 }
