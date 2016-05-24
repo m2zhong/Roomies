@@ -142,7 +142,7 @@ public class SQLGet {
 			else {
 				ArrayList<Duty> duties = new ArrayList<>();
 
-				while {
+				while(rs.next()){
 					int resultId = rs.getInt("ID");
 					String resultName = rs.getString("Name");
 					String resultDescription = rs.getString("Description");
