@@ -165,7 +165,7 @@ public class DutyController {
 	 * @param funct The funct to post results to
 	 * @param id The unique id of this duty in the database
 	 */
-	public void RemoveDuty(final RemoveDutyFunction funct, final int id) {
+	public void removeDuty(final RemoveDutyFunction funct, final int id) {
 		// Create and run a new thread
 		new AsyncTask<Void, Void, Duty>() {
 			@Override
@@ -195,7 +195,7 @@ public class DutyController {
 	 * @param funct The funct to post results to
 	 * @param id The unique id of this duty in the database
 	 */
-	public void CompleteDuty(final CompleteDutyFunction funct, final int id) {
+	public void completeDuty(final CompleteDutyFunction funct, final int id) {
 		// Create and run a new thread
 		new AsyncTask<Void, Void, DutyLog>() {
 			@Override
