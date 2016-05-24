@@ -27,6 +27,7 @@ public class DutyContainer extends ScrollView {
 	public DutyContainer(Context context) {
 		super(context);
 		dutyLayout = new LinearLayout(context);
+		dutyLayout.setOrientation(LinearLayout.VERTICAL);
 		addView(dutyLayout);
 	}
 
@@ -36,6 +37,7 @@ public class DutyContainer extends ScrollView {
 	public DutyContainer(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		dutyLayout = new LinearLayout(context, attrs);
+		dutyLayout.setOrientation(LinearLayout.VERTICAL);
 		addView(dutyLayout);
 	}
 
@@ -45,6 +47,7 @@ public class DutyContainer extends ScrollView {
 	public DutyContainer(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		dutyLayout = new LinearLayout(context, attrs, defStyle);
+		dutyLayout.setOrientation(LinearLayout.VERTICAL);
 		addView(dutyLayout);
 	}
 
