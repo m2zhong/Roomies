@@ -65,18 +65,4 @@ public class Duty extends Task<DutyLog, Duty> {
 		log.info(InfoStrings.COMPLETE_DUTY_MODEL);
 		return SQLModify.completeDuty(this);
 	}
-
-	/** @inheritDoc **/
-	@Override
-	public Duty[] getGroupTasks(int groupId) {
-		log.info(InfoStrings.GET_GROUP_DUTIES_MODEL);
-		return SQLGet.getGroupDuties(groupId);
-	}
-
-	/** @inheritDoc **/
-	@Override
-	public Duty[] getUserTasks(int groupId, int userId) {
-		log.info(InfoStrings.GET_USER_DUTIES_MODEL);
-		return SQLGet.getUserDuties(groupId, userId);
-	}
 }
