@@ -10,6 +10,7 @@ import com.rip.roomies.util.WarningStrings;
 
 import java.sql.Date;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.logging.Logger;
 
@@ -46,11 +47,11 @@ public class SQLModify {
 				int dutyGroupId = rset.getInt("DutyGroupID");
 				Date completeDate = rset.getDate("CompletionDate");
 				int assigneeId = rset.getInt("AssigneeID");
-				//add more columns?
 
 				// debug statement
 				log.info(String.format(Locale.US, InfoStrings.COMPLETEDUTY_SUCCESSFUL,
-						resultId, resultName, resultDescription));
+						resultId, resultName, resultDescription, dutyGroupId,
+						SimpleDateFormat.getDateTimeInstance().format(completeDate)));
 
 				return new DutyLog(resultId, resultName, resultDescription, dutyGroupId,
 						completeDate, duty.getId(), assigneeId);

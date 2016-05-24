@@ -93,7 +93,7 @@ public class InfoStrings {
 
 	public static final String COMPLETEDUTY_SQL = "Completing duty...";
 	public static final String COMPLETEDUTY_SUCCESSFUL = "CompleteDuty successful!! \n" +
-			"ID: %d\nName: %s\nDescription: %s\n"; // TODO ADD MORE LATER
+			"ID: %d\nName: %s\nDescription: %s\nGroup Id: %d\nCompletion Date: %s";
 	public static final String COMPLETEDUTY_FAILED = "CompleteDuty failed!!";
 
 	public static final String REMOVEDUTY_SQL = "Removing duty...";
