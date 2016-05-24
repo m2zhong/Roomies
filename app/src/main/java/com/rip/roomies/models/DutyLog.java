@@ -17,7 +17,7 @@ public class DutyLog extends TaskLog {
 	 * @param taskId      The id of the task
 	 * @param assigneeId  The id of the user who completed the task
 	 */
-	protected DutyLog(int id, String name, String description, int groupId,
+	public DutyLog(int id, String name, String description, int groupId,
 	                  Date completion, int taskId, int assigneeId) {
 		super(id, name, description, groupId, completion, taskId, assigneeId);
 	}
