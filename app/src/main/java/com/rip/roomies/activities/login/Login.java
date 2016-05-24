@@ -22,21 +22,15 @@ public class Login extends GenericActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		Button login;
-		Button createUser;
-		TextView forgotPass;
-		EditText username;
-		EditText password;
-
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 
 		/* Linking xml objects to java */
-		username = (EditText) findViewById(R.id.username);
-		password = (EditText) findViewById(R.id.password);
-		login = (Button) findViewById(R.id.loginbtn);
-		createUser = (Button) findViewById(R.id.regbtn);
-		forgotPass = (TextView) findViewById(R.id.forgotpw);
+		EditText username = (EditText) findViewById(R.id.username);
+		EditText password = (EditText) findViewById(R.id.password);
+		Button login = (Button) findViewById(R.id.loginbtn);
+		Button createUser = (Button) findViewById(R.id.regbtn);
+		TextView forgotPass = (TextView) findViewById(R.id.forgotpw);
 
 		final Activity self = this;
 
