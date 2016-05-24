@@ -3,6 +3,7 @@ package com.rip.roomies.models;
 import com.rip.roomies.sql.SQLAdd;
 import com.rip.roomies.sql.SQLCreate;
 import com.rip.roomies.sql.SQLFind;
+import com.rip.roomies.sql.SQLGet;
 import com.rip.roomies.util.InfoStrings;
 
 import java.util.logging.Logger;
@@ -99,6 +100,15 @@ public class Group {
 	public Group findGroup() {
 		log.info(InfoStrings.JOINGROUP_MODEL);
 		return SQLFind.findGroup(this);
+	}
+
+	/**
+	 * Gets the duties that belong to this group.
+	 * @return The array of tasks
+	 */
+	public Duty[] getDuties() {
+		log.info(InfoStrings.GET_GROUP_DUTIES_MODEL);
+		return SQLGet.getGroupDuties(this.id);
 	}
 
 	//------- OBJECT METHODS -------//

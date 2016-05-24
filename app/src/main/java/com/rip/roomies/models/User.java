@@ -155,6 +155,16 @@ public class User {
 		return SQLLogin.passRetrieve(this);
 	}
 
+	/**
+	 * Gets the tasks that belong to a user in current group context.
+	 * @param groupId The id of the group context
+	 * @return The array of tasks
+	 */
+	public Duty[] getDuties(int groupId) {
+		log.info(InfoStrings.GET_USER_DUTIES_MODEL);
+		return SQLGet.getUserDuties(groupId, this.id);
+	}
+
 	//------- OBJECT METHODS -------//
 
 	public static User getActiveUser() {

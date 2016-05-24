@@ -102,21 +102,6 @@ public abstract class Task<TLog extends TaskLog, T extends Task<TLog, T>> {
 	 */
 	protected abstract TLog complete();
 
-	/**
-	 * Gets the tasks that belong to a group.
-	 * @param groupId The id of the group to get tasks of
-	 * @return The array of tasks
-	 */
-	protected abstract T[] getGroupTasks(int groupId);
-
-	/**
-	 * Gets the tasks that belong to a user in current group context.
-	 * @param groupId The id of the group context
-	 * @param userId The id of the user to get tasks of
-	 * @return The array of tasks
-	 */
-	protected abstract T[] getUserTasks(int groupId, int userId);
-
 	//------- OBJECT METHODS -------//
 
 	public int getId() {
