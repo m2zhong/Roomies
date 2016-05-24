@@ -73,11 +73,15 @@ public class DutyView extends LinearLayout {
 
 		TextView name = new TextView(getContext());
 		TextView description = new TextView(getContext());
+		TextView assignee = new TextView(getContext());
 
 		name.setText(duty.getName());
 		description.setText(duty.getDescription());
+		String fullName = duty.getAssignee().getFirstName() + " " + duty.getAssignee().getLastName();
+		name.setText(fullName);
 
 		addView(name);
 		addView(description);
+		addView(assignee);
 	}
 }
