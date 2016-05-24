@@ -15,7 +15,7 @@ import java.util.Locale;
 import java.util.logging.Logger;
 
 /**
- * Created by Kanurame on 5/19/2016.
+ * This is a SQL class for modifying models.
  */
 public class SQLModify {
 	private static final Logger log = Logger.getLogger(SQLModify.class.getName());
