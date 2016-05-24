@@ -5,6 +5,7 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:background="@color/colorPrimary"
+	android:orientation="vertical"
 	tools:context="com.rip.roomies.activities.home.Home">
 
 	<TextView
@@ -14,5 +15,17 @@
 		android:textSize="32pt"
 		android:textColor="#000000"
 		android:text="Home"/>
+
+	<Button
+		android:id="@+id/to_view_all_duties"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="View All Duties" />
+
+	<Button
+		android:id="@+id/to_view_my_duties"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="View My Duties" />
 
 </LinearLayout>
