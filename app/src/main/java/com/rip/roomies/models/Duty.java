@@ -65,4 +65,11 @@ public class Duty extends Task<DutyLog, Duty> {
 		log.info(InfoStrings.COMPLETE_DUTY_MODEL);
 		return SQLModify.completeDuty(this);
 	}
+
+	/** @inheritDoc **/
+	@Override
+	public Duty getRotation() {
+		log.info(InfoStrings.GET_ROTATION_MODEL);
+		return SQLGet.getDutyUsers(this);
+	}
 }

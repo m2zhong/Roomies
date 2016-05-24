@@ -156,13 +156,13 @@ public class User {
 	}
 
 	/**
-	 * Gets the tasks that belong to a user in current group context.
-	 * @param groupId The id of the group context
-	 * @return The array of tasks
+	 * Gets the duties that belong to a user in current group context.
+	 * @param group The group object of the context
+	 * @return The array of duties
 	 */
-	public Duty[] getDuties(int groupId) {
+	public Duty[] getDuties(Group group) {
 		log.info(InfoStrings.GET_USER_DUTIES_MODEL);
-		return SQLGet.getUserDuties(groupId, this.id);
+		return SQLGet.getUserDuties(group, this);
 	}
 
 	//------- OBJECT METHODS -------//

@@ -17,7 +17,6 @@ import java.util.logging.Logger;
  */
 public class SQLRemove {
 	private static final Logger log = Logger.getLogger(SQLRemove.class.getName());
-	private static final int MAX_USERS_STRING_LENGTH = 1000;
 
 	// group object and user object
 	public static User leaveGroup(Group group, User user) {

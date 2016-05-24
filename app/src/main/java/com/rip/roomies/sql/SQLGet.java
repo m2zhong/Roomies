@@ -176,7 +176,7 @@ public class SQLGet {
 	 * @param duty The group the user belongs to
 	 * @return The full set of user's duties, or null if none could not be found
 	 */
-	public static User[] getDutyUsers(Duty duty) {
+	public static Duty getDutyUsers(Duty duty) {
 		ResultSet rs;
 
 		try {
@@ -211,7 +211,8 @@ public class SQLGet {
 				User[] temp = new User[users.size()];
 
 				// Return a new user object
-				return users.toArray(temp);
+				return new Duty(duty.getId(), duty.getName(), duty.getDescription(),
+						duty.getGroupId(), temp);
 			}
 		}
 		catch (Exception e) {

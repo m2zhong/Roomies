@@ -1,11 +1,5 @@
 package com.rip.roomies.models;
 
-import com.rip.roomies.sql.SQLCreate;
-import com.rip.roomies.sql.SQLGet;
-import com.rip.roomies.sql.SQLModify;
-import com.rip.roomies.sql.SQLRemove;
-import com.rip.roomies.util.InfoStrings;
-
 import java.util.logging.Logger;
 
 /**
@@ -101,6 +95,12 @@ public abstract class Task<TLog extends TaskLog, T extends Task<TLog, T>> {
 	 * @return The task log created
 	 */
 	protected abstract TLog complete();
+
+	/**
+	 * Gets the users that are associated with this task
+	 * @return The users
+	 */
+	protected abstract T getRotation();
 
 	//------- OBJECT METHODS -------//
 
