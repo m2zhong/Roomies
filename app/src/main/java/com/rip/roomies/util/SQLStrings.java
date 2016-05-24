@@ -39,6 +39,9 @@ public class SQLStrings {
 	public static final String REMOVE_DUTY = "EXEC RemoveDuty " +
 			"@dutyID = %d";
 
+	public static final String MODIFY_DUTY = "EXEC ModifyDuty " +
+			"@dutyID = %d, @name = '%s', @desc = '%s', @userIds = '%s'";
+
 	public static final String GET_GROUP_DUTIES = "EXEC GetGroupDuties " +
 			"@groupID = %d";
 

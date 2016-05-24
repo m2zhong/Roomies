@@ -65,10 +65,10 @@ public class SQLGet {
 
 	/**
 	 * Finds a duty from the database using unique keys only
-	 * @param groupId The id to use to search for a duty on the database
+	 * @param group The group to use to search for a duty on the database
 	 * @return The full set of group duties, or null if none could not be found
 	 */
-	public static Duty[] getGroupDuties(int groupId) {
+	public static Duty[] getGroupDuties(Group group) {
 		ResultSet rs;
 
 		try {
@@ -77,7 +77,7 @@ public class SQLGet {
 
 			// Execute SQL
 			rs = SQLQuery.execute(String.format(Locale.US, SQLStrings.GET_GROUP_DUTIES,
-					groupId));
+					group.getId()));
 
 			//todo need to determine case of 0 duties or query failed
 			// If no rows, then finding failed
@@ -116,11 +116,11 @@ public class SQLGet {
 
 	/**
 	 * Finds a duty from the database using unique keys only
-	 * @param groupId The group's id to use to search for a duty on the database
-	 * @param userId The user's id to search for a duty on the database
+	 * @param group The group the user belongs to
+	 * @param user The user to search for a duty on the database
 	 * @return The full set of user's duties, or null if none could not be found
 	 */
-	public static Duty[] getUserDuties(int groupId, int userId) {
+	public static Duty[] getUserDuties(Group group, User user) {
 		ResultSet rs;
 
 		try {
@@ -129,7 +129,7 @@ public class SQLGet {
 
 			// Execute SQL
 			rs = SQLQuery.execute(String.format(Locale.US, SQLStrings.GET_USER_DUTIES,
-					groupId));
+					group.getId(), user.getId()));
 
 			//todo need to determine case of 0 duties or query failed
 			// If no rows, then finding failed
