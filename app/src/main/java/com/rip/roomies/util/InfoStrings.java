@@ -114,6 +114,11 @@ public class InfoStrings {
 	public static final String GET_USER_DUTIES_SUCCESSFUL = "GetUserDuties successful!!";
 	public static final String GET_USER_DUTIES_FAILED = "GetUserDuties failed!!";
 
+	public static final String GET_DUTY_USERS_SQL = "Getting duty users...";
+	public static final String GET_DUTY_USERS_SUCCESSFUL = "GetDutyUsers successful!!";
+	public static final String GET_DUTY_USERS_FAILED = "GetDutyUsers failed!!";
+
+
 	public static final String CREATE_DUTY_MODEL = "Creating a duty based off the current object.";
 
 	public static final String MODIFY_DUTY_MODEL = "Modifying a duty based off the current object.";
