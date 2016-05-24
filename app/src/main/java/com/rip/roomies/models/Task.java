@@ -12,6 +12,7 @@ public abstract class Task<TLog extends TaskLog, T extends Task<TLog, T>> {
 	private String name;
 	private String description;
 	private int groupId;
+	private User assignee;
 	private User[] users;
 
 	//------- CONSTRUCTORS -------//
@@ -62,11 +63,12 @@ public abstract class Task<TLog extends TaskLog, T extends Task<TLog, T>> {
 	 * @param groupId The id of the group this task belongs to
 	 * @param users The list of users to whom this applies
 	 */
-	protected Task(int id, String name, String description, int groupId, User[] users) {
+	protected Task(int id, String name, String description, int groupId, User assignee, User[] users) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.groupId = groupId;
+		this.assignee = assignee;
 		this.users = users;
 	}
 
@@ -118,6 +120,10 @@ public abstract class Task<TLog extends TaskLog, T extends Task<TLog, T>> {
 
 	public int getGroupId() {
 		return groupId;
+	}
+
+	public User getAssignee() {
+		return assignee;
 	}
 
 	public User[] getUsers() {

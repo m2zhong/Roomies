@@ -32,8 +32,8 @@ public class Duty extends Task<DutyLog, Duty> {
 	}
 
 	/** @inheritDoc **/
-	public Duty(int id, String name, String description, int groupId, User[] users) {
-		super(id, name, description, groupId, users);
+	public Duty(int id, String name, String description, int groupId, User assignee, User[] users) {
+		super(id, name, description, groupId, assignee, users);
 	}
 
 	//------- DATABASE METHODS -------//
