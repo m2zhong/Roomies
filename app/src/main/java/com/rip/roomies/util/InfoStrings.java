@@ -101,6 +101,14 @@ public class InfoStrings {
 			"ID: %d\nName: %s\nDescription: %s\nGroup Id: %d";
 	public static final String REMOVEDUTY_FAILED = "RemoveDuty failed!!";
 
+	public static final String GET_GROUP_DUTIES_SQL = "Getting group duties...";
+	public static final String GET_GROUP_DUTIES_SUCCESSFUL = "GetGroupDuties successful!!";
+	public static final String GET_GROUP_DUTIES_FAILED = "GetGroupDuties failed!!";
+
+	public static final String GET_USER_DUTIES_SQL = "Getting user duties...";
+	public static final String GET_USER_DUTIES_SUCCESSFUL = "GetUserDuties successful!!";
+	public static final String GET_USER_DUTIES_FAILED = "GetUserDuties failed!!";
+
 	public static final String CREATE_DUTY_MODEL = "Creating a duty based off the current object.";
 
 	public static final String MODIFY_DUTY_MODEL = "Modifying a duty based off the current object.";

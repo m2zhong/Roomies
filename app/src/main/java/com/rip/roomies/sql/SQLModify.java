@@ -6,6 +6,7 @@ import com.rip.roomies.util.Exceptions;
 import com.rip.roomies.util.InfoStrings;
 import com.rip.roomies.util.SQLStrings;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.util.Locale;
 import java.util.logging.Logger;
@@ -18,10 +19,7 @@ public class SQLModify {
 
 	public static DutyLog completeDuty(Duty duty) {
 		ResultSet rset;
-
-		//
-		//TODO : make sure fields match SQL database table values
-		//
+		
 		try {
 			//debug statement
 			log.info(InfoStrings.COMPLETEDUTY_SQL);
@@ -42,13 +40,17 @@ public class SQLModify {
 				int resultId = rset.getInt("ID");
 				String resultName = rset.getString("Name");
 				String resultDescription = rset.getString("Description");
+				int dutyGroupId = rset.getInt("DutyGroupID");
+				Date completeDate = rset.getDate("CompletionDate");
+				int assigneeId = rset.getInt("AssigneeID");
 				//add more columns?
 
 				// debug statement
 				log.info(String.format(Locale.US, InfoStrings.COMPLETEDUTY_SUCCESSFUL,
 						resultId, resultName, resultDescription));
 
-				return new DutyLog();
+				return new DutyLog(resultId, resultName, resultDescription, dutyGroupId,
+						completeDate, duty.getId(), assigneeId);
 			}
 		}
 		catch (Exception e) {
