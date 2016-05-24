@@ -97,17 +97,26 @@ public class SQLModify {
 			// if there is a rset
 			else {
 				//explain what each column corresponds to
-				int resultId = rset.getInt("ID");
+				int resultId = rset.getInt("DutyID");
 				String resultName = rset.getString("Name");
 				String resultDescription = rset.getString("Description");
 				int dutyGroupId = rset.getInt("DutyGroupID");
+
+				User u = new User(
+						rset.getInt("ID"),
+						rset.getString("FirstName"),
+						rset.getString("LastName"),
+						rset.getString("Username"),
+						rset.getString("Email"),
+						null
+				);
 
 				// debug statement
 				log.info(String.format(Locale.US, InfoStrings.MODIFYDUTY_SUCCESSFUL,
 						resultId, resultName, resultDescription, dutyGroupId));
 
 				return new Duty(resultId, resultName, resultDescription, dutyGroupId,
-						duty.getUsers());
+						u, duty.getUsers());
 			}
 		}
 		catch (Exception e) {

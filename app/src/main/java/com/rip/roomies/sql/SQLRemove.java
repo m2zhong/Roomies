@@ -87,17 +87,26 @@ public class SQLRemove {
 			// if there is a rs
 			else {
 				//explain what each column corresponds to
-				int resultId = rs.getInt("ID");
+				int resultId = rs.getInt("DutyID");
 				String resultName = rs.getString("Name");
 				String resultDescription = rs.getString("Description");
 				int resultGroup = rs.getInt("DutyGroupID");
+
+				User u = new User(
+						rs.getInt("ID"),
+						rs.getString("FirstName"),
+						rs.getString("LastName"),
+						rs.getString("Username"),
+						rs.getString("Email"),
+						null
+				);
 
 				// debug statement
 				log.info(String.format(Locale.US, InfoStrings.REMOVEDUTY_SUCCESSFUL,
 						resultId, resultName, resultDescription, resultGroup));
 
 				return new Duty(resultId, resultName, resultDescription, resultGroup,
-						duty.getUsers());
+						u, duty.getUsers());
 			}
 		}
 		catch (Exception e) {
