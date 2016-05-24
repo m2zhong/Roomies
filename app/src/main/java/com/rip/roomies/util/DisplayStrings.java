@@ -36,4 +36,17 @@ public class DisplayStrings {
 			"Make sure the username entered is correct.";
 
 	public static final String INVITE_USERS_FAIL = "Could not invite user(s) to group.\n";
+
+	public static final String CREATE_DUTY_SUCCESS = "Duty creation successful.";
+	public static final String CREATE_DUTY_FAIL = "Could not create duty.\n" +
+			"Please make sure all fields were filled correctly";
+	public static final String MODIFY_DUTY_SUCCESS = "Duty modification successful.";
+	public static final String MODIFY_DUTY_FAIL = "Could not modify duty.\n" +
+			"Check the logs for error.";
+	public static final String REMOVE_DUTY_SUCCESS = "Duty removal successful.";
+	public static final String REMOVE_DUTY_FAIL = "Could not remove duty.\n" +
+			"Check the logs for error.";
+	public static final String COMPLETE_DUTY_SUCCESS = "Duty completion successful.";
+	public static final String COMPLETE_DUTY_FAIL = "Could not complete duty.\n" +
+			"Check the logs for error.";
 }
