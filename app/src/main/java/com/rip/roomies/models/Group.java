@@ -104,11 +104,11 @@ public class Group {
 
 	/**
 	 * Gets the duties that belong to this group.
-	 * @return The array of tasks
+	 * @return The array of duties
 	 */
 	public Duty[] getDuties() {
 		log.info(InfoStrings.GET_GROUP_DUTIES_MODEL);
-		return SQLGet.getGroupDuties(this.id);
+		return SQLGet.getGroupDuties(this);
 	}
 
 	//------- OBJECT METHODS -------//

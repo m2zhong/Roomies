@@ -18,7 +18,7 @@ import java.util.Locale;
 import java.util.logging.Logger;
 
 /**
- * Created by Kanurame on 5/19/2016.
+ * A class that is designed to handle operations revolving around duties.
  */
 public class DutyController {
 	private static final Logger log = Logger.getLogger(DutyController.class.getName());
@@ -26,7 +26,7 @@ public class DutyController {
 
 	public static DutyController getController() {
 		if (controller == null) {
-			return new DutyController();
+			controller = new DutyController();
 		}
 
 		return controller;
@@ -51,10 +51,7 @@ public class DutyController {
 
 				// Create request user and get response from login()
 				Duty request = new Duty(name, description, groupId, users);
-				Duty response = request.create();
-
-				//need proper return type
-				return response;
+				return request.create();
 			}
 
 			// If fail, call fail callback. Otherwise, call success callback
@@ -79,13 +76,11 @@ public class DutyController {
 		new AsyncTask<Void, Void, Duty[]>() {
 			@Override
 			public Duty[] doInBackground(Void... v) {
-				log.info(String.format(Locale.US, InfoStrings.GET_GROUP_DUTIES_CONTROLLER));
+				log.info(String.format(Locale.US, InfoStrings.GET_GROUP_DUTIES_CONTROLLER,
+						Group.getActiveGroup().getId()));
 
 				// Create request user and get response from login()
-				Duty[] response = Group.getActiveGroup().getDuties();
-
-				//need proper return type
-				return response;
+				return Group.getActiveGroup().getDuties();
 			}
 
 			// If fail, call fail callback. Otherwise, call success callback
@@ -105,18 +100,16 @@ public class DutyController {
 	 * Attempts to display all duties for this group.
 	 * @param funct The funct to post results to
 	 */
-	public void listMyDuties(final ListMyDutiesFunction funct, final int groupId) {
+	public void listMyDuties(final ListMyDutiesFunction funct) {
 		// Create and run a new thread
 		new AsyncTask<Void, Void, Duty[]>() {
 			@Override
 			public Duty[] doInBackground(Void... v) {
-				log.info(String.format(Locale.US, InfoStrings.GET_USER_DUTIES_CONTROLLER));
+				log.info(String.format(Locale.US, InfoStrings.GET_USER_DUTIES_CONTROLLER,
+						User.getActiveUser().getId(), Group.getActiveGroup().getId()));
 
 				// Create request user and get response from login()
-				Duty[] response = User.getActiveUser().getDuties(groupId);
-
-				//need proper return type
-				return response;
+				return User.getActiveUser().getDuties(Group.getActiveGroup());
 			}
 
 			// If fail, call fail callback. Otherwise, call success callback
@@ -147,14 +140,11 @@ public class DutyController {
 			@Override
 			public Duty doInBackground(Void... v) {
 				log.info(String.format(Locale.US, InfoStrings.MODIFY_DUTY_CONTROLLER, id, name,
-						description, users));
+						description));
 
 				// Create request user and get response from login()
 				Duty request = new Duty(id, name, description, users);
-				Duty response = request.modify();
-
-				//need proper return type
-				return response;
+				return request.modify();
 			}
 
 			// If fail, call fail callback. Otherwise, call success callback
@@ -184,10 +174,7 @@ public class DutyController {
 
 				// Create request user and get response from login()
 				Duty request = new Duty(id);
-				Duty response = request.remove();
-
-				//need proper return type
-				return response;
+				return request.remove();
 			}
 
 			// If fail, call fail callback. Otherwise, call success callback
@@ -217,10 +204,7 @@ public class DutyController {
 
 				// Create request user and get response from login()
 				Duty request = new Duty(id);
-				DutyLog response = request.complete();
-
-				//need proper return type
-				return response;
+				return request.complete();
 			}
 
 			// If fail, call fail callback. Otherwise, call success callback
