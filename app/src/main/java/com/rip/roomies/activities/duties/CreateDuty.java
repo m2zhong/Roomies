@@ -43,12 +43,13 @@ public class CreateDuty extends GenericActivity {
 		addDuty = (Button) findViewById(R.id.add_duty_btn);
 
 		ArrayAdapter<User> userArrayAdapter =
-				new ArrayAdapter<User>(this, android.R.layout.simple_spinner_dropdown_item);
+				new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item);
 
 		for(User u : Group.getActiveGroup().getMembers()) {
 			userArrayAdapter.add(u);
 		}
 
+		userArrayAdapter.notifyDataSetChanged();
 		allUsers.setAdapter(userArrayAdapter);
 
 		addDuty.setOnClickListener(new CreateDutyListener(this, dutyName, desc, users));
