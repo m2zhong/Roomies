@@ -117,7 +117,8 @@ public class InfoStrings {
 	public static final String GET_DUTY_USERS_SQL = "Getting duty users...";
 	public static final String GET_DUTY_USERS_SUCCESSFUL = "GetDutyUsers successful!!";
 	public static final String GET_DUTY_USERS_FAILED = "GetDutyUsers failed!!";
-	
+
+
 	public static final String CREATE_DUTY_EVENT = "Validation passed. Attempting to create duty.";
 	public static final String CREATE_DUTY_MODEL = "Creating a duty based off the current object.";
 	public static final String CREATE_DUTY_CONTROLLER = "Creating duty from user given fields:\n" +
