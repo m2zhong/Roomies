@@ -114,17 +114,21 @@ public class InfoStrings {
 	public static final String GET_USER_DUTIES_SUCCESSFUL = "GetUserDuties successful!!";
 	public static final String GET_USER_DUTIES_FAILED = "GetUserDuties failed!!";
 
+	public static final String CREATE_DUTY_EVENT = "Validation passed. Attempting to create duty.";
 	public static final String CREATE_DUTY_MODEL = "Creating a duty based off the current object.";
 	public static final String CREATE_DUTY_CONTROLLER = "Creating duty from user given fields:\n" +
 			"Name: %s\nDescription: %s\nGroupID: %s\nUsers: %d";
 
+	public static final String MODIFY_DUTY_EVENT = "Validation passed. Attempting to modify duty.";
 	public static final String MODIFY_DUTY_MODEL = "Modifying a duty based off the current object.";
 	public static final String MODIFY_DUTY_CONTROLLER = "Modifying duty from user given fields:\n" +
 			"ID: %s\nName: %s\nDescription: %s\nUsers: %d";
 
+	public static final String REMOVE_DUTY_EVENT = "Validation passed. Attempting to remove duty.";
 	public static final String REMOVE_DUTY_MODEL = "Removing a duty based off the current object.";
 	public static final String REMOVE_DUTY_CONTROLLER = "Removing a duty with the id %d.\n";
 
+	public static final String COMPLETE_DUTY_EVENT = "Validation passed. Attempting to complete duty.";
 	public static final String COMPLETE_DUTY_MODEL = "Completing a duty based off the current object.";
 	public static final String COMPLETE_DUTY_CONTROLLER = "Completing a duty with the id %d.\n";
 

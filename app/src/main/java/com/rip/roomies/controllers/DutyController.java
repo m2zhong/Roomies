@@ -2,7 +2,6 @@ package com.rip.roomies.controllers;
 
 import android.os.AsyncTask;
 
-import com.rip.roomies.activities.duties.ModifyDuty;
 import com.rip.roomies.functions.CompleteDutyFunction;
 import com.rip.roomies.functions.CreateDutyFunction;
 import com.rip.roomies.functions.ListAllDutiesFunction;
@@ -13,7 +12,6 @@ import com.rip.roomies.models.Duty;
 import com.rip.roomies.models.DutyLog;
 import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
-import com.rip.roomies.sql.SQLCreate;
 import com.rip.roomies.util.InfoStrings;
 
 import java.util.Locale;
@@ -177,7 +175,7 @@ public class DutyController {
 	 * @param funct The funct to post results to
 	 * @param id The unique id of this duty in the database
 	 */
-	public void RemoveDuty(final RemoveDutyFunction funct, final int id) {
+	public void removeDuty(final RemoveDutyFunction funct, final int id) {
 		// Create and run a new thread
 		new AsyncTask<Void, Void, Duty>() {
 			@Override
@@ -210,7 +208,7 @@ public class DutyController {
 	 * @param funct The funct to post results to
 	 * @param id The unique id of this duty in the database
 	 */
-	public void CompleteDuty(final CompleteDutyFunction funct, final int id) {
+	public void completeDuty(final CompleteDutyFunction funct, final int id) {
 		// Create and run a new thread
 		new AsyncTask<Void, Void, DutyLog>() {
 			@Override
