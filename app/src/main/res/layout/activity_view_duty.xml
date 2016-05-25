@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Delete this file-->
 <LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:background="@color/colorPrimary"
+	android:background="@color/colorAccent"
 	android:orientation="vertical"
 	tools:context="com.rip.roomies.activities.duties.ViewDuty">
 
@@ -12,8 +13,11 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:gravity="center_horizontal"
-		android:textSize="32pt"
-		android:text="View Duty" />
+		android:padding="10dp"
+		android:textSize="30sp"
+		android:text="View Duty"
+		android:textColor="@color/colorAccent"
+		android:background="@color/colorPrimary"/>
 
 	<TextView
 		android:id="@+id/duty_name"
@@ -30,12 +34,5 @@
 		android:layout_width="match_parent"
 		android:layout_height="0dp"
 		android:layout_weight="1" />
-
-	<Button
-		android:id="@+id/complete_duty_btn"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:gravity="center_horizontal"
-		android:text="Complete Duty" />
 
 </LinearLayout>

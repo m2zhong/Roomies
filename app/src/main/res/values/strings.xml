@@ -9,33 +9,37 @@
 	<string name="title_activity_group_choice">Group Choice</string>
 	<string name="title_activity_invite_users">Invite Users</string>
 	<string name="title_activity_create_group">CreateGroup</string>
+	<string name="duty_header">Duties</string>
 
 	<string name="title_activity_shared_items">SharedItems</string>
 	<string name="plus">+</string>
 	<string name="submit">Submit</string>
+	<string name="trash">Trash</string>
 
-<<<<<<< HEAD
     <string name="unhint">username</string>
     <string name="pwhint">password</string>
     <string name="login">Login</string>
     <string name="reg">Sign Up</string>
     <string name="forgotpw">Forgot Password?</string>
-	<string name="title_activity_create_group">CreateGroup</string>
 	<string name="remind">Remind</string>
 	<string name="delete">Delete</string>
-=======
-	<string name="unhint">username</string>
-	<string name="pwhint">password</string>
-	<string name="login">Login</string>
-	<string name="reg">Sign Up</string>
-	<string name="forgotpw">Forgot Password?</string>
->>>>>>> b7892a6c3aee50c4b15035c5770c8fccdcd39a57
 
 	<string name="create_group_header">Create Group</string>
 	<string name="group_name_hint">name</string>
 	<string name="group_desription_hint">description</string>
 	<string name="invitees_header">invitees</string>
 	<string name="invitee_add_hint">invitee isername</string>
+
+	<!--Settings Screen-->
+	<string name="settings_hint">Tap to Edit</string>
+	<string name="settings_name">Name:</string>
+	<string name="settings_email">Email:</string>
+	<string name="settings_username">Username:</string>
+	<string name="settings_password">Password:</string>
+	<string name="settings_description">Description:</string>
+	<string name="settings_groupid">Group ID:</string>
+	<string name="settings_submitbtn">Save Changes</string>
+	<string name="settings_leave">Leave Group</string>
 
 	<string name="pass_retreive">Get my password</string>
 	<string name="email_hint">email</string>

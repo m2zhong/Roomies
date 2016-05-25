@@ -19,7 +19,7 @@
             android:background="@color/colorPrimary"
             android:gravity="center_horizontal"
             android:padding="10dp"
-            android:text="Duties"
+            android:text="Shared Items"
             android:textColor="@color/colorAccent"
             android:textSize="30sp" />
 
