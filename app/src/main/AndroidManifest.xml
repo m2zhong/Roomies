@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="com.rip.roomies">
+          package="com.rip.roomies">
 
 	<uses-permission android:name="android.permission.INTERNET" />
 
@@ -68,7 +68,8 @@
 			android:name=".activities.home.Home"
 			android:configChanges="orientation|keyboardHidden|screenSize"
 			android:label="@string/title_activity_home"
-			android:theme="@style/FullscreenTheme" />
+			android:theme="@style/FullscreenTheme">
+		</activity>
 		<activity
 			android:name=".activities.groups.JoinGroup"
 			android:configChanges="orientation|keyboardHidden|screenSize"
@@ -83,6 +84,18 @@
 			android:configChanges="orientation|keyboardHidden|screenSize"
 			android:label="@string/title_activity_invite_users"
 			android:theme="@style/FullscreenTheme" />
+		<activity
+			android:name=".activities.reminder.Reminder"
+			android:configChanges="orientation|keyboardHidden|screenSize"
+			android:label="@string/title_activity_reminder"
+			android:theme="@style/FullscreenTheme">
+		</activity>
+		<activity
+			android:name=".activities.reminder.CreateReminder"
+			android:configChanges="orientation|keyboardHidden|screenSize"
+			android:label="@string/title_activity_create_reminder"
+			android:theme="@style/FullscreenTheme">
+		</activity>
 		<activity
 			android:name=".activities.duties.CreateDuty"
 			android:configChanges="orientation|keyboardHidden|screenSize"

@@ -2,7 +2,6 @@ package com.rip.roomies.activities;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.widget.Toast;
 
 import com.rip.roomies.activities.home.Home;
 import com.rip.roomies.activities.login.Login;
