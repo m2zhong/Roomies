@@ -9,4 +9,6 @@
 	<color name="text">#60ffffff</color>
 	<color name="black">#000000</color>
 	<color name="underlinelight">#60ffffff</color>
+
+	<color name="pink">#FF547F</color>
 </resources>
