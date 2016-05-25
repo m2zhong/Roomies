@@ -2,7 +2,7 @@ package com.rip.roomies.views;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -66,22 +66,40 @@ public class DutyView extends LinearLayout {
 	private void setupLayout() {
 		log.info(String.format(InfoStrings.VIEW_SETUP, DutyView.class.getSimpleName()));
 
-		setLayoutParams(new ViewGroup.LayoutParams(
-				ViewGroup.LayoutParams.MATCH_PARENT,
-				ViewGroup.LayoutParams.WRAP_CONTENT));
-		setOrientation(LinearLayout.VERTICAL);
+		setLayoutParams(new LayoutParams(
+				LayoutParams.MATCH_PARENT,
+				LayoutParams.WRAP_CONTENT));
+		setOrientation(LinearLayout.HORIZONTAL);
 
 		TextView name = new TextView(getContext());
 		TextView description = new TextView(getContext());
 		TextView assignee = new TextView(getContext());
+		Button viewBtn = new Button(getContext());
+		Button editBtn = new Button(getContext());
+		LinearLayout innerLayout = new LinearLayout(getContext());
+
+		innerLayout.setOrientation(LinearLayout.VERTICAL);
 
 		name.setText(duty.getName());
 		description.setText(duty.getDescription());
 		String fullName = duty.getAssignee().getFirstName() + " " + duty.getAssignee().getLastName();
-		name.setText(fullName);
+		assignee.setText(fullName);
 
-		addView(name);
-		addView(description);
-		addView(assignee);
+		innerLayout.addView(name);
+		innerLayout.addView(description);
+		innerLayout.addView(assignee);
+
+		viewBtn.setText("View");
+		viewBtn.setLayoutParams(new LayoutParams(
+				LayoutParams.WRAP_CONTENT,
+				LayoutParams.MATCH_PARENT, 1.0f));
+		editBtn.setText("Edit");
+		editBtn.setLayoutParams(new LayoutParams(
+				LayoutParams.WRAP_CONTENT,
+				LayoutParams.MATCH_PARENT, 1.0f));
+
+		addView(innerLayout);
+		addView(viewBtn);
+		addView(editBtn);
 	}
 }

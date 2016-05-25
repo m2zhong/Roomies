@@ -27,6 +27,7 @@ public class UserContainer extends ScrollView {
 	public UserContainer(Context context) {
 		super(context);
 		userLayout = new LinearLayout(context);
+		userLayout.setOrientation(LinearLayout.VERTICAL);
 		addView(userLayout);
 	}
 
@@ -36,6 +37,7 @@ public class UserContainer extends ScrollView {
 	public UserContainer(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		userLayout = new LinearLayout(context, attrs);
+		userLayout.setOrientation(LinearLayout.VERTICAL);
 		addView(userLayout);
 	}
 
@@ -45,6 +47,7 @@ public class UserContainer extends ScrollView {
 	public UserContainer(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		userLayout = new LinearLayout(context, attrs, defStyle);
+		userLayout.setOrientation(LinearLayout.VERTICAL);
 		addView(userLayout);
 	}
 

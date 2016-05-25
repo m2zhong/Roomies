@@ -49,4 +49,10 @@ public class DisplayStrings {
 	public static final String COMPLETE_DUTY_SUCCESS = "Duty completion successful.";
 	public static final String COMPLETE_DUTY_FAIL = "Could not complete duty.\n" +
 			"Check the logs for error.";
+
+	public static final String LIST_ALL_DUTIES_FAIL = "Could not list all duties.\n" +
+			"Check the logs for error.";
+
+	public static final String LIST_MY_DUTIES_FAIL = "Could not list your duties.\n" +
+			"Check the logs for error.";
 }
