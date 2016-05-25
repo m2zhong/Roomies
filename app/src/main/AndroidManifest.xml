@@ -85,18 +85,6 @@
 			android:label="@string/title_activity_invite_users"
 			android:theme="@style/FullscreenTheme" />
 		<activity
-			android:name=".activities.reminder.Reminder"
-			android:configChanges="orientation|keyboardHidden|screenSize"
-			android:label="@string/title_activity_reminder"
-			android:theme="@style/FullscreenTheme">
-		</activity>
-		<activity
-			android:name=".activities.reminder.CreateReminder"
-			android:configChanges="orientation|keyboardHidden|screenSize"
-			android:label="@string/title_activity_create_reminder"
-			android:theme="@style/FullscreenTheme">
-		</activity>
-		<activity
 			android:name=".activities.duties.CreateDuty"
 			android:configChanges="orientation|keyboardHidden|screenSize"
 			android:theme="@style/FullscreenTheme" />
