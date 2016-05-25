@@ -1,6 +1,7 @@
 package com.rip.roomies.models;
 
 import com.rip.roomies.sql.SQLCreate;
+import com.rip.roomies.sql.SQLModify;
 import com.rip.roomies.sql.SQLRemove;
 import com.rip.roomies.util.InfoStrings;
 
@@ -76,6 +77,10 @@ public class Bill {
         return SQLRemove.removeBill(rowID);
     }
 
+    public void modifyBill(Bill billToModify) {
+        SQLModify.modifyBill(billToModify);
+    }
+
 
 
     /**
@@ -90,7 +95,7 @@ public class Bill {
 
 
 
-    //-------------Getter methods------------//
+    //-------------Getter/setter methods------------//
 
     public String getName() {
         return name;
@@ -106,5 +111,15 @@ public class Bill {
 
     public int getRowID() { return rowID; }
 
+    public void setAmount(float amount) {
+        this.amount = amount;
+    }
 
+    public void setName(String newName) {
+        this.name = newName;
+    }
+
+    public void setDescription(String newDescription) {
+        this.description = newDescription;
+    }
 }

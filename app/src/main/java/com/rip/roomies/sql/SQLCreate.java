@@ -149,8 +149,6 @@ public class SQLCreate {
 		catch (Exception e) {
 			log.severe(Exceptions.stacktraceToString(e));
 
-			System.out.println(e.getMessage());
-
 			return null;
 		}
 

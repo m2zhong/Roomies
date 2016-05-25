@@ -83,6 +83,9 @@ public class BillView extends LinearLayout {
                 ViewGroup.LayoutParams.WRAP_CONTENT));
         setOrientation(LinearLayout.VERTICAL);
 
+
+
+
         TextView name = new TextView(getContext());
         TextView amount = new TextView(getContext());
         TextView description = new TextView(getContext());
@@ -94,12 +97,14 @@ public class BillView extends LinearLayout {
 
         //set the removeBill/editbill listeners
         removeBill.setOnClickListener(new RemoveBillListener(this, bill, removeBill, editBill, name, amount, description));
-        editBill.setOnClickListener(new ModifyBillListener(activity, this, name, amount, description));
+        editBill.setOnClickListener(new ModifyBillListener(activity, bill, this, name, amount, description));
 
 
         name.setText(bill.getName());
         amount.setText(String.valueOf(bill.getAmount()));
         description.setText(bill.getDescription());
+
+
 
         addView(name);
         addView(amount);

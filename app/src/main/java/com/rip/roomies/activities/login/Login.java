@@ -28,6 +28,7 @@ public class Login extends GenericActivity {
 		EditText username;
 		EditText password;
 
+
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 

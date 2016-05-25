@@ -79,6 +79,14 @@ public class AddBill extends GenericActivity {
 
         try {
             tempFloat = Float.valueOf(amount);
+
+            //now check to make sure it doesnt have hex values a-f.  valueof doesnt check that
+            for (int i = 0; i < amount.length(); i++) {
+                if (amount.charAt(i) > '9' || amount.charAt(i) < '0' && amount.charAt(i) != '.') {
+                    throw new NumberFormatException();
+                }
+            }
+
         } catch (NumberFormatException e) {
             Toast.makeText(getApplicationContext(), "Please enter in a valid number for the amount.",
                     Toast.LENGTH_LONG).show();

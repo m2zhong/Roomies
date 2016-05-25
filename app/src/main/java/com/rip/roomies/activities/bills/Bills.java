@@ -9,6 +9,7 @@ import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.controllers.BillController;
 import com.rip.roomies.events.bills.AddBillListener;
+import com.rip.roomies.models.Bill;
 import com.rip.roomies.views.BillContainer;
 
 public class Bills extends GenericActivity {
@@ -20,6 +21,7 @@ public class Bills extends GenericActivity {
 
     private BillContainer bills;
     private Button addBill;
+    private Bill theBillToEdit;
 
 
     private TextView aBillsName, aBillsDescription, aBillsAmount;
@@ -50,11 +52,12 @@ public class Bills extends GenericActivity {
      *
      */
     public void toEditBillScreen(TextView name,
-                                        TextView description, TextView amount) {
+                                 TextView description, TextView amount, Bill theBillToEdit) {
         //grab the TextView's for this particular bill.
         aBillsAmount = amount;
         aBillsDescription = description;
         aBillsName = name;
+        this.theBillToEdit = theBillToEdit;
 
         //Get ready for transferring to the Modify Bill activity.
         Intent intent = new Intent(getApplicationContext(), ModifyBill.class);
@@ -65,6 +68,7 @@ public class Bills extends GenericActivity {
         intent.putExtra("Orig_Key_Name", name.getText());
         intent.putExtra("Orig_Key_Description", description.getText());
         intent.putExtra("Orig_Key_Amount", amount.getText());
+        intent.putExtra("Key_Bill_Row_ID", String.valueOf(theBillToEdit.getRowID()));
 
         //Start the ModifyBill activity, when its finished, onActivityResult
         //will be called.
@@ -95,15 +99,24 @@ public class Bills extends GenericActivity {
 
             //Grab the updated Strings for the bills name, description, and
             //amount fields
-            String originalName = data.getStringExtra("Upd_Key_Name");
-            String originalDescription = data.getStringExtra("Upd_Key_Description");
-            String originalAmount = data.getStringExtra("Upd_Key_Amount");
+            String updName = data.getStringExtra("Upd_Key_Name");
+            String updDescription = data.getStringExtra("Upd_Key_Description");
+            String updAmount = data.getStringExtra("Upd_Key_Amount");
+
+            //reset the bills name,description,amount to whatever the user edited.
+            theBillToEdit.setName(updName);
+            theBillToEdit.setDescription(updDescription);
+            theBillToEdit.setAmount(Float.parseFloat(updAmount));
 
             //reset the text for the 3 TextViews of the bill the user
             //selected in the main IOU's page.
-            aBillsName.setText(originalName);
-            aBillsDescription.setText(originalDescription);
-            aBillsAmount.setText(originalAmount);
+            aBillsName.setText(updName);
+            aBillsDescription.setText(updDescription);
+            aBillsAmount.setText(updAmount);
+
+            //update the DB bill entry
+            BillController.getController().modifyBill(theBillToEdit);
+
         }
         else if(resultCode == ADD_BILL_RESULT_CODE) {
             String newName = data.getStringExtra("Key_New_Name");

@@ -82,5 +82,25 @@ public class BillController {
 
     }
 
+    public void modifyBill(final Bill theBillToEdit) {
+        // Create and run a new thread
+        new AsyncTask<Void, Void, Bill>() {
+            @Override
+            protected Bill doInBackground(Void... v) {
+                // log.info(String.format(Locale.US, InfoStrings.CREATEBILL_CONTROLLER,
+                //        name, description, Float.parseFloat(amount)));
+
+                // Create request user and get response from createUser()
+                Bill request = new Bill();
+                request.modifyBill(theBillToEdit);
+
+                //We dont need to return anything...
+                return null;
+            }
+
+        }.execute();
+
+    }
+
 
 }

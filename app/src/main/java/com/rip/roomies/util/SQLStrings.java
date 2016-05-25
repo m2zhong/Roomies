@@ -38,4 +38,7 @@ public class SQLStrings {
 			"@ID = %d;";
 
 
+	public static final String MODIFY_BILL_SQL = "EXEC ModifyBill " +
+			"@id = %d, @name = '%s', @description = '%s', @amount = %.2f;";
+
 }
