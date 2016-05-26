@@ -81,4 +81,6 @@
 
 	<string name="pass_retreive">Get my password</string>
 	<string name="email_hint">email</string>
+	<string name="join_group_header">Join a Group</string>
+	<string name="join_groupbtn">send request</string>
 </resources>
