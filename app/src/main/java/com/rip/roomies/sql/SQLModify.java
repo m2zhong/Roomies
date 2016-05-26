@@ -93,7 +93,7 @@ public class SQLModify {
 			// get the result table from query execution through sql
 			rset = SQLQuery.execute(String.format(Locale.US, SQLStrings.MODIFY_DUTY,
 					duty.getId(), SQLQuery.sanitize(duty.getName()),
-					SQLQuery.sanitize(duty.getDescription()), usersString));
+					SQLQuery.sanitize(duty.getDescription()), SQLQuery.sanitize(usersString)));
 
 			// error happened when contacting sql server
 			if(rset == null || !rset.next()) {

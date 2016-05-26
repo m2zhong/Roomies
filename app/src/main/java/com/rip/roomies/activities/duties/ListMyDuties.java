@@ -56,7 +56,7 @@ public class ListMyDuties extends GenericActivity implements ListMyDutiesFunctio
 		}
 		else if (requestCode == DutyView.VIEW_DUTY && resultCode == RESULT_OK) {
 			Duty duty = data.getExtras().getParcelable("Duty");
-			dc.modifyDuty(duty);
+			dc.removeDuty(duty);
 		}
 	}
 }

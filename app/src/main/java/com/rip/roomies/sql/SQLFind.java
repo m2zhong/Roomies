@@ -30,7 +30,8 @@ public class SQLFind {
 
 			// Execute SQL
 			rs = SQLQuery.execute(String.format(Locale.US, SQLStrings.FIND_USER,
-					user.getId(), user.getUsername(), user.getEmail()));
+					user.getId(), SQLQuery.sanitize(user.getUsername()),
+					SQLQuery.sanitize(user.getEmail())));
 
 			// If no rows, then finding failed
 			if (rs == null || !rs.next()) {

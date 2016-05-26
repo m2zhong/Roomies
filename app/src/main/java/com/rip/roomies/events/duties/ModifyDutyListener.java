@@ -12,6 +12,7 @@ import com.rip.roomies.functions.ModifyDutyFunction;
 import com.rip.roomies.models.Duty;
 import com.rip.roomies.util.DisplayStrings;
 import com.rip.roomies.util.InfoStrings;
+import com.rip.roomies.util.Validation;
 import com.rip.roomies.views.DutyView;
 import com.rip.roomies.views.UserContainer;
 
@@ -58,9 +59,8 @@ public class ModifyDutyListener implements View.OnClickListener, ModifyDutyFunct
 		StringBuilder errMessage = new StringBuilder();
 
 		/* Check if user entered name*/
-		if (name.getText().toString().isEmpty()) {
-			errMessage.append(String.format(Locale.US, DisplayStrings.MISSING_FIELD, "Name"));
-		}
+		errMessage.append(Validation.validate(name, Validation.ParamType.Other, "Name"));
+
 		/*Check if user entered users on duty*/
 		if (users.getUsers().length == 0) {
 			errMessage.append(String.format(Locale.US, DisplayStrings.MISSING_FIELD, "Users"));
