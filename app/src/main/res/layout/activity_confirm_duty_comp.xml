@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:text="Are you sure you did the do?"
         android:id="@+id/confirmQuest"
-        android:textColor="black"
+        android:textColor="@color/black"
         android:textSize="30dp"
         android:padding="10dp"
         android:layout_gravity="center"
