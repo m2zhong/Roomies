@@ -51,6 +51,7 @@
 		android:textColorHint="@color/text"
 		android:textSize="20sp" />
 
+
 	<LinearLayout
 		android:layout_height="75dp"
 		android:isScrollContainer="true"
@@ -59,6 +60,7 @@
 	</LinearLayout>
 
 
+======
 	<Button
 		android:id="@+id/create_group_submit"
 		android:layout_width="match_parent"

@@ -66,8 +66,33 @@ public class InfoStrings {
 			"ID: %d\nUsername: %s\nEmail: %s";
 	public static final String FIND_USER_EVENT = "Validation passed. Attempting to find user.";
 
+	public static final String REMOVE_USER_FROM_GROUP_SQL = "Removing user from group...";
+	public static final String REMOVE_USER_FROM_GROUP_SUCCESSFUL = "LeaveGroup successfull! \n" +
+			"ID: %d\nLastName: %s\nFirstName: %s\nUsername: %s\nEmail: %s";
+
 	public static final String FIND_GROUP_SUCESSFUL = "FindGroup sucessful!! \n" +
 			"ID: %d\nName: %s\nDescription: %s";
 	public static final String FIND_GROUP_FAILED = "FindGroup Failed!!";
 	public static final String FIND_GROUP_SQL = "Finding group...";
+
+	public static final String INVITE_USERS = "Inviting user(s)...";
+
+	public static final String JOINGROUP_EVENT = "Validation passed. Attempting to join group.";
+	public static final String JOINGROUP_MODEL = "Joining a group based off the current object.";
+
+	public static final String GET_GROUPS_SQL = "Getting groups...";
+	public static final String GET_GROUPS_SUCCESSFUL = "GetGroups successful!";
+	public static final String GET_GROUPS_FAILED = "GetGroups failed!!";
+
+	public static final String CREATE_DUTY_MODEL = "Creating a duty based off the current object.";
+
+	public static final String MODIFY_DUTY_MODEL = "Modifying a duty based off the current object.";
+
+	public static final String REMOVE_DUTY_MODEL = "Removing a duty based off the current object.";
+
+	public static final String COMPLETE_DUTY_MODEL = "Completing a duty based off the current object.";
+
+	public static final String GET_GROUP_DUTIES_MODEL = "Getting a list of duties for a group.";
+
+	public static final String GET_USER_DUTIES_MODEL = "Getting a list of duties for a user.";
 }

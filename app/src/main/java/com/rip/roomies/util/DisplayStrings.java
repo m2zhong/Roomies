@@ -15,6 +15,11 @@ public class DisplayStrings {
 	public static final String CREATE_GROUP_SUCCESS = "Group \"%s\" successfully created.\n" +
 			"Transferring to home page...";
 
+	public static final String JOIN_GROUP_FAIL = "Could not join group.\n" +
+			"Check the logs for error.";
+	public static final String JOIN_GROUP_SUCCESS = "Group \"%s\" successfully joined.\n" +
+			"Transferring to home page...";
+
 	public static final String CREATE_USER_FAIL = "Could not create a new user.\n" +
 			"Check the logs for error.";
 	public static final String CREATE_USER_SUCCESS = "User \"%s\" successfully created.\n" +
@@ -29,4 +34,6 @@ public class DisplayStrings {
 
 	public static final String FIND_USER_FAIL = "Could not find that user.\n" +
 			"Make sure the username entered is correct.";
+
+	public static final String INVITE_USERS_FAIL = "Could not invite user(s) to group.\n";
 }

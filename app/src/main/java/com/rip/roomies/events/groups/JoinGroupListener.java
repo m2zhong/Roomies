@@ -1,20 +1,16 @@
 package com.rip.roomies.events.groups;
 
-import android.content.Intent;
-import android.os.Handler;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.rip.roomies.activities.GenericActivity;
-import com.rip.roomies.activities.groups.InviteUsers;
 import com.rip.roomies.activities.home.Home;
 import com.rip.roomies.controllers.GroupController;
-import com.rip.roomies.functions.CreateGroupFunction;
+import com.rip.roomies.functions.JoinGroupFunction;
 import com.rip.roomies.models.Group;
 import com.rip.roomies.util.DisplayStrings;
 import com.rip.roomies.util.InfoStrings;
-import com.rip.roomies.views.UserContainer;
 
 import java.util.Locale;
 import java.util.logging.Logger;
@@ -22,17 +18,15 @@ import java.util.logging.Logger;
 /**
  * This class represents the listener for when the "Create Group" button is pressed.
  */
-public class CreateGroupListener implements View.OnClickListener, CreateGroupFunction {
-	private static final Logger log = Logger.getLogger(CreateGroupListener.class.getName());
+public class JoinGroupListener implements View.OnClickListener, JoinGroupFunction {
+	private static final Logger log = Logger.getLogger(JoinGroupListener.class.getName());
 
 	private GenericActivity context;
 	private EditText name;
-	private EditText description;
 
-	public CreateGroupListener(GenericActivity context, EditText name, EditText description) {
+	public JoinGroupListener(GenericActivity context, EditText name) {
 		this.context = context;
 		this.name = name;
-		this.description = description;
 	}
 
 	@Override
@@ -49,22 +43,21 @@ public class CreateGroupListener implements View.OnClickListener, CreateGroupFun
 			return;
 		}
 
-		log.info(InfoStrings.CREATEGROUP_EVENT);
+		log.info(InfoStrings.JOINGROUP_EVENT);
 
-		GroupController.getController().createGroup(this, name.getText().toString(),
-				description.getText().toString());
+		GroupController.getController().joinGroup(this, name.getText().toString());
 	}
 
 	@Override
-	public void createGroupFail() {
-		Toast.makeText(context, DisplayStrings.CREATE_GROUP_FAIL, Toast.LENGTH_LONG).show();
+	public void joinGroupFail() {
+		Toast.makeText(context, DisplayStrings.JOIN_GROUP_FAIL, Toast.LENGTH_LONG).show();
 	}
 
 	@Override
-	public void createGroupSuccess(Group group) {
+	public void joinGroupSuccess(Group group) {
 		log.info(String.format(Locale.US, InfoStrings.SWITCH_ACTIVITY_DELAYED,
-				InviteUsers.class.getName(), DisplayStrings.TOAST_LONG_LENGTH));
+				Home.class.getName(), DisplayStrings.TOAST_LONG_LENGTH));
 
-		context.startActivity(new Intent(context, InviteUsers.class));
+		context.toHome();
 	}
 }

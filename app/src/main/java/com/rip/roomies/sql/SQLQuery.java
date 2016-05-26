@@ -47,7 +47,7 @@ public class SQLQuery {
 	 * @return The result set of the query
 	 * @throws Exception if the database cannot be connected to or statement fails
 	 */
-	public static ResultSet execute(String query) throws Exception {
+	protected static ResultSet execute(String query) throws Exception {
 		if (conn == null) {
 			connect();
 		}

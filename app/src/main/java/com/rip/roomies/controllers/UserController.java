@@ -77,9 +77,9 @@ public class UserController {
 	 */
 	public void findUser(final FindUserFunction funct, final int id, final String username, final String email) {
 		// Create and run a new thread
-		new Thread() {
+		new AsyncTask<Void, Void, User>() {
 			@Override
-			public void run() {
+			protected User doInBackground(Void... v) {
 				log.info(String.format(Locale.US, InfoStrings.FIND_USER_CONTROLLER,
 						id, username, email));
 
@@ -87,6 +87,11 @@ public class UserController {
 				User request = new User(id, username, email);
 				User response = request.findUser();
 
+				return response;
+			}
+
+			@Override
+			protected void onPostExecute(User response) {
 				// If fail, call fail callback. Otherwise, call success callback
 				if (response == null) {
 					funct.findUserFail();
@@ -95,6 +100,6 @@ public class UserController {
 					funct.findUserSuccess(response);
 				}
 			}
-		}.start();
+		}.execute();
 	}
 }

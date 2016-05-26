@@ -2,6 +2,7 @@ package com.rip.roomies.models;
 
 import com.rip.roomies.sql.SQLCreate;
 import com.rip.roomies.sql.SQLFind;
+import com.rip.roomies.sql.SQLGet;
 import com.rip.roomies.sql.SQLLogin;
 import com.rip.roomies.util.InfoStrings;
 
@@ -134,6 +135,14 @@ public class User {
 	public User findUser() {
 		log.info(InfoStrings.FIND_USER_MODEL);
 		return SQLFind.findUser(this);
+	}
+
+	/**
+	 * Connects to the database, and finds all of the Groups this User is in.
+	 * @return Returns an array of Groups that this user is in.
+	 */
+	public Group[] getGroups() {
+		return SQLGet.getGroups(this);
 	}
 
 	/**
