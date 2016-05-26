@@ -197,9 +197,9 @@ public class DutyController {
 	 */
 	public void completeDuty(final CompleteDutyFunction funct, final int id) {
 		// Create and run a new thread
-		new AsyncTask<Void, Void, DutyLog>() {
+		new AsyncTask<Void, Void, Duty>() {
 			@Override
-			public DutyLog doInBackground(Void... v) {
+			public Duty doInBackground(Void... v) {
 				log.info(String.format(Locale.US, InfoStrings.COMPLETE_DUTY_CONTROLLER, id));
 
 				// Create request user and get response from login()
@@ -209,7 +209,7 @@ public class DutyController {
 
 			// If fail, call fail callback. Otherwise, call success callback
 			@Override
-			public void onPostExecute(DutyLog response) {
+			public void onPostExecute(Duty response) {
 				if (response == null) {
 					funct.completeDutyFail();
 				}

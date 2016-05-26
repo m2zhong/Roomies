@@ -1,5 +1,7 @@
 package com.rip.roomies.events.duties;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -57,10 +59,6 @@ public class CreateDutyListener implements View.OnClickListener, CreateDutyFunct
 		if (name.getText().toString().isEmpty()) {
 			errMessage.append(String.format(Locale.US, DisplayStrings.MISSING_FIELD, "Name"));
 		}
-		/*Check if user entered description*/
-		if (description.getText().toString().isEmpty()) {
-			errMessage.append(String.format(Locale.US, DisplayStrings.MISSING_FIELD, "Description"));
-		}
 		/*Check if user entered users on duty*/
 		if (users.getUsers().length == 0) {
 			errMessage.append(String.format(Locale.US, DisplayStrings.MISSING_FIELD, "Users"));
@@ -86,7 +84,9 @@ public class CreateDutyListener implements View.OnClickListener, CreateDutyFunct
 
 	@Override
 	public void createDutySuccess(Duty duty) {
-		Toast.makeText(activity, DisplayStrings.CREATE_DUTY_SUCCESS, Toast.LENGTH_LONG).show();
-
+		Intent i = activity.getIntent();
+		i.putExtra("Duty", duty);
+		activity.setResult(Activity.RESULT_OK, i);
+		activity.finish();
 	}
 }

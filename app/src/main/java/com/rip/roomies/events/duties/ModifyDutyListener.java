@@ -1,5 +1,7 @@
 package com.rip.roomies.events.duties;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -59,10 +61,6 @@ public class ModifyDutyListener implements View.OnClickListener, ModifyDutyFunct
 		if (name.getText().toString().isEmpty()) {
 			errMessage.append(String.format(Locale.US, DisplayStrings.MISSING_FIELD, "Name"));
 		}
-		/*Check if user entered description*/
-		if (desc.getText().toString().isEmpty()) {
-			errMessage.append(String.format(Locale.US, DisplayStrings.MISSING_FIELD, "Description"));
-		}
 		/*Check if user entered users on duty*/
 		if (users.getUsers().length == 0) {
 			errMessage.append(String.format(Locale.US, DisplayStrings.MISSING_FIELD, "Users"));
@@ -79,7 +77,7 @@ public class ModifyDutyListener implements View.OnClickListener, ModifyDutyFunct
 		/* Modify Duty Activity*/
 		DutyController.getController().modifyDuty(this, duty.getId(),
 				name.getText().toString(), desc.getText().toString(),
-				duty.getUsers());
+				users.getUsers());
 	}
 
 	@Override
@@ -89,6 +87,10 @@ public class ModifyDutyListener implements View.OnClickListener, ModifyDutyFunct
 
 	@Override
 	public void modifyDutySuccess(Duty duty) {
-		activity.onBackPressed();
+		Intent i = activity.getIntent();
+		i.putExtra("Duty", duty);
+		i.putExtra("toRemove", false);
+		activity.setResult(Activity.RESULT_OK, i);
+		activity.finish();
 	}
 }

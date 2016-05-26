@@ -28,7 +28,7 @@ public class SQLQuery {
 	 * @throws Exception if the database cannot be connected to
 	 */
 	private synchronized static void connect() throws Exception {
-		if (conn == null) {
+		if (conn == null || conn.isClosed()) {
 			log.info(InfoStrings.DATABASE_CONNECT);
 
 			Class.forName("net.sourceforge.jtds.jdbc.Driver");
@@ -48,7 +48,7 @@ public class SQLQuery {
 	 * @throws Exception if the database cannot be connected to or statement fails
 	 */
 	protected static ResultSet execute(String query) throws Exception {
-		if (conn == null) {
+		if (conn == null || conn.isClosed()) {
 			connect();
 		}
 

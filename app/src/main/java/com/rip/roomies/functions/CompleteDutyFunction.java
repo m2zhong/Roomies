@@ -8,5 +8,5 @@ import com.rip.roomies.models.DutyLog;
  */
 public interface CompleteDutyFunction {
 	void completeDutyFail();
-	void completeDutySuccess(DutyLog duty);
+	void completeDutySuccess(Duty duty);
 }
