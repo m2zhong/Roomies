@@ -19,7 +19,8 @@ public class Bills extends GenericActivity {
     private final int REQUEST_CODE = 1;
 
 
-    private BillContainer bills;
+    private BillContainer youowe_bills_container;
+    private BillContainer oweyou_bills_container;
     private Button addBill;
     private Bill theBillToEdit;
 
@@ -35,9 +36,10 @@ public class Bills extends GenericActivity {
         //set the Listeners which will set the controllers
         /* Linking xml objects to java */
         addBill = (Button) findViewById(R.id.add_bill_btn);
-        bills = (BillContainer) findViewById(R.id.bills_youowe_container);
+        youowe_bills_container = (BillContainer) findViewById(R.id.bills_youowe_container);
+        oweyou_bills_container = (BillContainer) findViewById(R.id.bills_oweyou_container);
 
-        addBill.setOnClickListener(new AddBillListener(this, bills));
+        addBill.setOnClickListener(new AddBillListener(this, youowe_bills_container,oweyou_bills_container));
     }
 
 
@@ -123,7 +125,8 @@ public class Bills extends GenericActivity {
             String newAmount = data.getStringExtra("Key_New_Amount");
 
             //the args are all OK to be inserted into the database, ie amount is a parsable float
-            BillController.getController().createBill(newName, newDescription, newAmount, bills);
+            BillController.getController().createBill(newName, newDescription, newAmount, youowe_bills_container,
+                    oweyou_bills_container);
         }
     }
 

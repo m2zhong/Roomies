@@ -31,8 +31,13 @@ public class BillController {
     }
 
     public void createBill(final String name, final String description, final String amount,
-                           final BillContainer bills) {
-        this.bills = bills;
+                           final BillContainer youowe_bills_container,
+                           final BillContainer oweyou_bills_container) {
+
+        if(amount.startsWith("-"))
+            this.bills = youowe_bills_container;
+        else
+            this.bills = oweyou_bills_container;
 
         // Create and run a new thread
         new AsyncTask<Void, Void, Bill>() {
@@ -52,7 +57,12 @@ public class BillController {
                 //if the bill returned wasnt null, add it to the container
                 if (result != null) {
                     //add the bill returned from the DB to the BillContainer. Has uniq bill id, owner id, name, desc, amount...
-                    bills.addBill(result);
+
+                    if(amount.startsWith("-")){
+                        youowe_bills_container.addBill(result);}
+                    else
+                        oweyou_bills_container.addBill(result);
+
                 }
             }
         }.execute();

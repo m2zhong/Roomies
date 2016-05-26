@@ -17,10 +17,12 @@ public class AddBillListener implements View.OnClickListener {
 
     private Bills activity;
     private BillContainer container;
+    private BillContainer container2;
 
-    public AddBillListener(Bills activity, BillContainer container) {
+    public AddBillListener(Bills activity, BillContainer container, BillContainer container2) {
         this.activity = activity;
         this.container = container;
+        this.container2 = container2;
     }
 
     @Override
