@@ -1,4 +1,5 @@
 <resources>
+
 	<string name="app_name">Roomies</string>
 	<string name="title_activity_splash_screen">Roomies</string>
 	<string name="title_activity_login">Login</string>
@@ -11,11 +12,13 @@
 	<string name="title_activity_create_group">CreateGroup</string>
 	<string name="duty_header">Duties</string>
 
+	<!--Shared Item-->
 	<string name="title_activity_shared_items">SharedItems</string>
 	<string name="plus">+</string>
 	<string name="submit">Submit</string>
 	<string name="trash">Trash</string>
 
+	<!--Login Screen-->
     <string name="unhint">username</string>
     <string name="pwhint">password</string>
     <string name="login">Login</string>
@@ -24,12 +27,14 @@
 	<string name="remind">Remind</string>
 	<string name="delete">Delete</string>
 
+	<!--Create Group-->
 	<string name="create_group_header">Create Group</string>
 	<string name="group_name_hint">name</string>
 	<string name="group_desription_hint">description</string>
 	<string name="invitees_header">invitees</string>
-	<string name="invitee_add_hint">invitee isername</string>
+	<string name="invitee_add_hint">invitee username</string>
 
+	<!--Home Screen-->
 	<string name="welcomehome">Welcome home</string>
 	<string name="Ranking">Ranking:</string>
 	<string name="trashduty">Trash Duty:</string>
@@ -39,6 +44,7 @@
 	<string name="roomies_home">Your roomies</string>
 	<string name="shareditem_home">Shared\nItem</string>
 
+	<!--Duty_addDuty-->
 	<string name="overallduties_home">Overall\nDuties</string>
 	<string name="createduty_header1">First...\nGive it a name</string>
 	<string name="createduty_header2">Whom to assign?</string>
