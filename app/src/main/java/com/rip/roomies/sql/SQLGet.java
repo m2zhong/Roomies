@@ -21,7 +21,7 @@ public class SQLGet {
 	/**
 	 * Finds a specific group the user belongs to, along with all members
 	 * @param group The group used to query the database for users
-	 * @return The group with id n, along with all the users in that group
+	 * @return A properly filled group, with all the users in that group
 	 */
 	public static Group getGroupUsers(Group group) {
 		ResultSet rs;
