@@ -82,7 +82,7 @@ public class SQLFind {
 
 			// Execute SQL
 			rs = SQLQuery.execute(String.format(Locale.US, SQLStrings.FIND_GROUP,
-					group.getId(), group.getName()));
+					group.getId(), SQLQuery.sanitize(group.getName())));
 
 			// If no rows, then finding failed
 			if (rs == null || !rs.next()) {

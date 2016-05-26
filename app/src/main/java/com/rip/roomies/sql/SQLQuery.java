@@ -61,4 +61,13 @@ public class SQLQuery {
 				ResultSet.CONCUR_UPDATABLE);
 		return stmt.executeQuery(query);
 	}
+
+	/**
+	 * Sanitizes the input from the query by replacing all single quotes with two of them.
+	 * @param param The parameter to sanitize
+	 * @return The sanitized parameter
+	 */
+	public static String sanitize(String param) {
+		return param.replaceAll("'", "''");
+	}
 }
