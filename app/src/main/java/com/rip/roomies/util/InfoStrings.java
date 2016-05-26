@@ -91,6 +91,18 @@ public class InfoStrings {
 	public static final String GET_GROUPS_FAILED = "GetGroups failed!!";
 
 
+	public static final String CREATEBILL_MODEL = "Creating a new bill based off the current object.";
+	public static final String CREATEBILL_SQL = "Creating bill...";
+	public static final String CREATEBILL_SUCCESSFULL = "CreateBill successfull!! \n" +
+			"ID: %d\nName: %s\nDescription: %s\nAmount: %.2f";
+	public static final String CREATEBILL_CONTROLLER = "Creating bill from user given fields:\n" +
+			"Name: %s\nDescription: %s\nAmount: %.2f";
+
+
+	public static final String REMOVE_BILL_FROM_TABLE_SUCCESS = "Successfully removed Bill w/ Row ID = %d, \n" +
+			"ownerid = %d, \nname = %s, \ndescription = %s, \namount = %.2f";
+	public static final String REMOVE_BILL_FROM_TABLE_SQL = "Attempting to remove the Bill from sql...\n";
+
 	public static final String CREATEDUTY_SQL = "Creating duty...";
 	public static final String CREATEDUTY_SUCCESSFUL = "CreateDuty successful!! \n" +
 			"ID: %d\nName: %s\nDescription: %s\nGroup Id: %d";

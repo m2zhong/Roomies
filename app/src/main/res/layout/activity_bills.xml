@@ -56,28 +56,35 @@
         <!--INCLUDE BOTH "YOU OWE" AND "YOUR REQUESTS" HAVE REMINDER BUTTON NEXT TO
             "YOUR REQUEST" ITEMS-->
         <com.rip.roomies.views.BillContainer
-            android:id="@+id/bills_container"
+            android:id="@+id/bills_youowe_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical">
         </com.rip.roomies.views.BillContainer>
 
+	    <com.rip.roomies.views.BillContainer
+		    android:id="@+id/bills_oweyou_container"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_weight="1"
+		    android:orientation="vertical">
+	    </com.rip.roomies.views.BillContainer>
+
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-            <Button
-                android:id="@+id/add_bill_btn"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_gravity="right"
-                android:layout_margin="10dp"
-                android:background="@drawable/circleblue"
-                android:padding="10dp"
-                android:text="+"
-                android:textColor="@color/colorAccent"
-                android:textSize="30dp" />
+	        <Button
+		        android:id="@+id/add_bill_btn"
+		        android:layout_width="70dp"
+		        android:layout_height="70dp"
+	            android:layout_gravity="end"
+	            android:layout_margin="10dp"
+	            android:background="@drawable/circleblue"
+	            android:text="+"
+	            android:textColor="@color/colorAccent"
+	            android:textSize="30dp"
+		        />
         </FrameLayout>
     </LinearLayout>
 </FrameLayout>

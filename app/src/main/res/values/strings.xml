@@ -35,6 +35,7 @@
 	<string name="invitee_add_hint">invitee username</string>
 
 	<!--Home Screen-->
+    <string name="title_activity_add_bill">AddBill</string>
 	<string name="welcomehome">Welcome home</string>
 	<string name="Ranking">Ranking:</string>
 	<string name="trashduty">Trash Duty:</string>
@@ -57,12 +58,16 @@
 	<string name="bill_title">Bill</string>
 	<string name="bill_total">You owe:</string>
 	<string name="bill_incompletebtns">View Incomplete</string>
+	<string name="bill_requestbtn">Request</string>
+	<string name="bill_paynbtn">Pay</string>
 
 	<!--Add Bill-->
 	<string name="bill_addbill_title">Add Bill</string>
 	<string name="addbill_name">What is it for?</string>
 	<string name="addbill_amount">How Much is it?</string>
 	<string name="addbill_who">Who to charge</string>
+	<string name="addbill_request">Request</string>
+	<string name="addbill_pay">Pay</string>
 	<string name="addbill_submit">Submit</string>
 
 	<!--Settings Screen-->
@@ -82,4 +87,6 @@
 
 	<string name="pass_retreive">Get my password</string>
 	<string name="email_hint">email</string>
+	<string name="join_group_header">Join a Group</string>
+	<string name="join_groupbtn">send request</string>
 </resources>

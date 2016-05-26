@@ -1,5 +1,7 @@
 package com.rip.roomies.sql;
 
+import com.rip.roomies.models.Bill;
+
 import com.rip.roomies.models.Duty;
 import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
@@ -115,4 +117,40 @@ public class SQLRemove {
 			return null;
 		}
 	}
+
+	public static Bill removeBill(int rowID) {
+
+		try {
+			ResultSet rs;
+
+			// Log removing bill from sql
+			log.info(InfoStrings.REMOVE_BILL_FROM_TABLE_SQL);
+
+			rs = SQLQuery.execute(String.format(Locale.US, SQLStrings.DELETE_BILL,
+					rowID));
+
+			rs.next();
+
+			// Get results of SQL statement.
+			int resultID = rs.getInt("ID");
+			int resultOwnerID = rs.getInt("OwnerID");
+			String resultName = rs.getString("name");
+			String resultDescription = rs.getString("Description");
+			float resultAmount = rs.getFloat("Amount");
+
+			//debug statement
+			log.info(String.format(Locale.US, InfoStrings.REMOVE_BILL_FROM_TABLE_SUCCESS,
+					resultID, resultOwnerID, resultName, resultDescription, resultAmount));
+
+			// Return a new user object
+			return new Bill(resultID, resultOwnerID, resultName, resultDescription, resultAmount);
+		}
+		catch (Exception e) {
+			// Log and return null on exception
+			log.severe(Exceptions.stacktraceToString(e));
+			return null;
+		}
+	}
+
+
 }
