@@ -36,7 +36,6 @@ public class Bills extends GenericActivity {
         /* Linking xml objects to java */
         addBill = (Button) findViewById(R.id.add_bill_btn);
         bills = (BillContainer) findViewById(R.id.bills_container);
-
         addBill.setOnClickListener(new AddBillListener(this, bills));
     }
 
