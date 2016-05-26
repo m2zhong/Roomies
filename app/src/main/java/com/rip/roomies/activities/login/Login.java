@@ -25,7 +25,6 @@ public class Login extends GenericActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 
-		/*startActivity(new Intent(this, Bills.class));*/
 		/* Linking xml objects to java */
 		EditText username = (EditText) findViewById(R.id.username);
 		EditText password = (EditText) findViewById(R.id.password);

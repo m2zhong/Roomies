@@ -56,12 +56,20 @@
         <!--INCLUDE BOTH "YOU OWE" AND "YOUR REQUESTS" HAVE REMINDER BUTTON NEXT TO
             "YOUR REQUEST" ITEMS-->
         <com.rip.roomies.views.BillContainer
-            android:id="@+id/bills_container"
+            android:id="@+id/bills_youowe_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical">
         </com.rip.roomies.views.BillContainer>
+
+	    <com.rip.roomies.views.BillContainer
+		    android:id="@+id/bills_oweyou_container"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_weight="1"
+		    android:orientation="vertical">
+	    </com.rip.roomies.views.BillContainer>
 
         <FrameLayout
             android:layout_width="match_parent"

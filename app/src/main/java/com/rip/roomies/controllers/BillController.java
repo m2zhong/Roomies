@@ -25,7 +25,7 @@ public class BillController {
     public static BillController getController() {
         if (controller == null) {
             controller = new BillController();
-        } 
+        }
 
         return controller;
     }

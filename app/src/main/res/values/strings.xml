@@ -60,6 +60,8 @@
 	<string name="addbill_name">What is it for?</string>
 	<string name="addbill_amount">How Much is it?</string>
 	<string name="addbill_who">Who to charge</string>
+	<string name="addbill_request">Request</string>
+	<string name="addbill_pay">Pay</string>
 	<string name="addbill_submit">Submit</string>
 
 	<!--Settings Screen-->
