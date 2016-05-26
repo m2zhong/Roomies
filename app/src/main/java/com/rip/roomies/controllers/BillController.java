@@ -30,7 +30,8 @@ public class BillController {
         return controller;
     }
 
-    public void createBill(final String name, final String description, final String amount, final BillContainer bills) {
+    public void createBill(final String name, final String description, final String amount,
+                           final BillContainer bills) {
         this.bills = bills;
 
         // Create and run a new thread

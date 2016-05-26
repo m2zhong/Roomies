@@ -22,12 +22,8 @@ public class AddBill extends GenericActivity {
 	private EditText amount;
 	private Button addbill_pay;
 	private Button addbill_request;
-	private Button request;
-	private Button pay;
 	private UserSpinner userSpinner;
 	private int ownerID;
-	private User user = User.getActiveUser();
-
 	private final int RESULT_CODE_ADD_BILL = 2;
 
 	@Override
@@ -41,24 +37,22 @@ public class AddBill extends GenericActivity {
 		addbill_pay = (Button) findViewById(R.id.addbill_pay);
 		addbill_request=(Button) findViewById(R.id.addbill_request);
 		userSpinner = (UserSpinner) findViewById(R.id.group_users_spinner);
-		ownerID = user.getId();
 
 
 		for (User u : Group.getActiveGroup().getMembers()) {
 			userSpinner.addUser(u);
 		}
 
-
-		addbill_pay.setOnClickListener(new View.OnClickListener() {
+		addbill_request.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				String updatedAmount;
-
 				//if parseARgs returns false, means user entered in something wrong.
 				if (!parseArgs(userSpinner.toString(), description.getText().toString(),
 						amount.getText().toString(), amount)) {
 					return;
 				}
+
 
 				//otherwise amount is a valid float, so keep going
 				//pass the 3 fields back to activities.bills.Bills
@@ -66,7 +60,29 @@ public class AddBill extends GenericActivity {
 				intent.putExtra("Key_New_Name", userSpinner.toString());
 				intent.putExtra("Key_New_Description", description.getText().toString());
 				intent.putExtra("Key_New_Amount", amount.getText().toString());
-				intent.putExtra("Key_New_UserID", user.getId());
+				setResult(RESULT_CODE_ADD_BILL, intent);
+				finish();
+			}
+
+		});
+
+		addbill_pay.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				String updatedAmount;
+				//if parseARgs returns false, means user entered in something wrong.
+				if (!parseArgs(userSpinner.toString(), description.getText().toString(),
+						amount.getText().toString(), amount)) {
+					return;
+				}
+
+
+				//otherwise amount is a valid float, so keep going
+				//pass the 3 fields back to activities.bills.Bills
+				Intent intent = new Intent();
+				intent.putExtra("Key_New_Name", userSpinner.toString());
+				intent.putExtra("Key_New_Description", description.getText().toString());
+				intent.putExtra("Key_New_Amount", "-"+amount.getText().toString());
 				setResult(RESULT_CODE_ADD_BILL, intent);
 				finish();
 			}

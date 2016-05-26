@@ -36,6 +36,7 @@ public class Bills extends GenericActivity {
         /* Linking xml objects to java */
         addBill = (Button) findViewById(R.id.add_bill_btn);
         bills = (BillContainer) findViewById(R.id.bills_youowe_container);
+
         addBill.setOnClickListener(new AddBillListener(this, bills));
     }
 
@@ -120,7 +121,6 @@ public class Bills extends GenericActivity {
             String newName = data.getStringExtra("Key_New_Name");
             String newDescription = data.getStringExtra("Key_New_Description");
             String newAmount = data.getStringExtra("Key_New_Amount");
-            String newOwnerID = data.getStringExtra("Key_New_UserID");
 
             //the args are all OK to be inserted into the database, ie amount is a parsable float
             BillController.getController().createBill(newName, newDescription, newAmount, bills);

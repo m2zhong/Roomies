@@ -199,8 +199,8 @@ public class SQLCreate {
 
 
 			// get the result table from query execution through sql
-			rset = SQLQuery.execute(String.format(Locale.US, SQLStrings.CREATE_BILL,
-					18, bill.getName(), bill.getDescription(), bill.getAmount()));
+			rset = SQLQuery.execute(String.format(Locale.US, SQLStrings.CREATE_BILL,18,
+					bill.getName(), bill.getDescription(), bill.getAmount()));
 
 
 			rset.next();
