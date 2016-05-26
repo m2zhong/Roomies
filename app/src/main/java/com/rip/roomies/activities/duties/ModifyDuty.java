@@ -51,9 +51,5 @@ public class ModifyDuty extends GenericActivity {
 
 	}
 
-	@Override
-	public void onBackPressed() {
-		// This is supposed to do nothing
-	}
 
 }
