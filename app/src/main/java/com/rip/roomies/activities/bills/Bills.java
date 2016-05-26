@@ -30,7 +30,7 @@ public class Bills extends GenericActivity {
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bill);
+        setContentView(R.layout.activity_bills);
 
         //set the Listeners which will set the controllers
         /* Linking xml objects to java */

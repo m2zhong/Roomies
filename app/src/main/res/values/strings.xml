@@ -52,6 +52,8 @@
 	<string name="bill_title">Bill</string>
 	<string name="bill_total">You owe:</string>
 	<string name="bill_incompletebtns">View Incomplete</string>
+	<string name="bill_requestbtn">Request</string>
+	<string name="bill_paynbtn">Pay</string>
 
 	<!--Add Bill-->
 	<string name="bill_addbill_title">Add Bill</string>

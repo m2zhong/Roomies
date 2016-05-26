@@ -46,6 +46,54 @@
 		android:textColorHint="@color/text"
 		android:textSize="20sp" />
 
+
+	<TextView
+		android:id="@+id/group_invitees"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center_horizontal"
+		android:text="@string/invitees_header"
+		android:textAppearance="?android:attr/textAppearanceLarge"
+		android:textSize="14pt" />
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+
+		<EditText
+			android:id="@+id/invitee_add_field"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:layout_marginBottom="10dp"
+			android:layout_marginLeft="20dp"
+			android:layout_marginTop="5dp"
+			android:hint="@string/invitee_add_hint"
+			android:inputType="text"
+			android:paddingLeft="10dp"
+			android:textColorHint="@color/text"
+			android:textSize="20sp"/>
+
+		<Button
+			android:id="@+id/invitee_add_btn"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="10dp"
+			android:layout_marginRight="20dp"
+			android:layout_marginTop="3dp"
+			android:text="@string/plus"
+			android:minWidth="50dp" />
+
+	</LinearLayout>
+
+	<com.rip.roomies.views.UserContainer
+		android:id="@+id/invitee_container"
+		android:layout_width="match_parent"
+		android:layout_height="200dp"
+		android:isScrollContainer="true"
+		android:orientation="vertical">
+	</com.rip.roomies.views.UserContainer>
+
 	<Button
 		android:id="@+id/create_group_submit"
 		android:layout_width="match_parent"

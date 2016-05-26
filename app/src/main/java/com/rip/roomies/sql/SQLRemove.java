@@ -1,10 +1,8 @@
 package com.rip.roomies.sql;
 
-<<<<<<< HEAD
 import com.rip.roomies.models.Bill;
-=======
+
 import com.rip.roomies.models.Duty;
->>>>>>> 74c8670a2a2eeea887ea5f49e2b32ca108340183
 import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
 import com.rip.roomies.util.Exceptions;
