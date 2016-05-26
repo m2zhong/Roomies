@@ -11,6 +11,7 @@ import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.activities.bills.Bills;
 import com.rip.roomies.activities.duties.ListAllDuties;
 
+
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
