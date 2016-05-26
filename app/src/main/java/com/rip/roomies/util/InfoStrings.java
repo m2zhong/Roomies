@@ -81,9 +81,10 @@ public class InfoStrings {
 	public static final String JOINGROUP_EVENT = "Validation passed. Attempting to join group.";
 	public static final String JOINGROUP_MODEL = "Joining a group based off the current object.";
 
-	public static final String GET_GROUP_SQL = "Getting group...";
-	public static final String GET_GROUP_SUCCESSFUL = "GetGroup successful!";
-	public static final String GET_GROUP_FAILED = "GetGroup failed!!";
+	public static final String GET_GROUP_USERS_MODEL = "Getting group members based off of current group.";
+	public static final String GET_GROUP_USERS_SQL = "Getting group...";
+	public static final String GET_GROUP_USERS_SUCCESSFUL = "GetGroup successful!";
+	public static final String GET_GROUP_USERS_FAILED = "GetGroup failed!!";
 
 	public static final String GET_GROUPS_SQL = "Getting groups...";
 	public static final String GET_GROUPS_SUCCESSFUL = "GetGroups successful!";

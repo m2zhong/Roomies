@@ -28,28 +28,28 @@ public class SQLGet {
 
 		try {
 			// Log finding user
-			log.info(InfoStrings.GET_GROUP_SQL);
+			log.info(InfoStrings.GET_GROUP_USERS_SQL);
 
 			// Execute SQL
 			rs = SQLQuery.execute(String.format(Locale.US, SQLStrings.GET_GROUP_USERS,
 					group.getId()));
 
 			// If no rows, then finding failed
-			if (rs == null || !rs.next()) {
-				log.info(InfoStrings.GET_GROUP_FAILED);
+			if (rs == null) {
+				log.info(InfoStrings.GET_GROUP_USERS_FAILED);
 				return null;
 			}
 			else {
 				ArrayList<User> users = new ArrayList<>();
 
-				do {
+				while (rs.next()){
 					int id = rs.getInt("ID");
 					String first = rs.getString("FirstName");
 					String last = rs.getString("LastName");
 					String username = rs.getString("Username");
 					String email = rs.getString("Email");
 					users.add(new User(id, first, last, username, email, null));
-				} while(rs.next());
+				}
 
 				User[] temp = new User[users.size()];
 
@@ -57,7 +57,7 @@ public class SQLGet {
 				temp = users.toArray(temp);
 
 				//debug statement
-				log.info(InfoStrings.GET_GROUP_SUCCESSFUL);
+				log.info(InfoStrings.GET_GROUP_USERS_SUCCESSFUL);
 
 				// Return a new user object
 				return new Group(group.getId(), group.getName(), group.getDescription(), temp);
