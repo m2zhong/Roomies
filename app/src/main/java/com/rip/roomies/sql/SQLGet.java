@@ -279,6 +279,7 @@ public class SQLGet {
 				log.info(InfoStrings.GET_DUTY_USERS_SUCCESSFUL);
 
 				User[] temp = new User[users.size()];
+				temp = users.toArray(temp);
 
 				// Return a new user object
 				return new Duty(duty.getId(), duty.getName(), duty.getDescription(),
