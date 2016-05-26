@@ -1,5 +1,6 @@
 package com.rip.roomies.views;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,6 +25,8 @@ import java.util.logging.Logger;
  */
 public class DutyView extends LinearLayout {
 	private static final Logger log = Logger.getLogger(DutyView.class.getName());
+	public static final int EDIT_DUTY = 1;
+	public static final int VIEW_DUTY = 2;
 
 	private Duty duty;
 
@@ -108,7 +111,7 @@ public class DutyView extends LinearLayout {
 
 				Intent i = new Intent(getContext(), ViewDuty.class);
 				i.putExtra("Duty", duty);
-				getContext().startActivity(i);
+				((Activity) getContext()).startActivityForResult(i, VIEW_DUTY);
 			}
 		});
 
@@ -124,7 +127,7 @@ public class DutyView extends LinearLayout {
 
 				Intent i = new Intent(getContext(), ModifyDuty.class);
 				i.putExtra("Duty", duty);
-				getContext().startActivity(i);
+				((Activity) getContext()).startActivityForResult(i, EDIT_DUTY);
 			}
 		});
 

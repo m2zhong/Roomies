@@ -80,7 +80,7 @@ public class Duty extends Task<DutyLog, Duty> {
 
 	/** @inheritDoc **/
 	@Override
-	public DutyLog complete() {
+	public Duty complete() {
 		log.info(InfoStrings.COMPLETE_DUTY_MODEL);
 		return SQLModify.completeDuty(this);
 	}

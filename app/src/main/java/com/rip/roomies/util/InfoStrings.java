@@ -12,6 +12,8 @@ public class InfoStrings {
 	public static final String DATABASE_QUERY = "Querying database: \"%s\"";
 
 	public static final String CONTAINER_ADD = "Adding view %s to container %s";
+	public static final String CONTAINER_MODIFY = "Modifying view %s in container %s";
+	public static final String CONTAINER_REMOVE = "Removing view %s from container %s";
 
 	public static final String VIEW_SETUP = "Setting up view %s";
 
@@ -98,7 +100,7 @@ public class InfoStrings {
 
 	public static final String COMPLETEDUTY_SQL = "Completing duty...";
 	public static final String COMPLETEDUTY_SUCCESSFUL = "CompleteDuty successful!! \n" +
-			"ID: %d\nName: %s\nDescription: %s\nGroup Id: %d\nCompletion Date: %s";
+			"ID: %d\nName: %s\nDescription: %s\nGroup Id: %d";
 	public static final String COMPLETEDUTY_FAILED = "CompleteDuty failed!!";
 
 	public static final String REMOVEDUTY_SQL = "Removing duty...";

@@ -21,7 +21,7 @@ public class SQLModify {
 	private static final Logger log = Logger.getLogger(SQLModify.class.getName());
 	private static final int MAX_USERS_STRING_LENGTH = 1000;
 
-	public static DutyLog completeDuty(Duty duty) {
+	public static Duty completeDuty(Duty duty) {
 		ResultSet rset;
 
 		try {
@@ -41,20 +41,26 @@ public class SQLModify {
 			// if there is a rset
 			else {
 				//explain what each column corresponds to
-				int resultId = rset.getInt("ID");
+				int resultId = rset.getInt("DutyID");
 				String resultName = rset.getString("Name");
 				String resultDescription = rset.getString("Description");
 				int dutyGroupId = rset.getInt("DutyGroupID");
-				Date completeDate = rset.getDate("CompletionDate");
-				int assigneeId = rset.getInt("AssigneeID");
+
+				User u = new User(
+						rset.getInt("ID"),
+						rset.getString("FirstName"),
+						rset.getString("LastName"),
+						rset.getString("Username"),
+						rset.getString("Email"),
+						null
+				);
 
 				// debug statement
 				log.info(String.format(Locale.US, InfoStrings.COMPLETEDUTY_SUCCESSFUL,
-						resultId, resultName, resultDescription, dutyGroupId,
-						SimpleDateFormat.getDateTimeInstance().format(completeDate)));
+						resultId, resultName, resultDescription, dutyGroupId));
 
-				return new DutyLog(resultId, resultName, resultDescription, dutyGroupId,
-						completeDate, duty.getId(), assigneeId);
+				return new Duty(resultId, resultName, resultDescription, dutyGroupId,
+						u, duty.getRotation().getUsers());
 			}
 		}
 		catch (Exception e) {
@@ -86,7 +92,8 @@ public class SQLModify {
 
 			// get the result table from query execution through sql
 			rset = SQLQuery.execute(String.format(Locale.US, SQLStrings.MODIFY_DUTY,
-					duty.getId(), duty.getName(), duty.getDescription(), usersString));
+					duty.getId(), SQLQuery.sanitize(duty.getName()),
+					SQLQuery.sanitize(duty.getDescription()), SQLQuery.sanitize(usersString)));
 
 			// error happened when contacting sql server
 			if(rset == null || !rset.next()) {

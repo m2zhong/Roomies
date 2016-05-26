@@ -51,7 +51,8 @@ public class SQLCreate {
 
 			// get the result table from query execution through sql
 			rset = SQLQuery.execute(String.format(Locale.US, SQLStrings.CREATE_DUTY,
-					duty.getName(), duty.getDescription(), duty.getGroupId(), usersString));
+					SQLQuery.sanitize(duty.getName()), SQLQuery.sanitize(duty.getDescription()),
+					duty.getGroupId(), SQLQuery.sanitize(usersString)));
 
 			// error happened when contacting sql server
 			if(rset == null || !rset.next()) {
@@ -106,7 +107,8 @@ public class SQLCreate {
 
 			// get the result table from query execution through sql
 			rset = SQLQuery.execute(String.format(Locale.US, SQLStrings.CREATE_GROUP,
-					group.getName(), group.getDescription(), user.getId()));
+					SQLQuery.sanitize(group.getName()), SQLQuery.sanitize(group.getDescription()),
+					user.getId()));
 
 			// group already exist
 			if (rset == null || !rset.next()) {
@@ -151,8 +153,10 @@ public class SQLCreate {
 
 			// get the result table from query execution through sql
 			rset = SQLQuery.execute(String.format(Locale.US, SQLStrings.CREATE_USER,
-					user.getFirstName(), user.getLastName(), user.getUsername(),
-					user.getEmail(), user.getPassword()));
+					SQLQuery.sanitize(SQLQuery.sanitize(user.getFirstName())),
+					SQLQuery.sanitize(user.getLastName()),
+					SQLQuery.sanitize(user.getUsername()), SQLQuery.sanitize(user.getEmail()),
+					SQLQuery.sanitize(user.getPassword())));
 
 			// group already exist
 			if (rset == null || !rset.next()) {

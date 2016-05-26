@@ -13,6 +13,7 @@ import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
 import com.rip.roomies.util.DisplayStrings;
 import com.rip.roomies.util.InfoStrings;
+import com.rip.roomies.util.Validation;
 
 import java.util.Locale;
 import java.util.logging.Logger;
@@ -51,14 +52,12 @@ public class LoginListener implements View.OnClickListener, LoginFunction {
 		/*String Buffer for Error Message*/
 		StringBuilder errMessage = new StringBuilder();
 
-		/* Check if user entered username*/
-		if (username.getText().toString().isEmpty()) {
-			errMessage.append(String.format(Locale.US, DisplayStrings.MISSING_FIELD, "Username"));
-		}
+		/*Check if user entered username*/
+		errMessage.append(Validation.validate(username, Validation.ParamType.Identifier, "Username"));
+
 		/*Check if user entered password*/
-		if (password.getText().toString().isEmpty()) {
-			errMessage.append(String.format(Locale.US, DisplayStrings.MISSING_FIELD, "Password"));
-		}
+		errMessage.append(Validation.validate(password, Validation.ParamType.Password, "Password"));
+
 		/* Check if error occured*/
 		if (errMessage.length() != 0) {
 			String errMsg = errMessage.substring(0, errMessage.length() - 1);

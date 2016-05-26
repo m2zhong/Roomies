@@ -49,7 +49,7 @@ public class SQLAdd {
 
 			// Execute SQL
 			rs = SQLQuery.execute(String.format(Locale.US, SQLStrings.ADD_USERS_TO_GROUP,
-					group.getId(), usersString));
+					group.getId(), SQLQuery.sanitize(usersString)));
 
 			// If no rows, then adding failed
 			if (rs == null || !rs.next()) {

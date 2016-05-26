@@ -3,11 +3,14 @@ package com.rip.roomies.activities.duties;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.events.duties.AddRotationListener;
+import com.rip.roomies.events.duties.CompleteDutyListener;
 import com.rip.roomies.events.duties.ModifyDutyListener;
+import com.rip.roomies.models.Duty;
 import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
 import com.rip.roomies.views.UserContainer;
@@ -26,29 +29,30 @@ public class ViewDuty extends GenericActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_view_duty);
 
-		Button modifyDuty;
-		Button addUser;
-		EditText dutyName;
-		EditText desc;
+		Button completeDuty;
+		TextView dutyName;
+		TextView desc;
 		UserContainer users;
-		UserSpinner allUsers;
 
 		/* Linking xml objects to java */
-		dutyName = (EditText) findViewById(R.id.duty_name);
-		desc = (EditText) findViewById(R.id.description);
-		allUsers = (UserSpinner) findViewById(R.id.group_users_spinner);
-		addUser = (Button) findViewById(R.id.add_user_btn);
+		dutyName = (TextView) findViewById(R.id.duty_name);
+		desc = (TextView) findViewById(R.id.description);
 		users = (UserContainer) findViewById(R.id.users_container);
-		modifyDuty = (Button) findViewById(R.id.mod_duty_btn);
+		completeDuty = (Button) findViewById(R.id.comp_duty_btn);
 
-		for(User u : Group.getActiveGroup().getMembers()) {
-			allUsers.addUser(u);
+		// Populate the information
+		Duty duty = getIntent().getExtras().getParcelable("Duty");
+
+		if (duty != null) {
+			dutyName.setText(duty.getName());
+			desc.setText(duty.getDescription());
+
+			for (User u : duty.getUsers()) {
+				users.addUser(u);
+			}
 		}
 
-		// todo change null to DutyView
-		//modifyDuty.setOnClickListener(new ModifyDutyListener(this, null));
-		//addUser.setOnClickListener(new AddRotationListener(this, users, allUsers));
-
+		completeDuty.setOnClickListener(new CompleteDutyListener(this, duty));
 	}
 
 

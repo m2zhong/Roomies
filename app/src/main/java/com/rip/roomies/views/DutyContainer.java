@@ -11,6 +11,7 @@ import com.rip.roomies.models.Duty;
 import com.rip.roomies.util.InfoStrings;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.logging.Logger;
 
 /**
@@ -67,6 +68,42 @@ public class DutyContainer extends ScrollView {
 		DutyView dutyView = new DutyView(getContext());
 		dutyView.setDuty(newDuty);
 		dutyLayout.addView(dutyView);
+	}
+
+	/**
+	 * Modify an already existing duty inside the DutyContainer by replacing
+	 * it with a duty that has the same id
+	 * @param toMod The replacement data
+	 */
+	public void modifyDuty(Duty toMod) {
+		log.info(String.format(Locale.US, InfoStrings.CONTAINER_MODIFY,
+				DutyView.class.getSimpleName(), DutyContainer.class.getSimpleName()));
+
+		for (int i = 0; i < duties.size(); ++i) {
+			if (duties.get(i).getId() == toMod.getId()) {
+				duties.set(i, toMod);
+
+				dutyLayout.removeViewAt(i);
+				DutyView dView = new DutyView(getContext());
+				dView.setDuty(toMod);
+				dutyLayout.addView(dView, i);
+
+				return;
+			}
+		}
+	}
+
+	public void removeDuty(Duty toRem) {
+		log.info(String.format(Locale.US, InfoStrings.CONTAINER_REMOVE,
+				DutyView.class.getSimpleName(), DutyContainer.class.getSimpleName()));
+
+		for (int i = 0; i < duties.size(); ++i) {
+			if (duties.get(i).getId() == toRem.getId()) {
+				duties.remove(i);
+				dutyLayout.removeViewAt(i);
+				return;
+			}
+		}
 	}
 
 	/**

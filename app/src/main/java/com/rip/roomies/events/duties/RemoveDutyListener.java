@@ -1,5 +1,7 @@
 package com.rip.roomies.events.duties;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.view.View;
 import android.widget.Toast;
 
@@ -67,6 +69,10 @@ public class RemoveDutyListener implements View.OnClickListener, RemoveDutyFunct
 
 	@Override
 	public void removeDutySuccess(Duty duty) {
-		activity.onBackPressed();
+		Intent i = activity.getIntent();
+		i.putExtra("Duty", duty);
+		i.putExtra("toRemove", true);
+		activity.setResult(Activity.RESULT_OK, i);
+		activity.finish();
 	}
 }
