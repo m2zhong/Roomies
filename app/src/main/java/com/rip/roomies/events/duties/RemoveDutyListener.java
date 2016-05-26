@@ -9,7 +9,6 @@ import com.rip.roomies.functions.RemoveDutyFunction;
 import com.rip.roomies.models.Duty;
 import com.rip.roomies.util.DisplayStrings;
 import com.rip.roomies.util.InfoStrings;
-import com.rip.roomies.views.DutyView;
 
 import java.util.Locale;
 import java.util.logging.Logger;
@@ -20,7 +19,7 @@ import java.util.logging.Logger;
 public class RemoveDutyListener implements View.OnClickListener, RemoveDutyFunction {
 	private static final Logger log = Logger.getLogger(CompleteDutyListener.class.getName());
 
-	private DutyView duty;
+	private Duty duty;
 	private GenericActivity activity;
 
 	/**
@@ -29,7 +28,7 @@ public class RemoveDutyListener implements View.OnClickListener, RemoveDutyFunct
 	 * @param context  Activity that is using the listener
 	 * @param duty  The existing duty object in a view
 	 */
-	public RemoveDutyListener(GenericActivity context, DutyView duty) {
+	public RemoveDutyListener(GenericActivity context, Duty duty) {
 		this.duty = duty;
 		this.activity = context;
 	}
@@ -45,7 +44,7 @@ public class RemoveDutyListener implements View.OnClickListener, RemoveDutyFunct
 		StringBuilder errMessage = new StringBuilder();
 
 		/* Check if duty is null*/
-		if (duty == null || duty.getDuty() == null) {
+		if (duty == null) {
 			errMessage.append(String.format(Locale.US, DisplayStrings.MISSING_FIELD, "Duty"));
 		}
 		/* Check if error occurred*/
@@ -58,7 +57,7 @@ public class RemoveDutyListener implements View.OnClickListener, RemoveDutyFunct
 		log.info(InfoStrings.REMOVE_DUTY_EVENT);
 
 		/* Remove Duty Activity*/
-		DutyController.getController().removeDuty(this, duty.getDuty().getId());
+		DutyController.getController().removeDuty(this, duty.getId());
 	}
 
 	@Override
@@ -68,6 +67,6 @@ public class RemoveDutyListener implements View.OnClickListener, RemoveDutyFunct
 
 	@Override
 	public void removeDutySuccess(Duty duty) {
-		Toast.makeText(activity, DisplayStrings.REMOVE_DUTY_SUCCESS, Toast.LENGTH_LONG).show();
+		activity.onBackPressed();
 	}
 }

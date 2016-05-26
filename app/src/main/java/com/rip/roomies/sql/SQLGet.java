@@ -19,6 +19,59 @@ public class SQLGet {
 	private static final Logger log = Logger.getLogger(SQLGet.class.getName());
 
 	/**
+	 * Finds a specific group the user belongs to, along with all members
+	 * @param group The group used to query the database for users
+	 * @return A properly filled group, with all the users in that group
+	 */
+	public static Group getGroupUsers(Group group) {
+		ResultSet rs;
+
+		try {
+			// Log finding user
+			log.info(InfoStrings.GET_GROUP_USERS_SQL);
+
+			// Execute SQL
+			rs = SQLQuery.execute(String.format(Locale.US, SQLStrings.GET_GROUP_USERS,
+					group.getId()));
+
+			// If no rows, then finding failed
+			if (rs == null) {
+				log.info(InfoStrings.GET_GROUP_USERS_FAILED);
+				return null;
+			}
+			else {
+				ArrayList<User> users = new ArrayList<>();
+
+				while (rs.next()){
+					int id = rs.getInt("ID");
+					String first = rs.getString("FirstName");
+					String last = rs.getString("LastName");
+					String username = rs.getString("Username");
+					String email = rs.getString("Email");
+					users.add(new User(id, first, last, username, email, null));
+				}
+
+				User[] temp = new User[users.size()];
+
+				// Return a new user object
+				temp = users.toArray(temp);
+
+				//debug statement
+				log.info(InfoStrings.GET_GROUP_USERS_SUCCESSFUL);
+
+				// Return a new user object
+				return new Group(group.getId(), group.getName(), group.getDescription(), temp);
+			}
+		}
+		catch (Exception e) {
+			// Log and return null on exception
+			log.severe(Exceptions.stacktraceToString(e));
+			return null;
+		}
+
+	}
+
+	/**
 	 * Finds a user from the database using unique keys only
 	 * @param user The object to use to search for a user on the database
 	 * @return The full user object, or null if the user could not be found
@@ -226,6 +279,7 @@ public class SQLGet {
 				log.info(InfoStrings.GET_DUTY_USERS_SUCCESSFUL);
 
 				User[] temp = new User[users.size()];
+				temp = users.toArray(temp);
 
 				// Return a new user object
 				return new Duty(duty.getId(), duty.getName(), duty.getDescription(),

@@ -87,5 +87,6 @@ public class CreateDutyListener implements View.OnClickListener, CreateDutyFunct
 	@Override
 	public void createDutySuccess(Duty duty) {
 		Toast.makeText(activity, DisplayStrings.CREATE_DUTY_SUCCESS, Toast.LENGTH_LONG).show();
+
 	}
 }

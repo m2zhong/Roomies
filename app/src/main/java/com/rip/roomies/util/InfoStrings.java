@@ -81,6 +81,11 @@ public class InfoStrings {
 	public static final String JOINGROUP_EVENT = "Validation passed. Attempting to join group.";
 	public static final String JOINGROUP_MODEL = "Joining a group based off the current object.";
 
+	public static final String GET_GROUP_USERS_MODEL = "Getting group members based off of current group.";
+	public static final String GET_GROUP_USERS_SQL = "Getting group...";
+	public static final String GET_GROUP_USERS_SUCCESSFUL = "GetGroup successful!";
+	public static final String GET_GROUP_USERS_FAILED = "GetGroup failed!!";
+
 	public static final String GET_GROUPS_SQL = "Getting groups...";
 	public static final String GET_GROUPS_SUCCESSFUL = "GetGroups successful!";
 	public static final String GET_GROUPS_FAILED = "GetGroups failed!!";
@@ -93,7 +98,7 @@ public class InfoStrings {
 
 	public static final String COMPLETEDUTY_SQL = "Completing duty...";
 	public static final String COMPLETEDUTY_SUCCESSFUL = "CompleteDuty successful!! \n" +
-			"ID: %d\nName: %s\nDescription: %s\n"; // TODO ADD MORE LATER
+			"ID: %d\nName: %s\nDescription: %s\nGroup Id: %d\nCompletion Date: %s";
 	public static final String COMPLETEDUTY_FAILED = "CompleteDuty failed!!";
 
 	public static final String REMOVEDUTY_SQL = "Removing duty...";
