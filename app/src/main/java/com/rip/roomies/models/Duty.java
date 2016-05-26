@@ -1,5 +1,8 @@
 package com.rip.roomies.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.rip.roomies.sql.SQLCreate;
 import com.rip.roomies.sql.SQLGet;
 import com.rip.roomies.sql.SQLModify;
@@ -14,7 +17,23 @@ import java.util.logging.Logger;
 public class Duty extends Task<DutyLog, Duty> {
 	private static final Logger log = Logger.getLogger(Duty.class.getName());
 
+	public static final Parcelable.Creator<Duty> CREATOR
+			= new Parcelable.Creator<Duty>() {
+		public Duty createFromParcel(Parcel in) {
+			return new Duty(in);
+		}
+
+		public Duty[] newArray(int size) {
+			return new Duty[size];
+		}
+	};
+
 	//------- CONSTRUCTORS -------//
+
+
+	public Duty(Parcel in) {
+		super(in);
+	}
 
 	/** @inheritDoc **/
 	public Duty(int id) {

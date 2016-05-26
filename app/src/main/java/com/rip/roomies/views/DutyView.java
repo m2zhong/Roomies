@@ -1,14 +1,21 @@
 package com.rip.roomies.views;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.rip.roomies.activities.duties.ModifyDuty;
+import com.rip.roomies.activities.duties.ViewDuty;
 import com.rip.roomies.models.Duty;
 import com.rip.roomies.util.InfoStrings;
 
+import java.util.Locale;
 import java.util.logging.Logger;
 
 /**
@@ -93,10 +100,33 @@ public class DutyView extends LinearLayout {
 		viewBtn.setLayoutParams(new LayoutParams(
 				LayoutParams.WRAP_CONTENT,
 				LayoutParams.MATCH_PARENT, 1.0f));
+		viewBtn.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				log.info(String.format(Locale.US, InfoStrings.SWITCH_ACTIVITY,
+						ViewDuty.class.getSimpleName()));
+
+				Intent i = new Intent(getContext(), ViewDuty.class);
+				i.putExtra("Duty", duty);
+				getContext().startActivity(i);
+			}
+		});
+
 		editBtn.setText("Edit");
 		editBtn.setLayoutParams(new LayoutParams(
 				LayoutParams.WRAP_CONTENT,
 				LayoutParams.MATCH_PARENT, 1.0f));
+		editBtn.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				log.info(String.format(Locale.US, InfoStrings.SWITCH_ACTIVITY,
+						ModifyDuty.class.getSimpleName()));
+
+				Intent i = new Intent(getContext(), ModifyDuty.class);
+				i.putExtra("Duty", duty);
+				getContext().startActivity(i);
+			}
+		});
 
 		addView(innerLayout);
 		addView(viewBtn);
