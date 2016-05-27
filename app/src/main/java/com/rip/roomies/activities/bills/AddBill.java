@@ -24,6 +24,7 @@ public class AddBill extends GenericActivity {
 	private Button addbill_request;
 	private UserSpinner userSpinner;
 	private int ownerID;
+	/*Tag to differentiate which screen are we coming from 2=AddA Bill*/
 	private final int RESULT_CODE_ADD_BILL = 2;
 
 	@Override
@@ -57,7 +58,7 @@ public class AddBill extends GenericActivity {
 				//otherwise amount is a valid float, so keep going
 				//pass the 3 fields back to activities.bills.Bills
 				Intent intent = new Intent();
-				intent.putExtra("Key_New_Name", userSpinner.toString());
+				intent.putExtra("Key_New_Name", userSpinner.getSelected().toString());
 				intent.putExtra("Key_New_Description", description.getText().toString());
 				intent.putExtra("Key_New_Amount", amount.getText().toString());
 				setResult(RESULT_CODE_ADD_BILL, intent);
@@ -80,7 +81,7 @@ public class AddBill extends GenericActivity {
 				//otherwise amount is a valid float, so keep going
 				//pass the 3 fields back to activities.bills.Bills
 				Intent intent = new Intent();
-				intent.putExtra("Key_New_Name", userSpinner.toString());
+				intent.putExtra("Key_New_Name", userSpinner.getSelected().toString());
 				intent.putExtra("Key_New_Description", description.getText().toString());
 				intent.putExtra("Key_New_Amount", "-"+amount.getText().toString());
 				setResult(RESULT_CODE_ADD_BILL, intent);
