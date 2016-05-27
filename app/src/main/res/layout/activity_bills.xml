@@ -35,13 +35,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight=".40"
-                android:text="@string/bill_total"
+                android:text="@string/bill_youowe_total"
                 android:textColor="@color/colorPrimary"
                 android:textSize="25dp"
                 />
 
             <TextView
-                android:id="@+id/bill_balance"
+                android:id="@+id/bill_youowe_balance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight=".60"
@@ -64,6 +64,34 @@
             android:orientation="vertical">
         </com.rip.roomies.views.BillContainer>
 
+	    <LinearLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal"
+		    android:paddingBottom="5dp"
+		    android:paddingLeft="10dp"
+		    android:paddingRight="10dp"
+		    android:paddingTop="5dp">
+
+		    <TextView
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_weight=".40"
+			    android:text="@string/bill_oweyou_total"
+			    android:textColor="@color/colorPrimary"
+			    android:textSize="25sp"/>
+
+		    <TextView
+			    android:id="@+id/bill_oweyou_balance"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_weight=".60"
+			    android:gravity="right"
+			    android:text="$0.00"
+			    android:textColor="@color/colorPrimary"
+			    android:textSize="30sp" />
+
+	    </LinearLayout>
 	    <com.rip.roomies.views.BillContainer
 		    android:id="@+id/bills_oweyou_container"
 		    android:layout_width="match_parent"
@@ -75,7 +103,30 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+	        android:paddingLeft="10dp"
+	        android:paddingRight="10dp">
+	        <LinearLayout
+		        android:layout_width="wrap_content"
+		        android:layout_height="match_parent"
+		        android:orientation="horizontal"
+		        android:layout_gravity="start|center">
+	        <TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+	            android:text="@string/bill_IOU_total"
+	            android:textSize="40sp"
+	            android:textColor="@color/colorPrimary"
+		        />
+
+		        <TextView
+			        android:layout_width="wrap_content"
+			        android:layout_height="match_parent"
+			        android:text="$0.00"
+			        android:id="@+id/bill_total"
+			        android:textSize="40sp"
+			        android:textColor="@color/colorPrimary"/>
+	        </LinearLayout>
 	        <Button
 		        android:id="@+id/add_bill_btn"
 		        android:layout_width="70dp"

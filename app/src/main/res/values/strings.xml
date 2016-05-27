@@ -50,7 +50,8 @@
 
 	<!--Bill-->
 	<string name="bill_title">Bill</string>
-	<string name="bill_total">You owe:</string>
+	<string name="bill_youowe_total">You owe:</string>
+	<string name="bill_oweyou_total">Owe you:</string>
 	<string name="bill_incompletebtns">View Incomplete</string>
 	<string name="bill_requestbtn">Request</string>
 	<string name="bill_paynbtn">Pay</string>
@@ -83,4 +84,5 @@
 	<string name="email_hint">email</string>
 	<string name="join_group_header">Join a Group</string>
 	<string name="join_groupbtn">send request</string>
+	<string name="bill_IOU_total">Total:</string>
 </resources>
