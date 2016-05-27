@@ -153,4 +153,10 @@ public class InfoStrings {
 			"user id: %d and group id: %d\n";
 
 	public static final String GET_ROTATION_MODEL = "Getting the list of users on the duty's rotation.";
+
+
+	public static final String REMIND_DUTY_EVENT = "Validation passed. Attempting to Remind Duty.";
+	public static final String GET_REMINDER_DUTY_LISTENER = "Get remind to do duty.";
+
+
 }
