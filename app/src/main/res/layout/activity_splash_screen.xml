@@ -1,16 +1,10 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="#0099cc"
-              android:gravity="center"
-              tools:context="com.rip.roomies.activities.login.SplashScreen">
-
-	<TextView
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+	android:background="@color/colorPrimary">
+	<ImageView
 		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:text="Splash Screen"
-		android:textAppearance="?android:attr/textAppearanceLarge"
-		android:textSize="20pt" />
-
-</LinearLayout>
+		android:layout_height="100dp"
+		android:layout_gravity="center"
+		android:src="@mipmap/logowhite"/>
+</FrameLayout>

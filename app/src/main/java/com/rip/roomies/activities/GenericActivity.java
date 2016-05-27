@@ -2,8 +2,8 @@ package com.rip.roomies.activities;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.widget.Toast;
 
+import com.rip.roomies.activities.duties.ListAllDuties;
 import com.rip.roomies.activities.home.Home;
 import com.rip.roomies.activities.login.Login;
 import com.rip.roomies.util.InfoStrings;
@@ -35,5 +35,14 @@ public abstract class GenericActivity extends Activity {
 		log.info(String.format(InfoStrings.SWITCH_ACTIVITY, Home.class.getName()));
 
 		startActivity(new Intent(this, Home.class));
+	}
+
+	/**
+	 * Transitions to the view all activities screen.
+	 */
+	public void toAllDuties() {
+		log.info(String.format(InfoStrings.SWITCH_ACTIVITY, ListAllDuties.class.getName()));
+
+		startActivity(new Intent(this, ListAllDuties.class));
 	}
 }

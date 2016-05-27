@@ -10,6 +10,7 @@ import com.rip.roomies.functions.FindUserFunction;
 import com.rip.roomies.models.User;
 import com.rip.roomies.util.DisplayStrings;
 import com.rip.roomies.util.InfoStrings;
+import com.rip.roomies.util.Validation;
 import com.rip.roomies.views.UserContainer;
 
 import java.util.Locale;
@@ -35,9 +36,7 @@ public class AddInviteeListener implements View.OnClickListener, FindUserFunctio
 	public void onClick(View v) {
 		String errMsg = "";
 
-		if (username.getText().toString().isEmpty()) {
-			errMsg += String.format(Locale.US, DisplayStrings.MISSING_FIELD, "Invitee Username");
-		}
+		errMsg += Validation.validate(username, Validation.ParamType.Identifier, "Invitee Username");
 
 		if (!errMsg.isEmpty()) {
 			errMsg = errMsg.substring(0, errMsg.length() - 1);

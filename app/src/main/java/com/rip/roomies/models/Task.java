@@ -1,11 +1,14 @@
 package com.rip.roomies.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.logging.Logger;
 
 /**
  * This class defines a task that a user needs to complete as part of housework.
  */
-public abstract class Task<TLog extends TaskLog, T extends Task<TLog, T>> {
+public abstract class Task<TLog extends TaskLog, T extends Task<TLog, T>> implements Parcelable {
 	private static final Logger log = Logger.getLogger(Task.class.getName());
 
 	private int id;
@@ -94,9 +97,9 @@ public abstract class Task<TLog extends TaskLog, T extends Task<TLog, T>> {
 
 	/**
 	 * Completes the task, moves the rotation, then creates a log of the completion.
-	 * @return The task log created
+	 * @return The task that was completed
 	 */
-	protected abstract TLog complete();
+	protected abstract T complete();
 
 	/**
 	 * Gets the users that are associated with this task
@@ -128,5 +131,55 @@ public abstract class Task<TLog extends TaskLog, T extends Task<TLog, T>> {
 
 	public User[] getUsers() {
 		return users;
+	}
+
+	//------- PARCELABLE METHODS -------//
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeInt(id);
+		dest.writeString(name);
+		dest.writeString(description);
+		dest.writeInt(groupId);
+		assignee.writeToParcel(dest, flags);
+
+		if (users != null) {
+			dest.writeInt(users.length);
+			for (User u : users) {
+				u.writeToParcel(dest, flags);
+			}
+		}
+		else {
+			dest.writeInt(-1);
+		}
+	}
+
+	/**
+	 * Creates a duty object from a parcel.
+	 * @param in The parcel to read
+	 */
+	protected Task(Parcel in) {
+		id = in.readInt();
+		name = in.readString();
+		description = in.readString();
+		groupId = in.readInt();
+		assignee = new User(in);
+
+		int length = in.readInt();
+		User[] temp = null;
+
+		if (length >= 0) {
+			temp = new User[length];
+			for (int i = 0; i < length; ++i) {
+				temp[i] = new User(in);
+			}
+		}
+
+		users = temp;
 	}
 }

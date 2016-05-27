@@ -27,6 +27,9 @@ public class SQLStrings {
 	public static final String FIND_GROUP = "EXEC FindGroup " +
 			"@id = %d, @name = '%s'";
 
+	public static final String GET_GROUP_USERS = "EXEC GetGroupUsers " +
+			"@groupId = %d";
+
 	public static final String GET_GROUPS = "EXEC GetGroups " +
 			"@userId = %d";
 
