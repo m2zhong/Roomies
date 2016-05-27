@@ -5,14 +5,18 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.Toast;
 
+import com.github.nkzawa.socketio.client.IO;
+import com.github.nkzawa.socketio.client.Socket;
 import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.controllers.DutyController;
 import com.rip.roomies.functions.CompleteDutyFunction;
-import com.rip.roomies.models.DutyLog;
+import com.rip.roomies.models.Duty;
+import com.rip.roomies.models.User;
 import com.rip.roomies.util.DisplayStrings;
 import com.rip.roomies.util.InfoStrings;
-import com.rip.roomies.models.Duty;
+import com.rip.roomies.util.SocketStrings;
 
+import java.net.URISyntaxException;
 import java.util.Locale;
 import java.util.logging.Logger;
 
@@ -58,9 +62,25 @@ public class CompleteDutyListener implements View.OnClickListener, CompleteDutyF
 		}
 
 		log.info(InfoStrings.COMPLETE_DUTY_EVENT);
-
 		/* Complete Duty Activity*/
 		DutyController.getController().completeDuty(this, duty.getId());
+
+
+
+		//after actually completed back from controller, call the and remind everyone
+		Socket mSocket;
+		try {
+			//connection to the node.js server
+			mSocket = IO.socket(SocketStrings.SERVER_URL);
+			mSocket.connect();
+			//make it start listening to reminder
+			mSocket.emit(SocketStrings.COMPLETE_DUTY,
+					User.getActiveUser().getFirstName(), duty.getName());
+		} catch (URISyntaxException e) {
+			throw new RuntimeException(e);
+		}
+
+
 	}
 
 	@Override
