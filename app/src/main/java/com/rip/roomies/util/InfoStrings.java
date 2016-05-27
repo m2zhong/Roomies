@@ -117,6 +117,10 @@ public class InfoStrings {
 	public static final String GET_GROUP_DUTIES_SUCCESSFUL = "GetGroupDuties successful!!";
 	public static final String GET_GROUP_DUTIES_FAILED = "GetGroupDuties failed!!";
 
+	public static final String GET_GROUP_DUTY_LOGS_SQL = "Getting group duty logs...";
+	public static final String GET_GROUP_DUTY_LOGS_SUCCESSFUL = "GetGroupDutyLogs successful!!";
+	public static final String GET_GROUP_DUTY_LOGS_FAILED = "GetGroupDutyLogs failed!!";
+
 	public static final String GET_USER_DUTIES_SQL = "Getting user duties...";
 	public static final String GET_USER_DUTIES_SUCCESSFUL = "GetUserDuties successful!!";
 	public static final String GET_USER_DUTIES_FAILED = "GetUserDuties failed!!";
@@ -124,7 +128,6 @@ public class InfoStrings {
 	public static final String GET_DUTY_USERS_SQL = "Getting duty users...";
 	public static final String GET_DUTY_USERS_SUCCESSFUL = "GetDutyUsers successful!!";
 	public static final String GET_DUTY_USERS_FAILED = "GetDutyUsers failed!!";
-
 
 	public static final String CREATE_DUTY_EVENT = "Validation passed. Attempting to create duty.";
 	public static final String CREATE_DUTY_MODEL = "Creating a duty based off the current object.";
