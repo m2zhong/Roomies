@@ -43,7 +43,7 @@ public class ListAllDuties extends GenericActivity implements ListAllDutiesFunct
 		addDuty.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				startActivity(new Intent(self, CreateDuty.class));
+				startActivityForResult(new Intent(self, CreateDuty.class), DutyView.ADD_DUTY);
 			}
 		});
 	}
@@ -78,6 +78,10 @@ public class ListAllDuties extends GenericActivity implements ListAllDutiesFunct
 		else if (requestCode == DutyView.VIEW_DUTY && resultCode == RESULT_OK) {
 			Duty duty = data.getExtras().getParcelable("Duty");
 			dc.modifyDuty(duty);
+		}
+		else if (requestCode == DutyView.ADD_DUTY && resultCode == RESULT_OK) {
+			Duty duty = data.getExtras().getParcelable("Duty");
+			dc.addDuty(duty);
 		}
 	}
 }
