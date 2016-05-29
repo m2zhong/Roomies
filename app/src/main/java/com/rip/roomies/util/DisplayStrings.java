@@ -14,6 +14,7 @@ public class DisplayStrings {
 	public static final String INVALID = "%s entered is invalid.\n";
 	public static final String FIELD_MISMATCH = "Fields %s and %s do not match.\n";
 
+
 	public static final String CREATE_GROUP_FAIL = "Could not create a new group.\n" +
 			"Check the logs for error.";
 	public static final String CREATE_GROUP_SUCCESS = "Group \"%s\" successfully created.\n" +
@@ -23,6 +24,9 @@ public class DisplayStrings {
 			"Check the logs for error.";
 	public static final String JOIN_GROUP_SUCCESS = "Group \"%s\" successfully joined.\n" +
 			"Transferring to home page...";
+
+	public static final String LOG_DUTY_FAIL = "Log Duty failed...\n";
+	public static final String LOG_DUTY_SUCCESS = "Log Duty Successful...\n";
 
 	public static final String CREATE_USER_FAIL = "Could not create a new user.\n" +
 			"Check the logs for error.";

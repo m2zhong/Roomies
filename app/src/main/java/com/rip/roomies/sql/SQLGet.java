@@ -1,6 +1,7 @@
 package com.rip.roomies.sql;
 
 import com.rip.roomies.models.Duty;
+import com.rip.roomies.models.DutyLog;
 import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
 import com.rip.roomies.util.Exceptions;
@@ -291,5 +292,8 @@ public class SQLGet {
 			log.severe(Exceptions.stacktraceToString(e));
 			return null;
 		}
+	}
+
+	public static DutyLog[] getGroupDutyLogs(Group group) {
 	}
 }
