@@ -12,6 +12,7 @@ import com.rip.roomies.functions.CreateGroupFunction;
 import com.rip.roomies.models.Group;
 import com.rip.roomies.util.DisplayStrings;
 import com.rip.roomies.util.InfoStrings;
+import com.rip.roomies.util.Validation;
 
 import java.util.Locale;
 import java.util.logging.Logger;
@@ -36,9 +37,7 @@ public class CreateGroupListener implements View.OnClickListener, CreateGroupFun
 	public void onClick(View v) {
 		String errMsg = "";
 
-		if (name.getText().toString().isEmpty()) {
-			errMsg += String.format(Locale.US, DisplayStrings.MISSING_FIELD, "Name");
-		}
+		errMsg += Validation.validate(name, Validation.ParamType.Other, "Name");
 
 		if (!errMsg.isEmpty()) {
 			errMsg = errMsg.substring(0, errMsg.length() - 1);

@@ -1,5 +1,8 @@
 package com.rip.roomies.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.rip.roomies.sql.SQLCreate;
 import com.rip.roomies.sql.SQLFind;
 import com.rip.roomies.sql.SQLGet;
@@ -11,7 +14,7 @@ import java.util.logging.Logger;
 /**
  * This class represents a potential user of the Roomies system.
  */
-public class User {
+public class User implements Parcelable {
 	private int id = 0;
 	private String firstName = "";
 	private String lastName = "";
@@ -21,6 +24,17 @@ public class User {
 
 	private static User activeUser;
 	private static final Logger log = Logger.getLogger(User.class.getName());
+
+	public static final Parcelable.Creator<User> CREATOR
+			= new Parcelable.Creator<User>() {
+		public User createFromParcel(Parcel in) {
+			return new User(in);
+		}
+
+		public User[] newArray(int size) {
+			return new User[size];
+		}
+	};
 
 	//------- CONSTRUCTORS -------//
 
@@ -198,5 +212,36 @@ public class User {
 	@Override
 	public String toString() {
 		return firstName + " " + lastName;
+	}
+
+	//------- PARCELABLE METHODS -------//
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeInt(id);
+		dest.writeString(firstName);
+		dest.writeString(lastName);
+		dest.writeString(username);
+		dest.writeString(email);
+		dest.writeString(password);
+	}
+
+
+	/**
+	 * Creates a user object from a parcel.
+	 * @param in The parcel to read
+	 */
+	public User(Parcel in) {
+		id = in.readInt();
+		firstName = in.readString();
+		lastName = in.readString();
+		username = in.readString();
+		email = in.readString();
+		password = in.readString();
 	}
 }

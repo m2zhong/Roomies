@@ -1,6 +1,9 @@
 package com.rip.roomies.events.duties;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.rip.roomies.activities.GenericActivity;
@@ -9,7 +12,9 @@ import com.rip.roomies.functions.ModifyDutyFunction;
 import com.rip.roomies.models.Duty;
 import com.rip.roomies.util.DisplayStrings;
 import com.rip.roomies.util.InfoStrings;
+import com.rip.roomies.util.Validation;
 import com.rip.roomies.views.DutyView;
+import com.rip.roomies.views.UserContainer;
 
 import java.util.Locale;
 import java.util.logging.Logger;
@@ -20,18 +25,27 @@ import java.util.logging.Logger;
 public class ModifyDutyListener implements View.OnClickListener, ModifyDutyFunction {
 	private static final Logger log = Logger.getLogger(CreateDutyListener.class.getName());
 
-	private DutyView duty;
 	private GenericActivity activity;
+	private EditText name;
+	private EditText desc;
+	private UserContainer users;
+	private Duty duty;
 
 	/**
 	 * Modify Duty Listener Constructor
 	 *
 	 * @param context  Activity that is using the listener
-	 * @param duty  The existing duty object in a view
+	 * @param name The name field
+	 * @param desc The description field
+	 * @param users The list of users
 	 */
-	public ModifyDutyListener(GenericActivity context, DutyView duty) {
-		this.duty = duty;
+	public ModifyDutyListener(GenericActivity context, EditText name,
+	                          EditText desc, UserContainer users, Duty duty) {
 		this.activity = context;
+		this.name = name;
+		this.desc = desc;
+		this.users = users;
+		this.duty = duty;
 	}
 
 	/**
@@ -44,9 +58,12 @@ public class ModifyDutyListener implements View.OnClickListener, ModifyDutyFunct
 		/*String Buffer for Error Message*/
 		StringBuilder errMessage = new StringBuilder();
 
-		/* Check if duty is null*/
-		if (duty == null || duty.getDuty() == null) {
-			errMessage.append(String.format(Locale.US, DisplayStrings.MISSING_FIELD, "Duty"));
+		/* Check if user entered name*/
+		errMessage.append(Validation.validate(name, Validation.ParamType.Other, "Name"));
+
+		/*Check if user entered users on duty*/
+		if (users.getUsers().length == 0) {
+			errMessage.append(String.format(Locale.US, DisplayStrings.MISSING_FIELD, "Users"));
 		}
 		/* Check if error occurred*/
 		if (errMessage.length() != 0) {
@@ -58,9 +75,9 @@ public class ModifyDutyListener implements View.OnClickListener, ModifyDutyFunct
 		log.info(InfoStrings.MODIFY_DUTY_EVENT);
 
 		/* Modify Duty Activity*/
-		DutyController.getController().modifyDuty(this, duty.getDuty().getId(),
-				duty.getDuty().getName(), duty.getDuty().getDescription(),
-				duty.getDuty().getUsers());
+		DutyController.getController().modifyDuty(this, duty.getId(),
+				name.getText().toString(), desc.getText().toString(),
+				users.getUsers());
 	}
 
 	@Override
@@ -70,6 +87,10 @@ public class ModifyDutyListener implements View.OnClickListener, ModifyDutyFunct
 
 	@Override
 	public void modifyDutySuccess(Duty duty) {
-		Toast.makeText(activity, DisplayStrings.MODIFY_DUTY_SUCCESS, Toast.LENGTH_LONG).show();
+		Intent i = activity.getIntent();
+		i.putExtra("Duty", duty);
+		i.putExtra("toRemove", false);
+		activity.setResult(Activity.RESULT_OK, i);
+		activity.finish();
 	}
 }

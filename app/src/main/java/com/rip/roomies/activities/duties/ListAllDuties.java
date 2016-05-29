@@ -14,6 +14,7 @@ import com.rip.roomies.functions.ListAllDutiesFunction;
 import com.rip.roomies.models.Duty;
 import com.rip.roomies.util.DisplayStrings;
 import com.rip.roomies.views.DutyContainer;
+import com.rip.roomies.views.DutyView;
 
 import java.util.logging.Logger;
 
@@ -27,7 +28,7 @@ public class ListAllDuties extends GenericActivity implements ListAllDutiesFunct
 	@Override
 	public void onCreate(Bundle savedInstance) {
 		Button addDuty;
-		
+
 		super.onCreate(savedInstance);
 		setContentView(R.layout.activity_list_all_duties);
 
@@ -42,7 +43,7 @@ public class ListAllDuties extends GenericActivity implements ListAllDutiesFunct
 		addDuty.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				startActivity(new Intent(self, CreateDuty.class));
+				startActivityForResult(new Intent(self, CreateDuty.class), DutyView.ADD_DUTY);
 			}
 		});
 	}
@@ -58,6 +59,29 @@ public class ListAllDuties extends GenericActivity implements ListAllDutiesFunct
 	public void listAllDutiesSuccess(Duty[] duties) {
 		for (Duty d : duties) {
 			dc.addDuty(d);
+		}
+	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode == DutyView.EDIT_DUTY && resultCode == RESULT_OK) {
+			Duty duty = data.getExtras().getParcelable("Duty");
+			boolean toRemove = data.getExtras().getBoolean("toRemove");
+
+			if (toRemove) {
+				dc.removeDuty(duty);
+			}
+			else {
+				dc.modifyDuty(duty);
+			}
+		}
+		else if (requestCode == DutyView.VIEW_DUTY && resultCode == RESULT_OK) {
+			Duty duty = data.getExtras().getParcelable("Duty");
+			dc.modifyDuty(duty);
+		}
+		else if (requestCode == DutyView.ADD_DUTY && resultCode == RESULT_OK) {
+			Duty duty = data.getExtras().getParcelable("Duty");
+			dc.addDuty(duty);
 		}
 	}
 }

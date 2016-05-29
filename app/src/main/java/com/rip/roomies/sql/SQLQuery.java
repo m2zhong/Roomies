@@ -29,7 +29,7 @@ public class SQLQuery {
 	 * @throws Exception if the database cannot be connected to
 	 */
 	private synchronized static void connect() throws Exception {
-		if (conn == null) {
+		if (conn == null || conn.isClosed()) {
 			log.info(InfoStrings.DATABASE_CONNECT);
 
 			Class.forName("net.sourceforge.jtds.jdbc.Driver");
@@ -49,9 +49,7 @@ public class SQLQuery {
 	 * @throws Exception if the database cannot be connected to or statement fails
 	 */
 	protected static ResultSet execute(String query) throws Exception {
-
-
-		if (conn == null) {
+		if (conn == null || conn.isClosed()) {
 			connect();
 		}
 
@@ -63,5 +61,14 @@ public class SQLQuery {
 		Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
 				ResultSet.CONCUR_UPDATABLE);
 		return stmt.executeQuery(query);
+	}
+
+	/**
+	 * Sanitizes the input from the query by replacing all single quotes with two of them.
+	 * @param param The parameter to sanitize
+	 * @return The sanitized parameter
+	 */
+	public static String sanitize(String param) {
+		return param.replaceAll("'", "''");
 	}
 }
