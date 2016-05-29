@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+<<<<<<< HEAD
     <color name="colorPrimary">#007ee5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#ffffff</color>
@@ -8,4 +9,17 @@
 
     <color name="text">#ffffff</color>
     <color name="black">#000000</color>
+=======
+	<color name="colorPrimary">#007ee5</color>
+	<color name="colorPrimaryDark">#5c88ac</color>
+	<color name="colorAccent">#ffffff</color>
+
+	<color name="black_overlay">#66000000</color>
+
+	<color name="text">#60ffffff</color>
+	<color name="black">#000000</color>
+	<color name="underlinelight">#60ffffff</color>
+
+	<color name="pink">#FF547F</color>
+>>>>>>> 3f4e2710b08e05934869937962403cafa980b2ba
 </resources>
