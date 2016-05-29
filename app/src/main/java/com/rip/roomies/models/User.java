@@ -179,6 +179,15 @@ public class User implements Parcelable {
 		return SQLGet.getUserDuties(group, this);
 	}
 
+	/**
+	 * Gets the bills that belong to this user.
+	 * @return The array of bills
+	 */
+	public Bill[] getBills() {
+		log.info(InfoStrings.GET_BILLS_MODEL);
+		return SQLGet.getUserBills(this);
+	}
+
 	//------- OBJECT METHODS -------//
 
 	public static User getActiveUser() {

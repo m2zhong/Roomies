@@ -198,13 +198,15 @@ public class SQLCreate {
 		try {
 			log.info(InfoStrings.CREATEBILL_SQL);
 
-			String temp = String.format(Locale.US, SQLStrings.CREATE_BILL,18,
-					bill.getName(), bill.getDescription(), bill.getAmount());
+			String temp = String.format(Locale.US, SQLStrings.CREATE_BILL,
+					User.getActiveUser().getId(), bill.getName(), bill.getDescription(),
+					bill.getAmount());
 
 
 			// get the result table from query execution through sql
-			rset = SQLQuery.execute(String.format(Locale.US, SQLStrings.CREATE_BILL,18,
-					bill.getName(), bill.getDescription(), bill.getAmount()));
+			rset = SQLQuery.execute(String.format(Locale.US, SQLStrings.CREATE_BILL,
+					User.getActiveUser().getId(), bill.getName(), bill.getDescription(),
+					bill.getAmount()));
 
 
 			rset.next();

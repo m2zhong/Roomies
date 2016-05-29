@@ -3,6 +3,7 @@ package com.rip.roomies.controllers;
 import android.os.AsyncTask;
 
 import com.rip.roomies.models.Bill;
+import com.rip.roomies.models.User;
 import com.rip.roomies.util.InfoStrings;
 import com.rip.roomies.views.BillContainer;
 
@@ -107,6 +108,36 @@ public class BillController {
 
                 //We dont need to return anything...
                 return null;
+            }
+
+        }.execute();
+
+    }
+
+    public static void populateBills(final BillContainer youowe_bills_container,
+                         final BillContainer oweyou_bills_container) {
+        // Create and run a new thread
+        new AsyncTask<Void, Void, Bill[]>() {
+            @Override
+            protected Bill[] doInBackground(Void... v) {
+                log.info(String.format(Locale.US, InfoStrings.GET_BILLS_CONTROLLER, User.getActiveUser().getId()));
+
+                return User.getActiveUser().getBills();
+            }
+
+            @Override
+            protected void onPostExecute(Bill[] result) {
+                //if the array returned wasn't null, add each bill to the appropriate container
+                if (result != null) {
+                    for (Bill bill : result) {
+                        if (bill.getAmount() < 0) {
+                            bill.setAmount(-1 * bill.getAmount());
+                            youowe_bills_container.addBill(bill);
+                        }
+                        else
+                            oweyou_bills_container.addBill(bill);
+                    }
+                }
             }
 
         }.execute();

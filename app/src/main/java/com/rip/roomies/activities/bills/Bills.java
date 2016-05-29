@@ -40,6 +40,9 @@ public class Bills extends GenericActivity {
         oweyou_bills_container = (BillContainer) findViewById(R.id.bills_oweyou_container);
 
         addBill.setOnClickListener(new AddBillListener(this, youowe_bills_container,oweyou_bills_container));
+
+        //populate list of bills
+        BillController.populateBills(youowe_bills_container, oweyou_bills_container);
     }
 
 

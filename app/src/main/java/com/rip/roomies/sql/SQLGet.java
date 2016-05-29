@@ -1,5 +1,6 @@
 package com.rip.roomies.sql;
 
+import com.rip.roomies.models.Bill;
 import com.rip.roomies.models.Duty;
 import com.rip.roomies.models.DutyLog;
 import com.rip.roomies.models.Group;
@@ -342,6 +343,60 @@ public class SQLGet {
 
 				// Return a new user object
 				return logs.toArray(temp);
+			}
+		}
+		catch (Exception e) {
+			// Log and return null on exception
+			log.severe(Exceptions.stacktraceToString(e));
+			return null;
+		}
+	}
+
+	/**
+	 * Finds all bills associated with a user
+	 * @param user The user to acquire bills for
+	 * @return The full set of bills associated with this user
+	 */
+	public static Bill[] getUserBills(User user) {
+		ResultSet rs;
+
+		try {
+			// Log finding user
+			log.info(InfoStrings.GET_BILLS_SQL);
+
+			// Execute SQL
+			rs = SQLQuery.execute(String.format(Locale.US, SQLStrings.GET_BILLS, user.getId()));
+
+			// If no rows, then finding failed
+			if (rs == null) {
+				log.info(InfoStrings.GET_BILLS_FAILED);
+				return null;
+			}
+			else {
+				ArrayList<Bill> bills = new ArrayList<>();
+
+				while(rs.next()){
+					int resultId = rs.getInt("ID");
+					int resultOwnerId = rs.getInt("OwnerID");
+					String resultName = rs.getString("Name");
+					String resultDescription = rs.getString("Description");
+					float resultAmount = rs.getInt("Amount");
+
+					Bill temp = new Bill(resultId, resultOwnerId, resultName, resultDescription,
+							resultAmount);
+
+					bills.add(temp);
+
+				}
+
+				//debug statement
+				log.info(String.format(Locale.US, InfoStrings.GET_BILLS_SUCCESSFUL,
+						User.getActiveUser().getId()));
+
+				Bill[] temp = new Bill[bills.size()];
+
+				// Return a new user object
+				return bills.toArray(temp);
 			}
 		}
 		catch (Exception e) {
