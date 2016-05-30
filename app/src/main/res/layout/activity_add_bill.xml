@@ -40,6 +40,7 @@
                 android:id="@+id/addBillDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:background="@drawable/edittextlight"
                 android:inputType="textMultiLine"
                 android:textSize="30dp" />
@@ -56,6 +57,7 @@
                 android:id="@+id/addBillAmount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:background="@drawable/edittextlight"
                 android:hint="$"
                 android:inputType="textMultiLine"
