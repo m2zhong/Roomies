@@ -141,6 +141,34 @@ public class InfoStrings {
 	public static final String GET_DUTY_USERS_SUCCESSFUL = "GetDutyUsers successful!!";
 	public static final String GET_DUTY_USERS_FAILED = "GetDutyUsers failed!!";
 
+	public static final String CREATEGOOD_SQL = "Creating good...";
+	public static final String CREATEGOOD_SUCCESSFUL = "CreateGood successful!! \n" +
+			"ID: %d\nName: %s\nDescription: %s\nGroup Id: %d";
+	public static final String CREATEGOOD_FAILED = "CreateGood failed!!";
+
+	public static final String COMPLETEGOOD_SQL = "Completing good...";
+	public static final String COMPLETEGOOD_SUCCESSFUL = "CompleteGood successful!! \n" +
+			"ID: %d\nName: %s\nDescription: %s\nGroup Id: %d";
+	public static final String COMPLETEGOOD_FAILED = "CompleteGood failed!!";
+
+	public static final String REMOVEGOOD_SQL = "Removing good...";
+	public static final String REMOVEGOOD_SUCCESSFUL = "RemoveGood successful!! \n" +
+			"ID: %d\nName: %s\nDescription: %s\nGroup Id: %d";
+	public static final String REMOVEGOOD_FAILED = "RemoveDuty failed!!";
+
+	public static final String MODIFYGOOD_SQL = "Modifying good...";
+	public static final String MODIFYGOOD_SUCCESSFUL = "ModifyGood successful!! \n" +
+			"ID: %d\nName: %s\nDescription: %s\nGroup Id: %d";
+	public static final String MODIFYGOOD_FAILED = "ModifyGood failed!!";
+
+	public static final String GET_GROUP_GOODS_SQL = "Getting group goods...";
+	public static final String GET_GROUP_GOODS_SUCCESSFUL = "GetGroupGoods successful!!";
+	public static final String GET_GROUP_GOODS_FAILED = "GetGroupGoods failed!!";
+
+	public static final String GET_GOOD_USERS_SQL = "Getting good users...";
+	public static final String GET_GOOD_USERS_SUCCESSFUL = "GetGoodUsers successful!!";
+	public static final String GET_GOOD_USERS_FAILED = "GetGoodUsers failed!!";
+
 	public static final String CREATE_DUTY_EVENT = "Validation passed. Attempting to create duty.";
 	public static final String CREATE_DUTY_MODEL = "Creating a duty based off the current object.";
 	public static final String CREATE_DUTY_CONTROLLER = "Creating duty from user given fields:\n" +

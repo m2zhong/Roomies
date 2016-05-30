@@ -118,11 +118,17 @@ public class SQLRemove {
 		}
 	}
 
+<<<<<<< HEAD
 	public static Bill removeBill(int rowID) {
+=======
+	// good
+	public static Good removeGood(Good good) {
+>>>>>>> 3b5acca8d9ae6d93ed8237337370fd69720c4a23
 
 		try {
 			ResultSet rs;
 
+<<<<<<< HEAD
 			// Log removing bill from sql
 			log.info(InfoStrings.REMOVE_BILL_FROM_TABLE_SQL);
 
@@ -144,6 +150,44 @@ public class SQLRemove {
 
 			// Return a new user object
 			return new Bill(resultID, resultOwnerID, resultName, resultDescription, resultAmount);
+=======
+			// Log removing user from group
+			log.info(InfoStrings.REMOVEGOOD_SQL);
+
+			rs = SQLQuery.execute(String.format(Locale.US, SQLStrings.REMOVE_GOOD,
+					good.getId()));
+
+			// error happened when contacting sql server
+			if(rs == null || !rs.next()) {
+				// debug statement
+				log.info(InfoStrings.REMOVEGOOD_FAILED);
+				return null;
+			}
+			// if there is a rs
+			else {
+				//explain what each column corresponds to
+				int resultId = rs.getInt("GoodID");
+				String resultName = rs.getString("Name");
+				String resultDescription = rs.getString("Description");
+				int resultGroup = rs.getInt("GroupID");
+
+				User u = new User(
+						rs.getInt("ID"),
+						rs.getString("FirstName"),
+						rs.getString("LastName"),
+						rs.getString("Username"),
+						rs.getString("Email"),
+						null
+				);
+
+				// debug statement
+				log.info(String.format(Locale.US, InfoStrings.REMOVEGOOD_SUCCESSFUL,
+						resultId, resultName, resultDescription, resultGroup));
+
+				return new Good(resultId, resultName, resultDescription, resultGroup,
+						u, good.getUsers());
+			}
+>>>>>>> 3b5acca8d9ae6d93ed8237337370fd69720c4a23
 		}
 		catch (Exception e) {
 			// Log and return null on exception
@@ -151,6 +195,9 @@ public class SQLRemove {
 			return null;
 		}
 	}
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 3b5acca8d9ae6d93ed8237337370fd69720c4a23
 }
