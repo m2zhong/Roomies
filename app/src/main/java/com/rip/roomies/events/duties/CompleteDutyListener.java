@@ -65,17 +65,16 @@ public class CompleteDutyListener implements View.OnClickListener, CompleteDutyF
 		/* Complete Duty Activity*/
 		DutyController.getController().completeDuty(this, duty.getId());
 
-
-
 		//after actually completed back from controller, call the and remind everyone
 		Socket mSocket;
 		try {
 			//connection to the node.js server
 			mSocket = IO.socket(SocketStrings.SERVER_URL);
 			mSocket.connect();
-			//make it start listening to reminder
+			//emit the action to server send complete duty notification
 			mSocket.emit(SocketStrings.COMPLETE_DUTY,
 					User.getActiveUser().getFirstName(), duty.getName());
+			mSocket.disconnect();
 		} catch (URISyntaxException e) {
 			throw new RuntimeException(e);
 		}

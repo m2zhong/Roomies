@@ -49,9 +49,11 @@ public class RemindDutyListener implements View.OnClickListener {
 			mSocket.connect();
 			//make it start listening to reminder
 			mSocket.emit(SocketStrings.NOTIFICATION_DUTY, receiverID, duty.getName());
+			mSocket.disconnect();
 		} catch (URISyntaxException e) {
 			throw new RuntimeException(e);
 		}
+
 		log.info(InfoStrings.REMIND_DUTY_EVENT);
 	}
 
