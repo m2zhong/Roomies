@@ -18,8 +18,9 @@ import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.activities.bills.Bills;
 
 import com.rip.roomies.activities.duties.ListAllDuties;
-import com.rip.roomies.activities.duties.ListMyDuties;
 import com.rip.roomies.activities.profile.Profile;
+import com.rip.roomies.activities.goods.ListAllGoods;
+import com.rip.roomies.activities.tasks.ListMyTasks;
 import com.rip.roomies.util.Images;
 import com.rip.roomies.events.Sockets.GetCompletionDutyListener;
 import com.rip.roomies.events.Sockets.GetReminderDutyListener;
@@ -51,8 +52,8 @@ public class Home extends GenericActivity {
 
 
 		dutiesScreen = (TextView) findViewById(R.id.home_overallduties);
+		TextView goodsScreen = (TextView) findViewById(R.id.home_shareditem);
 		billScreen = (TextView) findViewById(R.id.home_IOU);
-		dutiesScreen = (TextView) findViewById(R.id.home_overallduties);
 
 
 		final Activity self = this;
@@ -81,11 +82,19 @@ public class Home extends GenericActivity {
 			}
 		});
 
+
+		goodsScreen.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				startActivity(new Intent(self, ListAllGoods.class));
+			}
+		});
+		
 		TextView toMyDuties = (TextView) findViewById(R.id.to_view_my_duties);
 		toMyDuties.setOnClickListener(new View.OnClickListener(){
 			@Override
 			public void onClick(View view){
-				startActivity(new Intent(self, ListMyDuties.class));
+				startActivity(new Intent(self, ListMyTasks.class));
 			}
 		}
 		);
@@ -93,7 +102,7 @@ public class Home extends GenericActivity {
 		toMyDuties.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				self.startActivity(new Intent(self, ListMyDuties.class));
+				self.startActivity(new Intent(self, ListMyTasks.class));
 			}
 		});
 
@@ -102,7 +111,7 @@ public class Home extends GenericActivity {
 		display.getSize(size);
 
 		ImageView logo = (ImageView) findViewById(R.id.home_appname);
-		logo.setImageBitmap(Images.getScaledDownBitmap(getResources(), R.mipmap.logowhite,
+		logo.setImageBitmap(Images.getScaledDownBitmap(getResources(), R.mipmap.logo2,
 				(int) (size.x * IMAGE_WIDTH_RATIO), (int) (size.y * IMAGE_HEIGHT_RATIO)));
 
 		try {

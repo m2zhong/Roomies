@@ -95,4 +95,9 @@
 	<string name="email_hint">email</string>
 	<string name="bill_IOU_total">Total:</string>
 	<string name="editBill_title">Edit Bill</string>
+
+
+
+	<string name="join_group_header">Join Group</string>
+	<string name="join_groupbtn">Join Group</string>
 </resources>

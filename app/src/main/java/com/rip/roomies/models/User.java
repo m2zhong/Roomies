@@ -192,9 +192,9 @@ public class User implements Parcelable {
 	 * @param group The group object of the context
 	 * @return The array of duties
 	 */
-	public Duty[] getDuties(Group group) {
-		log.info(InfoStrings.GET_USER_DUTIES_MODEL);
-		return SQLGet.getUserDuties(group, this);
+	public Task[] getTasks(Group group) {
+		log.info(InfoStrings.GET_USER_TASKS_MODEL);
+		return SQLGet.getUserTasks(group, this);
 	}
 
 	/**
