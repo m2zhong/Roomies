@@ -9,6 +9,7 @@ import com.rip.roomies.sql.SQLGet;
 import com.rip.roomies.sql.SQLModify;
 import com.rip.roomies.sql.SQLRemove;
 import com.rip.roomies.util.InfoStrings;
+import com.rip.roomies.views.GoodView;
 import com.rip.roomies.views.TaskView;
 
 import java.util.logging.Logger;
@@ -100,6 +101,8 @@ public class Good extends Task<GoodLog, Good> {
 	/** @inheritDoc **/
 	@Override
 	public TaskView getView(Context context) {
-		return null;
+		GoodView goodView = new GoodView(context);
+		goodView.setGood(this);
+		return goodView;
 	}
 }

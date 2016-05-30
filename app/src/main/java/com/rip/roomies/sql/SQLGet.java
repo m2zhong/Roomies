@@ -211,7 +211,7 @@ public class SQLGet {
 				return null;
 			}
 			else {
-				ArrayList<Task> duties = new ArrayList<>();
+				ArrayList<Task> tasks = new ArrayList<>();
 
 				while(rs.next()){
 					int resultType = rs.getInt("Type");
@@ -234,17 +234,17 @@ public class SQLGet {
 
 					temp = temp.getRotation();
 
-					duties.add(temp);
+					tasks.add(temp);
 
 				}
 
 				//debug statement
 				log.info(InfoStrings.GET_USER_TASKS_SUCCESSFUL);
 
-				Duty[] temp = new Duty[duties.size()];
+				Task[] temp = new Task[tasks.size()];
 
 				// Return a new user object
-				return duties.toArray(temp);
+				return tasks.toArray(temp);
 			}
 		}
 		catch (Exception e) {
