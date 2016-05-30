@@ -144,7 +144,7 @@ public class Group {
 	}
 
 	public static void setActiveGroupDescription(String newDescription) {
-		activeGroup.name = newDescription;
+		activeGroup.description = newDescription;
 	}
 
 	public String getName() {
