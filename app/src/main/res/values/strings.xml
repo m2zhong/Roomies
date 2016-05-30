@@ -48,10 +48,6 @@
 	<string name="createduty_createbtn">Create</string>
 
 
-	<!--Join-->
-	<string name="join_group_header">Join a Group</string>
-	<string name="join_groupbtn">Join Group</string>
-
 	<!--Bill-->
 	<string name="bill_title">Bill</string>
 	<string name="bill_youowe_total">You owe:</string>

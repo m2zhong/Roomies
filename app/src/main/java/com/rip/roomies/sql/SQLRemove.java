@@ -119,18 +119,12 @@ public class SQLRemove {
 		}
 	}
 
-<<<<<<< HEAD
 	public static Bill removeBill(int rowID) {
-=======
-	// good
-	public static Good removeGood(Good good) {
->>>>>>> 3b5acca8d9ae6d93ed8237337370fd69720c4a23
+		// Log removing bill from sql
 
 		try {
 			ResultSet rs;
 
-<<<<<<< HEAD
-			// Log removing bill from sql
 			log.info(InfoStrings.REMOVE_BILL_FROM_TABLE_SQL);
 
 			rs = SQLQuery.execute(String.format(Locale.US, SQLStrings.DELETE_BILL,
@@ -151,7 +145,21 @@ public class SQLRemove {
 
 			// Return a new user object
 			return new Bill(resultID, resultOwnerID, resultName, resultDescription, resultAmount);
-=======
+		}
+		catch (Exception e) {
+			// Log and return null on exception
+			log.severe(Exceptions.stacktraceToString(e));
+			return null;
+		}
+	}
+
+	// good
+	public static Good removeGood(Good good) {
+
+		try {
+			ResultSet rs;
+
+
 			// Log removing user from group
 			log.info(InfoStrings.REMOVEGOOD_SQL);
 
@@ -188,7 +196,6 @@ public class SQLRemove {
 				return new Good(resultId, resultName, resultDescription, resultGroup,
 						u, good.getUsers());
 			}
->>>>>>> 3b5acca8d9ae6d93ed8237337370fd69720c4a23
 		}
 		catch (Exception e) {
 			// Log and return null on exception
@@ -196,9 +203,4 @@ public class SQLRemove {
 			return null;
 		}
 	}
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 3b5acca8d9ae6d93ed8237337370fd69720c4a23
 }
