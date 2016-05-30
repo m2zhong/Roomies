@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -76,17 +77,27 @@ public class DutyView extends LinearLayout {
 	private void setupLayout() {
 		log.info(String.format(InfoStrings.VIEW_SETUP, DutyView.class.getSimpleName()));
 
+		LinearLayout.LayoutParams w = new LayoutParams(
+				LayoutParams.MATCH_PARENT,
+				LayoutParams.MATCH_PARENT);
+		setLayoutParams(w);
+		setOrientation(LinearLayout.HORIZONTAL);
+
+/*
 		setLayoutParams(new LayoutParams(
 				LayoutParams.MATCH_PARENT,
 				LayoutParams.WRAP_CONTENT));
 		setOrientation(LinearLayout.HORIZONTAL);
-
+*/
 		TextView name = new TextView(getContext());
 		TextView description = new TextView(getContext());
 		TextView assignee = new TextView(getContext());
 		Button viewBtn = new Button(getContext());
 		Button editBtn = new Button(getContext());
 		LinearLayout innerLayout = new LinearLayout(getContext());
+		innerLayout.setLayoutParams(new LayoutParams(
+				0,
+				LayoutParams.MATCH_PARENT, 1.0f));
 
 		innerLayout.setOrientation(LinearLayout.VERTICAL);
 
@@ -100,9 +111,13 @@ public class DutyView extends LinearLayout {
 		innerLayout.addView(assignee);
 
 		viewBtn.setText("View");
-		viewBtn.setLayoutParams(new LayoutParams(
+		LinearLayout.LayoutParams v = new LayoutParams(
 				LayoutParams.WRAP_CONTENT,
-				LayoutParams.MATCH_PARENT, 1.0f));
+				LayoutParams.MATCH_PARENT);
+		viewBtn.setLayoutParams(v);
+/*		viewBtn.setLayoutParams(new LayoutParams(
+				LayoutParams.WRAP_CONTENT,
+				LayoutParams.MATCH_PARENT, 1.0f));*/
 		viewBtn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -115,10 +130,17 @@ public class DutyView extends LinearLayout {
 			}
 		});
 
+
+
 		editBtn.setText("Edit");
-		editBtn.setLayoutParams(new LayoutParams(
+/*		editBtn.setLayoutParams(new LayoutParams(
 				LayoutParams.WRAP_CONTENT,
-				LayoutParams.MATCH_PARENT, 1.0f));
+				LayoutParams.MATCH_PARENT, 1.0f)); */
+		LinearLayout.LayoutParams p = new LayoutParams(
+				LayoutParams.WRAP_CONTENT,
+				LayoutParams.MATCH_PARENT);
+		p.gravity = Gravity.RIGHT;
+		editBtn.setLayoutParams(p);
 		editBtn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
