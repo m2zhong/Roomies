@@ -9,6 +9,7 @@ import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.events.duties.AddRotationListener;
 import com.rip.roomies.events.duties.ModifyDutyListener;
 import com.rip.roomies.events.duties.RemoveDutyListener;
+import com.rip.roomies.events.duties.RemoveRotationListener;
 import com.rip.roomies.models.Duty;
 import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
@@ -30,6 +31,8 @@ public class ModifyDuty extends GenericActivity {
 
 		Button modifyDuty;
 		Button addUser;
+		Button removeUser;
+		Button removeDuty;
 		EditText dutyName;
 		EditText desc;
 		UserContainer users;
@@ -40,9 +43,10 @@ public class ModifyDuty extends GenericActivity {
 		desc = (EditText) findViewById(R.id.description);
 		allUsers = (UserSpinner) findViewById(R.id.group_users_spinner);
 		addUser = (Button) findViewById(R.id.add_user_btn);
+		removeUser = (Button) findViewById(R.id.rem_user_btn);
 		users = (UserContainer) findViewById(R.id.users_container);
 		modifyDuty = (Button) findViewById(R.id.mod_duty_btn);
-		Button removeDuty = (Button) findViewById(R.id.rem_duty_btn);
+		removeDuty = (Button) findViewById(R.id.rem_duty_btn);
 
 		for(User u : Group.getActiveGroup().getMembers()) {
 			allUsers.addUser(u);
@@ -62,6 +66,7 @@ public class ModifyDuty extends GenericActivity {
 
 		modifyDuty.setOnClickListener(new ModifyDutyListener(this, dutyName, desc, users, duty));
 		addUser.setOnClickListener(new AddRotationListener(this, users, allUsers));
+		removeUser.setOnClickListener(new RemoveRotationListener(this, users));
 		removeDuty.setOnClickListener(new RemoveDutyListener(this, duty));
 	}
 }

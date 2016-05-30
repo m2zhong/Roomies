@@ -48,6 +48,9 @@ public class SQLStrings {
 	public static final String GET_GROUP_DUTIES = "EXEC GetGroupDuties " +
 			"@groupID = %d";
 
+	public static final String GET_GROUP_DUTY_LOGS = "EXEC GetGroupDutyLogs " +
+			"@groupID = %d";
+
 	public static final String GET_USER_DUTIES = "EXEC GetUserDuties " +
 			"@groupID = %d, @userID = %d";
 

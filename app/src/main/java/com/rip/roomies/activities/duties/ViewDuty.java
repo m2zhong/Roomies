@@ -2,19 +2,15 @@ package com.rip.roomies.activities.duties;
 
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
-import com.rip.roomies.events.duties.AddRotationListener;
 import com.rip.roomies.events.duties.CompleteDutyListener;
-import com.rip.roomies.events.duties.ModifyDutyListener;
+import com.rip.roomies.events.duties.RemindDutyListener;
 import com.rip.roomies.models.Duty;
-import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
 import com.rip.roomies.views.UserContainer;
-import com.rip.roomies.views.UserSpinner;
 
 import java.util.logging.Logger;
 
@@ -29,7 +25,8 @@ public class ViewDuty extends GenericActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_view_duty);
 
-		Button completeDuty;
+		//it's named action duty because it might be complete duty button or remind button
+		Button actionDuty;
 		TextView dutyName;
 		TextView desc;
 		UserContainer users;
@@ -38,7 +35,7 @@ public class ViewDuty extends GenericActivity {
 		dutyName = (TextView) findViewById(R.id.duty_name);
 		desc = (TextView) findViewById(R.id.description);
 		users = (UserContainer) findViewById(R.id.users_container);
-		completeDuty = (Button) findViewById(R.id.comp_duty_btn);
+		actionDuty = (Button) findViewById(R.id.comp_duty_btn);
 
 		// Populate the information
 		Duty duty = getIntent().getExtras().getParcelable("Duty");
@@ -52,8 +49,25 @@ public class ViewDuty extends GenericActivity {
 			}
 		}
 
-		completeDuty.setOnClickListener(new CompleteDutyListener(this, duty));
-	}
+		//This is to know who is currently in charge of the duty
+		User currentAssignee = duty.getAssignee();
+		/*  Then set the button name to either complete duty or remind
+			the person depending on the situation*/
 
+		//the case when "I" am the current assignee
+		if(currentAssignee.getId() == User.getActiveUser().getId()) {
+			//change the button name to complete duty
+			actionDuty.setText("Complete " + duty.getName());
+			//triggering event of completing the duty, go change database, rotation...etc
+			actionDuty.setOnClickListener(new CompleteDutyListener(this, duty));
+		}
+		//the case when another person is the assignee
+		else {
+			//change the button name to reminding the person
+			actionDuty.setText("Remind " + currentAssignee.getFirstName());
+			//trigger the event of reminding the person
+			actionDuty.setOnClickListener(new RemindDutyListener(this, currentAssignee.getId(), duty));
+		}
+	}
 
 }
