@@ -192,29 +192,19 @@
 						android:layout_width="match_parent"
 						android:layout_height="match_parent"
 						android:layout_weight=".6"
-						android:orientation="vertical"
-						android:paddingLeft="5dp"
-						android:paddingTop="5dp">
+						android:orientation="vertical">
+
 
 						<TextView
-							android:layout_width="match_parent"
+							android:id="@+id/to_view_my_duties"
+							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
-							android:fontFamily="sans-serif-thin"
-							android:text="@string/trashduty"
-							android:textColor="@color/black"
-							android:textSize="25dp" />
-
-						<TextView
-							android:id="@+id/home_trashduty"
-							android:layout_width="match_parent"
-							android:layout_height="wrap_content"
-							android:layout_weight=".7"
 							android:fontFamily="sans-serif-thin"
 							android:gravity="center"
-							android:text="Stephanie"
+							android:layout_gravity="center"
+							android:text="View My Duties"
 							android:textColor="@color/black"
-							android:textSize="40dp" />
-
+							android:textSize="50dp" />
 					</LinearLayout>
 				</LinearLayout>
 
@@ -344,12 +334,17 @@
 
 				</LinearLayout>
 
-				<Button
+<!--				<Button
 					android:id="@+id/to_view_my_duties"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
+<<<<<<< HEAD
 					android:text="View My Tasks" />
 
+=======
+					android:text="View My Duties" />
+-->
+>>>>>>> e13b152ee269f56be186a4f06521b916d989242e
 			</LinearLayout>
 		</FrameLayout>
 	</ScrollView>

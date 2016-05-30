@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Layout;
 import android.util.AttributeSet;
@@ -104,9 +105,9 @@ public class DutyView extends TaskView {
 				LayoutParams.WRAP_CONTENT,
 				LayoutParams.WRAP_CONTENT, 1.0f));
 
-		name.setTextColor(Color.parseColor("#007EE5"));
-		description.setTextColor(Color.parseColor("#007EE5"));
-		assignee.setTextColor(Color.parseColor("#007EE5"));
+		name.setTextColor(getResources().getColor(R.color.colorPrimary));
+		description.setTextColor(Color.BLACK);
+		assignee.setTextColor(Color.BLACK);
 
 		innerLayout.setOrientation(LinearLayout.VERTICAL);
 		innerLayout.setPadding(50, 50, 50, 50);
@@ -123,6 +124,7 @@ public class DutyView extends TaskView {
 		viewBtn.setText("View");
 		viewBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
 		viewBtn.setBackground(getResources().getDrawable(R.drawable.rec_border));
+		viewBtn.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
 		viewBtn.setPadding(50, 50, 50 , 50);
 		LinearLayout.LayoutParams v = new LayoutParams(
 				LayoutParams.WRAP_CONTENT,
@@ -147,9 +149,10 @@ public class DutyView extends TaskView {
 
 
 
-		editBtn.setText("Edit");
+		editBtn.setText(" Edit ");
 		editBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
 		editBtn.setBackground(getResources().getDrawable(R.drawable.rec_border));
+		editBtn.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
 		editBtn.setPadding(50, 50, 50 , 50);
 /*		editBtn.setLayoutParams(new LayoutParams(
 				LayoutParams.WRAP_CONTENT,

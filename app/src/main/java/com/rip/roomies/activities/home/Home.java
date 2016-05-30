@@ -70,14 +70,23 @@ public class Home extends GenericActivity {
 			}
 		});
 
+
 		goodsScreen.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
 				startActivity(new Intent(self, ListAllGoods.class));
 			}
 		});
+		
+		TextView toMyDuties = (TextView) findViewById(R.id.to_view_my_duties);
+		toMyDuties.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View view){
+				startActivity(new Intent(self, ListMyTasks.class));
+			}
+		}
+		);
 
-		Button toMyDuties = (Button) findViewById(R.id.to_view_my_duties);
 		toMyDuties.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
