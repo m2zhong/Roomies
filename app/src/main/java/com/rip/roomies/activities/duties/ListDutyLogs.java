@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
+import com.rip.roomies.controllers.DutyController;
 import com.rip.roomies.functions.ListDutyLogsFunction;
 import com.rip.roomies.models.DutyLog;
 import com.rip.roomies.util.DisplayStrings;
@@ -29,7 +30,7 @@ public class ListDutyLogs extends GenericActivity implements ListDutyLogsFunctio
 		/* Linking xml objects to java */
 		dlc = (DutyLogContainer) findViewById(R.id.duty_list);
 
-		final Activity self = this;
+		DutyController.getController().DutyLog(this);
 	}
 
 	@Override

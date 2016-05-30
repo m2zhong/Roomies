@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import com.rip.roomies.functions.CompleteDutyFunction;
 import com.rip.roomies.functions.CreateDutyFunction;
 import com.rip.roomies.functions.ListAllDutiesFunction;
+import com.rip.roomies.functions.ListDutyLogsFunction;
 import com.rip.roomies.functions.ListMyDutiesFunction;
 import com.rip.roomies.functions.ModifyDutyFunction;
 import com.rip.roomies.functions.RemoveDutyFunction;
@@ -96,7 +97,30 @@ public class DutyController {
 		}.execute();
 	}
 
+	public void DutyLog(final ListDutyLogsFunction funct)
+	{
+		new AsyncTask<Void, Void, DutyLog[]>() {
+			@Override
+			public DutyLog[] doInBackground(Void... v) {
+				log.info(String.format(Locale.US, InfoStrings.GET_GROUP_DUTIES_CONTROLLER,
+						Group.getActiveGroup().getId()));
 
+				// Create request user and get response from login()
+				return Group.getActiveGroup().getDutyLogs();
+			}
+
+			// If fail, call fail callback. Otherwise, call success callback
+			@Override
+			public void onPostExecute(DutyLog[] response) {
+				if (response == null) {
+					funct.ListDutyLogsFail();
+				}
+				else {
+					funct.ListDutyLogsSuccess(response);
+				}
+			}
+		}.execute();
+	}
 
 	/**
 	 * Attempts to display all duties for this group.

@@ -332,7 +332,7 @@ public class SQLGet {
 					getUser = SQLQuery.execute(String.format(Locale.US, SQLStrings.GET_USER_BY_ID,
 							assigneeId));
 
-					if(getUser == null) {
+					if(getUser == null || !getUser.next()) {
 						log.info(InfoStrings.GET_GROUP_DUTY_LOGS_FAILED);
 						return null;
 					}
