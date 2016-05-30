@@ -1,12 +1,14 @@
 package com.rip.roomies.sql;
 
 import com.rip.roomies.models.Duty;
+import com.rip.roomies.models.DutyLog;
 import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
 import com.rip.roomies.util.Exceptions;
 import com.rip.roomies.util.InfoStrings;
 import com.rip.roomies.util.SQLStrings;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -279,10 +281,84 @@ public class SQLGet {
 				log.info(InfoStrings.GET_DUTY_USERS_SUCCESSFUL);
 
 				User[] temp = new User[users.size()];
+				temp = users.toArray(temp);
 
 				// Return a new user object
 				return new Duty(duty.getId(), duty.getName(), duty.getDescription(),
 						duty.getGroupId(), duty.getAssignee(), temp);
+			}
+		}
+		catch (Exception e) {
+			// Log and return null on exception
+			log.severe(Exceptions.stacktraceToString(e));
+			return null;
+		}
+	}
+
+	/**
+	 * Finds all duty logs from database pertaining to a certain group
+	 * @param group The group to acquire duty logs for
+	 * @return The full set of duty logs belonging to the group
+	 */
+	public static DutyLog[] getGroupDutyLogs(Group group) {
+		ResultSet rs;
+		ResultSet getUser;
+
+		try {
+			// Log finding user
+			log.info(InfoStrings.GET_GROUP_DUTY_LOGS_SQL);
+
+			// Execute SQL
+			rs = SQLQuery.execute(String.format(Locale.US, SQLStrings.GET_GROUP_DUTY_LOGS,
+					group.getId()));
+
+			// If no rows, then finding failed
+			if (rs == null) {
+				log.info(InfoStrings.GET_GROUP_DUTY_LOGS_FAILED);
+				return null;
+			}
+			else {
+				ArrayList<DutyLog> logs = new ArrayList<>();
+
+				while(rs.next()){
+					int resultId = rs.getInt("ID");
+					String resultName = rs.getString("Name");
+					String resultDescription = rs.getString("Description");
+					int resultGroup = rs.getInt("DutyGroupID");
+					Date completeDate = rs.getDate("CompletionDate");
+					int dutyId = rs.getInt("DutyID");
+					int assigneeId = rs.getInt("AssigneeID");
+
+					getUser = SQLQuery.execute(String.format(Locale.US, SQLStrings.GET_USER_BY_ID,
+							assigneeId));
+
+					if(getUser == null || !getUser.next()) {
+						log.info(InfoStrings.GET_GROUP_DUTY_LOGS_FAILED);
+						return null;
+					}
+
+					int userId = getUser.getInt("ID");
+					String first = getUser.getString("FirstName");
+					String last = getUser.getString("LastName");
+					String username = getUser.getString("Username");
+					String email = getUser.getString("Email");
+
+					User assignee = new User(userId, first, last, username, email, null);
+
+					DutyLog temp = new DutyLog(resultId, resultName, resultDescription, resultGroup,
+							completeDate, dutyId, assignee);
+
+					logs.add(temp);
+
+				}
+
+				//debug statement
+				log.info(InfoStrings.GET_GROUP_DUTY_LOGS_SUCCESSFUL);
+
+				DutyLog[] temp = new DutyLog[logs.size()];
+
+				// Return a new user object
+				return logs.toArray(temp);
 			}
 		}
 		catch (Exception e) {

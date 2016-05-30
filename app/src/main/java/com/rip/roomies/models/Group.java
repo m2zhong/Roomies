@@ -118,6 +118,11 @@ public class Group {
 		return SQLGet.getGroupDuties(this);
 	}
 
+	public DutyLog[] getDutyLogs() {
+		log.info(InfoStrings.GET_GROUP_DUTIES_MODEL);
+		return SQLGet.getGroupDutyLogs(this);
+	}
+
 	//------- OBJECT METHODS -------//
 
 	public static Group getActiveGroup() {
