@@ -13,6 +13,7 @@ import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.activities.duties.ListAllDuties;
 import com.rip.roomies.activities.duties.ListMyDuties;
+import com.rip.roomies.activities.goods.ListAllGoods;
 import com.rip.roomies.events.Sockets.GetCompletionDutyListener;
 import com.rip.roomies.events.Sockets.GetReminderDutyListener;
 import com.rip.roomies.models.Group;
@@ -38,6 +39,7 @@ public class Home extends GenericActivity {
 		setContentView(R.layout.activity_home);
 
 		TextView dutiesScreen = (TextView) findViewById(R.id.home_overallduties);
+		TextView goodsScreen = (TextView) findViewById(R.id.home_shareditem);
 
 		final Activity self = this;
 
@@ -45,6 +47,13 @@ public class Home extends GenericActivity {
 			@Override
 			public void onClick(View view) {
 				startActivity(new Intent(self, ListAllDuties.class));
+			}
+		});
+
+		goodsScreen.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				startActivity(new Intent(self, ListAllGoods.class));
 			}
 		});
 
