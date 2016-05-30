@@ -83,6 +83,9 @@ public class SQLStrings {
 	public static final String GET_GROUP_GOODS = "EXEC GetGroupCommonGoods " +
 			"@groupID = %d";
 
+	public static final String GET_GROUP_GOOD_LOGS = "EXEC GetGroupCommonGoodLogs " +
+			"@groupID = %d";
+
 	public static final String GET_GOOD_USERS = "EXEC GetCommonGoodUsers " +
 			"@goodId = %d";
 

@@ -6,6 +6,7 @@ import com.rip.roomies.util.SQLStrings;
 
 import com.rip.roomies.models.Duty;
 import com.rip.roomies.models.DutyLog;
+import com.rip.roomies.models.Good;
 import com.rip.roomies.models.User;
 import com.rip.roomies.util.Exceptions;
 import com.rip.roomies.util.InfoStrings;

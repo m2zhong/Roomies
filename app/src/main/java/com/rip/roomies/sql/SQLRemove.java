@@ -3,6 +3,7 @@ package com.rip.roomies.sql;
 import com.rip.roomies.models.Bill;
 
 import com.rip.roomies.models.Duty;
+import com.rip.roomies.models.Good;
 import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
 import com.rip.roomies.util.Exceptions;

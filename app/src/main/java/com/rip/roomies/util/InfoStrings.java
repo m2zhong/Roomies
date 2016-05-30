@@ -165,6 +165,10 @@ public class InfoStrings {
 	public static final String GET_GROUP_GOODS_SUCCESSFUL = "GetGroupGoods successful!!";
 	public static final String GET_GROUP_GOODS_FAILED = "GetGroupGoods failed!!";
 
+	public static final String GET_GROUP_GOOD_LOGS_SQL = "Getting group good logs...";
+	public static final String GET_GROUP_GOOD_LOGS_SUCCESSFUL = "GetGroupGoodLogs successful!!";
+	public static final String GET_GROUP_GOOD_LOGS_FAILED = "GetGroupGoodLogs failed!!";
+
 	public static final String GET_GOOD_USERS_SQL = "Getting good users...";
 	public static final String GET_GOOD_USERS_SUCCESSFUL = "GetGoodUsers successful!!";
 	public static final String GET_GOOD_USERS_FAILED = "GetGoodUsers failed!!";
@@ -194,6 +198,14 @@ public class InfoStrings {
 	public static final String GET_USER_DUTIES_MODEL = "Getting a list of duties for a user.";
 	public static final String GET_USER_DUTIES_CONTROLLER = "Viewing all duties from user with " +
 			"user id: %d and group id: %d\n";
+
+	public static final String CREATE_GOOD_MODEL = "Creating a good based off the current object";
+
+	public static final String MODIFY_GOOD_MODEL = "Modifying a good based off the current object";
+
+	public static final String REMOVE_GOOD_MODEL = "Removing a good based off the current object";
+
+	public static final String COMPLETE_GOOD_MODEL = "Completing a good based off the current object";
 
 	public static final String GET_ROTATION_MODEL = "Getting the list of users on the duty's rotation.";
 
