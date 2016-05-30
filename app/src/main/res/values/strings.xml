@@ -36,7 +36,7 @@
 
 	<!--Home Screen-->
     <string name="title_activity_add_bill">AddBill</string>
-	<string name="welcomehome">Welcome home</string>
+	<string name="welcomehome">Welcome home </string>
 	<string name="Ranking">Ranking:</string>
 	<string name="trashduty">Trash Duty:</string>
 	<string name="youowe">Total you owe:</string>
@@ -61,7 +61,7 @@
 	<!--Bill-->
 	<string name="bill_title">Bill</string>
 	<string name="bill_youowe_total">You owe:</string>
-	<string name="bill_oweyou_total">Owe you:</string>
+	<string name="bill_oweyou_total"> You requested:</string>
 	<string name="bill_incompletebtns">View Incomplete</string>
 	<string name="bill_requestbtn">Request</string>
 	<string name="bill_paynbtn">Pay</string>
@@ -72,8 +72,9 @@
 	<string name="addbill_amount">How Much is it?</string>
 	<string name="addbill_who">Who to charge</string>
 	<string name="addbill_request">Request</string>
-	<string name="addbill_pay">Pay</string>
+	<string name="addbill_owe">Owe</string>
 	<string name="addbill_submit">Submit</string>
+	<string name="addbill_des_length">(100 characters)</string>
 
 	<!--Settings Screen-->
 	<string name="settings_title">Setting</string>

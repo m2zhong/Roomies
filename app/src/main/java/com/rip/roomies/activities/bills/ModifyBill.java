@@ -43,6 +43,11 @@ public class ModifyBill extends GenericActivity {
         String amounttext = getIntent().getStringExtra("Orig_Key_Amount");
         int rowID = Integer.parseInt(getIntent().getStringExtra("Key_Bill_Row_ID"));
 
+        /* Taking out "$" symbol before displaying amount in Edit Bill
+         * BugFix: $ causes error message for saving changes @OnClick */
+        if(amounttext.startsWith("$"))
+            amounttext=amounttext.substring(1);
+
         name.select(nametext);
         description.setText(desctext);
         amount.setText(amounttext);
@@ -65,7 +70,7 @@ public class ModifyBill extends GenericActivity {
                 Intent intent = new Intent();
                 intent.putExtra("Upd_Key_Name", name.getSelected().toString());
                 intent.putExtra("Upd_Key_Description", description.getText().toString());
-                intent.putExtra("Upd_Key_Amount", amount.getText().toString());
+                intent.putExtra("Upd_Key_Amount", amount.getText().toString().substring(1));
                 setResult(EDIT_BILL_RESULT_CODE, intent);
                 finish();
             }

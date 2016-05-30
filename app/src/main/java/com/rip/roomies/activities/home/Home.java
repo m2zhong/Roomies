@@ -37,15 +37,23 @@ public class Home extends GenericActivity {
 	private static final double IMAGE_HEIGHT_RATIO = 2.0 / 25;
 
 	private Socket mSocket;
+	private User user;
+	private CharSequence first_name;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
 		TextView dutiesScreen;
 		TextView billScreen;
+		TextView username;
+
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 
+		username = (TextView) findViewById(R.id.home_username);
+		user=User.getActiveUser();
+		first_name = user.getFirstName();
+		username.setText(" " + first_name + "!");
 		dutiesScreen = (TextView) findViewById(R.id.home_overallduties);
 		billScreen = (TextView) findViewById(R.id.home_IOU);
 		dutiesScreen = (TextView) findViewById(R.id.home_overallduties);
