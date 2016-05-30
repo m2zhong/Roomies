@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.rip.roomies.R;
 import com.rip.roomies.activities.duties.ModifyDuty;
 import com.rip.roomies.activities.duties.ViewDuty;
 import com.rip.roomies.models.Duty;
@@ -82,7 +84,7 @@ public class DutyView extends LinearLayout {
 
 		LinearLayout.LayoutParams w = new LayoutParams(
 				LayoutParams.MATCH_PARENT,
-				LayoutParams.MATCH_PARENT);
+				LayoutParams.WRAP_CONTENT);
 		setLayoutParams(w);
 		setOrientation(LinearLayout.VERTICAL);
 
@@ -99,8 +101,8 @@ public class DutyView extends LinearLayout {
 		Button editBtn = new Button(getContext());
 		LinearLayout innerLayout = new LinearLayout(getContext());
 		innerLayout.setLayoutParams(new LayoutParams(
-				0,
-				LayoutParams.MATCH_PARENT, 1.0f));
+				LayoutParams.WRAP_CONTENT,
+				LayoutParams.WRAP_CONTENT, 1.0f));
 
 		name.setTextColor(Color.parseColor("#007EE5"));
 		description.setTextColor(Color.parseColor("#007EE5"));
@@ -119,10 +121,12 @@ public class DutyView extends LinearLayout {
 		innerLayout.addView(assignee);
 
 		viewBtn.setText("View");
+		viewBtn.setBackground(getResources().getDrawable(R.drawable.rec_border));
+		viewBtn.setPadding(50, 50, 50 , 50);
 		LinearLayout.LayoutParams v = new LayoutParams(
 				LayoutParams.WRAP_CONTENT,
-				LayoutParams.MATCH_PARENT);
-		v.setMargins(0, 50, 0, 50);
+				LayoutParams.WRAP_CONTENT);
+		v.setMargins(10, 50, 10, 50);
 		viewBtn.setLayoutParams(v);
 /*		viewBtn.setLayoutParams(new LayoutParams(
 				LayoutParams.WRAP_CONTENT,
@@ -142,14 +146,17 @@ public class DutyView extends LinearLayout {
 
 
 		editBtn.setText("Edit");
+		editBtn.setBackground(getResources().getDrawable(R.drawable.rec_border));
+		editBtn.setPadding(50, 50, 50 , 50);
 /*		editBtn.setLayoutParams(new LayoutParams(
 				LayoutParams.WRAP_CONTENT,
 				LayoutParams.MATCH_PARENT, 1.0f)); */
 		LinearLayout.LayoutParams p = new LayoutParams(
 				LayoutParams.WRAP_CONTENT,
-				LayoutParams.MATCH_PARENT);
+				LayoutParams.WRAP_CONTENT);
 		p.gravity = Gravity.CENTER_VERTICAL;
-		p.setMargins(0, 50, 0, 50);
+		v.gravity = Gravity.CENTER_VERTICAL;
+		p.setMargins(10, 50, 10, 50);
 		editBtn.setLayoutParams(p);
 		editBtn.setOnClickListener(new OnClickListener() {
 			@Override
