@@ -18,6 +18,7 @@ public class ModifyBill extends GenericActivity {
     private EditText description;
     private EditText amount;
     private Button submitChanges;
+    private boolean negative;
     private final int EDIT_BILL_RESULT_CODE = 1;
 
     @Override
@@ -34,7 +35,19 @@ public class ModifyBill extends GenericActivity {
         String nametext = getIntent().getStringExtra("Orig_Key_Name");
         String desctext = getIntent().getStringExtra("Orig_Key_Description");
         String amounttext = getIntent().getStringExtra("Orig_Key_Amount");
+
         int rowID = Integer.parseInt(getIntent().getStringExtra("Key_Bill_Row_ID"));
+
+        negative = false;
+        if (amounttext.charAt(0) == '$')
+            amounttext = amounttext.substring(1);
+        else if (amounttext.charAt(0) == '-') {
+            negative = true;
+            if (amounttext.charAt(1) == '$')
+                amounttext = amounttext.substring(2);
+            else
+                amounttext = amounttext.substring(1);
+        }
 
         name.setText(nametext);
         description.setText(desctext);
@@ -58,7 +71,19 @@ public class ModifyBill extends GenericActivity {
                 Intent intent = new Intent();
                 intent.putExtra("Upd_Key_Name", name.getText().toString());
                 intent.putExtra("Upd_Key_Description", description.getText().toString());
-                intent.putExtra("Upd_Key_Amount", amount.getText().toString());
+
+                DecimalFormat cash = new DecimalFormat("$#.##");
+                cash.setMinimumFractionDigits(2);
+                String text = amount.getText().toString();
+                if (text.charAt(0) == '$')
+                    text = text.substring(1);
+                else if (text.charAt(0) == '-' && text.charAt(1) == '$')
+                    text = text.substring(2);
+                float value = Float.parseFloat(text);
+                if (negative)
+                    intent.putExtra("Upd_Key_Amount", "-" + cash.format(value));
+                else
+                    intent.putExtra("Upd_Key_Amount",cash.format(value));
                 setResult(EDIT_BILL_RESULT_CODE, intent);
                 finish();
             }
@@ -77,7 +102,6 @@ public class ModifyBill extends GenericActivity {
 
     public boolean parseArgs(String name, String description, String amount, EditText etAmount) {
         float tempFloat;
-        DecimalFormat df = new DecimalFormat("#.00");
 
         //check the name first.
         if (name == "" || description == "" || amount == "") {

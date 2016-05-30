@@ -13,6 +13,7 @@ import com.rip.roomies.events.bills.RemoveBillListener;
 import com.rip.roomies.models.Bill;
 import com.rip.roomies.util.InfoStrings;
 
+import java.text.DecimalFormat;
 import java.util.logging.Logger;
 
 /**
@@ -25,6 +26,7 @@ public class BillView extends LinearLayout {
     Bills activity;
 
     private Bill bill;
+    private BillContainer container;
 
     /**
      * @see android.view.View( Context )
@@ -33,9 +35,10 @@ public class BillView extends LinearLayout {
         super(context);
     }
 
-    public BillView(Context context, Bills activity) {
+    public BillView(Context context, Bills activity, BillContainer container) {
         super(context);
         this.activity = activity;
+        this.container = container;
     }
 
 
@@ -73,6 +76,15 @@ public class BillView extends LinearLayout {
     }
 
     /**
+     * Get the BillContainer holding this BillView
+     *
+     * @return The BillContainer object in question
+     */
+    public BillContainer getContainer() {
+        return container;
+    }
+
+    /**
      * Sets up the layout for this UserView.
      */
     private void setupLayout() {
@@ -101,8 +113,11 @@ public class BillView extends LinearLayout {
 
 
         name.setText(bill.getName());
-        amount.setText(String.valueOf(bill.getAmount()));
         description.setText(bill.getDescription());
+
+        DecimalFormat cash = new DecimalFormat("$#.##");
+        cash.setMinimumFractionDigits(2);
+        amount.setText(cash.format(Math.abs(bill.getAmount())));
 
 
 

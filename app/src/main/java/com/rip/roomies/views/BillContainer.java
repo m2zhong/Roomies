@@ -62,7 +62,7 @@ public class BillContainer extends ScrollView {
         //add our newly created bill to our dynamic arraylist of bills.
         bills.add(newBill);
 
-        BillView billView = new BillView(getContext(), (Bills)getContext());
+        BillView billView = new BillView(getContext(), (Bills)getContext(), this);
         billView.setBill(newBill);
         billLayout.addView(billView);
     }

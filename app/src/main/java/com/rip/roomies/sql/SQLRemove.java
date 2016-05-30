@@ -143,7 +143,7 @@ public class SQLRemove {
 					resultID, resultOwnerID, resultName, resultDescription, resultAmount));
 
 			// Return a new user object
-			return new Bill(resultID, resultOwnerID, resultName, resultDescription, resultAmount);
+			return new Bill(resultOwnerID, resultID, resultName, resultDescription, resultAmount);
 		}
 		catch (Exception e) {
 			// Log and return null on exception

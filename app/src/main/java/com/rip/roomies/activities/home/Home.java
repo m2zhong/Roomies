@@ -2,6 +2,7 @@ package com.rip.roomies.activities.home;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,11 +17,14 @@ import com.rip.roomies.activities.duties.ListAllDuties;
 import com.rip.roomies.activities.duties.ListMyDuties;
 import com.rip.roomies.events.Sockets.GetCompletionDutyListener;
 import com.rip.roomies.events.Sockets.GetReminderDutyListener;
+import com.rip.roomies.models.Bill;
 import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
+import com.rip.roomies.util.InfoStrings;
 import com.rip.roomies.util.SocketStrings;
 
 import java.net.URISyntaxException;
+import java.util.Locale;
 import java.util.logging.Logger;
 
 
@@ -58,6 +62,8 @@ public class Home extends GenericActivity {
 			}
 		});
 
+		setBalance(billScreen);
+
 		Button toMyDuties = (Button) findViewById(R.id.to_view_my_duties);
 		toMyDuties.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -84,6 +90,20 @@ public class Home extends GenericActivity {
 	@Override
 	public void onBackPressed() {
 		// This does nothing
+	}
+
+	private void setBalance(final TextView billScreen) {
+		// Create and run a new thread
+		new AsyncTask<Void, Void, CharSequence>() {
+			@Override
+			protected CharSequence doInBackground(Void... v) {
+				return Bill.getNegativeBalance();
+			}
+			@Override
+			protected void onPostExecute(CharSequence result) {
+				billScreen.setText(result);
+			}
+		}.execute();
 	}
 
 }

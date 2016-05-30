@@ -380,13 +380,12 @@ public class SQLGet {
 					int resultOwnerId = rs.getInt("OwnerID");
 					String resultName = rs.getString("Name");
 					String resultDescription = rs.getString("Description");
-					float resultAmount = rs.getInt("Amount");
+					float resultAmount = rs.getFloat("Amount");
 
-					Bill temp = new Bill(resultId, resultOwnerId, resultName, resultDescription,
+					Bill temp = new Bill(resultOwnerId, resultId, resultName, resultDescription,
 							resultAmount);
 
 					bills.add(temp);
-
 				}
 
 				//debug statement
