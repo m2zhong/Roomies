@@ -115,4 +115,54 @@ public class SQLRemove {
 			return null;
 		}
 	}
+
+	// good
+	public static Good removeGood(Good good) {
+
+		try {
+			ResultSet rs;
+
+			// Log removing user from group
+			log.info(InfoStrings.REMOVEGOOD_SQL);
+
+			rs = SQLQuery.execute(String.format(Locale.US, SQLStrings.REMOVE_GOOD,
+					good.getId()));
+
+			// error happened when contacting sql server
+			if(rs == null || !rs.next()) {
+				// debug statement
+				log.info(InfoStrings.REMOVEGOOD_FAILED);
+				return null;
+			}
+			// if there is a rs
+			else {
+				//explain what each column corresponds to
+				int resultId = rs.getInt("GoodID");
+				String resultName = rs.getString("Name");
+				String resultDescription = rs.getString("Description");
+				int resultGroup = rs.getInt("GroupID");
+
+				User u = new User(
+						rs.getInt("ID"),
+						rs.getString("FirstName"),
+						rs.getString("LastName"),
+						rs.getString("Username"),
+						rs.getString("Email"),
+						null
+				);
+
+				// debug statement
+				log.info(String.format(Locale.US, InfoStrings.REMOVEGOOD_SUCCESSFUL,
+						resultId, resultName, resultDescription, resultGroup));
+
+				return new Good(resultId, resultName, resultDescription, resultGroup,
+						u, good.getUsers());
+			}
+		}
+		catch (Exception e) {
+			// Log and return null on exception
+			log.severe(Exceptions.stacktraceToString(e));
+			return null;
+		}
+	}
 }
