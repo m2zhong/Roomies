@@ -121,11 +121,13 @@ public class DutyView extends LinearLayout {
 		innerLayout.addView(assignee);
 
 		viewBtn.setText("View");
+		viewBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
 		viewBtn.setBackground(getResources().getDrawable(R.drawable.rec_border));
 		viewBtn.setPadding(50, 50, 50 , 50);
 		LinearLayout.LayoutParams v = new LayoutParams(
 				LayoutParams.WRAP_CONTENT,
 				LayoutParams.WRAP_CONTENT);
+		v.gravity = Gravity.CENTER_VERTICAL;
 		v.setMargins(10, 50, 10, 50);
 		viewBtn.setLayoutParams(v);
 /*		viewBtn.setLayoutParams(new LayoutParams(
@@ -146,6 +148,7 @@ public class DutyView extends LinearLayout {
 
 
 		editBtn.setText("Edit");
+		editBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
 		editBtn.setBackground(getResources().getDrawable(R.drawable.rec_border));
 		editBtn.setPadding(50, 50, 50 , 50);
 /*		editBtn.setLayoutParams(new LayoutParams(
@@ -155,7 +158,6 @@ public class DutyView extends LinearLayout {
 				LayoutParams.WRAP_CONTENT,
 				LayoutParams.WRAP_CONTENT);
 		p.gravity = Gravity.CENTER_VERTICAL;
-		v.gravity = Gravity.CENTER_VERTICAL;
 		p.setMargins(10, 50, 10, 50);
 		editBtn.setLayoutParams(p);
 		editBtn.setOnClickListener(new OnClickListener() {

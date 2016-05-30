@@ -17,7 +17,7 @@ public class JoinGroup extends GenericActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_join_group);
 
-		EditText name = (EditText) findViewById(R.id.group_name_field);
+		EditText name = (EditText) findViewById(R.id.group_name);
 		Button submit = (Button) findViewById(R.id.join_group_btn);
 
 		submit.setOnClickListener(new JoinGroupListener(this, name));
