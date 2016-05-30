@@ -49,6 +49,7 @@ public class SQLQuery {
 	 * @throws Exception if the database cannot be connected to or statement fails
 	 */
 	protected static ResultSet execute(String query) throws Exception {
+
 		if (conn == null || conn.isClosed()) {
 			connect();
 		}

@@ -118,6 +118,21 @@ public class Group {
 		return SQLGet.getGroupDuties(this);
 	}
 
+	public DutyLog[] getDutyLogs() {
+		log.info(InfoStrings.GET_GROUP_DUTIES_MODEL);
+		return SQLGet.getGroupDutyLogs(this);
+	}
+
+	public Good[] getGoods() {
+		log.info(InfoStrings.GET_GROUP_GOODS_MODEL);
+		return SQLGet.getGroupGoods(this);
+	}
+
+	public GoodLog[] getGoodLogs() {
+		log.info(InfoStrings.GET_GROUP_GOOD_LOGS_MODEL);
+		return SQLGet.getGroupGoodLogs(this);
+	}
+
 	//------- OBJECT METHODS -------//
 
 	public static Group getActiveGroup() {
@@ -126,6 +141,10 @@ public class Group {
 
 	public static void setActiveGroup(Group group) {
 		activeGroup = group.getUsers();
+	}
+
+	public static void setActiveGroupDescription(String newDescription) {
+		activeGroup.description = newDescription;
 	}
 
 	public String getName() {

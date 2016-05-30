@@ -1,6 +1,9 @@
 package com.rip.roomies.activities.duties;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -10,6 +13,7 @@ import com.rip.roomies.events.duties.CompleteDutyListener;
 import com.rip.roomies.events.duties.RemindDutyListener;
 import com.rip.roomies.models.Duty;
 import com.rip.roomies.models.User;
+import com.rip.roomies.views.DutyView;
 import com.rip.roomies.views.UserContainer;
 
 import java.util.logging.Logger;

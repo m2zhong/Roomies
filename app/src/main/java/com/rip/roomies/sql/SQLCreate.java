@@ -2,6 +2,7 @@ package com.rip.roomies.sql;
 
 import com.rip.roomies.models.Bill;
 import com.rip.roomies.models.Duty;
+import com.rip.roomies.models.Good;
 import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
 import com.rip.roomies.util.Exceptions;
@@ -191,17 +192,11 @@ public class SQLCreate {
 		}
 	}
 
-
 	public static Bill createBill(Bill bill) {
 		ResultSet rset;
 
 		try {
 			log.info(InfoStrings.CREATEBILL_SQL);
-
-			String temp = String.format(Locale.US, SQLStrings.CREATE_BILL,
-					User.getActiveUser().getId(), bill.getName(), bill.getDescription(),
-					bill.getAmount());
-
 
 			// get the result table from query execution through sql
 			rset = SQLQuery.execute(String.format(Locale.US, SQLStrings.CREATE_BILL,
@@ -231,6 +226,78 @@ public class SQLCreate {
 
 			return null;
 		}
+	}
 
+
+	/**
+	 * Use SQLQuery class to create an connection and insert a good into the goods table on the
+	 * database. Additionally, the user rotation order is inserted into the users_duty table.
+	 * If successful the Good object will be returned, otherwise return null
+	 *
+	 * @param good The Good that should be created on the database
+	 * @return Good - the Good object with all the group info just been created
+	 */
+	public static Good createGood(Good good) {
+		ResultSet rset;
+		String usersString = "";
+
+		try {
+			// Turn users array into a delineated string
+			for (User user : good.getUsers()) {
+				usersString += user.getId();
+				usersString += SQLStrings.LIST_DELIMITER;
+			}
+
+			// Can only take max length of 1000, so truncate
+			if (usersString.length() > MAX_USERS_STRING_LENGTH) {
+				log.warning(String.format(Locale.US, WarningStrings.ADD_USERS_TO_GROUP_TRUNCATE,
+						MAX_USERS_STRING_LENGTH));
+				usersString = usersString.substring(0, MAX_USERS_STRING_LENGTH);
+				usersString = usersString.substring(0, usersString.lastIndexOf(SQLStrings.LIST_DELIMITER) + 1);
+			}
+
+			//debug statement
+			log.info(InfoStrings.CREATEGOOD_SQL);
+
+			// get the result table from query execution through sql
+			rset = SQLQuery.execute(String.format(Locale.US, SQLStrings.CREATE_GOOD,
+					SQLQuery.sanitize(good.getName()), SQLQuery.sanitize(good.getDescription()),
+					good.getGroupId(), SQLQuery.sanitize(usersString)));
+
+			// error happened when contacting sql server
+			if(rset == null || !rset.next()) {
+				// debug statement
+				log.info(InfoStrings.CREATEGOOD_FAILED);
+				return null;
+			}
+			// if there is a rset
+			else {
+				//explain what each column corresponds to
+				int resultId = rset.getInt("GoodID");
+				String resultName = rset.getString("Name");
+				String resultDescription = rset.getString("Description");
+				int resultGroup = rset.getInt("GroupID");
+
+				User u = new User(
+						rset.getInt("ID"),
+						rset.getString("FirstName"),
+						rset.getString("LastName"),
+						rset.getString("Username"),
+						rset.getString("Email"),
+						null
+				);
+
+				// debug statement
+				log.info(String.format(Locale.US, InfoStrings.CREATEGOOD_SUCCESSFUL,
+						resultId, resultName, resultDescription, resultGroup));
+
+				return new Good(resultId, resultName, resultDescription, resultGroup,
+						u, good.getUsers());
+			}
+		}
+		catch (Exception e) {
+			log.severe(Exceptions.stacktraceToString(e));
+			return null;
+		}
 	}
 }

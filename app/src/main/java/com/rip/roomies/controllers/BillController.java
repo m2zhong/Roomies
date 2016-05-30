@@ -35,7 +35,8 @@ public class BillController {
 
     public void createBill(final String name, final String description, final String amount,
                            final BillContainer youowe_bills_container,
-                           final BillContainer oweyou_bills_container) {
+                           final BillContainer oweyou_bills_container,
+                           final String oweeID) {
 
         if(amount.startsWith("-"))
             this.bills = youowe_bills_container;
@@ -62,11 +63,11 @@ public class BillController {
                     //add the bill returned from the DB to the BillContainer. Has uniq bill id, owner id, name, desc, amount...
 
                     if(amount.startsWith("-")){
-                        youowe_bills_container.addBill(result);
+                        youowe_bills_container.addBill(result, oweeID);
                         activity.addToYouOweBalance(result.getAmount());
                     }
                     else {
-                        oweyou_bills_container.addBill(result);
+                        oweyou_bills_container.addBill(result, oweeID);
                         activity.addToOweYouBalance(result.getAmount());
                     }
 
@@ -143,11 +144,11 @@ public class BillController {
                     for (Bill bill : result) {
                         if (bill.getAmount() < 0) {
                             bill.setAmount(bill.getAmount());
-                            youowe_bills_container.addBill(bill);
+                            youowe_bills_container.addBill(bill, ""); //TODO play nice with reminder
                             activity.addToYouOweBalance(bill.getAmount());
                         }
                         else {
-                            oweyou_bills_container.addBill(bill);
+                            oweyou_bills_container.addBill(bill, ""); //TODO play nice with reminder
                             activity.addToOweYouBalance(bill.getAmount());
                         }
                     }

@@ -26,6 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:background="@color/label_pink"
             android:paddingBottom="5dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
@@ -36,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight=".40"
                 android:text="@string/bill_youowe_total"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorAccent"
                 android:textSize="25dp"
                 />
 
@@ -47,7 +48,7 @@
                 android:layout_weight=".60"
                 android:gravity="right"
                 android:text="$0.00"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorAccent"
                 android:textSize="30dp"
                 />
 
@@ -68,6 +69,7 @@
 		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
 		    android:orientation="horizontal"
+		    android:background="@color/green"
 		    android:paddingBottom="5dp"
 		    android:paddingLeft="10dp"
 		    android:paddingRight="10dp"
@@ -78,7 +80,7 @@
 			    android:layout_height="wrap_content"
 			    android:layout_weight=".40"
 			    android:text="@string/bill_oweyou_total"
-			    android:textColor="@color/colorPrimary"
+			    android:textColor="@color/colorAccent"
 			    android:textSize="25sp"/>
 
 		    <TextView
@@ -88,7 +90,7 @@
 			    android:layout_weight=".60"
 			    android:gravity="right"
 			    android:text="$0.00"
-			    android:textColor="@color/colorPrimary"
+			    android:textColor="@color/colorAccent"
 			    android:textSize="30sp" />
 
 	    </LinearLayout>

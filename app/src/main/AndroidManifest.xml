@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.rip.roomies">
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -16,6 +17,7 @@
             android:theme="@style/FullscreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -81,30 +83,54 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_invite_users"
             android:theme="@style/FullscreenTheme" />
-        <activity android:name=".activities.bills.Bills" />
-        <activity android:name=".activities.bills.ModifyBill" />
         <activity
-            android:name=".activities.bills.AddBill"
-            android:label="@string/title_activity_add_bill"></activity>
-
+            android:name=".activities.duties.CreateDuty"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".activities.duties.ListAllDuties"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".activities.duties.ModifyDuty"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".activities.duties.ViewDuty"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/FullscreenTheme" />
+        <activity android:name=".activities.profile.Profile" />
+        <activity android:name=".activities.profile.ChangePassword"/>
+		<activity android:name=".activities.bills.Bills"
+		          android:screenOrientation="portrait"/>
+		<activity android:name=".activities.bills.ModifyBill"
+		          android:screenOrientation="portrait"/>
 		<activity
-			android:name=".activities.duties.CreateDuty"
+			android:name=".activities.bills.AddBill"
+			android:label="@string/title_activity_add_bill"
+			android:screenOrientation="portrait"/>
+		<activity
+			android:name=".activities.tasks.ListMyTasks"
 			android:configChanges="orientation|keyboardHidden|screenSize"
 			android:theme="@style/FullscreenTheme" />
 		<activity
-			android:name=".activities.duties.ListAllDuties"
+			android:name=".activities.duties.ListDutyLogs"
 			android:configChanges="orientation|keyboardHidden|screenSize"
 			android:theme="@style/FullscreenTheme" />
 		<activity
-			android:name=".activities.duties.ListMyDuties"
+			android:name=".activities.goods.CreateGood"
 			android:configChanges="orientation|keyboardHidden|screenSize"
 			android:theme="@style/FullscreenTheme" />
 		<activity
-			android:name=".activities.duties.ModifyDuty"
+			android:name=".activities.goods.ListAllGoods"
 			android:configChanges="orientation|keyboardHidden|screenSize"
 			android:theme="@style/FullscreenTheme" />
 		<activity
-			android:name=".activities.duties.ViewDuty"
+			android:name=".activities.goods.ListGoodLogs"
+			android:configChanges="orientation|keyboardHidden|screenSize"
+			android:theme="@style/FullscreenTheme" />
+		<activity
+			android:name=".activities.goods.ViewGood"
 			android:configChanges="orientation|keyboardHidden|screenSize"
 			android:theme="@style/FullscreenTheme" />
 	</application>

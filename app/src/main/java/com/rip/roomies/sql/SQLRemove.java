@@ -3,6 +3,7 @@ package com.rip.roomies.sql;
 import com.rip.roomies.models.Bill;
 
 import com.rip.roomies.models.Duty;
+import com.rip.roomies.models.Good;
 import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
 import com.rip.roomies.util.Exceptions;
@@ -36,7 +37,7 @@ public class SQLRemove {
 					groupId, userId));
 
 			// error happened when contacting sql server
-			if(rs == null || !rs.next()) {
+			if (rs == null || !rs.next()) {
 				// debug statement
 				log.info(InfoStrings.REMOVE_USER_FROM_GROUP_FAILED);
 				return null;
@@ -60,8 +61,7 @@ public class SQLRemove {
 				return new User(resultID, resultFirstName, resultLastName, resultUsername,
 						resultEmail, null);
 			}
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			// Log and return null on exception
 			log.severe(Exceptions.stacktraceToString(e));
 			return null;
@@ -81,7 +81,7 @@ public class SQLRemove {
 					duty.getId()));
 
 			// error happened when contacting sql server
-			if(rs == null || !rs.next()) {
+			if (rs == null || !rs.next()) {
 				// debug statement
 				log.info(InfoStrings.REMOVEDUTY_FAILED);
 				return null;
@@ -110,8 +110,7 @@ public class SQLRemove {
 				return new Duty(resultId, resultName, resultDescription, resultGroup,
 						u, duty.getUsers());
 			}
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			// Log and return null on exception
 			log.severe(Exceptions.stacktraceToString(e));
 			return null;
@@ -119,11 +118,11 @@ public class SQLRemove {
 	}
 
 	public static Bill removeBill(int rowID) {
+		// Log removing bill from sql
 
 		try {
 			ResultSet rs;
 
-			// Log removing bill from sql
 			log.info(InfoStrings.REMOVE_BILL_FROM_TABLE_SQL);
 
 			rs = SQLQuery.execute(String.format(Locale.US, SQLStrings.DELETE_BILL,
@@ -152,5 +151,53 @@ public class SQLRemove {
 		}
 	}
 
+	// good
+	public static Good removeGood(Good good) {
 
+		try {
+			ResultSet rs;
+
+
+			// Log removing user from group
+			log.info(InfoStrings.REMOVEGOOD_SQL);
+
+			rs = SQLQuery.execute(String.format(Locale.US, SQLStrings.REMOVE_GOOD,
+					good.getId()));
+
+			// error happened when contacting sql server
+			if (rs == null || !rs.next()) {
+				// debug statement
+				log.info(InfoStrings.REMOVEGOOD_FAILED);
+				return null;
+			}
+			// if there is a rs
+			else {
+				//explain what each column corresponds to
+				int resultId = rs.getInt("GoodID");
+				String resultName = rs.getString("Name");
+				String resultDescription = rs.getString("Description");
+				int resultGroup = rs.getInt("GroupID");
+
+				User u = new User(
+						rs.getInt("ID"),
+						rs.getString("FirstName"),
+						rs.getString("LastName"),
+						rs.getString("Username"),
+						rs.getString("Email"),
+						null
+				);
+
+				// debug statement
+				log.info(String.format(Locale.US, InfoStrings.REMOVEGOOD_SUCCESSFUL,
+						resultId, resultName, resultDescription, resultGroup));
+
+				return new Good(resultId, resultName, resultDescription, resultGroup,
+						u, good.getUsers());
+			}
+		} catch (Exception e) {
+			// Log and return null on exception
+			log.severe(Exceptions.stacktraceToString(e));
+			return null;
+		}
+	}
 }

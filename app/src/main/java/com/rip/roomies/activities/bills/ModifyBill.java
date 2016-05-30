@@ -9,12 +9,15 @@ import android.widget.Toast;
 
 import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
+import com.rip.roomies.models.Group;
+import com.rip.roomies.models.User;
+import com.rip.roomies.views.UserSpinner;
 
 import java.text.DecimalFormat;
 
 public class ModifyBill extends GenericActivity {
 
-    private EditText name;
+    private UserSpinner name;
     private EditText description;
     private EditText amount;
     private Button submitChanges;
@@ -27,10 +30,14 @@ public class ModifyBill extends GenericActivity {
         setContentView(R.layout.activity_modify_bill);
 
         //link xml objects to java
-        name = (EditText) findViewById(R.id.editBillName);
+        name = (UserSpinner) findViewById(R.id.editBillName);
         description = (EditText) findViewById(R.id.editBillDescription);
         amount = (EditText) findViewById(R.id.editBillAmount);
         submitChanges = (Button) findViewById(R.id.submitBillChanges);
+
+        for (User u : Group.getActiveGroup().getMembers()) {
+            name.addUser(u);
+        }
 
         String nametext = getIntent().getStringExtra("Orig_Key_Name");
         String desctext = getIntent().getStringExtra("Orig_Key_Description");
@@ -49,7 +56,7 @@ public class ModifyBill extends GenericActivity {
                 amounttext = amounttext.substring(1);
         }
 
-        name.setText(nametext);
+        name.select(nametext);
         description.setText(desctext);
         amount.setText(amounttext);
 
@@ -59,7 +66,7 @@ public class ModifyBill extends GenericActivity {
 
                 //check the modified arguments and make sure they're ok
                 //if parseARgs returns false, means user entered in something wrong.
-                if (!parseArgs(name.getText().toString(), description.getText().toString(),
+                if (!parseArgs(name.getSelected().toString(), description.getText().toString(),
                         amount.getText().toString(), amount)) {
                     return;
                 }
@@ -69,7 +76,7 @@ public class ModifyBill extends GenericActivity {
 
 
                 Intent intent = new Intent();
-                intent.putExtra("Upd_Key_Name", name.getText().toString());
+                intent.putExtra("Upd_Key_Name", name.getSelected().toString());
                 intent.putExtra("Upd_Key_Description", description.getText().toString());
 
                 DecimalFormat cash = new DecimalFormat("$#.##");

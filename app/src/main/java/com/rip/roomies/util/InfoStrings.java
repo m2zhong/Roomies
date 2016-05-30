@@ -139,13 +139,45 @@ public class InfoStrings {
 	public static final String GET_GROUP_DUTY_LOGS_SUCCESSFUL = "GetGroupDutyLogs successful!!";
 	public static final String GET_GROUP_DUTY_LOGS_FAILED = "GetGroupDutyLogs failed!!";
 
-	public static final String GET_USER_DUTIES_SQL = "Getting user duties...";
-	public static final String GET_USER_DUTIES_SUCCESSFUL = "GetUserDuties successful!!";
-	public static final String GET_USER_DUTIES_FAILED = "GetUserDuties failed!!";
+	public static final String GET_USER_TASKS_SQL = "Getting user tasks...";
+	public static final String GET_USER_TASKS_SUCCESSFUL = "GetUserTasks successful!!";
+	public static final String GET_USER_TASKS_FAILED = "GetUserTasks failed!!";
 
 	public static final String GET_DUTY_USERS_SQL = "Getting duty users...";
 	public static final String GET_DUTY_USERS_SUCCESSFUL = "GetDutyUsers successful!!";
 	public static final String GET_DUTY_USERS_FAILED = "GetDutyUsers failed!!";
+
+	public static final String CREATEGOOD_SQL = "Creating good...";
+	public static final String CREATEGOOD_SUCCESSFUL = "CreateGood successful!! \n" +
+			"ID: %d\nName: %s\nDescription: %s\nGroup Id: %d";
+	public static final String CREATEGOOD_FAILED = "CreateGood failed!!";
+
+	public static final String COMPLETEGOOD_SQL = "Completing good...";
+	public static final String COMPLETEGOOD_SUCCESSFUL = "CompleteGood successful!! \n" +
+			"ID: %d\nName: %s\nDescription: %s\nGroup Id: %d";
+	public static final String COMPLETEGOOD_FAILED = "CompleteGood failed!!";
+
+	public static final String REMOVEGOOD_SQL = "Removing good...";
+	public static final String REMOVEGOOD_SUCCESSFUL = "RemoveGood successful!! \n" +
+			"ID: %d\nName: %s\nDescription: %s\nGroup Id: %d";
+	public static final String REMOVEGOOD_FAILED = "RemoveDuty failed!!";
+
+	public static final String MODIFYGOOD_SQL = "Modifying good...";
+	public static final String MODIFYGOOD_SUCCESSFUL = "ModifyGood successful!! \n" +
+			"ID: %d\nName: %s\nDescription: %s\nGroup Id: %d";
+	public static final String MODIFYGOOD_FAILED = "ModifyGood failed!!";
+
+	public static final String GET_GROUP_GOODS_SQL = "Getting group goods...";
+	public static final String GET_GROUP_GOODS_SUCCESSFUL = "GetGroupGoods successful!!";
+	public static final String GET_GROUP_GOODS_FAILED = "GetGroupGoods failed!!";
+
+	public static final String GET_GROUP_GOOD_LOGS_SQL = "Getting group good logs...";
+	public static final String GET_GROUP_GOOD_LOGS_SUCCESSFUL = "GetGroupGoodLogs successful!!";
+	public static final String GET_GROUP_GOOD_LOGS_FAILED = "GetGroupGoodLogs failed!!";
+
+	public static final String GET_GOOD_USERS_SQL = "Getting good users...";
+	public static final String GET_GOOD_USERS_SUCCESSFUL = "GetGoodUsers successful!!";
+	public static final String GET_GOOD_USERS_FAILED = "GetGoodUsers failed!!";
 
 	public static final String CREATE_DUTY_EVENT = "Validation passed. Attempting to create duty.";
 	public static final String CREATE_DUTY_MODEL = "Creating a duty based off the current object.";
@@ -155,7 +187,7 @@ public class InfoStrings {
 	public static final String MODIFY_DUTY_EVENT = "Validation passed. Attempting to modify duty.";
 	public static final String MODIFY_DUTY_MODEL = "Modifying a duty based off the current object.";
 	public static final String MODIFY_DUTY_CONTROLLER = "Modifying duty from user given fields:\n" +
-			"ID: '%s'\nName: '%s'\nDescription: '%s'";
+			"ID: %d\nName: '%s'\nDescription: '%s'";
 
 	public static final String REMOVE_DUTY_EVENT = "Validation passed. Attempting to remove duty.";
 	public static final String REMOVE_DUTY_MODEL = "Removing a duty based off the current object.";
@@ -169,8 +201,36 @@ public class InfoStrings {
 	public static final String GET_GROUP_DUTIES_CONTROLLER = "Viewing all duties from the group" +
 			"with group id: %d.\n";
 
-	public static final String GET_USER_DUTIES_MODEL = "Getting a list of duties for a user.";
-	public static final String GET_USER_DUTIES_CONTROLLER = "Viewing all duties from user with " +
+	public static final String GET_USER_TASKS_MODEL = "Getting a list of tasks for a user.";
+	public static final String GET_USER_TASKS_CONTROLLER = "Viewing all tasks from user with " +
+			"user id: %d and group id: %d\n";
+
+	public static final String CREATE_GOOD_EVENT = "Validation passed. Attempting to create good.";
+	public static final String CREATE_GOOD_MODEL = "Creating a good based off the current object";
+	public static final String CREATE_GOOD_CONTROLLER = "Creating good from user given fields:\n" +
+			"Name: '%s'\nDescription: '%s'\nGroupID: '%s',Users: '%d'";
+
+	public static final String MODIFY_GOOD_MODEL = "Modifying a good based off the current object";
+	public static final String MODIFY_GOOD_CONTROLLER = "Modifying good from user given fields:\n" +
+			"ID: %d,Name: '%s',Description: '%s'";
+
+	public static final String REMOVE_GOOD_EVENT = "Validation passed. Attempting to remove good.";
+	public static final String REMOVE_GOOD_MODEL = "Removing a good based off the current object";
+	public static final String REMOVE_GOOD_CONTROLLER = "Removing a good with the id %d.\n";
+
+	public static final String COMPLETE_GOOD_MODEL = "Completing a good based off the current object";
+	public static final String COMPLETE_GOOD_CONTROLLER = "Completing a good with the id %d.\n";
+
+	public static final String GET_GROUP_GOODS_MODEL = "Getting a list of goods for a group.";
+	public static final String GET_GROUP_GOODS_CONTROLLER = "Viewing all goods from the group" +
+			"with group id: %d.\n";
+
+	public static final String GET_GROUP_GOOD_LOGS_MODEL = "Getting a list of good logs for a group";
+	public static final String GET_GROUP_GOOD_LOGS_CONTROLLER ="Viewing all good logs from the" +
+			"group with group id: %d\n";
+
+	public static final String GET_USER_GOODS_MODEL = "Getting a list of goods for a user";
+	public static final String GET_USER_GOODS_CONTROLLER = "Viewing all duties from user with " +
 			"user id: %d and group id: %d\n";
 
 	public static final String GET_ROTATION_MODEL = "Getting the list of users on the duty's rotation.";

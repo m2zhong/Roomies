@@ -10,7 +10,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="80dp"
 		android:paddingTop="10dp"
-		android:src="@mipmap/logowhite"/>
+		android:id="@+id/appname2"/>
 
 	<EditText
 		android:id="@+id/firstName"
@@ -27,7 +27,7 @@
 		android:paddingBottom="5dp"
 		android:textColorHint="@color/text"
 		android:textSize="20sp"
-		/>
+		android:textColor="@color/colorAccent"/>
 
 	<EditText
 		android:id="@+id/lastName"
@@ -43,7 +43,8 @@
 		android:paddingBottom="5dp"
 		android:background="@drawable/underline"
 		android:textColorHint="@color/text"
-		android:textSize="20sp"/>
+		android:textSize="20sp"
+		android:textColor="@color/colorAccent"/>
 
 	<EditText
 		android:id="@+id/username"
@@ -59,7 +60,8 @@
 		android:paddingBottom="5dp"
 		android:background="@drawable/underline"
 		android:textColorHint="@color/text"
-		android:textSize="20sp"/>
+		android:textSize="20sp"
+		android:textColor="@color/colorAccent"/>
 
 	<EditText
 		android:id="@+id/email"
@@ -75,7 +77,8 @@
 		android:background="@drawable/underline"
 		android:textColorHint="@color/text"
 		android:textSize="20sp"
-		android:inputType="textEmailAddress"/>
+		android:inputType="textEmailAddress"
+		android:textColor="@color/colorAccent"/>
 
 	<EditText
 		android:id="@+id/password"
@@ -91,7 +94,8 @@
 		android:paddingBottom="5dp"
 		android:background="@drawable/underline"
 		android:textColorHint="@color/text"
-		android:textSize="20sp"/>
+		android:textSize="20sp"
+		android:textColor="@color/colorAccent"/>
 
 	<EditText
 		android:id="@+id/confirmPass"
@@ -107,7 +111,8 @@
 		android:paddingBottom="5dp"
 		android:background="@drawable/underline"
 		android:textColorHint="@color/text"
-		android:textSize="20sp" />
+		android:textSize="20sp"
+		android:textColor="@color/colorAccent"/>
 
 	<Button
 		android:id="@+id/btnSubmit"
@@ -123,3 +128,4 @@
 		android:paddingTop="5dp"
 		android:paddingBottom="5dp"/>
 </LinearLayout>
+

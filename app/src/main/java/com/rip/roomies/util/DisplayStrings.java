@@ -29,6 +29,11 @@ public class DisplayStrings {
 	public static final String CREATE_USER_SUCCESS = "User \"%s\" successfully created.\n" +
 			"Transferring to login page...";
 
+	public static final String LOG_DUTY_FAIL = "Log Duty failed...\n";
+	public static final String LOG_DUTY_SUCCESS = "Log Duty Successful...\n";
+
+	public static final String LOG_GOOD_FAIL = "Log Good failed...\n";
+
 	public static final String LOGIN_FAIL = "Login failed. Make sure your credentials are correct.";
 
 	public static final String PASS_RETRIEVE_FAIL = "Could not retrieve password.\n" +
@@ -57,6 +62,14 @@ public class DisplayStrings {
 	public static final String LIST_ALL_DUTIES_FAIL = "Could not list all duties.\n" +
 			"Check the logs for error.";
 
-	public static final String LIST_MY_DUTIES_FAIL = "Could not list your duties.\n" +
+	public static final String CREATE_GOOD_FAIL = "Could not create good.\n" +
+			"Please make sure that all fields were filled correctly";
+	public static final String REMOVE_GOOD_FAIL = "Could not remove good.\n" +
+			"Check the logs for error.";
+
+	public static final String LIST_MY_TASKS_FAIL = "Could not list your tasks.\n" +
+			"Check the logs for error.";
+
+	public static final String LIST_ALL_GOODS_FAIL = "Could not list all goods.\n" +
 			"Check the logs for error.";
 }
