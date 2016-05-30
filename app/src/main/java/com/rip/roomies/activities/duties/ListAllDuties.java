@@ -46,6 +46,15 @@ public class ListAllDuties extends GenericActivity implements ListAllDutiesFunct
 				startActivityForResult(new Intent(self, CreateDuty.class), DutyView.ADD_DUTY);
 			}
 		});
+
+		Button logs = (Button) findViewById(R.id.logs_btn);
+
+		logs.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				startActivity(new Intent(self, ListDutyLogs.class));
+			}
+		});
 	}
 
 	/** @inheritDoc **/
