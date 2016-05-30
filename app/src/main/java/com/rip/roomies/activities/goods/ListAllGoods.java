@@ -30,7 +30,7 @@ public class ListAllGoods extends GenericActivity implements ListAllGoodsFunctio
 		Button addGood;
 
 		super.onCreate(savedInstance);
-		setContentView(R.layout.activity_list_all_duties);
+		setContentView(R.layout.activity_list_all_goods);
 
 		/* Linking xml objects to java */
 		gc = (GoodContainer) findViewById(R.id.good_list);

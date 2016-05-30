@@ -208,6 +208,7 @@ public class InfoStrings {
 	public static final String MODIFY_GOOD_CONTROLLER = "Modifying good from user given fields:\n" +
 			"ID: %d,Name: '%s',Description: '%s'";
 
+	public static final String REMOVE_GOOD_EVENT = "Validation passed. Attempting to remove good.";
 	public static final String REMOVE_GOOD_MODEL = "Removing a good based off the current object";
 	public static final String REMOVE_GOOD_CONTROLLER = "Removing a good with the id %d.\n";
 

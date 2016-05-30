@@ -42,7 +42,7 @@ public class CreateGood extends GenericActivity {
 		allUsers = (UserSpinner) findViewById(R.id.group_users_spinner);
 		addUser = (Button) findViewById(R.id.add_user_btn);
 		users = (UserContainer) findViewById(R.id.users_container);
-		addGood = (Button) findViewById(R.id.add_duty_btn);
+		addGood = (Button) findViewById(R.id.add_good_btn);
 		removeUser = (Button) findViewById(R.id.rem_user_btn);
 
 		for(User u : Group.getActiveGroup().getMembers()) {

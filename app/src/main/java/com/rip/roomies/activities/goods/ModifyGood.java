@@ -6,8 +6,10 @@ import android.widget.EditText;
 
 import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
-import com.rip.roomies.events.goods.AddRotationListener;
-import com.rip.roomies.events.goods.RemoveRotationListener;
+import com.rip.roomies.events.duties.AddRotationListener;
+import com.rip.roomies.events.duties.RemoveRotationListener;
+import com.rip.roomies.events.goods.ModifyGoodListener;
+import com.rip.roomies.events.goods.RemoveGoodListener;
 import com.rip.roomies.models.Good;
 import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
@@ -58,7 +60,8 @@ public class ModifyGood extends GenericActivity {
 			}
 		}
 
-		modifyGood.setOnClickListener(new ModifyGoodListener(this, goodName, desc, users, good));
+		//todo fix modify good listener
+		//modifyGood.setOnClickListener(new ModifyGoodListener(this, goodName, desc, users, good));
 		addUser.setOnClickListener(new AddRotationListener(this, users, allUsers));
 		removeUser.setOnClickListener(new RemoveRotationListener(this, users));
 		removeGood.setOnClickListener(new RemoveGoodListener(this, good));

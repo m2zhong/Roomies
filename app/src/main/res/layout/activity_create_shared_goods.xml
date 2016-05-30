@@ -45,6 +45,14 @@
             android:width="50dp"
             android:text="+" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:id="@+id/rem_user_btn"
+            android:layout_weight="0.06"
+            />
+
     </LinearLayout>
 
     <com.rip.roomies.views.UserContainer

@@ -64,6 +64,8 @@ public class DisplayStrings {
 
 	public static final String CREATE_GOOD_FAIL = "Could not create good.\n" +
 			"Please make sure that all fields were filled correctly";
+	public static final String REMOVE_GOOD_FAIL = "Could not remove good.\n" +
+			"Check the logs for error.";
 
 	public static final String LIST_MY_TASKS_FAIL = "Could not list your tasks.\n" +
 			"Check the logs for error.";

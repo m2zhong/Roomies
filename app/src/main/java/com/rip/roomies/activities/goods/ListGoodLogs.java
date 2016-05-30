@@ -9,6 +9,7 @@ import com.rip.roomies.controllers.GoodController;
 import com.rip.roomies.functions.ListGoodLogsFunction;
 import com.rip.roomies.models.GoodLog;
 import com.rip.roomies.util.DisplayStrings;
+import com.rip.roomies.views.GoodLogContainer;
 
 import java.util.logging.Logger;
 
