@@ -28,7 +28,7 @@ import java.util.logging.Logger;
  * This class is a displayable view that represents a Duty object. It will display
  * any necessary information as well as style once implemented.
  */
-public class DutyView extends LinearLayout {
+public class DutyView extends TaskView {
 	private static final Logger log = Logger.getLogger(DutyView.class.getName());
 	public static final int EDIT_DUTY = 1;
 	public static final int VIEW_DUTY = 2;
@@ -79,7 +79,7 @@ public class DutyView extends LinearLayout {
 	/**
 	 * Sets up the layout for this DutyView.
 	 */
-	private void setupLayout() {
+	protected void setupLayout() {
 		log.info(String.format(InfoStrings.VIEW_SETUP, DutyView.class.getSimpleName()));
 
 		LinearLayout.LayoutParams w = new LayoutParams(

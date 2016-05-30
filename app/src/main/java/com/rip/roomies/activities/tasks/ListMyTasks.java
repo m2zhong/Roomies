@@ -1,4 +1,4 @@
-package com.rip.roomies.activities.duties;
+package com.rip.roomies.activities.tasks;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,37 +7,39 @@ import android.widget.Toast;
 import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.controllers.DutyController;
-import com.rip.roomies.functions.ListMyDutiesFunction;
+import com.rip.roomies.functions.ListMyTasksFunction;
 import com.rip.roomies.models.Duty;
+import com.rip.roomies.models.Task;
 import com.rip.roomies.util.DisplayStrings;
 import com.rip.roomies.views.DutyContainer;
 import com.rip.roomies.views.DutyView;
+import com.rip.roomies.views.TaskContainer;
 
 /**
  * The activity of when the user wishes to view his or her duties.
  */
-public class ListMyDuties extends GenericActivity implements ListMyDutiesFunction {
-	DutyContainer dc;
+public class ListMyTasks extends GenericActivity implements ListMyTasksFunction {
+	TaskContainer tc;
 
 	@Override
 	public void onCreate(Bundle savedInstance) {
 		super.onCreate(savedInstance);
-		setContentView(R.layout.activity_list_my_duties);
+		setContentView(R.layout.activity_list_my_tasks);
 
-		dc = (DutyContainer) findViewById(R.id.duty_list);
+		tc = (TaskContainer) findViewById(R.id.task_list);
 
-		DutyController.getController().listMyDuties(this);
+		DutyController.getController().listMyTasks(this);
 	}
 
 	@Override
-	public void listMyDutiesFail() {
-		Toast.makeText(this, DisplayStrings.LIST_MY_DUTIES_FAIL, Toast.LENGTH_LONG).show();
+	public void listMyTasksFail() {
+		Toast.makeText(this, DisplayStrings.LIST_MY_TASKS_FAIL, Toast.LENGTH_LONG).show();
 	}
 
 	@Override
-	public void listMyDutiesSuccess(Duty[] duties) {
-		for (Duty d : duties) {
-			dc.addDuty(d);
+	public void listMyTasksSuccess(Task[] tasks) {
+		for (Task t : tasks) {
+			tc.addTask(t);
 		}
 	}
 
@@ -48,15 +50,15 @@ public class ListMyDuties extends GenericActivity implements ListMyDutiesFunctio
 			boolean toRemove = data.getExtras().getBoolean("toRemove");
 
 			if (toRemove) {
-				dc.removeDuty(duty);
+				tc.removeTask(duty);
 			}
 			else {
-				dc.modifyDuty(duty);
+				tc.modifyTask(duty);
 			}
 		}
 		else if (requestCode == DutyView.VIEW_DUTY && resultCode == RESULT_OK) {
 			Duty duty = data.getExtras().getParcelable("Duty");
-			dc.removeDuty(duty);
+			tc.removeTask(duty);
 		}
 	}
 }

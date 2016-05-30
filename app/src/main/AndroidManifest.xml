@@ -96,7 +96,7 @@
 			android:configChanges="orientation|keyboardHidden|screenSize"
 			android:theme="@style/FullscreenTheme" />
 		<activity
-			android:name=".activities.duties.ListMyDuties"
+			android:name=".activities.tasks.ListMyTasks"
 			android:configChanges="orientation|keyboardHidden|screenSize"
 			android:theme="@style/FullscreenTheme" />
 		<activity

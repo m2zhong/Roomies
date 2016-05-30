@@ -60,6 +60,6 @@ public class DisplayStrings {
 	public static final String LIST_ALL_DUTIES_FAIL = "Could not list all duties.\n" +
 			"Check the logs for error.";
 
-	public static final String LIST_MY_DUTIES_FAIL = "Could not list your duties.\n" +
+	public static final String LIST_MY_TASKS_FAIL = "Could not list your tasks.\n" +
 			"Check the logs for error.";
 }

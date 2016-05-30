@@ -133,9 +133,9 @@ public class InfoStrings {
 	public static final String GET_GROUP_DUTY_LOGS_SUCCESSFUL = "GetGroupDutyLogs successful!!";
 	public static final String GET_GROUP_DUTY_LOGS_FAILED = "GetGroupDutyLogs failed!!";
 
-	public static final String GET_USER_DUTIES_SQL = "Getting user duties...";
-	public static final String GET_USER_DUTIES_SUCCESSFUL = "GetUserDuties successful!!";
-	public static final String GET_USER_DUTIES_FAILED = "GetUserDuties failed!!";
+	public static final String GET_USER_TASKS_SQL = "Getting user tasks...";
+	public static final String GET_USER_TASKS_SUCCESSFUL = "GetUserTasks successful!!";
+	public static final String GET_USER_TASKS_FAILED = "GetUserTasks failed!!";
 
 	public static final String GET_DUTY_USERS_SQL = "Getting duty users...";
 	public static final String GET_DUTY_USERS_SUCCESSFUL = "GetDutyUsers successful!!";
@@ -195,8 +195,8 @@ public class InfoStrings {
 	public static final String GET_GROUP_DUTIES_CONTROLLER = "Viewing all duties from the group" +
 			"with group id: %d.\n";
 
-	public static final String GET_USER_DUTIES_MODEL = "Getting a list of duties for a user.";
-	public static final String GET_USER_DUTIES_CONTROLLER = "Viewing all duties from user with " +
+	public static final String GET_USER_TASKS_MODEL = "Getting a list of tasks for a user.";
+	public static final String GET_USER_TASKS_CONTROLLER = "Viewing all tasks from user with " +
 			"user id: %d and group id: %d\n";
 
 	public static final String CREATE_GOOD_MODEL = "Creating a good based off the current object";
