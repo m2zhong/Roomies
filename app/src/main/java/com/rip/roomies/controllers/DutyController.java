@@ -96,6 +96,8 @@ public class DutyController {
 		}.execute();
 	}
 
+
+
 	/**
 	 * Attempts to display all duties for this group.
 	 * @param funct The funct to post results to

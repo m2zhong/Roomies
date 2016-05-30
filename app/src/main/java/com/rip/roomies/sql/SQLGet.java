@@ -302,6 +302,7 @@ public class SQLGet {
 	 */
 	public static DutyLog[] getGroupDutyLogs(Group group) {
 		ResultSet rs;
+		ResultSet getUser;
 
 		try {
 			// Log finding user
@@ -328,8 +329,24 @@ public class SQLGet {
 					int dutyId = rs.getInt("DutyID");
 					int assigneeId = rs.getInt("AssigneeID");
 
+					getUser = SQLQuery.execute(String.format(Locale.US, SQLStrings.GET_USER_BY_ID,
+							assigneeId));
+
+					if(getUser == null) {
+						log.info(InfoStrings.GET_GROUP_DUTY_LOGS_FAILED);
+						return null;
+					}
+
+					int userId = getUser.getInt("ID");
+					String first = getUser.getString("FirstName");
+					String last = getUser.getString("LastName");
+					String username = getUser.getString("Username");
+					String email = getUser.getString("Email");
+
+					User assignee = new User(userId, first, last, username, email, null);
+
 					DutyLog temp = new DutyLog(resultId, resultName, resultDescription, resultGroup,
-							completeDate, dutyId, assigneeId);
+							completeDate, dutyId, assignee);
 
 					logs.add(temp);
 
