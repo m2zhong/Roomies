@@ -48,4 +48,11 @@
 		android:textSize="30sp"
 		android:text="Comlete Duty" />
 
+	<Button
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="View Logs"
+		android:id="@+id/logs_btn"
+		android:layout_gravity="center_horizontal"/>
+
 </LinearLayout>
