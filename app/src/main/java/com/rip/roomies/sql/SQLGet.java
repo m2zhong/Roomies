@@ -2,6 +2,8 @@ package com.rip.roomies.sql;
 
 import com.rip.roomies.models.Duty;
 import com.rip.roomies.models.DutyLog;
+import com.rip.roomies.models.Good;
+import com.rip.roomies.models.GoodLog;
 import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
 import com.rip.roomies.util.Exceptions;
@@ -508,12 +510,11 @@ public class SQLGet {
 				ArrayList<GoodLog> logs = new ArrayList<>();
 
 				while(rs.next()){
-					//TODO Need to properly map values
 					int resultId = rs.getInt("ID");
 					String resultName = rs.getString("Name");
 					String resultDescription = rs.getString("Description");
 					float price = rs.getFloat("Price");
-					//int resultGroup = rs.getInt("DutyGroupID");
+					int resultGroup = rs.getInt("GroupID");
 					Date completeDate = rs.getDate("PurchaseDate");
 					int dutyId = rs.getInt("CommonGoodID");
 					int assigneeId = rs.getInt("PurchaserID");
@@ -535,7 +536,7 @@ public class SQLGet {
 					User assignee = new User(userId, first, last, username, email, null);
 
 					GoodLog temp = new GoodLog(resultId, resultName, resultDescription, resultGroup,
-							completeDate, dutyId, assignee);
+							completeDate, dutyId, assignee, price);
 
 					logs.add(temp);
 
