@@ -3,6 +3,7 @@ package com.rip.roomies.views;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -100,7 +101,12 @@ public class DutyView extends LinearLayout {
 				0,
 				LayoutParams.MATCH_PARENT, 1.0f));
 
+		name.setTextColor(Color.parseColor("#007EE5"));
+		description.setTextColor(Color.parseColor("#007EE5"));
+		assignee.setTextColor(Color.parseColor("#007EE5"));
+
 		innerLayout.setOrientation(LinearLayout.VERTICAL);
+		innerLayout.setPadding(50, 50, 50, 50);
 
 		name.setText(duty.getName());
 		description.setText(duty.getDescription());
@@ -115,6 +121,7 @@ public class DutyView extends LinearLayout {
 		LinearLayout.LayoutParams v = new LayoutParams(
 				LayoutParams.WRAP_CONTENT,
 				LayoutParams.MATCH_PARENT);
+		v.setMargins(0, 50, 0, 50);
 		viewBtn.setLayoutParams(v);
 /*		viewBtn.setLayoutParams(new LayoutParams(
 				LayoutParams.WRAP_CONTENT,
@@ -140,6 +147,7 @@ public class DutyView extends LinearLayout {
 		LinearLayout.LayoutParams p = new LayoutParams(
 				LayoutParams.WRAP_CONTENT,
 				LayoutParams.MATCH_PARENT);
+		p.setMargins(0, 50, 0, 50);
 		p.gravity = Gravity.RIGHT;
 		editBtn.setLayoutParams(p);
 		editBtn.setOnClickListener(new OnClickListener() {
