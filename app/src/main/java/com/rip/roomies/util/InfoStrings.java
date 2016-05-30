@@ -93,6 +93,18 @@ public class InfoStrings {
 	public static final String GET_GROUPS_FAILED = "GetGroups failed!!";
 
 
+	public static final String CREATEBILL_MODEL = "Creating a new bill based off the current object.";
+	public static final String CREATEBILL_SQL = "Creating bill...";
+	public static final String CREATEBILL_SUCCESSFULL = "CreateBill successfull!! \n" +
+			"ID: %d\nName: %s\nDescription: %s\nAmount: %.2f";
+	public static final String CREATEBILL_CONTROLLER = "Creating bill from user given fields:\n" +
+			"Name: %s\nDescription: %s\nAmount: %.2f";
+
+
+	public static final String REMOVE_BILL_FROM_TABLE_SUCCESS = "Successfully removed Bill w/ Row ID = %d, \n" +
+			"ownerid = %d, \nname = %s, \ndescription = %s, \namount = %.2f";
+	public static final String REMOVE_BILL_FROM_TABLE_SQL = "Attempting to remove the Bill from sql...\n";
+
 	public static final String CREATEDUTY_SQL = "Creating duty...";
 	public static final String CREATEDUTY_SUCCESSFUL = "CreateDuty successful!! \n" +
 			"ID: %d\nName: %s\nDescription: %s\nGroup Id: %d";
@@ -129,6 +141,38 @@ public class InfoStrings {
 	public static final String GET_DUTY_USERS_SUCCESSFUL = "GetDutyUsers successful!!";
 	public static final String GET_DUTY_USERS_FAILED = "GetDutyUsers failed!!";
 
+	public static final String CREATEGOOD_SQL = "Creating good...";
+	public static final String CREATEGOOD_SUCCESSFUL = "CreateGood successful!! \n" +
+			"ID: %d\nName: %s\nDescription: %s\nGroup Id: %d";
+	public static final String CREATEGOOD_FAILED = "CreateGood failed!!";
+
+	public static final String COMPLETEGOOD_SQL = "Completing good...";
+	public static final String COMPLETEGOOD_SUCCESSFUL = "CompleteGood successful!! \n" +
+			"ID: %d\nName: %s\nDescription: %s\nGroup Id: %d";
+	public static final String COMPLETEGOOD_FAILED = "CompleteGood failed!!";
+
+	public static final String REMOVEGOOD_SQL = "Removing good...";
+	public static final String REMOVEGOOD_SUCCESSFUL = "RemoveGood successful!! \n" +
+			"ID: %d\nName: %s\nDescription: %s\nGroup Id: %d";
+	public static final String REMOVEGOOD_FAILED = "RemoveDuty failed!!";
+
+	public static final String MODIFYGOOD_SQL = "Modifying good...";
+	public static final String MODIFYGOOD_SUCCESSFUL = "ModifyGood successful!! \n" +
+			"ID: %d\nName: %s\nDescription: %s\nGroup Id: %d";
+	public static final String MODIFYGOOD_FAILED = "ModifyGood failed!!";
+
+	public static final String GET_GROUP_GOODS_SQL = "Getting group goods...";
+	public static final String GET_GROUP_GOODS_SUCCESSFUL = "GetGroupGoods successful!!";
+	public static final String GET_GROUP_GOODS_FAILED = "GetGroupGoods failed!!";
+
+	public static final String GET_GROUP_GOOD_LOGS_SQL = "Getting group good logs...";
+	public static final String GET_GROUP_GOOD_LOGS_SUCCESSFUL = "GetGroupGoodLogs successful!!";
+	public static final String GET_GROUP_GOOD_LOGS_FAILED = "GetGroupGoodLogs failed!!";
+
+	public static final String GET_GOOD_USERS_SQL = "Getting good users...";
+	public static final String GET_GOOD_USERS_SUCCESSFUL = "GetGoodUsers successful!!";
+	public static final String GET_GOOD_USERS_FAILED = "GetGoodUsers failed!!";
+
 	public static final String CREATE_DUTY_EVENT = "Validation passed. Attempting to create duty.";
 	public static final String CREATE_DUTY_MODEL = "Creating a duty based off the current object.";
 	public static final String CREATE_DUTY_CONTROLLER = "Creating duty from user given fields:\n" +
@@ -154,6 +198,14 @@ public class InfoStrings {
 	public static final String GET_USER_DUTIES_MODEL = "Getting a list of duties for a user.";
 	public static final String GET_USER_DUTIES_CONTROLLER = "Viewing all duties from user with " +
 			"user id: %d and group id: %d\n";
+
+	public static final String CREATE_GOOD_MODEL = "Creating a good based off the current object";
+
+	public static final String MODIFY_GOOD_MODEL = "Modifying a good based off the current object";
+
+	public static final String REMOVE_GOOD_MODEL = "Removing a good based off the current object";
+
+	public static final String COMPLETE_GOOD_MODEL = "Completing a good based off the current object";
 
 	public static final String GET_ROTATION_MODEL = "Getting the list of users on the duty's rotation.";
 

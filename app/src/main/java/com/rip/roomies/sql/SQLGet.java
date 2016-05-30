@@ -2,6 +2,8 @@ package com.rip.roomies.sql;
 
 import com.rip.roomies.models.Duty;
 import com.rip.roomies.models.DutyLog;
+import com.rip.roomies.models.Good;
+import com.rip.roomies.models.GoodLog;
 import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
 import com.rip.roomies.util.Exceptions;
@@ -356,6 +358,194 @@ public class SQLGet {
 				log.info(InfoStrings.GET_GROUP_DUTY_LOGS_SUCCESSFUL);
 
 				DutyLog[] temp = new DutyLog[logs.size()];
+
+				// Return a new user object
+				return logs.toArray(temp);
+			}
+		}
+		catch (Exception e) {
+			// Log and return null on exception
+			log.severe(Exceptions.stacktraceToString(e));
+			return null;
+		}
+	}
+
+	/**
+	 * Finds a good from the database using unique keys only
+	 * @param group The group to use to search for a good on the database
+	 * @return The full set of group goods, or null if none could not be found
+	 */
+	public static Good[] getGroupGoods(Group group) {
+		ResultSet rs;
+
+		try {
+			// Log finding user
+			log.info(InfoStrings.GET_GROUP_GOODS_SQL);
+
+			// Execute SQL
+			rs = SQLQuery.execute(String.format(Locale.US, SQLStrings.GET_GROUP_GOODS,
+					group.getId()));
+
+			// If no rows, then finding failed
+			if (rs == null) {
+				log.info(InfoStrings.GET_GROUP_GOODS_FAILED);
+				return null;
+			}
+			else {
+				ArrayList<Good> goods = new ArrayList<>();
+
+				while(rs.next()) {
+					int resultId = rs.getInt("GoodID");
+					String resultName = rs.getString("Name");
+					String resultDescription = rs.getString("Description");
+					int resultGroup = rs.getInt("GroupID");
+
+					User u = new User(
+							rs.getInt("ID"),
+							rs.getString("FirstName"),
+							rs.getString("LastName"),
+							rs.getString("Username"),
+							rs.getString("Email"),
+							null
+					);
+
+					Good temp = new Good(resultId, resultName, resultDescription, resultGroup, u, null);
+					temp = temp.getRotation();
+
+					goods.add(temp);
+
+				}
+
+				//debug statement
+				log.info(InfoStrings.GET_GROUP_GOODS_SUCCESSFUL);
+
+				Good[] temp = new Good[goods.size()];
+
+				// Return a new user object
+				return goods.toArray(temp);
+			}
+		}
+		catch (Exception e) {
+			// Log and return null on exception
+			log.severe(Exceptions.stacktraceToString(e));
+			return null;
+		}
+	}
+
+	/**
+	 * Finds a good from the database using unique keys only
+	 * @param good The good the user belongs to
+	 * @return The full set of users to a good, or null if none could not be found
+	 */
+	public static Good getGoodUsers(Good good) {
+		ResultSet rs;
+
+		try {
+			// Log finding user
+			log.info(InfoStrings.GET_GOOD_USERS_SQL);
+
+			// Execute SQL
+			rs = SQLQuery.execute(String.format(Locale.US, SQLStrings.GET_GOOD_USERS,
+					good.getId()));
+
+			// If no rows, then finding failed
+			if (rs == null || !rs.next()) {
+				log.info(InfoStrings.GET_GOOD_USERS_FAILED);
+				return null;
+			}
+			else {
+				ArrayList<User> users = new ArrayList<>();
+
+				do {
+					int id = rs.getInt("ID");
+					String first = rs.getString("FirstName");
+					String last = rs.getString("LastName");
+					String username = rs.getString("Username");
+					String email = rs.getString("Email");
+
+					users.add(new User(id, first, last, username, email, null));
+				} while(rs.next());
+
+				//debug statement
+				log.info(InfoStrings.GET_GOOD_USERS_SUCCESSFUL);
+
+				User[] temp = new User[users.size()];
+				temp = users.toArray(temp);
+
+				// Return a new user object
+				return new Good(good.getId(), good.getName(), good.getDescription(),
+						good.getGroupId(), good.getAssignee(), temp);
+			}
+		}
+		catch (Exception e) {
+			// Log and return null on exception
+			log.severe(Exceptions.stacktraceToString(e));
+			return null;
+		}
+	}
+
+	/**
+	 * Finds all good logs from database pertaining to a certain group
+	 * @param group The group to acquire good logs for
+	 * @return The full set of good logs belonging to the group
+	 */
+	public static GoodLog[] getGroupGoodLogs(Group group) {
+		ResultSet rs;
+		ResultSet getUser;
+
+		try {
+			// Log finding user
+			log.info(InfoStrings.GET_GROUP_GOOD_LOGS_SQL);
+
+			// Execute SQL
+			rs = SQLQuery.execute(String.format(Locale.US, SQLStrings.GET_GROUP_GOOD_LOGS,
+					group.getId()));
+
+			// If no rows, then finding failed
+			if (rs == null) {
+				log.info(InfoStrings.GET_GROUP_GOOD_LOGS_FAILED);
+				return null;
+			}
+			else {
+				ArrayList<GoodLog> logs = new ArrayList<>();
+
+				while(rs.next()){
+					int resultId = rs.getInt("ID");
+					String resultName = rs.getString("Name");
+					String resultDescription = rs.getString("Description");
+					float price = rs.getFloat("Price");
+					int resultGroup = rs.getInt("GroupID");
+					Date completeDate = rs.getDate("PurchaseDate");
+					int dutyId = rs.getInt("CommonGoodID");
+					int assigneeId = rs.getInt("PurchaserID");
+
+					getUser = SQLQuery.execute(String.format(Locale.US, SQLStrings.GET_USER_BY_ID,
+							assigneeId));
+
+					if(getUser == null || !getUser.next()) {
+						log.info(InfoStrings.GET_GROUP_GOOD_LOGS_FAILED);
+						return null;
+					}
+
+					int userId = getUser.getInt("ID");
+					String first = getUser.getString("FirstName");
+					String last = getUser.getString("LastName");
+					String username = getUser.getString("Username");
+					String email = getUser.getString("Email");
+
+					User assignee = new User(userId, first, last, username, email, null);
+
+					GoodLog temp = new GoodLog(resultId, resultName, resultDescription, resultGroup,
+							completeDate, dutyId, assignee, price);
+
+					logs.add(temp);
+
+				}
+
+				//debug statement
+				log.info(InfoStrings.GET_GROUP_GOOD_LOGS_SUCCESSFUL);
+
+				GoodLog[] temp = new GoodLog[logs.size()];
 
 				// Return a new user object
 				return logs.toArray(temp);

@@ -14,6 +14,9 @@ import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
 import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
+
+import com.rip.roomies.activities.bills.Bills;
+
 import com.rip.roomies.activities.duties.ListAllDuties;
 import com.rip.roomies.activities.duties.ListMyDuties;
 import com.rip.roomies.util.Images;
@@ -25,6 +28,7 @@ import com.rip.roomies.util.SocketStrings;
 
 import java.net.URISyntaxException;
 import java.util.logging.Logger;
+
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -39,12 +43,23 @@ public class Home extends GenericActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		TextView dutiesScreen;
+		TextView billScreen;
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 
-		TextView dutiesScreen = (TextView) findViewById(R.id.home_overallduties);
+		dutiesScreen = (TextView) findViewById(R.id.home_overallduties);
+		billScreen = (TextView) findViewById(R.id.home_IOU);
+		dutiesScreen = (TextView) findViewById(R.id.home_overallduties);
 
 		final Activity self = this;
+
+		billScreen.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				startActivity(new Intent(self, Bills.class));
+			}
+		});
 
 		dutiesScreen.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -79,7 +94,8 @@ public class Home extends GenericActivity {
 			mSocket.emit(SocketStrings.COMPLETION_LISTEN, Group.getActiveGroup().getId());
 			mSocket.on(SocketStrings.NOTIFICATION_DUTY, new GetReminderDutyListener(self));
 			mSocket.on(SocketStrings.COMPLETE_DUTY, new GetCompletionDutyListener(self));
-		} catch (URISyntaxException e) {
+		}
+		catch (URISyntaxException e) {
 			throw new RuntimeException(e);
 		}
 	}
@@ -88,5 +104,4 @@ public class Home extends GenericActivity {
 	public void onBackPressed() {
 		// This does nothing
 	}
-
 }

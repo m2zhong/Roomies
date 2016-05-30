@@ -33,6 +33,17 @@ public class SQLStrings {
 	public static final String GET_GROUPS = "EXEC GetGroups " +
 			"@userId = %d";
 
+	public static final String CREATE_BILL = "EXEC CreateBill " +
+			"@owner_id = %d, " +
+			"@name = '%s', @description = '%s', @amount = %.2f;";
+
+	public static final String DELETE_BILL = "EXEC DeleteBill " +
+			"@ID = %d;";
+
+
+	public static final String MODIFY_BILL_SQL = "EXEC ModifyBill " +
+			"@id = %d, @name = '%s', @description = '%s', @amount = %.2f;";
+
 	public static final String CREATE_DUTY = "EXEC CreateDuty " +
 			"@name = '%s', @desc = '%s', @group = %d, @userIds = '%s'";
 
@@ -57,6 +68,28 @@ public class SQLStrings {
 	public static final String GET_DUTY_USERS = "EXEC GetDutyUsers " +
 			"@dutyId = %d";
 
+	public static final String CREATE_GOOD = "EXEC CreateCommonGood " +
+			"@name = '%s', @desc = '%s', @groupId = %d, @userIds = '%s'";
+
+	public static final String COMPLETE_GOOD = "EXEC CompleteCommonGood " +
+			"@csgid = %d, @price = %f";
+
+	public static final String REMOVE_GOOD = "EXEC RemoveCommonGood " +
+			"@csgID = %d";
+
+	public static final String MODIFY_GOOD = "EXEC ModifyCommonGood " +
+			"@csgid = %d, @name = '%s', @desc = '%s', @userIds = '%s'";
+
+	public static final String GET_GROUP_GOODS = "EXEC GetGroupCommonGoods " +
+			"@groupID = %d";
+
+	public static final String GET_GROUP_GOOD_LOGS = "EXEC GetGroupCommonGoodLogs " +
+			"@groupID = %d";
+
+	public static final String GET_GOOD_USERS = "EXEC GetCommonGoodUsers " +
+			"@goodId = %d";
+
 	public static final String GET_USER_BY_ID = "EXEC GetUserById " +
 			"@userId = %d";
+
 }
