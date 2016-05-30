@@ -1,16 +1,13 @@
 package com.rip.roomies.sql;
 
 import com.rip.roomies.models.Duty;
-import com.rip.roomies.models.DutyLog;
 import com.rip.roomies.models.User;
 import com.rip.roomies.util.Exceptions;
 import com.rip.roomies.util.InfoStrings;
 import com.rip.roomies.util.SQLStrings;
 import com.rip.roomies.util.WarningStrings;
 
-import java.sql.Date;
 import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.logging.Logger;
 
@@ -131,4 +128,78 @@ public class SQLModify {
 			return null;
 		}
 	}
+
+
+	public static Integer updateProfile (int groupID, int userID, String firstName, String lastName, String email, String groupDescription) {
+		ResultSet rset;
+
+		try {
+
+			//debug statement
+			//log.info(InfoStrings.MODIFYDUTY_SQL);
+
+			// get the result table from query execution through sql
+			rset = SQLQuery.execute(String.format(Locale.US, SQLStrings.UPDATE_PROFILE,
+					userID, groupID, firstName, lastName, email, groupDescription));
+
+			// error happened when contacting sql server
+			if(rset == null || !rset.next()) {
+				// debug statement
+				//log.info(InfoStrings.MODIFYDUTY_FAILED);
+				return null;
+			}
+			// if there is a rset
+			else {
+
+				// debug statement
+				//log.info(String.format(Locale.US, InfoStrings.MODIFYDUTY_SUCCESSFUL,
+				//		resultId, resultName, resultDescription, dutyGroupId));
+
+				return 1;
+			}
+		}
+		catch (Exception e) {
+			log.severe(Exceptions.stacktraceToString(e));
+			return null;
+		}
+
+	}
+
+
+	public static Integer changePassword(int userID, String newPassword) {
+		ResultSet rset;
+
+		try {
+
+			//debug statement
+			//log.info(InfoStrings.MODIFYDUTY_SQL);
+
+			// get the result table from query execution through sql
+			rset = SQLQuery.execute(String.format(Locale.US, SQLStrings.MODIFY_PASSWORD,
+					userID, newPassword));
+
+			// error happened when contacting sql server
+			if(rset == null || !rset.next()) {
+				// debug statement
+				//log.info(InfoStrings.MODIFYDUTY_FAILED);
+				return null;
+			}
+			// if there is a rset
+			else {
+
+				// debug statement
+				//log.info(String.format(Locale.US, InfoStrings.MODIFYDUTY_SUCCESSFUL,
+				//		resultId, resultName, resultDescription, dutyGroupId));
+
+				return 1;
+			}
+		}
+		catch (Exception e) {
+			log.severe(Exceptions.stacktraceToString(e));
+			return null;
+		}
+
+	}
+
+
 }

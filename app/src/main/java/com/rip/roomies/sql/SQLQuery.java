@@ -19,7 +19,7 @@ public class SQLQuery {
 	private static Connection conn = null;
 
 	// The connection string to connect to database
-	private static final String CONN_STRING = "jdbc:jtds:sqlserver://rationallyimpairedprogrammers.database.windows.net:1433/cse110_dev;user=roomies_app;password=#room1es4lyfe;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;instance=SQLEXPRESS;";
+	private static final String CONN_STRING = "jdbc:jtds:sqlserver://rationallyimpairedprogrammers.database.windows.net:1433/cse110_dev;user=h4tu;password=R!Pdevl0g;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;instance=SQLEXPRESS;";
 
 	/**
 	 * Helper class that initiates the connection to the database, setting the

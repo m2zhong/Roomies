@@ -56,4 +56,10 @@ public class SQLStrings {
 
 	public static final String GET_DUTY_USERS = "EXEC GetDutyUsers " +
 			"@dutyId = %d";
+
+	public static final String UPDATE_PROFILE = "EXEC ProfileUpdate " +
+			"@id = %d, @groupid = %d, @firstName = '%s', @lastName = '%s', @email = '%s', @groupDescription = '%s'";
+
+	public static final String MODIFY_PASSWORD = "EXEC ChangePassword " +
+			"@userId = %d, @password = '%s'";
 }

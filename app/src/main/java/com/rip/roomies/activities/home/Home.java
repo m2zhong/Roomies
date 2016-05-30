@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.QuickContactBadge;
 import android.widget.TextView;
 
 import com.github.nkzawa.socketio.client.IO;
@@ -13,6 +14,7 @@ import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.activities.duties.ListAllDuties;
 import com.rip.roomies.activities.duties.ListMyDuties;
+import com.rip.roomies.activities.profile.Profile;
 import com.rip.roomies.events.Sockets.GetCompletionDutyListener;
 import com.rip.roomies.events.Sockets.GetReminderDutyListener;
 import com.rip.roomies.models.Group;
@@ -37,9 +39,21 @@ public class Home extends GenericActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 
-		TextView dutiesScreen = (TextView) findViewById(R.id.home_overallduties);
 
 		final Activity self = this;
+
+		QuickContactBadge profileBadge = (QuickContactBadge) findViewById(R.id.home_profilepicture);
+
+		profileBadge.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				startActivity(new Intent(self, Profile.class));
+			}
+		});
+
+
+		TextView dutiesScreen = (TextView) findViewById(R.id.home_overallduties);
+
 
 		dutiesScreen.setOnClickListener(new View.OnClickListener() {
 			@Override
