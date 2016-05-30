@@ -202,7 +202,7 @@
 							android:fontFamily="sans-serif-thin"
 							android:gravity="center"
 							android:layout_gravity="center"
-							android:text="View My Duties"
+							android:text="View My Tasks"
 							android:textColor="@color/black"
 							android:textSize="50dp" />
 					</LinearLayout>
@@ -344,7 +344,6 @@
 =======
 					android:text="View My Duties" />
 -->
->>>>>>> e13b152ee269f56be186a4f06521b916d989242e
 			</LinearLayout>
 		</FrameLayout>
 	</ScrollView>

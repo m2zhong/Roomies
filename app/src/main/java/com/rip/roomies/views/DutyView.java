@@ -83,6 +83,8 @@ public class DutyView extends TaskView {
 	protected void setupLayout() {
 		log.info(String.format(InfoStrings.VIEW_SETUP, DutyView.class.getSimpleName()));
 
+		removeAllViews();
+
 		LinearLayout.LayoutParams w = new LayoutParams(
 				LayoutParams.MATCH_PARENT,
 				LayoutParams.WRAP_CONTENT);
