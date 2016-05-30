@@ -123,6 +123,16 @@ public class Group {
 		return SQLGet.getGroupDutyLogs(this);
 	}
 
+	public Good[] getGoods() {
+		log.info(InfoStrings.GET_GROUP_GOODS_MODEL);
+		return SQLGet.getGroupGoods(this);
+	}
+
+	public GoodLog[] getGoodLogs() {
+		log.info(InfoStrings.GET_GROUP_GOOD_LOGS_MODEL);
+		return SQLGet.getGroupGoodLogs(this);
+	}
+
 	//------- OBJECT METHODS -------//
 
 	public static Group getActiveGroup() {
