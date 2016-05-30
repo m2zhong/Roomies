@@ -112,6 +112,7 @@ public class Home extends GenericActivity {
 			mSocket.emit(SocketStrings.COMPLETION_LISTEN, Group.getActiveGroup().getId());
 			mSocket.on(SocketStrings.NOTIFICATION_DUTY, new GetReminderDutyListener(self));
 			mSocket.on(SocketStrings.COMPLETE_DUTY, new GetCompletionDutyListener(self));
+			//TODO Add socket for compelting a good
 		}
 		catch (URISyntaxException e) {
 			throw new RuntimeException(e);

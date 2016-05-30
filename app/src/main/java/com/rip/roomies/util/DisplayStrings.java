@@ -68,6 +68,8 @@ public class DisplayStrings {
 			"Check the logs for error.";
 	public static final String REMOVE_GOOD_FAIL = "Could not remove good.\n" +
 			"Check the logs for error.";
+	public static final String COMPLETE_GOOD_FAIL = "Could not complete good.\n" +
+			"Check the logs for error.";
 
 	public static final String LIST_MY_TASKS_FAIL = "Could not list your tasks.\n" +
 			"Check the logs for error.";

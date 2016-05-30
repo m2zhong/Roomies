@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
+import com.rip.roomies.events.goods.CompleteGoodListener;
+import com.rip.roomies.events.goods.RemindGoodListener;
 import com.rip.roomies.models.Good;
 import com.rip.roomies.models.User;
 import com.rip.roomies.views.UserContainer;
@@ -58,16 +60,14 @@ public class ViewGood extends GenericActivity {
 			//change the button name to complete good
 			actionGood.setText("Complete " + good.getName());
 			//triggering event of completing the good, go change database, rotation...etc
-			//todo implement
-			//actionGood.setOnClickListener(new CompleteGoodListener(this, good));
+			actionGood.setOnClickListener(new CompleteGoodListener(this, good));
 		}
 		//the case when another person is the assignee
 		else {
 			//change the button name to reminding the person
 			actionGood.setText("Remind " + currentAssignee.getFirstName());
 			//trigger the event of reminding the person
-			//todo imlpement
-			//actionGood.setOnClickListener(new RemindGoodListener(this, currentAssignee.getId(), good));
+			actionGood.setOnClickListener(new RemindGoodListener(this, currentAssignee.getId(), good));
 		}
 
 		final Activity self = this;
