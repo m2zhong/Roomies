@@ -14,6 +14,7 @@ import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
 import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
+import com.rip.roomies.activities.bills.Bills;
 import com.rip.roomies.activities.duties.ListAllDuties;
 import com.rip.roomies.activities.duties.ListMyDuties;
 import com.rip.roomies.events.Sockets.GetCompletionDutyListener;
@@ -50,6 +51,13 @@ public class Home extends GenericActivity {
 		dutiesScreen = (TextView) findViewById(R.id.home_overallduties);
 
 		final Activity self = this;
+
+		billScreen.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				startActivity(new Intent(self, Bills.class));
+			}
+		});
 
 		dutiesScreen.setOnClickListener(new View.OnClickListener() {
 			@Override
