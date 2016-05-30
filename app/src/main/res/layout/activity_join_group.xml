@@ -1,5 +1,4 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-<<<<<<< HEAD
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
@@ -7,15 +6,6 @@
 	android:gravity="center"
 	android:orientation="vertical"
 	tools:context="com.rip.roomies.activities.groups.CreateGroup">
-=======
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/colorPrimary"
-              android:gravity="center"
-              android:orientation="vertical"
-              tools:context="com.rip.roomies.activities.groups.CreateGroup">
->>>>>>> 2a34d35dc132dc2b07ba22bb70c722fc0e194030
 
 	<TextView
 		android:layout_width="match_parent"
