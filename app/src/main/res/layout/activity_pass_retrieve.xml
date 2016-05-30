@@ -10,7 +10,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="100dp"
 		android:layout_marginTop="60dp"
-		android:src="@mipmap/logowhite"/>
+		android:id="@+id/appname" />
 
 	<EditText
 		android:id="@+id/pass_retrieve_email"
@@ -26,6 +26,7 @@
 		android:textColorHint="@color/text"
 		android:textSize="45sp"
 	    android:background="@drawable/underline"
+		android:textColor="@color/colorAccent"
 		/>
 
 	<Button

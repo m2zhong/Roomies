@@ -104,7 +104,20 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/FullscreenTheme" />
         <activity android:name=".activities.profile.Profile" />
-        <activity android:name=".activities.profile.ChangePassword"></activity>
-    </application>
+        <activity android:name=".activities.profile.ChangePassword"/>
+		<activity android:name=".activities.bills.Bills"
+		          android:screenOrientation="portrait"/>
+		<activity android:name=".activities.bills.ModifyBill"
+		          android:screenOrientation="portrait"/>
+		<activity
+			android:name=".activities.bills.AddBill"
+			android:label="@string/title_activity_add_bill"
+			android:screenOrientation="portrait"/>
+		<activity
+			android:name=".activities.duties.ListDutyLogs"
+			android:configChanges="orientation|keyboardHidden|screenSize"
+			android:theme="@style/FullscreenTheme"
+			android:screenOrientation="portrait"/>
+	</application>
 
 </manifest>

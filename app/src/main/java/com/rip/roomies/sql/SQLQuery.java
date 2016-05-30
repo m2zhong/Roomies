@@ -18,6 +18,7 @@ public class SQLQuery {
 	// Connection to the database
 	private static Connection conn = null;
 
+	//roomies_app.....password=#room1es4lyfe
 	// The connection string to connect to database
 	private static final String CONN_STRING = "jdbc:jtds:sqlserver://rationallyimpairedprogrammers.database.windows.net:1433/cse110_dev;user=h4tu;password=R!Pdevl0g;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;instance=SQLEXPRESS;";
 
@@ -48,6 +49,7 @@ public class SQLQuery {
 	 * @throws Exception if the database cannot be connected to or statement fails
 	 */
 	protected static ResultSet execute(String query) throws Exception {
+
 		if (conn == null || conn.isClosed()) {
 			connect();
 		}

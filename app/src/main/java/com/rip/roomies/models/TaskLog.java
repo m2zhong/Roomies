@@ -12,7 +12,7 @@ public abstract class TaskLog {
 	private int groupId;
 	private Date completion;
 	private int taskId;
-	private int assigneeId;
+	private User assignee;
 
 	//------- CONSTRUCTORS -------//
 
@@ -24,17 +24,17 @@ public abstract class TaskLog {
 	 * @param groupId The id of the group this belongs to
 	 * @param completion The date this task was completed
 	 * @param taskId The id of the task
-	 * @param assigneeId The id of the user who completed the task
+	 * @param assignee The id of the user who completed the task
 	 */
 	protected TaskLog(int id, String name, String description, int groupId,
-	               Date completion, int taskId, int assigneeId) {
+	               Date completion, int taskId, User assignee) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.groupId = groupId;
 		this.completion = completion;
 		this.taskId = taskId;
-		this.assigneeId = assigneeId;
+		this.assignee = assignee;
 	}
 
 	//------- OBJECT METHODS -------//
@@ -63,7 +63,7 @@ public abstract class TaskLog {
 		return taskId;
 	}
 
-	public int getAssigneeId() {
-		return assigneeId;
+	public User getAssignee() {
+		return assignee;
 	}
 }

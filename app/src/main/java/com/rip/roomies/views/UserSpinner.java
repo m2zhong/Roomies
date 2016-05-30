@@ -3,13 +3,11 @@ package com.rip.roomies.views;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import com.rip.roomies.models.User;
 import com.rip.roomies.util.InfoStrings;
 
-import java.util.ArrayList;
 import java.util.logging.Logger;
 
 /**
@@ -79,5 +77,15 @@ public class UserSpinner extends Spinner {
 	 */
 	public User getSelected() {
 		return users.getItem(getSelectedItemPosition());
+	}
+
+	public void select(String user) {
+		for (int i = 0; i < users.getCount(); ++i) {
+			User u = users.getItem(i);
+			if (user.equals(u.toString())) {
+				setSelection(i, false);
+				return;
+			}
+		}
 	}
 }

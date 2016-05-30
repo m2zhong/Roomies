@@ -15,10 +15,10 @@ public class DutyLog extends TaskLog {
 	 * @param groupId     The id of the group this belongs to
 	 * @param completion  The date this task was completed
 	 * @param taskId      The id of the task
-	 * @param assigneeId  The id of the user who completed the task
+	 * @param assignee  The id of the user who completed the task
 	 */
 	public DutyLog(int id, String name, String description, int groupId,
-	                  Date completion, int taskId, int assigneeId) {
-		super(id, name, description, groupId, completion, taskId, assigneeId);
+	                  Date completion, int taskId, User assignee) {
+		super(id, name, description, groupId, completion, taskId, assignee);
 	}
 }

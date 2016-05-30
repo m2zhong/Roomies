@@ -31,14 +31,16 @@
     <string name="invitee_add_hint">invitee isername</string>
 
 
-    <string name="welcomehome">Welcome home</string>
-    <string name="Ranking">Ranking:</string>
-    <string name="trashduty">Trash Duty:</string>
-    <string name="youowe">Total you owe:</string>
-    <string name="reminder">Reminder:</string>
-    <string name="houserule">House Rules:</string>
-    <string name="roomies_home">Your roomies</string>
-    <string name="shareditem_home">Shared\nItem</string>
+    <string name="title_activity_add_bill">AddBill</string>
+	<string name="welcomehome">Welcome home</string>
+	<string name="Ranking">Ranking:</string>
+	<string name="trashduty">Trash Duty:</string>
+	<string name="youowe">Total you owe:</string>
+	<string name="reminder">Reminder:</string>
+	<string name="houserule">House Rules:</string>
+	<string name="roomies_home">Your roomies</string>
+	<string name="shareditem_home">Shared\nItem</string>
+
 
     <string name="overallduties_home">Overall\nDuties</string>
     <string name="createduty_header1">First...\nGive it a name</string>
@@ -48,17 +50,24 @@
     <string name="createduty_createbtn">Create</string>
 
 
-    <!--Bill-->
-    <string name="bill_title">Bill</string>
-    <string name="bill_total">You owe:</string>
-    <string name="bill_incompletebtns">View Incomplete</string>
+	<!--Bill-->
+	<string name="bill_title">Bill</string>
+	<string name="bill_youowe_total">You owe:</string>
+	<string name="bill_oweyou_total">Owe you:</string>
+	<string name="bill_incompletebtns">View Incomplete</string>
+	<string name="bill_requestbtn">Request</string>
+	<string name="bill_paynbtn">Pay</string>
 
-    <!--Add Bill-->
-    <string name="bill_addbill_title">Add Bill</string>
-    <string name="addbill_name">What is it for?</string>
-    <string name="addbill_amount">How Much is it?</string>
-    <string name="addbill_who">Who to charge</string>
-    <string name="addbill_submit">Submit</string>
+	<!--Add Bill-->
+	<string name="bill_addbill_title">Add Bill</string>
+	<string name="addbill_name">What is it for?</string>
+	<string name="addbill_amount">How Much is it?</string>
+	<string name="addbill_who">Who to charge</string>
+	<string name="addbill_request">Request</string>
+	<string name="addbill_pay">Pay</string>
+	<string name="addbill_submit">Submit</string>
+
+
 
     <!--Settings Screen-->
     <string name="settings_title">Setting</string>
@@ -81,7 +90,9 @@
     <string name="reminder_title">Reminders</string>
     <string name="reminder_noreminders">You are good!\nNoReminders</string>
 
-    <string name="pass_retreive">Get my password</string>
-    <string name="email_hint">email</string>
-    >>>>>>> 3f4e2710b08e05934869937962403cafa980b2ba
+
+	<string name="pass_retreive">Get my password</string>
+	<string name="email_hint">email</string>
+	<string name="bill_IOU_total">Total:</string>
+	<string name="editBill_title">Edit Bill</string>
 </resources>

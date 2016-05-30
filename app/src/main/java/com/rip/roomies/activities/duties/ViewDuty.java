@@ -1,6 +1,9 @@
 package com.rip.roomies.activities.duties;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -10,6 +13,7 @@ import com.rip.roomies.events.duties.CompleteDutyListener;
 import com.rip.roomies.events.duties.RemindDutyListener;
 import com.rip.roomies.models.Duty;
 import com.rip.roomies.models.User;
+import com.rip.roomies.views.DutyView;
 import com.rip.roomies.views.UserContainer;
 
 import java.util.logging.Logger;
@@ -27,6 +31,7 @@ public class ViewDuty extends GenericActivity {
 
 		//it's named action duty because it might be complete duty button or remind button
 		Button actionDuty;
+		Button viewLogs;
 		TextView dutyName;
 		TextView desc;
 		UserContainer users;
@@ -36,6 +41,7 @@ public class ViewDuty extends GenericActivity {
 		desc = (TextView) findViewById(R.id.description);
 		users = (UserContainer) findViewById(R.id.users_container);
 		actionDuty = (Button) findViewById(R.id.comp_duty_btn);
+		viewLogs = (Button) findViewById(R.id.logs_btn);
 
 		// Populate the information
 		Duty duty = getIntent().getExtras().getParcelable("Duty");
@@ -68,6 +74,15 @@ public class ViewDuty extends GenericActivity {
 			//trigger the event of reminding the person
 			actionDuty.setOnClickListener(new RemindDutyListener(this, currentAssignee.getId(), duty));
 		}
+
+		final Activity self = this;
+
+		viewLogs.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				startActivity(new Intent(self, ListDutyLogs.class));
+			}
+		});
 	}
 
 }

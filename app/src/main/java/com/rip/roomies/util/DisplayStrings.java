@@ -29,6 +29,9 @@ public class DisplayStrings {
 	public static final String CREATE_USER_SUCCESS = "User \"%s\" successfully created.\n" +
 			"Transferring to login page...";
 
+	public static final String LOG_DUTY_FAIL = "Log Duty failed...\n";
+	public static final String LOG_DUTY_SUCCESS = "Log Duty Successful...\n";
+
 	public static final String LOGIN_FAIL = "Login failed. Make sure your credentials are correct.";
 
 	public static final String PASS_RETRIEVE_FAIL = "Could not retrieve password.\n" +
