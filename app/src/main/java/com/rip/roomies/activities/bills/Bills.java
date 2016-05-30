@@ -28,7 +28,7 @@ public class Bills extends GenericActivity {
     private TextView aBillsName, aBillsDescription, aBillsAmount;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bills);
@@ -123,10 +123,11 @@ public class Bills extends GenericActivity {
             String newName = data.getStringExtra("Key_New_Name");
             String newDescription = data.getStringExtra("Key_New_Description");
             String newAmount = data.getStringExtra("Key_New_Amount");
+            String oweeID = data.getStringExtra("Key_New_oweeID");
 
             //the args are all OK to be inserted into the database, ie amount is a parsable float
             BillController.getController().createBill(newName, newDescription, newAmount, youowe_bills_container,
-                    oweyou_bills_container);
+                    oweyou_bills_container, oweeID);
         }
     }
 

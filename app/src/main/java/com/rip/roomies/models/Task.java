@@ -97,9 +97,9 @@ public abstract class Task<TLog extends TaskLog, T extends Task<TLog, T>> implem
 
 	/**
 	 * Completes the task, moves the rotation, then creates a log of the completion.
-	 * @return The task log created
+	 * @return The task that was completed
 	 */
-	protected abstract TLog complete();
+	protected abstract T complete();
 
 	/**
 	 * Gets the users that are associated with this task
@@ -147,9 +147,15 @@ public abstract class Task<TLog extends TaskLog, T extends Task<TLog, T>> implem
 		dest.writeString(description);
 		dest.writeInt(groupId);
 		assignee.writeToParcel(dest, flags);
-		dest.writeInt(users.length);
-		for (User u : users) {
-			u.writeToParcel(dest, flags);
+
+		if (users != null) {
+			dest.writeInt(users.length);
+			for (User u : users) {
+				u.writeToParcel(dest, flags);
+			}
+		}
+		else {
+			dest.writeInt(-1);
 		}
 	}
 
@@ -165,9 +171,13 @@ public abstract class Task<TLog extends TaskLog, T extends Task<TLog, T>> implem
 		assignee = new User(in);
 
 		int length = in.readInt();
-		User[] temp = new User[length];
-		for (int i = 0; i < length; ++i) {
-			temp[i] = new User(in);
+		User[] temp = null;
+
+		if (length >= 0) {
+			temp = new User[length];
+			for (int i = 0; i < length; ++i) {
+				temp[i] = new User(in);
+			}
 		}
 
 		users = temp;

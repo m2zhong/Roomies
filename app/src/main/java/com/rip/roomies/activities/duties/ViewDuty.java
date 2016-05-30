@@ -1,17 +1,20 @@
 package com.rip.roomies.activities.duties;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.TextView;
 
 import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
-import com.rip.roomies.events.duties.AddRotationListener;
-import com.rip.roomies.events.duties.ModifyDutyListener;
-import com.rip.roomies.models.Group;
+import com.rip.roomies.events.duties.CompleteDutyListener;
+import com.rip.roomies.events.duties.RemindDutyListener;
+import com.rip.roomies.models.Duty;
 import com.rip.roomies.models.User;
+import com.rip.roomies.views.DutyView;
 import com.rip.roomies.views.UserContainer;
-import com.rip.roomies.views.UserSpinner;
 
 import java.util.logging.Logger;
 
@@ -26,30 +29,60 @@ public class ViewDuty extends GenericActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_view_duty);
 
-		Button modifyDuty;
-		Button addUser;
-		EditText dutyName;
-		EditText desc;
+		//it's named action duty because it might be complete duty button or remind button
+		Button actionDuty;
+		Button viewLogs;
+		TextView dutyName;
+		TextView desc;
 		UserContainer users;
-		UserSpinner allUsers;
 
 		/* Linking xml objects to java */
-		dutyName = (EditText) findViewById(R.id.duty_name);
-		desc = (EditText) findViewById(R.id.description);
-		allUsers = (UserSpinner) findViewById(R.id.group_users_spinner);
-		addUser = (Button) findViewById(R.id.add_user_btn);
+		dutyName = (TextView) findViewById(R.id.duty_name);
+		desc = (TextView) findViewById(R.id.description);
 		users = (UserContainer) findViewById(R.id.users_container);
-		modifyDuty = (Button) findViewById(R.id.mod_duty_btn);
+		actionDuty = (Button) findViewById(R.id.comp_duty_btn);
+		viewLogs = (Button) findViewById(R.id.logs_btn);
 
-		for(User u : Group.getActiveGroup().getMembers()) {
-			allUsers.addUser(u);
+		// Populate the information
+		Duty duty = getIntent().getExtras().getParcelable("Duty");
+
+		if (duty != null) {
+			dutyName.setText(duty.getName());
+			desc.setText(duty.getDescription());
+
+			for (User u : duty.getUsers()) {
+				users.addUser(u);
+			}
 		}
 
-		// todo change null to DutyView
-		//modifyDuty.setOnClickListener(new ModifyDutyListener(this, null));
-		//addUser.setOnClickListener(new AddRotationListener(this, users, allUsers));
+		//This is to know who is currently in charge of the duty
+		User currentAssignee = duty.getAssignee();
+		/*  Then set the button name to either complete duty or remind
+			the person depending on the situation*/
 
+		//the case when "I" am the current assignee
+		if(currentAssignee.getId() == User.getActiveUser().getId()) {
+			//change the button name to complete duty
+			actionDuty.setText("Complete " + duty.getName());
+			//triggering event of completing the duty, go change database, rotation...etc
+			actionDuty.setOnClickListener(new CompleteDutyListener(this, duty));
+		}
+		//the case when another person is the assignee
+		else {
+			//change the button name to reminding the person
+			actionDuty.setText("Remind " + currentAssignee.getFirstName());
+			//trigger the event of reminding the person
+			actionDuty.setOnClickListener(new RemindDutyListener(this, currentAssignee.getId(), duty));
+		}
+
+		final Activity self = this;
+
+		viewLogs.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				startActivity(new Intent(self, ListDutyLogs.class));
+			}
+		});
 	}
-
 
 }

@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import com.rip.roomies.functions.CompleteDutyFunction;
 import com.rip.roomies.functions.CreateDutyFunction;
 import com.rip.roomies.functions.ListAllDutiesFunction;
+import com.rip.roomies.functions.ListDutyLogsFunction;
 import com.rip.roomies.functions.ListMyDutiesFunction;
 import com.rip.roomies.functions.ModifyDutyFunction;
 import com.rip.roomies.functions.RemoveDutyFunction;
@@ -91,6 +92,31 @@ public class DutyController {
 				}
 				else {
 					funct.listAllDutiesSuccess(response);
+				}
+			}
+		}.execute();
+	}
+
+	public void DutyLog(final ListDutyLogsFunction funct)
+	{
+		new AsyncTask<Void, Void, DutyLog[]>() {
+			@Override
+			public DutyLog[] doInBackground(Void... v) {
+				log.info(String.format(Locale.US, InfoStrings.GET_GROUP_DUTIES_CONTROLLER,
+						Group.getActiveGroup().getId()));
+
+				// Create request user and get response from login()
+				return Group.getActiveGroup().getDutyLogs();
+			}
+
+			// If fail, call fail callback. Otherwise, call success callback
+			@Override
+			public void onPostExecute(DutyLog[] response) {
+				if (response == null) {
+					funct.ListDutyLogsFail();
+				}
+				else {
+					funct.ListDutyLogsSuccess(response);
 				}
 			}
 		}.execute();
@@ -197,9 +223,9 @@ public class DutyController {
 	 */
 	public void completeDuty(final CompleteDutyFunction funct, final int id) {
 		// Create and run a new thread
-		new AsyncTask<Void, Void, DutyLog>() {
+		new AsyncTask<Void, Void, Duty>() {
 			@Override
-			public DutyLog doInBackground(Void... v) {
+			public Duty doInBackground(Void... v) {
 				log.info(String.format(Locale.US, InfoStrings.COMPLETE_DUTY_CONTROLLER, id));
 
 				// Create request user and get response from login()
@@ -209,7 +235,7 @@ public class DutyController {
 
 			// If fail, call fail callback. Otherwise, call success callback
 			@Override
-			public void onPostExecute(DutyLog response) {
+			public void onPostExecute(Duty response) {
 				if (response == null) {
 					funct.completeDutyFail();
 				}

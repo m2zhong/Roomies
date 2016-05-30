@@ -8,6 +8,10 @@ public class DisplayStrings {
 	public static final long TOAST_LONG_LENGTH = 3500;
 
 	public static final String MISSING_FIELD = "Required field missing: %s\n";
+	public static final String TOO_SHORT = "%s is too short. Must be at least %d characters.\n";
+	public static final String NOT_ALPHANUM = "%s must be alphanumeric or underscore.\n";
+	public static final String FIRST_NOT_ALPHA = "First character of %s must be a letter.\n";
+	public static final String INVALID = "%s entered is invalid.\n";
 	public static final String FIELD_MISMATCH = "Fields %s and %s do not match.\n";
 
 	public static final String CREATE_GROUP_FAIL = "Could not create a new group.\n" +
@@ -24,6 +28,9 @@ public class DisplayStrings {
 			"Check the logs for error.";
 	public static final String CREATE_USER_SUCCESS = "User \"%s\" successfully created.\n" +
 			"Transferring to login page...";
+
+	public static final String LOG_DUTY_FAIL = "Log Duty failed...\n";
+	public static final String LOG_DUTY_SUCCESS = "Log Duty Successful...\n";
 
 	public static final String LOGIN_FAIL = "Login failed. Make sure your credentials are correct.";
 
