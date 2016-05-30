@@ -17,13 +17,18 @@ public class RemoveBillListener implements View.OnClickListener {
     private Button removeBill, editBill;
     private TextView name, amount,description;
     private Bill selectedBill;
+    private LinearLayout innerLayout;
+    private LinearLayout underline;
 
     public RemoveBillListener(LinearLayout context, Bill selectedBill, Button removeBill, Button editBill,
-                              TextView name, TextView description, TextView amount) {
+                              TextView name, TextView description, TextView amount, LinearLayout innerLayout,
+                              LinearLayout underline) {
         this.context = context;
         this.removeBill = removeBill; this.editBill = editBill;
         this.name = name; this.description = description; this.amount = amount;
         this.selectedBill = selectedBill;
+        this.innerLayout=innerLayout;
+        this.underline=underline;
     }
 
     @Override
@@ -34,5 +39,7 @@ public class RemoveBillListener implements View.OnClickListener {
         //now remove its contents from the view.
         context.removeView(removeBill); context.removeView(editBill);
         context.removeView(name); context.removeView(amount); context.removeView(description);
+        context.removeView(editBill); context.removeView(removeBill);
+        context.removeView(innerLayout); context.removeView(underline);
     }
 }

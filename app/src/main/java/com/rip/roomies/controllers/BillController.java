@@ -32,7 +32,8 @@ public class BillController {
 
     public void createBill(final String name, final String description, final String amount,
                            final BillContainer youowe_bills_container,
-                           final BillContainer oweyou_bills_container) {
+                           final BillContainer oweyou_bills_container,
+                           final String oweeID) {
 
         if(amount.startsWith("-"))
             this.bills = youowe_bills_container;
@@ -59,9 +60,9 @@ public class BillController {
                     //add the bill returned from the DB to the BillContainer. Has uniq bill id, owner id, name, desc, amount...
 
                     if(amount.startsWith("-")){
-                        youowe_bills_container.addBill(result);}
+                        youowe_bills_container.addBill(result, oweeID);}
                     else
-                        oweyou_bills_container.addBill(result);
+                        oweyou_bills_container.addBill(result, oweeID);
 
                 }
             }
