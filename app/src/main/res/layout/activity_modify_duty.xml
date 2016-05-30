@@ -81,10 +81,10 @@
 		android:layout_height="wrap_content"
 		android:layout_gravity="bottom|center_horizontal"
 		android:layout_marginBottom="10dp"
-		android:background="@drawable/rec_border"
+		android:background="@drawable/rec_border_pink"
 		android:fontFamily="sans-serif-thin"
 		android:padding="10dp"
-		android:textColor="@color/colorPrimary"
+		android:textColor="@color/pink"
 		android:textSize="30sp"
 		android:text="Remove Duty" />
 

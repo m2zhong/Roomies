@@ -1,6 +1,7 @@
 package com.rip.roomies.views;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -80,8 +81,11 @@ public class UserView extends LinearLayout {
 		username.setText(user.getUsername());
 		email.setText(user.getEmail());
 
+		name.setTextColor(Color.BLACK);
+		name.setPadding(50, 50, 50, 50);
 		addView(name);
-		addView(username);
-		addView(email);
+
+		//addView(username);
+		//addView(email);
 	}
 }

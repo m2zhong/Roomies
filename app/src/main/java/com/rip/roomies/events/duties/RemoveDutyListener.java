@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  * This class represents the listener for when a duty is deleted.
  */
 public class RemoveDutyListener implements View.OnClickListener, RemoveDutyFunction {
-	private static final Logger log = Logger.getLogger(CompleteDutyListener.class.getName());
+	private static final Logger log = Logger.getLogger(RemoveDutyListener.class.getName());
 
 	private Duty duty;
 	private GenericActivity activity;

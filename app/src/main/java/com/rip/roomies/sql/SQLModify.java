@@ -132,6 +132,77 @@ public class SQLModify {
 	}
 
 
+	public static Integer updateProfile (int groupID, int userID, String firstName, String lastName, String email, String groupDescription) {
+		ResultSet rset;
+
+		try {
+
+			//debug statement
+			//log.info(InfoStrings.MODIFYDUTY_SQL);
+
+			// get the result table from query execution through sql
+			rset = SQLQuery.execute(String.format(Locale.US, SQLStrings.UPDATE_PROFILE,
+					userID, groupID, firstName, lastName, email, groupDescription));
+
+			// error happened when contacting sql server
+			if(rset == null || !rset.next()) {
+				// debug statement
+				//log.info(InfoStrings.MODIFYDUTY_FAILED);
+				return null;
+			}
+			// if there is a rset
+			else {
+
+				// debug statement
+				//log.info(String.format(Locale.US, InfoStrings.MODIFYDUTY_SUCCESSFUL,
+				//		resultId, resultName, resultDescription, dutyGroupId));
+
+				return 1;
+			}
+		}
+		catch (Exception e) {
+			log.severe(Exceptions.stacktraceToString(e));
+			return null;
+		}
+
+	}
+
+
+	public static Integer changePassword(int userID, String newPassword) {
+		ResultSet rset;
+
+		try {
+
+			//debug statement
+			//log.info(InfoStrings.MODIFYDUTY_SQL);
+
+			// get the result table from query execution through sql
+			rset = SQLQuery.execute(String.format(Locale.US, SQLStrings.MODIFY_PASSWORD,
+					userID, newPassword));
+
+			// error happened when contacting sql server
+			if(rset == null || !rset.next()) {
+				// debug statement
+				//log.info(InfoStrings.MODIFYDUTY_FAILED);
+				return null;
+			}
+			// if there is a rset
+			else {
+
+				// debug statement
+				//log.info(String.format(Locale.US, InfoStrings.MODIFYDUTY_SUCCESSFUL,
+				//		resultId, resultName, resultDescription, dutyGroupId));
+
+				return 1;
+			}
+		}
+		catch (Exception e) {
+			log.severe(Exceptions.stacktraceToString(e));
+			return null;
+		}
+
+	}
+
 	public static void modifyBill(Bill billToModify) {
 
 		try {

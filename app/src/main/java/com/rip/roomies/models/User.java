@@ -7,6 +7,7 @@ import com.rip.roomies.sql.SQLCreate;
 import com.rip.roomies.sql.SQLFind;
 import com.rip.roomies.sql.SQLGet;
 import com.rip.roomies.sql.SQLLogin;
+import com.rip.roomies.sql.SQLModify;
 import com.rip.roomies.util.InfoStrings;
 
 import java.util.logging.Logger;
@@ -123,6 +124,16 @@ public class User implements Parcelable {
 		return loggedIn;
 	}
 
+
+
+	public Integer updateProfile(String firstName, String lastName, String email, String groupDescription) {
+
+		return SQLModify.updateProfile(Group.getActiveGroup().getId(), User.getActiveUser().getId(), firstName, lastName, email, groupDescription);
+	}
+
+
+
+
 	/**
 	 * Logs off the user by removing the static activeUser field.
 	 */
@@ -159,6 +170,13 @@ public class User implements Parcelable {
 		return SQLGet.getGroups(this);
 	}
 
+
+	public Integer changePassword(String newPassword) {
+		return SQLModify.changePassword(User.getActiveUser().getId(), newPassword);
+	}
+
+
+
 	/**
 	 * Connects to the database and emails the User their password, which they have forgotten.
 	 *
@@ -174,9 +192,9 @@ public class User implements Parcelable {
 	 * @param group The group object of the context
 	 * @return The array of duties
 	 */
-	public Duty[] getDuties(Group group) {
-		log.info(InfoStrings.GET_USER_DUTIES_MODEL);
-		return SQLGet.getUserDuties(group, this);
+	public Task[] getTasks(Group group) {
+		log.info(InfoStrings.GET_USER_TASKS_MODEL);
+		return SQLGet.getUserTasks(group, this);
 	}
 
 	/**
@@ -217,6 +235,10 @@ public class User implements Parcelable {
 
 	public int getId() {
 		return id;
+	}
+
+	public static void setActiveUser(User user) {
+		activeUser = user;
 	}
 
 	@Override

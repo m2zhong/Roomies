@@ -74,7 +74,7 @@ public class Home extends GenericActivity {
 			}
 		});
 
-		Button toMyDuties = (Button) findViewById(R.id.to_view_my_duties);
+		TextView toMyDuties = (TextView) findViewById(R.id.to_view_my_duties);
 		toMyDuties.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {

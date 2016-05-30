@@ -10,7 +10,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="80dp"
 		android:paddingTop="10dp"
-		android:src="@mipmap/logowhite"/>
+		android:id="@+id/appname2"/>
 
 	<EditText
 		android:id="@+id/firstName"
@@ -128,3 +128,4 @@
 		android:paddingTop="5dp"
 		android:paddingBottom="5dp"/>
 </LinearLayout>
+
