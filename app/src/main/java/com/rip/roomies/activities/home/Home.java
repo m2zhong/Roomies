@@ -99,7 +99,7 @@ public class Home extends GenericActivity {
 		display.getSize(size);
 
 		ImageView logo = (ImageView) findViewById(R.id.home_appname);
-		logo.setImageBitmap(Images.getScaledDownBitmap(getResources(), R.mipmap.logowhite,
+		logo.setImageBitmap(Images.getScaledDownBitmap(getResources(), R.mipmap.logo2,
 				(int) (size.x * IMAGE_WIDTH_RATIO), (int) (size.y * IMAGE_HEIGHT_RATIO)));
 
 		try {
