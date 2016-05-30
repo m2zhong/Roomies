@@ -348,7 +348,7 @@
 					android:id="@+id/to_view_my_duties"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:text="View My Duties" />
+					android:text="View My Tasks" />
 
 			</LinearLayout>
 		</FrameLayout>

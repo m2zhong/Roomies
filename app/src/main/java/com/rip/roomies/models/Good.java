@@ -1,5 +1,6 @@
 package com.rip.roomies.models;
 
+import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -8,6 +9,7 @@ import com.rip.roomies.sql.SQLGet;
 import com.rip.roomies.sql.SQLModify;
 import com.rip.roomies.sql.SQLRemove;
 import com.rip.roomies.util.InfoStrings;
+import com.rip.roomies.views.TaskView;
 
 import java.util.logging.Logger;
 
@@ -94,5 +96,11 @@ public class Good extends Task<GoodLog, Good> {
 	public Good getRotation() {
 		log.info(InfoStrings.GET_ROTATION_MODEL);
 		return SQLGet.getGoodUsers(this);
+	}
+
+	/** @inheritDoc **/
+	@Override
+	public TaskView getView(Context context) {
+		return null;
 	}
 }
