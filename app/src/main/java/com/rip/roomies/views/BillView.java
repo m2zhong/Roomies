@@ -127,9 +127,14 @@ public class BillView extends LinearLayout {
 		editBill.setText("Edit");
 		remindBill.setText("Remind");
 
-		removeBill.setTextSize(20);
-		editBill.setTextSize(20);
-		remindBill.setTextSize(20);
+		removeBill.setTextSize(15);
+		editBill.setTextSize(15);
+		remindBill.setTextSize(15);
+
+		/* Setting Font */
+		removeBill.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
+		editBill.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
+		remindBill.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
 
 		removeBill.setTextColor(getResources().getColor(R.color.pink));
 		editBill.setTextColor(getResources().getColor(R.color.colorPrimary));
@@ -194,9 +199,9 @@ public class BillView extends LinearLayout {
 		billInfo_lp.setMargins(40, 0, 0, 0);
 
 		/* Adding space between Buttons */
-		editBill_lp.setMargins(20,30,10,30);
-		removeBill_lp.setMargins(10,30,20,30);
-		remindBill_lp.setMargins(10,30,10,30);
+		editBill_lp.setMargins(20,15,10,20);
+		removeBill_lp.setMargins(10,15,20,20);
+		remindBill_lp.setMargins(10,15,10,20);
 
 
 		/* Setting Buttons in LinearView Horizontal for owe you */

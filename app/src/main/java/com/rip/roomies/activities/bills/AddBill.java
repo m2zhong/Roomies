@@ -1,6 +1,7 @@
 package com.rip.roomies.activities.bills;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -38,6 +39,9 @@ public class AddBill extends GenericActivity {
 		addbill_pay = (Button) findViewById(R.id.addbill_pay);
 		addbill_request=(Button) findViewById(R.id.addbill_request);
 		userSpinner = (UserSpinner) findViewById(R.id.group_users_spinner);
+
+		addbill_request.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
+		addbill_pay.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
 
 
 		for (User u : Group.getActiveGroup().getMembers()) {

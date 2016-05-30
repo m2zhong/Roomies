@@ -38,6 +38,7 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_margin="5dp"
+			android:textColor="@color/black"
 			android:background="@drawable/edittextlight"
 			android:inputType="textShortMessage|textMultiLine"
 			android:maxLength="100"
@@ -58,6 +59,7 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_margin="5dp"
+			android:textColor="@color/black"
 			android:background="@drawable/edittextlight"
 			android:inputType="numberDecimal"
 			android:textSize="25sp" />
@@ -74,6 +76,7 @@
 			android:id="@+id/editBillName"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:background="@drawable/rec_border"
 			android:layout_margin="5dp">
 
 		</com.rip.roomies.views.UserSpinner>
