@@ -100,8 +100,10 @@ public class SQLGet {
 				ArrayList<Group> groups = new ArrayList<>();
 
 				do {
-					int id = rs.getInt("GroupID");
-					groups.add(new Group(id, "", ""));
+					int id = rs.getInt("ID");
+					String name = rs.getString("Name");
+					String description = rs.getString("Description");
+					groups.add(new Group(id, name, description));
 				} while(rs.next());
 
 				//debug statement
