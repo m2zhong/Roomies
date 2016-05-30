@@ -80,6 +80,8 @@ public class GoodView extends TaskView {
 	protected void setupLayout() {
 		log.info(String.format(InfoStrings.VIEW_SETUP, GoodView.class.getSimpleName()));
 
+		removeAllViews();
+
 		LinearLayout.LayoutParams w = new LayoutParams(
 				LayoutParams.MATCH_PARENT,
 				LayoutParams.WRAP_CONTENT);

@@ -8,7 +8,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.QuickContactBadge;
 
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
@@ -18,7 +18,7 @@ import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.activities.bills.Bills;
 
 import com.rip.roomies.activities.duties.ListAllDuties;
-//import com.rip.roomies.activities.duties.ListMyDuties;
+import com.rip.roomies.activities.profile.Profile;
 import com.rip.roomies.activities.goods.ListAllGoods;
 import com.rip.roomies.activities.tasks.ListMyTasks;
 import com.rip.roomies.util.Images;
@@ -50,11 +50,23 @@ public class Home extends GenericActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 
+
 		dutiesScreen = (TextView) findViewById(R.id.home_overallduties);
 		TextView goodsScreen = (TextView) findViewById(R.id.home_shareditem);
 		billScreen = (TextView) findViewById(R.id.home_IOU);
 
+
 		final Activity self = this;
+
+		QuickContactBadge profileBadge = (QuickContactBadge) findViewById(R.id.home_profilepicture);
+
+		profileBadge.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				startActivity(new Intent(self, Profile.class));
+			}
+		});
+
 
 		billScreen.setOnClickListener(new View.OnClickListener() {
 			@Override
