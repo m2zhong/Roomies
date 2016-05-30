@@ -17,7 +17,7 @@
 
 
     <EditText
-        android:id="@+id/duty_name"
+        android:id="@+id/good_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Name" />
@@ -54,7 +54,7 @@
         android:layout_weight="1" />
 
     <Button
-        android:id="@+id/add_duty_btn"
+        android:id="@+id/add_good_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"

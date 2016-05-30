@@ -108,6 +108,18 @@
 			android:name=".activities.duties.ListDutyLogs"
 			android:configChanges="orientation|keyboardHidden|screenSize"
 			android:theme="@style/FullscreenTheme" />
+		<activity
+			android:name=".activities.goods.CreateGood"
+			android:configChanges="orientation|keyboardHidden|screenSize"
+			android:theme="@style/FullscreenTheme" />
+		<activity
+			android:name=".activities.goods.ListAllGoods"
+			android:configChanges="orientation|keyboardHidden|screenSize"
+			android:theme="@style/FullscreenTheme" />
+		<activity
+			android:name=".activities.goods.ListGoodLogs"
+			android:configChanges="orientation|keyboardHidden|screenSize"
+			android:theme="@style/FullscreenTheme" />
 	</application>
 
 </manifest>

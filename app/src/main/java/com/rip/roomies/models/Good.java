@@ -83,8 +83,7 @@ public class Good extends Task<GoodLog, Good> {
 		return SQLModify.completeGood(this, price);
 	}
 
-	/** @inheritDoc **/
-	@Override
+
 	public Good complete() {
 		return complete(0);
 	}
