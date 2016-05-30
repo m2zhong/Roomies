@@ -9,6 +9,7 @@ import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.events.duties.AddRotationListener;
 import com.rip.roomies.events.duties.CreateDutyListener;
 import com.rip.roomies.events.duties.RemoveRotationListener;
+import com.rip.roomies.events.goods.CreateGoodListener;
 import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
 import com.rip.roomies.views.UserContainer;

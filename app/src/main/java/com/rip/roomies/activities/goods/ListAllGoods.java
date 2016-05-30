@@ -13,6 +13,8 @@ import com.rip.roomies.controllers.GoodController;
 import com.rip.roomies.functions.ListAllGoodsFunction;
 import com.rip.roomies.models.Good;
 import com.rip.roomies.util.DisplayStrings;
+import com.rip.roomies.views.GoodContainer;
+import com.rip.roomies.views.GoodView;
 
 import java.util.logging.Logger;
 

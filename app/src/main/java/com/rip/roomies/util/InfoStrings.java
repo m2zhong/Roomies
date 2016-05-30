@@ -199,6 +199,7 @@ public class InfoStrings {
 	public static final String GET_USER_TASKS_CONTROLLER = "Viewing all tasks from user with " +
 			"user id: %d and group id: %d\n";
 
+	public static final String CREATE_GOOD_EVENT = "Validation passed. Attempting to create good.";
 	public static final String CREATE_GOOD_MODEL = "Creating a good based off the current object";
 	public static final String CREATE_GOOD_CONTROLLER = "Creating good from user given fields:\n" +
 			"Name: '%s'\nDescription: '%s'\nGroupID: '%s',Users: '%d'";
