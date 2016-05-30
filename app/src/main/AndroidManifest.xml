@@ -3,7 +3,6 @@
           package="com.rip.roomies">
 
 	<uses-permission android:name="android.permission.INTERNET" />
-
 	<application
 		android:allowBackup="true"
 		android:icon="@mipmap/ic_launcher"
@@ -17,7 +16,6 @@
 			android:theme="@style/FullscreenTheme">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
-
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
@@ -25,13 +23,15 @@
 			android:name=".activities.login.Login"
 			android:configChanges="orientation|keyboardHidden|screenSize"
 			android:label="@string/title_activity_login"
-			android:theme="@style/FullscreenTheme" />
+			android:theme="@style/FullscreenTheme"
+			android:screenOrientation="portrait"/>
 		<activity
 			android:name=".activities.login.CreateUser"
 			android:configChanges="orientation|keyboardHidden|screenSize"
 			android:label="@string/title_activity_create_user"
 			android:parentActivityName=".activities.login.Login"
-			android:theme="@style/FullscreenTheme">
+			android:theme="@style/FullscreenTheme"
+			android:screenOrientation="portrait">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value="com.rip.roomies.activities.login.Login" />
@@ -41,7 +41,8 @@
 			android:configChanges="orientation|keyboardHidden|screenSize"
 			android:label="@string/title_activity_password_recovery"
 			android:parentActivityName=".activities.login.Login"
-			android:theme="@style/FullscreenTheme">
+			android:theme="@style/FullscreenTheme"
+			android:screenOrientation="portrait">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value="com.rip.roomies.activities.login.Login" />
@@ -50,7 +51,8 @@
 			android:name=".activities.groups.CreateGroup"
 			android:configChanges="orientation|keyboardHidden|screenSize"
 			android:label="@string/title_activity_create_group"
-			android:theme="@style/FullscreenTheme">
+			android:theme="@style/FullscreenTheme"
+			android:screenOrientation="portrait">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value="com.rip.roomies.activities.groups.GroupChoice" />
@@ -59,7 +61,8 @@
 			android:name=".activities.groups.GroupChoice"
 			android:configChanges="orientation|keyboardHidden|screenSize"
 			android:label="@string/title_activity_group_choice"
-			android:theme="@style/FullscreenTheme">
+			android:theme="@style/FullscreenTheme"
+			android:screenOrientation="portrait">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value="com.rip.roomies.activities.home.Home" />
@@ -68,13 +71,14 @@
 			android:name=".activities.home.Home"
 			android:configChanges="orientation|keyboardHidden|screenSize"
 			android:label="@string/title_activity_home"
-			android:theme="@style/FullscreenTheme">
-		</activity>
+			android:theme="@style/FullscreenTheme"
+			android:screenOrientation="portrait"/>
 		<activity
 			android:name=".activities.groups.JoinGroup"
 			android:configChanges="orientation|keyboardHidden|screenSize"
 			android:label="@string/title_activity_join_group"
-			android:theme="@style/FullscreenTheme">
+			android:theme="@style/FullscreenTheme"
+			android:screenOrientation="portrait">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value="com.rip.roomies.activities.groups.GroupChoice" />
@@ -83,27 +87,41 @@
 			android:name=".activities.groups.InviteUsers"
 			android:configChanges="orientation|keyboardHidden|screenSize"
 			android:label="@string/title_activity_invite_users"
-			android:theme="@style/FullscreenTheme" />
+			android:theme="@style/FullscreenTheme"
+			android:screenOrientation="portrait"/>
+		<activity android:name=".activities.bills.Bills"
+		          android:screenOrientation="portrait"/>
+		<activity android:name=".activities.bills.ModifyBill"
+		          android:screenOrientation="portrait"/>
+		<activity
+			android:name=".activities.bills.AddBill"
+			android:label="@string/title_activity_add_bill"
+			android:screenOrientation="portrait"/>
+
 		<activity
 			android:name=".activities.duties.CreateDuty"
 			android:configChanges="orientation|keyboardHidden|screenSize"
-			android:theme="@style/FullscreenTheme" />
+			android:theme="@style/FullscreenTheme"
+			android:screenOrientation="portrait"/>
 		<activity
 			android:name=".activities.duties.ListAllDuties"
 			android:configChanges="orientation|keyboardHidden|screenSize"
-			android:theme="@style/FullscreenTheme" />
+			android:theme="@style/FullscreenTheme"
+			android:screenOrientation="portrait"/>
 		<activity
-			android:name=".activities.duties.ListMyDuties"
+			android:name=".activities.tasks.ListMyTasks"
 			android:configChanges="orientation|keyboardHidden|screenSize"
 			android:theme="@style/FullscreenTheme" />
 		<activity
 			android:name=".activities.duties.ModifyDuty"
 			android:configChanges="orientation|keyboardHidden|screenSize"
-			android:theme="@style/FullscreenTheme" />
+			android:theme="@style/FullscreenTheme"
+			android:screenOrientation="portrait"/>
 		<activity
 			android:name=".activities.duties.ViewDuty"
 			android:configChanges="orientation|keyboardHidden|screenSize"
-			android:theme="@style/FullscreenTheme" />
+			android:theme="@style/FullscreenTheme"
+			android:screenOrientation="portrait"/>
 		<activity
 			android:name=".activities.duties.ListDutyLogs"
 			android:configChanges="orientation|keyboardHidden|screenSize"

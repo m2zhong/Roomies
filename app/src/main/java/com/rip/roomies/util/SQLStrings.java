@@ -33,6 +33,17 @@ public class SQLStrings {
 	public static final String GET_GROUPS = "EXEC GetGroups " +
 			"@userId = %d";
 
+	public static final String CREATE_BILL = "EXEC CreateBill " +
+			"@owner_id = %d, " +
+			"@name = '%s', @description = '%s', @amount = %.2f;";
+
+	public static final String DELETE_BILL = "EXEC DeleteBill " +
+			"@ID = %d;";
+
+
+	public static final String MODIFY_BILL_SQL = "EXEC ModifyBill " +
+			"@id = %d, @name = '%s', @description = '%s', @amount = %.2f;";
+
 	public static final String CREATE_DUTY = "EXEC CreateDuty " +
 			"@name = '%s', @desc = '%s', @group = %d, @userIds = '%s'";
 
@@ -51,7 +62,7 @@ public class SQLStrings {
 	public static final String GET_GROUP_DUTY_LOGS = "EXEC GetGroupDutyLogs " +
 			"@groupID = %d";
 
-	public static final String GET_USER_DUTIES = "EXEC GetUserDuties " +
+	public static final String GET_USER_TASKS = "EXEC GetUserTasks " +
 			"@groupID = %d, @userID = %d";
 
 	public static final String GET_DUTY_USERS = "EXEC GetDutyUsers " +

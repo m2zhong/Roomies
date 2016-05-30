@@ -24,12 +24,13 @@
 	<string name="remind">Remind</string>
 	<string name="delete">Delete</string>
 
-	<string name="create_group_header">Create Group</string>
-	<string name="group_name_hint">name</string>
-	<string name="group_desription_hint">description</string>
-	<string name="invitees_header">invitees</string>
-	<string name="invitee_add_hint">invitee isername</string>
+    <string name="create_group_header">Create Group</string>
+    <string name="group_name_hint">name</string>
+    <string name="group_desription_hint">description</string>
+    <string name="invitees_header">invitees</string>
+    <string name="invitee_add_hint">invitee isername</string>
 
+    <string name="title_activity_add_bill">AddBill</string>
 	<string name="welcomehome">Welcome home</string>
 	<string name="Ranking">Ranking:</string>
 	<string name="trashduty">Trash Duty:</string>
@@ -47,16 +48,25 @@
 	<string name="createduty_createbtn">Create</string>
 
 
+	<!--Join-->
+	<string name="join_group_header">Join a Group</string>
+	<string name="join_groupbtn">Join Group</string>
+
 	<!--Bill-->
 	<string name="bill_title">Bill</string>
-	<string name="bill_total">You owe:</string>
+	<string name="bill_youowe_total">You owe:</string>
+	<string name="bill_oweyou_total">Owe you:</string>
 	<string name="bill_incompletebtns">View Incomplete</string>
+	<string name="bill_requestbtn">Request</string>
+	<string name="bill_paynbtn">Pay</string>
 
 	<!--Add Bill-->
 	<string name="bill_addbill_title">Add Bill</string>
 	<string name="addbill_name">What is it for?</string>
 	<string name="addbill_amount">How Much is it?</string>
 	<string name="addbill_who">Who to charge</string>
+	<string name="addbill_request">Request</string>
+	<string name="addbill_pay">Pay</string>
 	<string name="addbill_submit">Submit</string>
 
 	<!--Settings Screen-->
@@ -76,4 +86,6 @@
 
 	<string name="pass_retreive">Get my password</string>
 	<string name="email_hint">email</string>
+	<string name="bill_IOU_total">Total:</string>
+	<string name="editBill_title">Edit Bill</string>
 </resources>

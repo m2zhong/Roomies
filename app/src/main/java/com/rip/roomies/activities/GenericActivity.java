@@ -24,7 +24,7 @@ public abstract class GenericActivity extends Activity {
 	public void toLogin() {
 		log.info(String.format(InfoStrings.SWITCH_ACTIVITY, Login.class.getName()));
 
-		
+
 		startActivity(new Intent(this, Login.class));
 	}
 

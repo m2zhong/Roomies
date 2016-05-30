@@ -93,6 +93,18 @@ public class InfoStrings {
 	public static final String GET_GROUPS_FAILED = "GetGroups failed!!";
 
 
+	public static final String CREATEBILL_MODEL = "Creating a new bill based off the current object.";
+	public static final String CREATEBILL_SQL = "Creating bill...";
+	public static final String CREATEBILL_SUCCESSFULL = "CreateBill successfull!! \n" +
+			"ID: %d\nName: %s\nDescription: %s\nAmount: %.2f";
+	public static final String CREATEBILL_CONTROLLER = "Creating bill from user given fields:\n" +
+			"Name: %s\nDescription: %s\nAmount: %.2f";
+
+
+	public static final String REMOVE_BILL_FROM_TABLE_SUCCESS = "Successfully removed Bill w/ Row ID = %d, \n" +
+			"ownerid = %d, \nname = %s, \ndescription = %s, \namount = %.2f";
+	public static final String REMOVE_BILL_FROM_TABLE_SQL = "Attempting to remove the Bill from sql...\n";
+
 	public static final String CREATEDUTY_SQL = "Creating duty...";
 	public static final String CREATEDUTY_SUCCESSFUL = "CreateDuty successful!! \n" +
 			"ID: %d\nName: %s\nDescription: %s\nGroup Id: %d";
@@ -121,9 +133,9 @@ public class InfoStrings {
 	public static final String GET_GROUP_DUTY_LOGS_SUCCESSFUL = "GetGroupDutyLogs successful!!";
 	public static final String GET_GROUP_DUTY_LOGS_FAILED = "GetGroupDutyLogs failed!!";
 
-	public static final String GET_USER_DUTIES_SQL = "Getting user duties...";
-	public static final String GET_USER_DUTIES_SUCCESSFUL = "GetUserDuties successful!!";
-	public static final String GET_USER_DUTIES_FAILED = "GetUserDuties failed!!";
+	public static final String GET_USER_TASKS_SQL = "Getting user tasks...";
+	public static final String GET_USER_TASKS_SUCCESSFUL = "GetUserTasks successful!!";
+	public static final String GET_USER_TASKS_FAILED = "GetUserTasks failed!!";
 
 	public static final String GET_DUTY_USERS_SQL = "Getting duty users...";
 	public static final String GET_DUTY_USERS_SUCCESSFUL = "GetDutyUsers successful!!";
@@ -183,8 +195,8 @@ public class InfoStrings {
 	public static final String GET_GROUP_DUTIES_CONTROLLER = "Viewing all duties from the group" +
 			"with group id: %d.\n";
 
-	public static final String GET_USER_DUTIES_MODEL = "Getting a list of duties for a user.";
-	public static final String GET_USER_DUTIES_CONTROLLER = "Viewing all duties from user with " +
+	public static final String GET_USER_TASKS_MODEL = "Getting a list of tasks for a user.";
+	public static final String GET_USER_TASKS_CONTROLLER = "Viewing all tasks from user with " +
 			"user id: %d and group id: %d\n";
 
 	public static final String CREATE_GOOD_MODEL = "Creating a good based off the current object";
