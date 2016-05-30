@@ -11,6 +11,7 @@ import com.rip.roomies.views.DutyContainer;
 import com.rip.roomies.R;
 import com.rip.roomies.models.Duty;
 import com.rip.roomies.util.DisplayStrings;
+import com.rip.roomies.views.DutyLogContainer;
 
 import java.util.logging.Logger;
 
@@ -20,7 +21,7 @@ import java.util.logging.Logger;
 public class ListDutyLogs extends GenericActivity implements ListDutyLogsFunction
 {
     private static final Logger log = Logger.getLogger(ListAllDuties.class.getName());
-    DutyContainer dc;
+    DutyLogContainer dlc;
 
     @Override
     public void onCreate(Bundle savedInstance) {
@@ -29,7 +30,7 @@ public class ListDutyLogs extends GenericActivity implements ListDutyLogsFunctio
         setContentView(R.layout.activity_duty_log);
 
 		/* Linking xml objects to java */
-        dc = (DutyContainer) findViewById(R.id.duty_list);
+        dlc = (DutyLogContainer) findViewById(R.id.duty_list);
 
         final Activity self = this;
 
@@ -46,8 +47,8 @@ public class ListDutyLogs extends GenericActivity implements ListDutyLogsFunctio
     @Override
     public void ListDutyLogsSuccess(DutyLog[] duties)
     {
-        for (Duty d : duties) {
-            dc.addDuty(d);
+        for (DutyLog d : duties) {
+            dlc.addDutyLog(d);
         }
     }
 }

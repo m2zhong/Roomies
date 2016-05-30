@@ -27,6 +27,7 @@ public class DutyView extends LinearLayout {
 	private static final Logger log = Logger.getLogger(DutyView.class.getName());
 	public static final int EDIT_DUTY = 1;
 	public static final int VIEW_DUTY = 2;
+	public static final int ADD_DUTY = 3;
 
 	private Duty duty;
 
@@ -43,6 +44,7 @@ public class DutyView extends LinearLayout {
 	public DutyView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
+
 
 	/**
 	 * @see android.view.View(Context, AttributeSet, int)

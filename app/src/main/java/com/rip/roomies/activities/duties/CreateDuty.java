@@ -8,6 +8,7 @@ import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.events.duties.AddRotationListener;
 import com.rip.roomies.events.duties.CreateDutyListener;
+import com.rip.roomies.events.duties.RemoveRotationListener;
 import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
 import com.rip.roomies.views.UserContainer;
@@ -25,6 +26,7 @@ public class CreateDuty extends GenericActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		Button addDuty;
 		Button addUser;
+		Button removeUser;
 		EditText dutyName;
 		EditText desc;
 		UserContainer users;
@@ -40,6 +42,7 @@ public class CreateDuty extends GenericActivity {
 		addUser = (Button) findViewById(R.id.add_user_btn);
 		users = (UserContainer) findViewById(R.id.users_container);
 		addDuty = (Button) findViewById(R.id.add_duty_btn);
+		removeUser = (Button) findViewById(R.id.rem_user_btn);
 
 		for(User u : Group.getActiveGroup().getMembers()) {
 			allUsers.addUser(u);
@@ -47,6 +50,7 @@ public class CreateDuty extends GenericActivity {
 
 		addDuty.setOnClickListener(new CreateDutyListener(this, dutyName, desc, users));
 		addUser.setOnClickListener(new AddRotationListener(this, users, allUsers));
+		removeUser.setOnClickListener(new RemoveRotationListener(this, users));
 
 	}
 

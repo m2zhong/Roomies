@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
 import com.rip.roomies.models.Duty;
+import com.rip.roomies.models.DutyLog;
 import com.rip.roomies.util.InfoStrings;
 
 import java.util.ArrayList;
@@ -69,6 +70,7 @@ public class DutyContainer extends ScrollView {
 		dutyView.setDuty(newDuty);
 		dutyLayout.addView(dutyView);
 	}
+
 
 	/**
 	 * Modify an already existing duty inside the DutyContainer by replacing
