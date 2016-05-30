@@ -59,6 +59,7 @@ public class EditProfileListener implements View.OnClickListener, UpdateProfileF
 
         //update active group
         Group.setActiveGroupDescription(etGroupDescription.getText().toString());
+        activity.finish();
 
     }
 }

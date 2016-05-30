@@ -1,6 +1,7 @@
 package com.rip.roomies.activities.profile;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -62,6 +63,11 @@ public class Profile extends GenericActivity implements View.OnClickListener {
             etGroupDescription.setText(thisUsersGroup.getDescription());
         }
 
+        etFirstName.setBackgroundColor(Color.WHITE);
+        etFirstName.setBackgroundColor(Color.WHITE);
+        etLastName.setBackgroundColor(Color.WHITE);
+        etEmail.setBackgroundColor(Color.WHITE);
+        etGroupDescription.setBackgroundColor(Color.WHITE);
 
 
         //set the listeners for the leavegroup button/submit changes button
@@ -85,6 +91,13 @@ public class Profile extends GenericActivity implements View.OnClickListener {
 
         switch (v.getId()) {
             case R.id.settings_tap_hint:
+
+                //change background color to light gray
+                etFirstName.setBackgroundColor(Color.LTGRAY);
+                etLastName.setBackgroundColor(Color.LTGRAY);
+                etEmail.setBackgroundColor(Color.LTGRAY);
+                etGroupDescription.setBackgroundColor(Color.LTGRAY);
+
                 etFirstName.setEnabled(true);
                 etLastName.setEnabled(true);
                 etEmail.setEnabled(true);
