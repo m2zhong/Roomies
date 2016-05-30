@@ -30,6 +30,20 @@
     </LinearLayout>
 
     <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logs"
+        android:id="@+id/logs_btn"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rec_border"
+        android:fontFamily="sans-serif-thin"
+        android:padding="20dp"
+        android:layout_margin="10dp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="15sp"/>
+
+    <Button
         android:id="@+id/duty_addbtn"
         android:layout_width="70dp"
         android:layout_height="70dp"

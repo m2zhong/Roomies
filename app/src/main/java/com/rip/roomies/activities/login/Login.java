@@ -60,8 +60,8 @@ public class Login extends GenericActivity {
 		Point size = new Point();
 		display.getSize(size);
 
-		ImageView logo = (ImageView) findViewById(R.id.appname);
-		logo.setImageBitmap(Images.getScaledDownBitmap(getResources(), R.mipmap.logowhite,
+		ImageView logo = (ImageView) findViewById(R.id.appname3);
+		logo.setImageBitmap(Images.getScaledDownBitmap(getResources(), R.mipmap.logo2,
 				(int) (size.x * IMAGE_WIDTH_RATIO), (int) (size.y * IMAGE_HEIGHT_RATIO)));
 
 
