@@ -2,15 +2,19 @@ package com.rip.roomies.activities.login;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.events.login.LoginListener;
+import com.rip.roomies.util.Images;
 
 import java.util.logging.Logger;
 
@@ -19,6 +23,8 @@ import java.util.logging.Logger;
  */
 public class Login extends GenericActivity {
 	private static final Logger log = Logger.getLogger(Login.class.getName());
+	private static final double IMAGE_WIDTH_RATIO = 3.0 / 10;
+	private static final double IMAGE_HEIGHT_RATIO = 2.0 / 25;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +55,15 @@ public class Login extends GenericActivity {
 				startActivity(new Intent(self, PassRetrieve.class));
 			}
 		});
+
+		Display display = getWindowManager().getDefaultDisplay();
+		Point size = new Point();
+		display.getSize(size);
+
+		ImageView logo = (ImageView) findViewById(R.id.appname);
+		logo.setImageBitmap(Images.getScaledDownBitmap(getResources(), R.mipmap.logowhite,
+				(int) (size.x * IMAGE_WIDTH_RATIO), (int) (size.y * IMAGE_HEIGHT_RATIO)));
+
 
 	}
 
