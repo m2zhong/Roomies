@@ -1,7 +1,10 @@
 package com.rip.roomies.models;
 
+import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import com.rip.roomies.views.TaskView;
 
 import java.util.logging.Logger;
 
@@ -81,31 +84,31 @@ public abstract class Task<TLog extends TaskLog, T extends Task<TLog, T>> implem
 	 * Creates a task using the current object.
 	 * @return The task created
 	 */
-	protected abstract T create();
+	public abstract T create();
 
 	/**
 	 * Modifies this task using the current object.
 	 * @return The task modified
 	 */
-	protected abstract T modify();
+	public abstract T modify();
 
 	/**
 	 * Removes this task using the current object.
 	 * @return The removed task
 	 */
-	protected abstract T remove();
+	public abstract T remove();
 
 	/**
 	 * Completes the task, moves the rotation, then creates a log of the completion.
 	 * @return The task that was completed
 	 */
-	protected abstract T complete();
+	public abstract T complete();
 
 	/**
 	 * Gets the users that are associated with this task
 	 * @return The users
 	 */
-	protected abstract T getRotation();
+	public abstract T getRotation();
 
 	//------- OBJECT METHODS -------//
 
@@ -132,6 +135,13 @@ public abstract class Task<TLog extends TaskLog, T extends Task<TLog, T>> implem
 	public User[] getUsers() {
 		return users;
 	}
+
+	/**
+	 * This method gets the view of this object.
+	 * @param context The context to create the view in
+	 * @return The view representing this object
+	 */
+	public abstract TaskView getView(Context context);
 
 	//------- PARCELABLE METHODS -------//
 
