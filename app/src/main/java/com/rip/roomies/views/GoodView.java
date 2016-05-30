@@ -4,12 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Typeface;
-import android.os.Bundle;
-import android.text.Layout;
 import android.util.AttributeSet;
 import android.view.Gravity;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -17,71 +13,72 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.rip.roomies.R;
-import com.rip.roomies.activities.duties.ModifyDuty;
-import com.rip.roomies.activities.duties.ViewDuty;
-import com.rip.roomies.models.Duty;
+import com.rip.roomies.activities.goods.ModifyGood;
+import com.rip.roomies.activities.goods.ViewGood;
+import com.rip.roomies.models.Good;
 import com.rip.roomies.util.InfoStrings;
 
 import java.util.Locale;
 import java.util.logging.Logger;
 
 /**
- * This class is a displayable view that represents a Duty object. It will display
+ * This class is a displayable view that represents a Good object. It will display
  * any necessary information as well as style once implemented.
  */
-public class DutyView extends TaskView {
-	private static final Logger log = Logger.getLogger(DutyView.class.getName());
-	public static final int EDIT_DUTY = 1;
-	public static final int VIEW_DUTY = 2;
-	public static final int ADD_DUTY = 3;
+public class GoodView extends TaskView {
+	private static final Logger log = Logger.getLogger(GoodView.class.getName());
 
-	private Duty duty;
+	public static final int EDIT_GOOD = 1;
+	public static final int VIEW_GOOD = 2;
+	public static final int ADD_GOOD = 3;
+
+	private Good good;
 
 	/**
 	 * @see android.view.View(Context)
 	 */
-	public DutyView(Context context) {
+	public GoodView(Context context) {
 		super(context);
 	}
 
 	/**
 	 * @see android.view.View(Context, AttributeSet )
 	 */
-	public DutyView(Context context, AttributeSet attrs) {
+	public GoodView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
 
 	/**
 	 * @see android.view.View(Context, AttributeSet, int)
 	 */
-	public DutyView(Context context, AttributeSet attrs, int defStyleAttr) {
+	public GoodView(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 	}
 
 	/**
-	 * Get the Duty object that this class represents
+	 * Get the Good object that this class represents
 	 *
-	 * @return The Duty object in question
+	 * @return The Good object in question
 	 */
-	public Duty getDuty() {
-		return duty;
+	public Good getGood() {
+		return good;
 	}
 
 	/**
-	 * Set the duty of this object whose information this view will display
+	 * Set the good of this object whose information this view will display
 	 *
-	 * @param duty The duty object to display
+	 * @param good The good object to display
 	 */
-	public void setDuty(Duty duty) {
-		this.duty = duty;
+	public void setGood(Good good) {
+		this.good = good;
 		setupLayout();
 	}
 
 	/**
-	 * Sets up the layout for this DutyView.
+	 * Sets up the layout for this GoodView.
 	 */
 	protected void setupLayout() {
-		log.info(String.format(InfoStrings.VIEW_SETUP, DutyView.class.getSimpleName()));
+		log.info(String.format(InfoStrings.VIEW_SETUP, GoodView.class.getSimpleName()));
 
 		LinearLayout.LayoutParams w = new LayoutParams(
 				LayoutParams.MATCH_PARENT,
@@ -105,16 +102,16 @@ public class DutyView extends TaskView {
 				LayoutParams.WRAP_CONTENT,
 				LayoutParams.WRAP_CONTENT, 1.0f));
 
-		name.setTextColor(getResources().getColor(R.color.colorPrimary));
-		description.setTextColor(Color.BLACK);
-		assignee.setTextColor(Color.BLACK);
+		name.setTextColor(Color.parseColor("#007EE5"));
+		description.setTextColor(Color.parseColor("#007EE5"));
+		assignee.setTextColor(Color.parseColor("#007EE5"));
 
 		innerLayout.setOrientation(LinearLayout.VERTICAL);
 		innerLayout.setPadding(50, 50, 50, 50);
 
-		name.setText(duty.getName());
-		description.setText(duty.getDescription());
-		String fullName = duty.getAssignee().getFirstName() + " " + duty.getAssignee().getLastName();
+		name.setText(good.getName());
+		description.setText(good.getDescription());
+		String fullName = good.getAssignee().getFirstName() + " " + good.getAssignee().getLastName();
 		assignee.setText(fullName);
 
 		innerLayout.addView(name);
@@ -124,7 +121,6 @@ public class DutyView extends TaskView {
 		viewBtn.setText("View");
 		viewBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
 		viewBtn.setBackground(getResources().getDrawable(R.drawable.rec_border));
-		viewBtn.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
 		viewBtn.setPadding(50, 50, 50 , 50);
 		LinearLayout.LayoutParams v = new LayoutParams(
 				LayoutParams.WRAP_CONTENT,
@@ -139,20 +135,19 @@ public class DutyView extends TaskView {
 			@Override
 			public void onClick(View v) {
 				log.info(String.format(Locale.US, InfoStrings.SWITCH_ACTIVITY,
-						ViewDuty.class.getSimpleName()));
+						ViewGood.class.getSimpleName()));
 
-				Intent i = new Intent(getContext(), ViewDuty.class);
-				i.putExtra("Duty", duty);
-				((Activity) getContext()).startActivityForResult(i, VIEW_DUTY);
+				Intent i = new Intent(getContext(), ViewGood.class);
+				i.putExtra("Good", good);
+				((Activity) getContext()).startActivityForResult(i, VIEW_GOOD);
 			}
 		});
 
 
 
-		editBtn.setText(" Edit ");
+		editBtn.setText("Edit");
 		editBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
 		editBtn.setBackground(getResources().getDrawable(R.drawable.rec_border));
-		editBtn.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
 		editBtn.setPadding(50, 50, 50 , 50);
 /*		editBtn.setLayoutParams(new LayoutParams(
 				LayoutParams.WRAP_CONTENT,
@@ -167,11 +162,11 @@ public class DutyView extends TaskView {
 			@Override
 			public void onClick(View v) {
 				log.info(String.format(Locale.US, InfoStrings.SWITCH_ACTIVITY,
-						ModifyDuty.class.getSimpleName()));
+						ModifyGood.class.getSimpleName()));
 
-				Intent i = new Intent(getContext(), ModifyDuty.class);
-				i.putExtra("Duty", duty);
-				((Activity) getContext()).startActivityForResult(i, EDIT_DUTY);
+				Intent i = new Intent(getContext(), ModifyGood.class);
+				i.putExtra("Good", good);
+				((Activity) getContext()).startActivityForResult(i, EDIT_GOOD);
 			}
 		});
 

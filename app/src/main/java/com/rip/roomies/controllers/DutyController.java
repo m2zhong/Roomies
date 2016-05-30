@@ -6,12 +6,13 @@ import com.rip.roomies.functions.CompleteDutyFunction;
 import com.rip.roomies.functions.CreateDutyFunction;
 import com.rip.roomies.functions.ListAllDutiesFunction;
 import com.rip.roomies.functions.ListDutyLogsFunction;
-import com.rip.roomies.functions.ListMyDutiesFunction;
+import com.rip.roomies.functions.ListMyTasksFunction;
 import com.rip.roomies.functions.ModifyDutyFunction;
 import com.rip.roomies.functions.RemoveDutyFunction;
 import com.rip.roomies.models.Duty;
 import com.rip.roomies.models.DutyLog;
 import com.rip.roomies.models.Group;
+import com.rip.roomies.models.Task;
 import com.rip.roomies.models.User;
 import com.rip.roomies.util.InfoStrings;
 
@@ -123,29 +124,29 @@ public class DutyController {
 	}
 
 	/**
-	 * Attempts to display all duties for this group.
+	 * Attempts to display all tasks for this user within the group context.
 	 * @param funct The funct to post results to
 	 */
-	public void listMyDuties(final ListMyDutiesFunction funct) {
+	public void listMyTasks(final ListMyTasksFunction funct) {
 		// Create and run a new thread
-		new AsyncTask<Void, Void, Duty[]>() {
+		new AsyncTask<Void, Void, Task[]>() {
 			@Override
-			public Duty[] doInBackground(Void... v) {
-				log.info(String.format(Locale.US, InfoStrings.GET_USER_DUTIES_CONTROLLER,
+			public Task[] doInBackground(Void... v) {
+				log.info(String.format(Locale.US, InfoStrings.GET_USER_TASKS_CONTROLLER,
 						User.getActiveUser().getId(), Group.getActiveGroup().getId()));
 
 				// Create request user and get response from login()
-				return User.getActiveUser().getDuties(Group.getActiveGroup());
+				return User.getActiveUser().getTasks(Group.getActiveGroup());
 			}
 
 			// If fail, call fail callback. Otherwise, call success callback
 			@Override
-			public void onPostExecute(Duty[] response) {
+			public void onPostExecute(Task[] response) {
 				if (response == null) {
-					funct.listMyDutiesFail();
+					funct.listMyTasksFail();
 				}
 				else {
-					funct.listMyDutiesSuccess(response);
+					funct.listMyTasksSuccess(response);
 				}
 			}
 		}.execute();

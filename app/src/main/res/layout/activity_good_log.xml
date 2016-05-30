@@ -10,7 +10,7 @@
 		android:layout_height="match_parent"
 		android:background="@color/colorAccent"
 		android:orientation="vertical"
-		tools:context="com.rip.roomies.activities.duties.ListDutyLogs">
+		tools:context="com.rip.roomies.activities.duties.ListGoodLogs">
 
 		<TextView
 			android:layout_width="match_parent"
@@ -18,12 +18,12 @@
 			android:background="@color/colorPrimary"
 			android:gravity="center_horizontal"
 			android:padding="10dp"
-			android:text="Duty Logs"
+			android:text="Good Logs"
 			android:textColor="@color/colorAccent"
 			android:textSize="30sp" />
 
-		<com.rip.roomies.views.DutyLogContainer
-			android:id="@+id/duty_list"
+		<com.rip.roomies.views.GoodLogContainer
+			android:id="@+id/good_list"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content" />
 	</LinearLayout>
