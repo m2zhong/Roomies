@@ -18,9 +18,11 @@ import com.rip.roomies.util.Images;
 
 import java.util.logging.Logger;
 
+
 /**
  * Login Activity
  */
+
 public class Login extends GenericActivity {
 	private static final Logger log = Logger.getLogger(Login.class.getName());
 	private static final double IMAGE_WIDTH_RATIO = 3.0 / 10;

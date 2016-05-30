@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
 	<color name="colorPrimary">#007ee5</color>
 	<color name="colorPrimaryDark">#5c88ac</color>
 	<color name="colorAccent">#ffffff</color>
@@ -11,6 +12,7 @@
 	<color name="underlinelight">#60ffffff</color>
 
 	<color name="pink">#FF547F</color>
+
 	<color name="label_pink">#f75a81</color>
 	<color name="green">#6ce787</color>
 </resources>
