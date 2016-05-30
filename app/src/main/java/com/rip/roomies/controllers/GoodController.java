@@ -159,7 +159,7 @@ public class GoodController {
 	 * @param description The description of the duty
 	 * @param users The list of Users on the rotation for this duty
 	 */
-	public void modifyGoods(final ModifyGoodFunction funct, final int id, final String name, final
+	public void modifyGood(final ModifyGoodFunction funct, final int id, final String name, final
 	String description, final User[] users) {
 		// Create and run a new thread
 		new AsyncTask<Void, Void, Good>() {

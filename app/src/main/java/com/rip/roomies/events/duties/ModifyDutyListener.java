@@ -23,7 +23,7 @@ import java.util.logging.Logger;
  * This class represents the listener for when a duty is modified.
  */
 public class ModifyDutyListener implements View.OnClickListener, ModifyDutyFunction {
-	private static final Logger log = Logger.getLogger(CreateDutyListener.class.getName());
+	private static final Logger log = Logger.getLogger(ModifyDutyListener.class.getName());
 
 	private GenericActivity activity;
 	private EditText name;

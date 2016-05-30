@@ -60,8 +60,7 @@ public class ModifyGood extends GenericActivity {
 			}
 		}
 
-		//todo fix modify good listener
-		//modifyGood.setOnClickListener(new ModifyGoodListener(this, goodName, desc, users, good));
+		modifyGood.setOnClickListener(new ModifyGoodListener(this, goodName, desc, users, good));
 		addUser.setOnClickListener(new AddRotationListener(this, users, allUsers));
 		removeUser.setOnClickListener(new RemoveRotationListener(this, users));
 		removeGood.setOnClickListener(new RemoveGoodListener(this, good));

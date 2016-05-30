@@ -204,6 +204,7 @@ public class InfoStrings {
 	public static final String CREATE_GOOD_CONTROLLER = "Creating good from user given fields:\n" +
 			"Name: '%s'\nDescription: '%s'\nGroupID: '%s',Users: '%d'";
 
+	public static final String MODIFY_GOOD_EVENT = "Validation passed. Attempting to modify duty.";
 	public static final String MODIFY_GOOD_MODEL = "Modifying a good based off the current object";
 	public static final String MODIFY_GOOD_CONTROLLER = "Modifying good from user given fields:\n" +
 			"ID: %d,Name: '%s',Description: '%s'";
