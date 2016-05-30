@@ -9,6 +9,7 @@ import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -83,7 +84,7 @@ public class DutyView extends LinearLayout {
 				LayoutParams.MATCH_PARENT,
 				LayoutParams.MATCH_PARENT);
 		setLayoutParams(w);
-		setOrientation(LinearLayout.HORIZONTAL);
+		setOrientation(LinearLayout.VERTICAL);
 
 /*
 		setLayoutParams(new LayoutParams(
@@ -147,8 +148,8 @@ public class DutyView extends LinearLayout {
 		LinearLayout.LayoutParams p = new LayoutParams(
 				LayoutParams.WRAP_CONTENT,
 				LayoutParams.MATCH_PARENT);
+		p.gravity = Gravity.CENTER_VERTICAL;
 		p.setMargins(0, 50, 0, 50);
-		p.gravity = Gravity.RIGHT;
 		editBtn.setLayoutParams(p);
 		editBtn.setOnClickListener(new OnClickListener() {
 			@Override
@@ -162,8 +163,20 @@ public class DutyView extends LinearLayout {
 			}
 		});
 
-		addView(innerLayout);
-		addView(viewBtn);
-		addView(editBtn);
+		LinearLayout hline = new LinearLayout(getContext());
+		hline.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1));
+		hline.setBackgroundColor(Color.BLACK);
+
+		LinearLayout outerLayout = new LinearLayout(getContext());
+		outerLayout.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+				ViewGroup.LayoutParams.MATCH_PARENT));
+		outerLayout.setOrientation(LinearLayout.HORIZONTAL);
+
+		outerLayout.addView(innerLayout);
+		outerLayout.addView(viewBtn);
+		outerLayout.addView(editBtn);
+
+		addView(outerLayout);
+		addView(hline);
 	}
 }
