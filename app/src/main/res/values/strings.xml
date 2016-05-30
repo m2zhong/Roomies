@@ -86,8 +86,6 @@
 
 	<string name="pass_retreive">Get my password</string>
 	<string name="email_hint">email</string>
-	<string name="join_group_header">Join a Group</string>
-	<string name="join_groupbtn">send request</string>
 	<string name="bill_IOU_total">Total:</string>
 	<string name="editBill_title">Edit Bill</string>
 </resources>
