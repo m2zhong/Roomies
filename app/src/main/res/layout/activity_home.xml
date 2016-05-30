@@ -29,7 +29,7 @@
 					android:layout_marginLeft="40dp"
 					android:layout_marginRight="40dp"
 					android:layout_marginTop="20dp"
-					android:background="@drawable/logowhite" />
+					android:background="@mipmap/logowhite" />
 			</FrameLayout>
 
 
@@ -320,7 +320,7 @@
 					android:layout_width="20dp"
 					android:layout_height="20dp"
 					android:layout_gravity="center"
-					android:src="@drawable/uparrow" />
+					android:src="@mipmap/uparrow" />
 			</FrameLayout>
 
 			<LinearLayout
@@ -338,6 +338,12 @@
 					android:layout_margin="10dp" />
 
 			</LinearLayout>
+
+			<Button
+				android:id="@+id/to_view_my_duties"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="View My Duties" />
 
 		</LinearLayout>
 	</FrameLayout>

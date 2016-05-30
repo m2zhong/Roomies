@@ -42,7 +42,7 @@ public class SQLLogin {
 
 			// get the result table from query execution through sql
 			rset = SQLQuery.execute(String.format(SQLStrings.LOGIN,
-					user.getUsername(), user.getPassword()));
+					SQLQuery.sanitize(user.getUsername()), SQLQuery.sanitize(user.getPassword())));
 
 			//get the next row, kind of like scanner.nextLine()
 			// either username doesn't exist or password incorrect

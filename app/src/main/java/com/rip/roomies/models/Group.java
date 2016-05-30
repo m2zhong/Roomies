@@ -81,6 +81,13 @@ public class Group {
 		return group;
 	}
 
+	public Group getUsers() {
+		log.info(InfoStrings.GET_GROUP_USERS_MODEL);
+		Group group = SQLGet.getGroupUsers(this);
+
+		return group;
+	}
+
 	/**
 	 * Connects to the database, creating a new Group with the name and description used in this
 	 * object's fields.
@@ -118,7 +125,7 @@ public class Group {
 	}
 
 	public static void setActiveGroup(Group group) {
-		activeGroup = group;
+		activeGroup = group.getUsers();
 	}
 
 	public String getName() {

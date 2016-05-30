@@ -14,6 +14,7 @@ import com.rip.roomies.controllers.LoginController;
 import com.rip.roomies.functions.PassRetrieveFunction;
 import com.rip.roomies.util.DisplayStrings;
 import com.rip.roomies.util.InfoStrings;
+import com.rip.roomies.util.Validation;
 
 import java.util.Locale;
 import java.util.logging.Logger;
@@ -37,9 +38,7 @@ public class PassRetrieveListener implements View.OnClickListener, PassRetrieveF
 
 		String errMsg = "";
 
-		if (email.getText().toString().isEmpty()) {
-			errMsg += String.format(Locale.US, DisplayStrings.MISSING_FIELD, "Email");
-		}
+		errMsg += Validation.validate(email, Validation.ParamType.Email, "Email");
 
 		if (!errMsg.isEmpty()) {
 			errMsg = errMsg.substring(0, errMsg.length() - 1);

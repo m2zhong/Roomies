@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.Toast;
 
 import com.rip.roomies.models.User;
 import com.rip.roomies.util.InfoStrings;
@@ -60,11 +61,32 @@ public class UserContainer extends ScrollView {
 		log.info(String.format(InfoStrings.CONTAINER_ADD,
 				UserView.class.getSimpleName(), UserContainer.class.getSimpleName()));
 
+		// verify that no duplicates are being added
+		for(int i = 0; i < users.size(); i++){
+			if(newUser.getId() == users.get(i).getId()) {
+				return;
+			}
+		}
+
 		users.add(newUser);
 
 		UserView userView = new UserView(getContext());
 		userView.setUser(newUser);
 		userLayout.addView(userView);
+	}
+
+	/**
+	 * Removes the latest user in the UserContainer object
+	 */
+	public void removeUser() {
+		log.info(String.format(InfoStrings.CONTAINER_REMOVE,
+				UserView.class.getSimpleName(), UserContainer.class.getSimpleName()));
+
+		if(users.size() > 0) {
+			int layoutIndex = users.size() - 1;
+			users.remove(layoutIndex);
+			userLayout.removeViewAt(layoutIndex);
+		}
 	}
 
 	/**

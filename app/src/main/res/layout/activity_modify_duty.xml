@@ -47,6 +47,13 @@
 			android:width="50dp"
 			android:text="+" />
 
+		<Button
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="-"
+			android:id="@+id/rem_user_btn"
+			android:layout_weight="0.10"/>
+
 	</LinearLayout>
 
 	<com.rip.roomies.views.UserContainer
@@ -67,6 +74,19 @@
 		android:textColor="@color/colorPrimary"
 		android:textSize="30sp"
 		android:text="Modify Duty" />
+
+	<Button
+		android:id="@+id/rem_duty_btn"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="bottom|center_horizontal"
+		android:layout_marginBottom="10dp"
+		android:background="@drawable/rec_border"
+		android:fontFamily="sans-serif-thin"
+		android:padding="10dp"
+		android:textColor="@color/colorPrimary"
+		android:textSize="30sp"
+		android:text="Remove Duty" />
 
 
 </LinearLayout>
