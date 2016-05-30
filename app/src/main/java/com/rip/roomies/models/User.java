@@ -179,6 +179,16 @@ public class User implements Parcelable {
 		return SQLGet.getUserDuties(group, this);
 	}
 
+	/**
+	 * Gets the goods that belong to a user in current group context.
+	 * @param group The group object of the context
+	 * @return The array of goods
+	 */
+	public Good[] getGoods(Group group) {
+		log.info(InfoStrings.GET_USER_GOODS_MODEL);
+		return null; //TODO remove this function call
+	}
+
 	//------- OBJECT METHODS -------//
 
 	public static User getActiveUser() {

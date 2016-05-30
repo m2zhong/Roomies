@@ -181,7 +181,7 @@ public class InfoStrings {
 	public static final String MODIFY_DUTY_EVENT = "Validation passed. Attempting to modify duty.";
 	public static final String MODIFY_DUTY_MODEL = "Modifying a duty based off the current object.";
 	public static final String MODIFY_DUTY_CONTROLLER = "Modifying duty from user given fields:\n" +
-			"ID: '%s'\nName: '%s'\nDescription: '%s'";
+			"ID: %d\nName: '%s'\nDescription: '%s'";
 
 	public static final String REMOVE_DUTY_EVENT = "Validation passed. Attempting to remove duty.";
 	public static final String REMOVE_DUTY_MODEL = "Removing a duty based off the current object.";
@@ -200,12 +200,30 @@ public class InfoStrings {
 			"user id: %d and group id: %d\n";
 
 	public static final String CREATE_GOOD_MODEL = "Creating a good based off the current object";
+	public static final String CREATE_GOOD_CONTROLLER = "Creating good from user given fields:\n" +
+			"Name: '%s'\nDescription: '%s'\nGroupID: '%s',Users: '%d'";
 
 	public static final String MODIFY_GOOD_MODEL = "Modifying a good based off the current object";
+	public static final String MODIFY_GOOD_CONTROLLER = "Modifying good from user given fields:\n" +
+			"ID: %d,Name: '%s',Description: '%s'";
 
 	public static final String REMOVE_GOOD_MODEL = "Removing a good based off the current object";
+	public static final String REMOVE_GOOD_CONTROLLER = "Removing a good with the id %d.\n";
 
 	public static final String COMPLETE_GOOD_MODEL = "Completing a good based off the current object";
+	public static final String COMPLETE_GOOD_CONTROLLER = "Completing a good with the id %d.\n";
+
+	public static final String GET_GROUP_GOODS_MODEL = "Getting a list of goods for a group.";
+	public static final String GET_GROUP_GOODS_CONTROLLER = "Viewing all goods from the group" +
+			"with group id: %d.\n";
+
+	public static final String GET_GROUP_GOOD_LOGS_MODEL = "Getting a list of good logs for a group";
+	public static final String GET_GROUP_GOOD_LOGS_CONTROLLER ="Viewing all good logs from the" +
+			"group with group id: %d\n";
+
+	public static final String GET_USER_GOODS_MODEL = "Getting a list of goods for a user";
+	public static final String GET_USER_GOODS_CONTROLLER = "Viewing all duties from user with " +
+			"user id: %d and group id: %d\n";
 
 	public static final String GET_ROTATION_MODEL = "Getting the list of users on the duty's rotation.";
 
