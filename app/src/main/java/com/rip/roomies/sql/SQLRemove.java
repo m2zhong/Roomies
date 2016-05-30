@@ -1,5 +1,7 @@
 package com.rip.roomies.sql;
 
+import com.rip.roomies.models.Bill;
+
 import com.rip.roomies.models.Duty;
 import com.rip.roomies.models.Good;
 import com.rip.roomies.models.Group;
@@ -117,12 +119,39 @@ public class SQLRemove {
 		}
 	}
 
+<<<<<<< HEAD
+	public static Bill removeBill(int rowID) {
+=======
 	// good
 	public static Good removeGood(Good good) {
+>>>>>>> 3b5acca8d9ae6d93ed8237337370fd69720c4a23
 
 		try {
 			ResultSet rs;
 
+<<<<<<< HEAD
+			// Log removing bill from sql
+			log.info(InfoStrings.REMOVE_BILL_FROM_TABLE_SQL);
+
+			rs = SQLQuery.execute(String.format(Locale.US, SQLStrings.DELETE_BILL,
+					rowID));
+
+			rs.next();
+
+			// Get results of SQL statement.
+			int resultID = rs.getInt("ID");
+			int resultOwnerID = rs.getInt("OwnerID");
+			String resultName = rs.getString("name");
+			String resultDescription = rs.getString("Description");
+			float resultAmount = rs.getFloat("Amount");
+
+			//debug statement
+			log.info(String.format(Locale.US, InfoStrings.REMOVE_BILL_FROM_TABLE_SUCCESS,
+					resultID, resultOwnerID, resultName, resultDescription, resultAmount));
+
+			// Return a new user object
+			return new Bill(resultID, resultOwnerID, resultName, resultDescription, resultAmount);
+=======
 			// Log removing user from group
 			log.info(InfoStrings.REMOVEGOOD_SQL);
 
@@ -159,6 +188,7 @@ public class SQLRemove {
 				return new Good(resultId, resultName, resultDescription, resultGroup,
 						u, good.getUsers());
 			}
+>>>>>>> 3b5acca8d9ae6d93ed8237337370fd69720c4a23
 		}
 		catch (Exception e) {
 			// Log and return null on exception
@@ -166,4 +196,9 @@ public class SQLRemove {
 			return null;
 		}
 	}
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> 3b5acca8d9ae6d93ed8237337370fd69720c4a23
 }

@@ -1,7 +1,7 @@
 package com.rip.roomies.sql;
 
+import com.rip.roomies.models.Bill;
 import com.rip.roomies.models.Duty;
-import com.rip.roomies.models.DutyLog;
 import com.rip.roomies.models.Good;
 import com.rip.roomies.models.User;
 import com.rip.roomies.util.Exceptions;
@@ -9,9 +9,7 @@ import com.rip.roomies.util.InfoStrings;
 import com.rip.roomies.util.SQLStrings;
 import com.rip.roomies.util.WarningStrings;
 
-import java.sql.Date;
 import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.logging.Logger;
 
@@ -34,7 +32,7 @@ public class SQLModify {
 					duty.getId()));
 
 			// error happened when contacting sql server
-			if(rset == null || !rset.next()) {
+			if (rset == null || !rset.next()) {
 				// debug statement
 				log.info(InfoStrings.COMPLETEDUTY_FAILED);
 				return null;
@@ -97,7 +95,7 @@ public class SQLModify {
 					SQLQuery.sanitize(duty.getDescription()), SQLQuery.sanitize(usersString)));
 
 			// error happened when contacting sql server
-			if(rset == null || !rset.next()) {
+			if (rset == null || !rset.next()) {
 				// debug statement
 				log.info(InfoStrings.MODIFYDUTY_FAILED);
 				return null;
@@ -133,53 +131,67 @@ public class SQLModify {
 		}
 	}
 
-	public static Good completeGood(Good good, double price) {
-		ResultSet rset;
+
+	public static void modifyBill(Bill billToModify) {
 
 		try {
-			//debug statement
-			log.info(InfoStrings.COMPLETEGOOD_SQL);
-
-			// get the result table from query execution through sql
-			rset = SQLQuery.execute(String.format(Locale.US, SQLStrings.COMPLETE_GOOD,
-					good.getId(), price));
-
-			// error happened when contacting sql server
-			if(rset == null || !rset.next()) {
-				// debug statement
-				log.info(InfoStrings.COMPLETEGOOD_FAILED);
-				return null;
-			}
-			// if there is a rset
-			else {
-				//explain what each column corresponds to
-				int resultId = rset.getInt("GoodID");
-				String resultName = rset.getString("Name");
-				String resultDescription = rset.getString("Description");
-				int dutyGroupId = rset.getInt("GroupID");
-
-				User u = new User(
-						rset.getInt("ID"),
-						rset.getString("FirstName"),
-						rset.getString("LastName"),
-						rset.getString("Username"),
-						rset.getString("Email"),
-						null
-				);
-
-				// debug statement
-				log.info(String.format(Locale.US, InfoStrings.COMPLETEGOOD_SUCCESSFUL,
-						resultId, resultName, resultDescription, dutyGroupId));
-
-				return new Good(resultId, resultName, resultDescription, dutyGroupId,
-						u, good.getRotation().getUsers());
-			}
+			SQLQuery.execute(String.format(Locale.US, SQLStrings.MODIFY_BILL_SQL, billToModify.getRowID(),
+					billToModify.getName(), billToModify.getDescription(),
+					billToModify.getAmount()));
 		}
 		catch (Exception e) {
 			log.severe(Exceptions.stacktraceToString(e));
-			return null;
+			return;
 		}
 	}
+
+		public static Good completeGood (Good good,double price){
+			ResultSet rset;
+
+			try {
+				//debug statement
+				log.info(InfoStrings.COMPLETEGOOD_SQL);
+
+				// get the result table from query execution through sql
+				rset = SQLQuery.execute(String.format(Locale.US, SQLStrings.COMPLETE_GOOD,
+						good.getId(), price));
+
+				// error happened when contacting sql server
+				if (rset == null || !rset.next()) {
+					// debug statement
+					log.info(InfoStrings.COMPLETEGOOD_FAILED);
+					return null;
+				}
+				// if there is a rset
+				else {
+					//explain what each column corresponds to
+					int resultId = rset.getInt("GoodID");
+					String resultName = rset.getString("Name");
+					String resultDescription = rset.getString("Description");
+					int dutyGroupId = rset.getInt("GroupID");
+
+					User u = new User(
+							rset.getInt("ID"),
+							rset.getString("FirstName"),
+							rset.getString("LastName"),
+							rset.getString("Username"),
+							rset.getString("Email"),
+							null
+					);
+
+					// debug statement
+					log.info(String.format(Locale.US, InfoStrings.COMPLETEGOOD_SUCCESSFUL,
+							resultId, resultName, resultDescription, dutyGroupId));
+
+					return new Good(resultId, resultName, resultDescription, dutyGroupId,
+							u, good.getRotation().getUsers());
+				}
+			}
+			catch (Exception e) {
+				log.severe(Exceptions.stacktraceToString(e));
+				return null;
+			}
+		}
 
 	public static Good modifyGood(Good good) {
 		ResultSet rset;
@@ -208,7 +220,7 @@ public class SQLModify {
 					SQLQuery.sanitize(good.getDescription()), SQLQuery.sanitize(usersString)));
 
 			// error happened when contacting sql server
-			if(rset == null || !rset.next()) {
+			if (rset == null || !rset.next()) {
 				// debug statement
 				log.info(InfoStrings.MODIFYGOOD_FAILED);
 				return null;

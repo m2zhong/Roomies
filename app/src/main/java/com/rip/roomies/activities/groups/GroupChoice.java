@@ -1,6 +1,5 @@
 package com.rip.roomies.activities.groups;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,11 +14,13 @@ public class GroupChoice extends GenericActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_group_choice);
+		setContentView(R.layout.activity_create_join_group);
+		Button joinBtn;
+		Button createBtn;
 
 		final Context self = this;
-		Button joinBtn = (Button) findViewById(R.id.to_join_btn);
-		Button createBtn = (Button) findViewById(R.id.to_create_btn);
+		joinBtn = (Button)findViewById(R.id.btnJoinGroup);
+		createBtn = (Button)findViewById(R.id.btnCreateGroup);
 
 		joinBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
