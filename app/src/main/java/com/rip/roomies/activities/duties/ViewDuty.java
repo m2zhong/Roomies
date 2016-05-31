@@ -4,18 +4,17 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
-import com.rip.roomies.events.duties.CompleteDutyListener;
+import com.rip.roomies.events.duties.PopUpDutyListener;
 import com.rip.roomies.events.duties.RemindDutyListener;
 import com.rip.roomies.models.Duty;
 import com.rip.roomies.models.User;
-import com.rip.roomies.views.DutyView;
 import com.rip.roomies.views.UserContainer;
 
 import java.util.logging.Logger;
@@ -70,7 +69,13 @@ public class ViewDuty extends GenericActivity {
 			//change the button name to complete duty
 			actionDuty.setText("Complete " + duty.getName());
 			//triggering event of completing the duty, go change database, rotation...etc
-			actionDuty.setOnClickListener(new CompleteDutyListener(this, duty));
+
+			/* Retrieving the popup Layout to use */
+			int popUpID = R.layout.activity_confirm_duty_comp;
+
+			/* Start popup windown upon click*/
+			actionDuty.setOnClickListener(new PopUpDutyListener(this, actionDuty, popUpID, duty));
+
 		}
 		//the case when another person is the assignee
 		else {

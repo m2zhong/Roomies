@@ -2,6 +2,8 @@ package com.rip.roomies.activities.tasks;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.rip.roomies.R;
@@ -38,8 +40,14 @@ public class ListMyTasks extends GenericActivity implements ListMyTasksFunction 
 
 	@Override
 	public void listMyTasksSuccess(Task[] tasks) {
-		for (Task t : tasks) {
-			tc.addTask(t);
+		if (tasks == null || tasks.length == 0) {
+			TextView msg = (TextView) findViewById(R.id.no_tasks_msg);
+			msg.setVisibility(View.VISIBLE);
+		}
+		else {
+			for (Task t : tasks) {
+				tc.addTask(t);
+			}
 		}
 	}
 
@@ -51,6 +59,11 @@ public class ListMyTasks extends GenericActivity implements ListMyTasksFunction 
 
 			if (toRemove) {
 				tc.removeTask(duty);
+
+				if (tc.getTasks() == null || tc.getTasks().length == 0) {
+					TextView msg = (TextView) findViewById(R.id.no_tasks_msg);
+					msg.setVisibility(View.VISIBLE);
+				}
 			}
 			else {
 				tc.modifyTask(duty);
@@ -59,6 +72,9 @@ public class ListMyTasks extends GenericActivity implements ListMyTasksFunction 
 		else if (requestCode == DutyView.VIEW_DUTY && resultCode == RESULT_OK) {
 			Duty duty = data.getExtras().getParcelable("Duty");
 			tc.removeTask(duty);
+
+			TextView msg = (TextView) findViewById(R.id.no_tasks_msg);
+			msg.setVisibility(View.GONE);
 		}
 	}
 }

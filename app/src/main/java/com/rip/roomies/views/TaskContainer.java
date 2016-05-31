@@ -109,7 +109,7 @@ public class TaskContainer extends ScrollView {
 	 * Get the tasks held by this TaskContainer
 	 * @return An array of tasks
 	 */
-	public Task[] getDuties() {
+	public Task[] getTasks() {
 		Task[] temp = new Task[tasks.size()];
 		return tasks.toArray(temp);
 	}

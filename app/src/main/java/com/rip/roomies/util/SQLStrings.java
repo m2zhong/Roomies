@@ -37,12 +37,26 @@ public class SQLStrings {
 			"@owner_id = %d, " +
 			"@name = '%s', @description = '%s', @amount = %.2f;";
 
+	public static final String GET_BILLS = "EXEC FindBills " +
+			"@owner_id = %d;";
+
 	public static final String DELETE_BILL = "EXEC DeleteBill " +
 			"@ID = %d;";
 
-
 	public static final String MODIFY_BILL_SQL = "EXEC ModifyBill " +
 			"@id = %d, @name = '%s', @description = '%s', @amount = %.2f;";
+
+	public static final String CREATE_BULLETIN = "EXEC CreateBulletin " +
+			"@groupid = %d, @content = '%s';";
+
+	public static final String GET_BULLETINS = "EXEC FindBulletins " +
+			"@groupid = %d;";
+
+	public static final String REMOVE_BULLETIN = "EXEC RemoveBulletin " +
+			"@id = %d;";
+
+	public static final String MODIFY_BULLETIN = "EXEC ModifyBulletin " +
+			"@id = %d, @content = '%s';";
 
 	public static final String CREATE_DUTY = "EXEC CreateDuty " +
 			"@name = '%s', @desc = '%s', @group = %d, @userIds = '%s'";
@@ -69,7 +83,8 @@ public class SQLStrings {
 			"@dutyId = %d";
 
 	public static final String UPDATE_PROFILE = "EXEC ProfileUpdate " +
-			"@id = %d, @groupid = %d, @firstName = '%s', @lastName = '%s', @email = '%s', @groupDescription = '%s'";
+			"@id = %d, @groupid = %d, @firstName = '%s', @lastName = '%s', @email = '%s', " +
+			"@groupDescription = '%s'";
 
 	public static final String MODIFY_PASSWORD = "EXEC ChangePassword " +
 			"@userId = %d, @password = '%s'";
@@ -97,4 +112,6 @@ public class SQLStrings {
 	public static final String GET_USER_BY_ID = "EXEC GetUserById " +
 			"@userId = %d";
 
+	public static final String SET_PROFILE_ICON = "EXEC SetProfileIcon " +
+			"@userId = ?, @profileIcon = ?";
 }

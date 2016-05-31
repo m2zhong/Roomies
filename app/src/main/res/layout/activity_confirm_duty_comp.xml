@@ -1,61 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorAccent"
-    android:gravity="center">
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:background="@android:color/transparent"
+             android:orientation="vertical"
+             tools:context=".activities.duties.ViewDuty">
 
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="#80000000"
+		android:gravity="center"
+		android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Are you sure you did the do?"
-        android:id="@+id/confirmQuest"
-        android:textColor="@color/black"
-        android:textSize="30dp"
-        android:padding="10dp"
-        android:layout_gravity="center"
-        android:gravity="center"/>
+		<LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:background="@color/colorAccent"
+			android:orientation="vertical"
+			android:paddingBottom="15dp"
+			android:paddingEnd="60dp"
+			android:paddingStart="60dp"
+			android:paddingTop="15dp">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center|bottom">
+			<TextView
+				android:id="@+id/confirmQuest"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:gravity="center"
+				android:text="Promise you did it?"
+				android:textColor="@color/black"
+				android:textSize="25dp" />
 
-        <Button
-            android:id="@+id/yes_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/rec_border"
-            android:fontFamily="sans-serif-thin"
-            android:textColor="@color/colorPrimary"
-            android:textSize="30sp"
-            android:layout_weight="1"
-            android:padding="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="2.5dp"
-            android:text="Ye" />
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="15dp"
+				android:background="@color/colorAccent"
+				android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/no_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/rec_border"
-            android:fontFamily="sans-serif-thin"
-            android:textColor="@color/colorPrimary"
-            android:textSize="30sp"
-            android:layout_weight="1"
-            android:padding="10dp"
-            android:layout_marginLeft="2.5dp"
-            android:layout_marginRight="10dp"
-            android:text="Nah" />
+				<Button
+					android:id="@+id/yes_btn"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginRight="10dp"
+					android:layout_weight="1"
+					android:background="@drawable/rec_border"
+					android:text="Yup"
+					android:textColor="@color/colorPrimary"
+					android:textSize="20sp" />
 
-    </LinearLayout>
+				<Button
+					android:id="@+id/no_btn"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="10dp"
+					android:layout_weight="1"
+					android:background="@drawable/rec_border_pink"
+					android:textStyle="italic"
+					android:text="Oops..."
+					android:textColor="@color/pink"
+					android:textSize="20sp" />
+			</LinearLayout>
+		</LinearLayout>
+	</LinearLayout>
 </FrameLayout>

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.rip.roomies.R;
@@ -57,8 +58,14 @@ public class ListAllGoods extends GenericActivity implements ListAllGoodsFunctio
 	/** @inheritDoc **/
 	@Override
 	public void listAllGoodsSuccess(Good[] goods) {
-		for (Good g : goods) {
-			gc.addGood(g);
+		if (goods == null || goods.length == 0) {
+			TextView msg = (TextView) findViewById(R.id.no_goods_msg);
+			msg.setVisibility(View.VISIBLE);
+		}
+		else {
+			for (Good g : goods) {
+				gc.addGood(g);
+			}
 		}
 	}
 
@@ -70,6 +77,11 @@ public class ListAllGoods extends GenericActivity implements ListAllGoodsFunctio
 
 			if (toRemove) {
 				gc.removeGood(good);
+
+				if (gc.getGoods() == null || gc.getGoods().length == 0) {
+					TextView msg = (TextView) findViewById(R.id.no_goods_msg);
+					msg.setVisibility(View.VISIBLE);
+				}
 			}
 			else {
 				gc.modifyGood(good);
@@ -82,6 +94,9 @@ public class ListAllGoods extends GenericActivity implements ListAllGoodsFunctio
 		else if (requestCode == GoodView.ADD_GOOD && resultCode == RESULT_OK) {
 			Good good = data.getExtras().getParcelable("Good");
 			gc.addGood(good);
+
+			TextView msg = (TextView) findViewById(R.id.no_goods_msg);
+			msg.setVisibility(View.GONE);
 		}
 	}
 }

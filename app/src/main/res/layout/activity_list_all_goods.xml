@@ -23,6 +23,16 @@
 			android:textColor="@color/colorAccent"
 			android:textSize="30sp" />
 
+		<TextView
+			android:id="@+id/no_goods_msg"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:textColor="@color/black"
+			android:textSize="12pt"
+			android:padding="20dp"
+			android:visibility="gone"
+			android:text="There are no goods to display." />
+
 		<com.rip.roomies.views.GoodContainer
 			android:id="@+id/good_list"
 			android:layout_width="match_parent"
