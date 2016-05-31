@@ -108,6 +108,8 @@ public class DutyView extends TaskView {
 				LayoutParams.WRAP_CONTENT, 1.0f));
 
 		name.setTextColor(getResources().getColor(R.color.colorPrimary));
+		name.setTypeface(null, Typeface.BOLD);
+
 		description.setTextColor(Color.BLACK);
 		assignee.setTextColor(Color.BLACK);
 
@@ -126,7 +128,7 @@ public class DutyView extends TaskView {
 		viewBtn.setText("View");
 		viewBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
 		viewBtn.setBackground(getResources().getDrawable(R.drawable.rec_border));
-		viewBtn.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
+//		viewBtn.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
 		viewBtn.setPadding(50, 50, 50 , 50);
 		LinearLayout.LayoutParams v = new LayoutParams(
 				LayoutParams.WRAP_CONTENT,
@@ -154,7 +156,7 @@ public class DutyView extends TaskView {
 		editBtn.setText(" Edit ");
 		editBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
 		editBtn.setBackground(getResources().getDrawable(R.drawable.rec_border));
-		editBtn.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
+//		editBtn.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
 		editBtn.setPadding(50, 50, 50 , 50);
 /*		editBtn.setLayoutParams(new LayoutParams(
 				LayoutParams.WRAP_CONTENT,
