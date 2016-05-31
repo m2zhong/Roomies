@@ -1,40 +1,38 @@
 package com.rip.roomies.activities.home;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Point;
-import android.os.Bundle;
 import android.view.Display;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.app.Activity;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.view.View;
 
-import com.github.nkzawa.socketio.client.IO;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.QuickContactBadge;
 import com.github.nkzawa.socketio.client.Socket;
 import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.activities.bills.Bills;
+import com.rip.roomies.activities.bulletin.AddBulletin;
+import com.rip.roomies.activities.bulletin.ModifyBulletin;
 import com.rip.roomies.activities.duties.ListAllDuties;
 import com.rip.roomies.activities.duties.ListMyDuties;
 import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
 import com.rip.roomies.util.Images;
-import com.rip.roomies.util.SocketStrings;
-import com.rip.roomies.activities.profile.Profile;
 import com.rip.roomies.activities.goods.ListAllGoods;
-import com.rip.roomies.activities.tasks.ListMyTasks;
-import com.rip.roomies.util.Images;
-
-import com.rip.roomies.models.Group;
-import com.rip.roomies.models.User;
+import com.rip.roomies.controllers.HomeController;
+import com.rip.roomies.models.Bulletin;
+import com.rip.roomies.models.Bill;
+import com.rip.roomies.util.InfoStrings;
+import com.rip.roomies.views.BulletinContainer;
 import com.rip.roomies.server.ServerListener;
 import com.rip.roomies.server.ServerRequest;
 
 import java.net.URISyntaxException;
+import java.util.Locale;
 import java.util.logging.Logger;
 
 /**
@@ -48,25 +46,29 @@ public class Home extends GenericActivity {
 	private Socket mSocket;
 	private User user;
 	private CharSequence first_name;
+	private BulletinContainer container;
+	private Bulletin editBull;
+	private TextView aBullCont;
 
+	private final int RESULT_CODE_MODIFY_BULLETIN = 1;
+	private final int RESULT_CODE_ADD_BULLETIN = 2;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-
-		TextView dutiesScreen;
-		TextView billScreen;
-		TextView username;
-
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 
-		username = (TextView) findViewById(R.id.home_username);
-		user=User.getActiveUser();
+		TextView dutiesScreen = (TextView) findViewById(R.id.home_overallduties);
+		TextView goodsScreen = (TextView) findViewById(R.id.home_shareditem);
+		TextView billScreen = (TextView) findViewById(R.id.home_IOU);
+		TextView username = (TextView) findViewById(R.id.home_username);
+
+		user = User.getActiveUser();
 		first_name = user.getFirstName();
 		username.setText(" " + first_name + "!");
-		dutiesScreen = (TextView) findViewById(R.id.home_overallduties);
-		billScreen = (TextView) findViewById(R.id.home_IOU);
-		dutiesScreen = (TextView) findViewById(R.id.home_overallduties);
+
+		Button bulletinAddButton = (Button) findViewById(R.id.bulletin_addbtn);
+		container = (BulletinContainer) findViewById(R.id.bulletin_container);
 
 		final Activity self = this;
 
@@ -84,11 +86,29 @@ public class Home extends GenericActivity {
 			}
 		});
 
+		setBalance(billScreen);
+		HomeController.populateBulletins(container);
+
+		goodsScreen.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				startActivity(new Intent(self, ListAllGoods.class));
+			}
+		});
+
 		TextView toMyDuties = (TextView) findViewById(R.id.to_view_my_duties);
 		toMyDuties.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				self.startActivity(new Intent(self, ListMyDuties.class));
+			}
+		});
+
+		bulletinAddButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent i = new Intent(self, AddBulletin.class);
+				startActivityForResult(i, RESULT_CODE_ADD_BULLETIN);
 			}
 		});
 
@@ -121,5 +141,51 @@ public class Home extends GenericActivity {
 	@Override
 	public void onBackPressed() {
 		// This does nothing
+	}
+
+	private void setBalance(final TextView billScreen) {
+		// Create and run a new thread
+		new AsyncTask<Void, Void, CharSequence>() {
+			@Override
+			protected CharSequence doInBackground(Void... v) {
+				return Bill.getNegativeBalance();
+			}
+			@Override
+			protected void onPostExecute(CharSequence result) {
+				billScreen.setText(result);
+			}
+		}.execute();
+	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode,resultCode,data);
+
+		if(resultCode == RESULT_CODE_MODIFY_BULLETIN) {
+			String updContent = data.getStringExtra("Key_New_Content");
+
+			editBull.setContent(updContent);
+			aBullCont.setText(updContent);
+
+			HomeController.getController().modifyBulletin(editBull);
+
+		}
+		else if(resultCode == RESULT_CODE_ADD_BULLETIN) {
+			String content = data.getStringExtra("Key_New_Content");
+
+			HomeController.getController().createBulletin(content, container);
+		}
+	}
+
+	public void toEditBillScreen(TextView content, Bulletin editBull) {
+		aBullCont = content;
+		this.editBull = editBull;
+
+		log.info(String.format(Locale.US, InfoStrings.SWITCH_ACTIVITY,
+				ModifyBulletin.class.getSimpleName()));
+
+		Intent i = new Intent(getApplicationContext(), ModifyBulletin.class);
+		i.putExtra("Orig_Key_Content", editBull.getContent());
+		startActivityForResult(i, RESULT_CODE_MODIFY_BULLETIN);
 	}
 }

@@ -16,6 +16,7 @@ import com.rip.roomies.events.bills.RemindBillListener;
 import com.rip.roomies.models.Bill;
 import com.rip.roomies.util.InfoStrings;
 
+import java.text.DecimalFormat;
 import java.util.logging.Logger;
 
 /**
@@ -29,7 +30,7 @@ public class BillView extends LinearLayout {
 
 	private Bill bill;
 	private String oweeID;
-
+	private BillContainer container;
 
 	/**
 	 * @see android.view.View( Context )
@@ -38,10 +39,11 @@ public class BillView extends LinearLayout {
 		super(context);
 	}
 
-	public BillView(Context context, Bills activity, String oweeID) {
+	public BillView(Context context, Bills activity, String oweeID, BillContainer container) {
 		super(context);
 		this.activity = activity;
 		this.oweeID = oweeID;
+		this.container = container;
 	}
 
 
@@ -146,6 +148,9 @@ public class BillView extends LinearLayout {
 		paidBill.setTextColor(getResources().getColor(R.color.pink));
 
 
+		removeBill.setPadding(30, 30, 30, 30);
+		editBill.setPadding(30, 30, 30, 30);
+		remindBill.setPadding(30, 30, 30, 30);
 
         /* Changing Gray buttons to Blue bordered ones */
 		removeBill.setBackground(getResources().getDrawable(R.drawable.rec_border_pink));
@@ -176,8 +181,10 @@ public class BillView extends LinearLayout {
 
 		/* Getting User's Information from bill*/
 		name.setText(bill.getName());
-		amount.setText(String.valueOf(bill.getAmount()));
 		description.setText(bill.getDescription());
+		DecimalFormat cash = new DecimalFormat("$#.##");
+		cash.setMinimumFractionDigits(2);
+		amount.setText(cash.format(Math.abs(bill.getAmount())));
 
 		/* Accenting the name of each bill. Better to differentiate*/
 		name.setTypeface(Typeface.DEFAULT_BOLD);
@@ -225,7 +232,6 @@ public class BillView extends LinearLayout {
 		removeBill_lp.setMargins(10,15,20,20);
 		remindBill_lp.setMargins(10,15,10,20);
 
-
 		/* Setting Buttons in LinearView Horizontal for owe you */
 		innerLayout.addView(editBill, editBill_lp);
 
@@ -246,6 +252,15 @@ public class BillView extends LinearLayout {
 		addView(innerLayout);
 		addView(underline);
 		setPadding(0,0,0,5);
-
 	}
+
+    /**
+     * Get the BillContainer holding this BillView
+     *
+     * @return The BillContainer object in question
+     */
+    public BillContainer getContainer() {
+        return container;
+    }
+
 }

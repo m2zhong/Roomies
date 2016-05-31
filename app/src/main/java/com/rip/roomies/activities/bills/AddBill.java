@@ -118,7 +118,6 @@ public class AddBill extends GenericActivity {
 
 	public boolean parseArgs(String name, String description, String amount, EditText etAmount, int userID) {
 		float tempFloat;
-		DecimalFormat df = new DecimalFormat("#.00");
 
 		//check the name first.
 		if (name == "" || userID == -1 || description == "" || amount == "") {

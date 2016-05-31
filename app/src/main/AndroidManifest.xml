@@ -133,6 +133,14 @@
 			android:name=".activities.goods.ViewGood"
 			android:configChanges="orientation|keyboardHidden|screenSize"
 			android:theme="@style/FullscreenTheme" />
+	    <activity
+		    android:name=".activities.bulletin.AddBulletin"
+		    android:label="@string/title_activity_add_bulletin"
+		    android:screenOrientation="portrait"/>
+	    <activity
+		    android:name=".activities.bulletin.ModifyBulletin"
+		    android:label="@string/title_activity_modify_bulletin"
+		    android:screenOrientation="portrait"/>
 	</application>
 
 </manifest>

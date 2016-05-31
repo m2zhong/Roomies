@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.rip.roomies.controllers.BillController;
 import com.rip.roomies.models.Bill;
+import com.rip.roomies.views.BillView;
 
 /**
  * Created by VinnysMacOS on 5/20/16.
@@ -37,9 +38,8 @@ public class RemoveBillListener implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         //first remove the selectedBill from the DB
-
         popupWindow.dismiss();
-        BillController.getController().removeBill(selectedBill.getRowID());
+        BillController.getController().removeBill(selectedBill.getRowID(), ((BillView)context).getContainer());
 
         //now remove its contents from the view.
         context.removeView(removeBill); context.removeView(editBill);
