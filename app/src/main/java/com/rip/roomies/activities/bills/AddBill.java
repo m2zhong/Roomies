@@ -14,8 +14,6 @@ import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
 import com.rip.roomies.views.UserSpinner;
 
-import java.text.DecimalFormat;
-
 public class AddBill extends GenericActivity {
 
 	private EditText name;

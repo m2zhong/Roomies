@@ -91,6 +91,7 @@ public class User implements Parcelable {
 	 * @param username  The User's login username.
 	 * @param email     The email address used to contact this User.
 	 * @param passwd    The User's password used to login.
+	 * @param profilePic The bit array used to upload User's picture
 	 */
 	public User(int id, String firstName, String lastName, String username, String email,
 	            String passwd, byte[] profilePic) {
@@ -101,6 +102,26 @@ public class User implements Parcelable {
 		this.email = email;
 		this.password = passwd;
 		this.profilePic = profilePic;
+	}
+
+	/**
+	 * Constructor used when creating a User. Populates all fields, including id.
+	 *
+	 * @param id        The User's id
+	 * @param firstName The User's first name.
+	 * @param lastName  The User's last name.
+	 * @param username  The User's login username.
+	 * @param email     The email address used to contact this User.
+	 * @param passwd    The User's password used to login.
+	 */
+	public User(int id, String firstName, String lastName, String username, String email,
+	            String passwd){
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.username = username;
+		this.email = email;
+		this.password = passwd;
 	}
 
 	//------- DATABASE METHODS -------//
