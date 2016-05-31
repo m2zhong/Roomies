@@ -60,13 +60,14 @@ public class SQLLogin {
 				String resultFirstName = rset.getString("FirstName");
 				String resultUsername = rset.getString("Username");
 				String resultEmail = rset.getString("Email");
+				byte[] resultProfilePic = rset.getBytes("ProfileIcon");
 
 				//debug message
 				log.info(String.format(Locale.US, InfoStrings.LOGIN_SUCCESSFULL, resultID, resultLastName,
 						resultFirstName, resultUsername, resultEmail));
 
 				return new User(resultID, resultFirstName, resultLastName,
-						resultUsername, resultEmail, null);
+						resultUsername, resultEmail, null, resultProfilePic);
 
 			}
 		}

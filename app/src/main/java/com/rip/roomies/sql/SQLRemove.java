@@ -52,6 +52,7 @@ public class SQLRemove {
 				String resultFirstName = rs.getString("FirstName");
 				String resultUsername = rs.getString("Username");
 				String resultEmail = rs.getString("Email");
+				byte[] profilePic = rs.getBytes("ProfileIcon");
 
 				//debug statement
 				log.info(String.format(Locale.US, InfoStrings.REMOVE_USER_FROM_GROUP_SUCCESSFUL,
@@ -59,7 +60,7 @@ public class SQLRemove {
 
 				// Return a new user object
 				return new User(resultID, resultFirstName, resultLastName, resultUsername,
-						resultEmail, null);
+						resultEmail, null, profilePic);
 			}
 		} catch (Exception e) {
 			// Log and return null on exception
@@ -100,7 +101,8 @@ public class SQLRemove {
 						rs.getString("LastName"),
 						rs.getString("Username"),
 						rs.getString("Email"),
-						null
+						null,
+						rs.getBytes("ProfileIcon")
 				);
 
 				// debug statement
@@ -183,7 +185,8 @@ public class SQLRemove {
 						rs.getString("LastName"),
 						rs.getString("Username"),
 						rs.getString("Email"),
-						null
+						null,
+						rs.getBytes("ProfileIcon")
 				);
 
 				// debug statement

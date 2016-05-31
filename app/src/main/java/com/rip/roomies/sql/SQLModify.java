@@ -4,11 +4,14 @@ import com.rip.roomies.models.Bill;
 import com.rip.roomies.models.Duty;
 import com.rip.roomies.models.Good;
 import com.rip.roomies.models.User;
+import com.rip.roomies.util.Conversions;
 import com.rip.roomies.util.Exceptions;
 import com.rip.roomies.util.InfoStrings;
 import com.rip.roomies.util.SQLStrings;
 import com.rip.roomies.util.WarningStrings;
 
+import java.sql.Blob;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Locale;
 import java.util.logging.Logger;
@@ -51,7 +54,8 @@ public class SQLModify {
 						rset.getString("LastName"),
 						rset.getString("Username"),
 						rset.getString("Email"),
-						null
+						null,
+						rset.getBytes("ProfileIcon")
 				);
 
 				// debug statement
@@ -114,7 +118,8 @@ public class SQLModify {
 						rset.getString("LastName"),
 						rset.getString("Username"),
 						rset.getString("Email"),
-						null
+						null,
+						rset.getBytes("ProfileIcon")
 				);
 
 				// debug statement
@@ -132,13 +137,16 @@ public class SQLModify {
 	}
 
 
-	public static Integer updateProfile (int groupID, int userID, String firstName, String lastName, String email, String groupDescription) {
+	public static Integer updateProfile (int groupID, int userID, String firstName, String lastName,
+	                                     String email, String groupDescription, byte[] profilePic) {
 		ResultSet rset;
 
 		try {
 
 			//debug statement
 			//log.info(InfoStrings.MODIFYDUTY_SQL);
+
+			String profilePicString = Conversions.byteArrayToHexString(profilePic);
 
 			// get the result table from query execution through sql
 			rset = SQLQuery.execute(String.format(Locale.US, SQLStrings.UPDATE_PROFILE,
@@ -156,6 +164,12 @@ public class SQLModify {
 				// debug statement
 				//log.info(String.format(Locale.US, InfoStrings.MODIFYDUTY_SUCCESSFUL,
 				//		resultId, resultName, resultDescription, dutyGroupId));
+				PreparedStatement pstmt = SQLQuery.getPreparedStatement(SQLStrings.SET_PROFILE_ICON);
+				if (pstmt != null) {
+					pstmt.setInt(1, userID);
+					pstmt.setBytes(2, profilePic);
+					pstmt.executeQuery();
+				}
 
 				return 1;
 			}
@@ -247,7 +261,8 @@ public class SQLModify {
 							rset.getString("LastName"),
 							rset.getString("Username"),
 							rset.getString("Email"),
-							null
+							null,
+							rset.getBytes("ProfileIcon")
 					);
 
 					// debug statement
@@ -310,7 +325,8 @@ public class SQLModify {
 						rset.getString("LastName"),
 						rset.getString("Username"),
 						rset.getString("Email"),
-						null
+						null,
+						rset.getBytes("ProfileIcon")
 				);
 
 				// debug statement

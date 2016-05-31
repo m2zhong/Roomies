@@ -46,6 +46,7 @@ public class SQLFind {
 				String resultFirstName = rs.getString("FirstName");
 				String resultUsername = rs.getString("Username");
 				String resultEmail = rs.getString("Email");
+				byte[] profilePic = rs.getBytes("ProfileIcon");
 
 				// This checks if multiple rows were returned. If so, then finding failed
 				if (rs.next()) {
@@ -59,7 +60,7 @@ public class SQLFind {
 
 				// Return a new user object
 				return new User(resultID, resultFirstName, resultLastName, resultUsername,
-						resultEmail, null);
+						resultEmail, null, profilePic);
 			}
 		}
 		catch (Exception e) {

@@ -9,6 +9,7 @@ public class DisplayStrings {
 
 	public static final String MISSING_FIELD = "Required field missing: %s\n";
 	public static final String TOO_SHORT = "%s is too short. Must be at least %d characters.\n";
+	public static final String TOO_LARGE = "%s is too large. Max size: %s.\n";
 	public static final String NOT_ALPHANUM = "%s must be alphanumeric or underscore.\n";
 	public static final String FIRST_NOT_ALPHA = "First character of %s must be a letter.\n";
 	public static final String INVALID = "%s entered is invalid.\n";

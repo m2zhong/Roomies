@@ -1,5 +1,6 @@
 package com.rip.roomies.activities.home;
 
+import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.view.Display;
 import android.widget.ImageView;
@@ -58,7 +59,7 @@ public class Home extends GenericActivity {
 
 		final Activity self = this;
 
-		QuickContactBadge profileBadge = (QuickContactBadge) findViewById(R.id.home_profilepicture);
+		ImageView profileBadge = (ImageView) findViewById(R.id.home_profilepicture);
 
 		profileBadge.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -89,7 +90,7 @@ public class Home extends GenericActivity {
 				startActivity(new Intent(self, ListAllGoods.class));
 			}
 		});
-		
+
 		TextView toMyDuties = (TextView) findViewById(R.id.to_view_my_duties);
 		toMyDuties.setOnClickListener(new View.OnClickListener(){
 			@Override
@@ -113,6 +114,18 @@ public class Home extends GenericActivity {
 		ImageView logo = (ImageView) findViewById(R.id.home_appname);
 		logo.setImageBitmap(Images.getScaledDownBitmap(getResources(), R.mipmap.logo2,
 				(int) (size.x * IMAGE_WIDTH_RATIO), (int) (size.y * IMAGE_HEIGHT_RATIO)));
+
+		User thisUser = User.getActiveUser();
+
+		if (thisUser == null || thisUser.getProfilePic() == null) {
+			profileBadge.setImageBitmap(Images.getScaledDownBitmap(getResources(),
+					R.mipmap.default_user_image, (int) (size.x * IMAGE_WIDTH_RATIO),
+					(int) (size.y * IMAGE_HEIGHT_RATIO)));
+		}
+		else {
+			profileBadge.setImageBitmap(BitmapFactory.decodeByteArray(thisUser.getProfilePic(),
+					0, thisUser.getProfilePic().length));
+		}
 
 		try {
 			//connection to the node.js server
