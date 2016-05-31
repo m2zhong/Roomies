@@ -68,11 +68,19 @@ public class UserContainer extends ScrollView {
 			}
 		}
 
-		users.add(newUser);
+		/* Checking if user selected is not blank */
+		if (newUser.getId() == -1) {
+			Toast.makeText(getContext(), "Make sure a user is selected.",
+					Toast.LENGTH_LONG).show();
+		}
 
-		UserView userView = new UserView(getContext());
-		userView.setUser(newUser);
-		userLayout.addView(userView);
+		else {
+			users.add(newUser);
+
+			UserView userView = new UserView(getContext());
+			userView.setUser(newUser);
+			userLayout.addView(userView);
+		}
 	}
 
 	/**

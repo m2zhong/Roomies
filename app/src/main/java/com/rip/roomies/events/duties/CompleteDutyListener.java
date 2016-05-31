@@ -3,6 +3,7 @@ package com.rip.roomies.events.duties;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
+import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import com.github.nkzawa.socketio.client.IO;
@@ -28,6 +29,7 @@ public class CompleteDutyListener implements View.OnClickListener, CompleteDutyF
 
 	private Duty duty;
 	private GenericActivity activity;
+	private PopupWindow popupWindow;
 
 	/**
 	 * Complete Duty Listener Constructor
@@ -35,9 +37,10 @@ public class CompleteDutyListener implements View.OnClickListener, CompleteDutyF
 	 * @param context  Activity that is using the listener
 	 * @param duty  The existing duty object in a view
 	 */
-	public CompleteDutyListener(GenericActivity context, Duty duty) {
+	public CompleteDutyListener(GenericActivity context, Duty duty, PopupWindow popUpWindow) {
 		this.duty = duty;
 		this.activity = context;
+		this.popupWindow=popUpWindow;
 	}
 
 	/**
@@ -47,6 +50,8 @@ public class CompleteDutyListener implements View.OnClickListener, CompleteDutyF
 	 */
 	@Override
 	public void onClick(View v) {
+
+		popupWindow.dismiss();
 		/*String Buffer for Error Message*/
 		StringBuilder errMessage = new StringBuilder();
 

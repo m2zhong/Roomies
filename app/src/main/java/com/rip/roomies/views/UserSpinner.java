@@ -54,7 +54,6 @@ public class UserSpinner extends Spinner {
 	public void addUser(User newUser) {
 		log.info(String.format(InfoStrings.CONTAINER_ADD,
 				UserView.class.getSimpleName(), UserSpinner.class.getSimpleName()));
-
 		users.add(newUser);
 		users.notifyDataSetChanged();
 	}
