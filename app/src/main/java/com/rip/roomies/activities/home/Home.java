@@ -19,8 +19,8 @@ import com.rip.roomies.activities.bills.Bills;
 import com.rip.roomies.activities.bulletin.AddBulletin;
 import com.rip.roomies.activities.bulletin.ModifyBulletin;
 import com.rip.roomies.activities.duties.ListAllDuties;
-import com.rip.roomies.activities.duties.ListMyDuties;
 import com.rip.roomies.activities.profile.Profile;
+import com.rip.roomies.activities.tasks.ListMyTasks;
 import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
 import com.rip.roomies.util.Images;
@@ -110,7 +110,7 @@ public class Home extends GenericActivity {
 		toMyDuties.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				self.startActivity(new Intent(self, ListMyDuties.class));
+				self.startActivity(new Intent(self, ListMyTasks.class));
 			}
 		});
 
