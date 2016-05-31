@@ -5,27 +5,24 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.github.nkzawa.emitter.Emitter;
-import com.rip.roomies.util.InfoStrings;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Locale;
 import java.util.logging.Logger;
 
 /**
- * Created by haotuusa on 5/30/16.
+ * Created by haotuusa on 5/31/16.
  */
-public class GetReminderBillListener implements Emitter.Listener{
-
-	private static final Logger log = Logger.getLogger(GetReminderBillListener.class.getName());
+public class GetReminderCSGListener implements Emitter.Listener {
+	private static final Logger log = Logger.getLogger(GetReminderCSGListener.class.getName());
 
 	Activity activity;
 
 	/** Constructor
 	 *  pass in activity to display toast for now
 	 */
-	public GetReminderBillListener(Activity activity){
+	public GetReminderCSGListener(Activity activity){
 		this.activity = activity;
 	}
 
@@ -40,28 +37,19 @@ public class GetReminderBillListener implements Emitter.Listener{
 			@Override
 			public void run() {
 
-				log.info(String.format(Locale.US, InfoStrings.GET_REMINDER_BILL_LISTENER));
 				JSONObject data = (JSONObject) args[0];
-				String ownerName;
-				float amount;
-				String description;
+				String commonGood;
 
 				try {
-
-					ownerName = data.getString("user");
-					amount = (float)data.getDouble("amount");
-					description = data.getString("description");
+					commonGood = data.getString("csg");
 				} catch (JSONException e) {
 					return;
 				}
 
 				//make toast to display the notification message for now
 				Context context = activity.getApplicationContext();
-				CharSequence text = "You still owe "+ ownerName + " " + amount + " dollars\n" +
-						"Description: " + description;
-				int duration = Toast.LENGTH_SHORT;
-				Toast toast = Toast.makeText(context, text, duration);
-				toast.show();
+				CharSequence text = "Roomie remind you to do the " + commonGood;
+				Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
 
 				//commented code later implement as notification manager when have time
 //				sendNotification("remind you to do the " + duty);

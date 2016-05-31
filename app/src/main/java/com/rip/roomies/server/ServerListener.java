@@ -2,8 +2,10 @@ package com.rip.roomies.server;
 
 import android.app.Activity;
 
+import com.rip.roomies.events.notification.GetCompletionCSGListener;
 import com.rip.roomies.events.notification.GetCompletionDutyListener;
 import com.rip.roomies.events.notification.GetReminderBillListener;
+import com.rip.roomies.events.notification.GetReminderCSGListener;
 import com.rip.roomies.events.notification.GetReminderDutyListener;
 import com.rip.roomies.util.SocketStrings;
 
@@ -29,13 +31,13 @@ public class ServerListener {
 				new GetReminderBillListener(activity));
 	}
 
-//	public static void activateCompleteCommonGood(Activity activity) throws URISyntaxException {
-//		Server.activateNotification(SocketStrings.COMPLETE_CSG,
-//				new GetCompletionDutyListener(activity));
-//	}
+	public static void activateCompleteCommonGood(Activity activity) throws URISyntaxException {
+		Server.activateNotification(SocketStrings.COMPLETE_CSG,
+				new GetCompletionCSGListener(activity));
+	}
 //
-//	public static void activateRemindCommonGood(Activity activity) throws URISyntaxException {
-//		Server.activateNotification(SocketStrings.NOTIFICATION_CSG,
-//				new GetCompletionDutyListener(activity));
-//	}
+	public static void activateRemindCommonGood(Activity activity) throws URISyntaxException {
+		Server.activateNotification(SocketStrings.NOTIFICATION_CSG,
+				new GetReminderCSGListener(activity));
+	}
 }

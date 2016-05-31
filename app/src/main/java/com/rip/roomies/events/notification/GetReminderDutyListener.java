@@ -52,9 +52,7 @@ public class GetReminderDutyListener implements  Emitter.Listener {
 				//make toast to display the notification message for now
 				Context context = activity.getApplicationContext();
 				CharSequence text = "Roomie remind you to do the " + duty;
-				int duration = Toast.LENGTH_SHORT;
-				Toast toast = Toast.makeText(context, text, duration);
-				toast.show();
+				Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
 
 				//commented code later implement as notification manager when have time
 //				sendNotification("remind you to do the " + duty);

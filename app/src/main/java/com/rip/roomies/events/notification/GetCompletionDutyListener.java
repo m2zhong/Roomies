@@ -79,4 +79,5 @@ public class GetCompletionDutyListener implements  Emitter.Listener {
 //
 //		notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
 //	}
+
 }

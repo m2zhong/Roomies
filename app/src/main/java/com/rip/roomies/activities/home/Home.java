@@ -7,22 +7,21 @@ import android.os.Bundle;
 import android.view.Display;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.QuickContactBadge;
-import com.github.nkzawa.socketio.client.Socket;
+import android.widget.TextView;
+
 import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.activities.bills.Bills;
 import com.rip.roomies.activities.duties.ListAllDuties;
-import com.rip.roomies.activities.profile.Profile;
 import com.rip.roomies.activities.goods.ListAllGoods;
+import com.rip.roomies.activities.profile.Profile;
 import com.rip.roomies.activities.tasks.ListMyTasks;
-import com.rip.roomies.util.Images;
-
 import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
 import com.rip.roomies.server.ServerListener;
 import com.rip.roomies.server.ServerRequest;
+import com.rip.roomies.util.Images;
 
 import java.net.URISyntaxException;
 import java.util.logging.Logger;
@@ -36,8 +35,6 @@ public class Home extends GenericActivity {
 	private static final Logger log = Logger.getLogger(Home.class.getName());
 	private static final double IMAGE_WIDTH_RATIO = 3.0 / 10;
 	private static final double IMAGE_HEIGHT_RATIO = 2.0 / 25;
-	private Socket mSocket;
-
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -119,8 +116,8 @@ public class Home extends GenericActivity {
 			ServerListener.activateCompleteDuty(self);
 			ServerListener.activateRemindDuty(self);
 			ServerListener.activateRemindBill(self);
-//			ServerListener.activateCompleteCommonGood(self);
-//			ServerListener.activateRemindCommonGood(self);
+			ServerListener.activateCompleteCommonGood(self);
+			ServerListener.activateRemindCommonGood(self);
 		}
 		catch (URISyntaxException e) {
 			throw new RuntimeException(e);
