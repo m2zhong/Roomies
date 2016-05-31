@@ -238,4 +238,5 @@ public class InfoStrings {
 	public static final String SERVER_REQUEST = "Sending request to the server \"%s\"";
 
 
+	public static final String GET_REMINDER_BILL_LISTENER = "Get remind to pay bill.";
 }

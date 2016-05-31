@@ -45,4 +45,9 @@ public class ServerRequest {
 		Server.getConnection().emit(SocketStrings.NOTIFICATION_CSG, receiverId, csgName);
 	}
 
+	public static void remindBill(int receiverId, String ownerName,
+	                              float amount, String description) throws URISyntaxException{
+		Server.getConnection().emit(SocketStrings.NOTIFICATION_BILL,
+						receiverId, ownerName, amount, description);
+	}
 }

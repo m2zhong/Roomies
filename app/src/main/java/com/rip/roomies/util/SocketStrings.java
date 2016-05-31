@@ -16,6 +16,7 @@ public class SocketStrings {
 	public static final String COMPLETE_CSG = "complete common good";
 	public static final String NOTIFICATION_CSG= "notification common good";
 	public static final String PASSWORD_RETRIEVE = "password retrieve";
+	public static final String NOTIFICATION_BILL= "notification bill";
 
 	//Strings for all the socket subscribtion android send to sever to join room
 	public static final String NOTIFICATION_LISTEN =  "listen to notification";

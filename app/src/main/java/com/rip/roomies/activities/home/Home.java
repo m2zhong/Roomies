@@ -118,6 +118,7 @@ public class Home extends GenericActivity {
 
 			ServerListener.activateCompleteDuty(self);
 			ServerListener.activateRemindDuty(self);
+			ServerListener.activateRemindBill(self);
 //			ServerListener.activateCompleteCommonGood(self);
 //			ServerListener.activateRemindCommonGood(self);
 		}
