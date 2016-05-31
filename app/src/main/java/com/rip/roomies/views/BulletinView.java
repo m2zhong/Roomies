@@ -1,32 +1,19 @@
 package com.rip.roomies.views;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.util.AttributeSet;
-import android.util.TypedValue;
 import android.view.Gravity;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.rip.roomies.R;
-import com.rip.roomies.activities.bills.Bills;
-import com.rip.roomies.activities.bulletin.ModifyBulletin;
 import com.rip.roomies.activities.home.Home;
-import com.rip.roomies.events.bills.ModifyBillListener;
-import com.rip.roomies.events.bills.RemindBillListener;
-import com.rip.roomies.events.bills.RemoveBillListener;
 import com.rip.roomies.events.bulletins.ModifyBulletinListener;
 import com.rip.roomies.events.bulletins.RemoveBulletinListener;
-import com.rip.roomies.models.Bill;
 import com.rip.roomies.models.Bulletin;
 import com.rip.roomies.util.InfoStrings;
 
-import java.text.DecimalFormat;
-import java.util.Locale;
 import java.util.logging.Logger;
 
 /**
@@ -103,7 +90,7 @@ public class BulletinView extends LinearLayout {
 		LinearLayout rightLayout = new LinearLayout(getContext());
 		LayoutParams rlp = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 		rightLayout.setLayoutParams(rlp);
-		rightLayout.setOrientation(LinearLayout.VERTICAL);
+		rightLayout.setOrientation(LinearLayout.HORIZONTAL);
 		rightLayout.setGravity(Gravity.END);
 
 		TextView content = new TextView(getContext());
