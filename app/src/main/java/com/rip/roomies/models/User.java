@@ -22,6 +22,7 @@ public class User implements Parcelable {
 	private String username = "";
 	private String email = "";
 	private String password = "";
+	private byte[] profilePic = null;
 
 	private static User activeUser;
 	private static final Logger log = Logger.getLogger(User.class.getName());
@@ -92,13 +93,14 @@ public class User implements Parcelable {
 	 * @param passwd    The User's password used to login.
 	 */
 	public User(int id, String firstName, String lastName, String username, String email,
-	            String passwd) {
+	            String passwd, byte[] profilePic) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.username = username;
 		this.email = email;
 		this.password = passwd;
+		this.profilePic = profilePic;
 	}
 
 	//------- DATABASE METHODS -------//
@@ -126,9 +128,11 @@ public class User implements Parcelable {
 
 
 
-	public Integer updateProfile(String firstName, String lastName, String email, String groupDescription) {
+	public Integer updateProfile(String firstName, String lastName, String email,
+	                             String groupDescription, byte[] profilePic) {
 
-		return SQLModify.updateProfile(Group.getActiveGroup().getId(), User.getActiveUser().getId(), firstName, lastName, email, groupDescription);
+		return SQLModify.updateProfile(Group.getActiveGroup().getId(), User.getActiveUser().getId(),
+				firstName, lastName, email, groupDescription, profilePic);
 	}
 
 
@@ -231,6 +235,10 @@ public class User implements Parcelable {
 		return password;
 	}
 
+	public byte[] getProfilePic() {
+		return profilePic;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -259,6 +267,9 @@ public class User implements Parcelable {
 		dest.writeString(username);
 		dest.writeString(email);
 		dest.writeString(password);
+
+		dest.writeInt(profilePic.length);
+		dest.writeByteArray(profilePic);
 	}
 
 
@@ -273,5 +284,10 @@ public class User implements Parcelable {
 		username = in.readString();
 		email = in.readString();
 		password = in.readString();
+
+		int length = in.readInt();
+		byte[] temp = new byte[length];
+		in.readByteArray(temp);
+		profilePic = temp;
 	}
 }

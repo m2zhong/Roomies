@@ -77,7 +77,8 @@ public class SQLCreate {
 						rset.getString("LastName"),
 						rset.getString("Username"),
 						rset.getString("Email"),
-						null
+						null,
+						rset.getBytes("ProfileIcon")
 				);
 
 				// debug statement
@@ -177,13 +178,14 @@ public class SQLCreate {
 				String resultFirstName = rset.getString("FirstName");
 				String resultUsername = rset.getString("Username");
 				String resultEmail = rset.getString("Email");
+				byte[] profilePic = rset.getBytes("ProfileIcon");
 
 				//debug statement
 				log.info(String.format(Locale.US, InfoStrings.CREATEUSER_SUCCESSFULL, resultID,
 						resultLastName, resultFirstName, resultUsername, resultEmail));
 
 				return new User(resultID, resultFirstName,
-						resultLastName, resultUsername, resultEmail, null);
+						resultLastName, resultUsername, resultEmail, null, profilePic);
 
 			}
 		}
@@ -315,7 +317,8 @@ public class SQLCreate {
 						rset.getString("LastName"),
 						rset.getString("Username"),
 						rset.getString("Email"),
-						null
+						null,
+						rset.getBytes("ProfileIcon")
 				);
 
 				// debug statement

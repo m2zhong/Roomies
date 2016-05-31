@@ -2,8 +2,10 @@ package com.rip.roomies.sql;
 
 import com.rip.roomies.util.InfoStrings;
 
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.logging.Logger;
@@ -20,7 +22,7 @@ public class SQLQuery {
 
 	//roomies_app.....password=#room1es4lyfe
 	// The connection string to connect to database
-	private static final String CONN_STRING = "jdbc:jtds:sqlserver://rationallyimpairedprogrammers.database.windows.net:1433/cse110_dev;user=h4tu;password=R!Pdevl0g;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;instance=SQLEXPRESS;";
+	private static final String CONN_STRING = "jdbc:jtds:sqlserver://rationallyimpairedprogrammers.database.windows.net:1433/cse110_dev;user=roomies_app;password=#room1es4lyfe;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;instance=SQLEXPRESS;";
 
 	/**
 	 * Helper class that initiates the connection to the database, setting the
@@ -62,6 +64,24 @@ public class SQLQuery {
 		Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
 				ResultSet.CONCUR_UPDATABLE);
 		return stmt.executeQuery(query);
+	}
+
+	/**
+	 * Prepares a SQL statement.
+	 * @param query The query to prepare
+	 * @return The prepared statement
+	 * @throws Exception If the sql connection fails
+	 */
+	protected static PreparedStatement getPreparedStatement(String query) throws Exception {
+		if (conn == null || conn.isClosed()) {
+			connect();
+		}
+
+		if (query == null) {
+			return null;
+		}
+
+		return conn.prepareStatement(query);
 	}
 
 	/**

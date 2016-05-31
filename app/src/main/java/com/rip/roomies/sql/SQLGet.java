@@ -58,7 +58,8 @@ public class SQLGet {
 					String last = rs.getString("LastName");
 					String username = rs.getString("Username");
 					String email = rs.getString("Email");
-					users.add(new User(id, first, last, username, email, null));
+					byte[] profilePic = rs.getBytes("ProfileIcon");
+					users.add(new User(id, first, last, username, email, null, profilePic));
 				}
 
 				User[] temp = new User[users.size()];
@@ -164,7 +165,8 @@ public class SQLGet {
 							rs.getString("LastName"),
 							rs.getString("Username"),
 							rs.getString("Email"),
-							null
+							null,
+							rs.getBytes("ProfileIcon")
 					);
 
 					Duty temp = new Duty(resultId, resultName, resultDescription, resultGroup, u, null);
@@ -286,8 +288,9 @@ public class SQLGet {
 					String last = rs.getString("LastName");
 					String username = rs.getString("Username");
 					String email = rs.getString("Email");
+					byte[] profilePic = rs.getBytes("ProfileIcon");
 
-					users.add(new User(id, first, last, username, email, null));
+					users.add(new User(id, first, last, username, email, null, profilePic));
 				} while(rs.next());
 
 				//debug statement
@@ -355,8 +358,9 @@ public class SQLGet {
 					String last = getUser.getString("LastName");
 					String username = getUser.getString("Username");
 					String email = getUser.getString("Email");
+					byte[] profilePic = rs.getBytes("ProfileIcon");
 
-					User assignee = new User(userId, first, last, username, email, null);
+					User assignee = new User(userId, first, last, username, email, null, profilePic);
 
 					DutyLog temp = new DutyLog(resultId, resultName, resultDescription, resultGroup,
 							completeDate, dutyId, assignee);
@@ -516,7 +520,8 @@ public class SQLGet {
 							rs.getString("LastName"),
 							rs.getString("Username"),
 							rs.getString("Email"),
-							null
+							null,
+							rs.getBytes("ProfileIcon")
 					);
 
 					Good temp = new Good(resultId, resultName, resultDescription, resultGroup, u, null);
@@ -572,8 +577,9 @@ public class SQLGet {
 					String last = rs.getString("LastName");
 					String username = rs.getString("Username");
 					String email = rs.getString("Email");
+					byte[] profilePic = rs.getBytes("ProfileIcon");
 
-					users.add(new User(id, first, last, username, email, null));
+					users.add(new User(id, first, last, username, email, null, profilePic));
 				} while(rs.next());
 
 				//debug statement
@@ -642,8 +648,9 @@ public class SQLGet {
 					String last = getUser.getString("LastName");
 					String username = getUser.getString("Username");
 					String email = getUser.getString("Email");
+					byte[] profilePic = rs.getBytes("ProfileIcon");
 
-					User assignee = new User(userId, first, last, username, email, null);
+					User assignee = new User(userId, first, last, username, email, null, profilePic);
 
 					GoodLog temp = new GoodLog(resultId, resultName, resultDescription, resultGroup,
 							completeDate, dutyId, assignee, price);

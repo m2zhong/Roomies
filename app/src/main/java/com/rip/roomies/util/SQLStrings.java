@@ -83,7 +83,8 @@ public class SQLStrings {
 			"@dutyId = %d";
 
 	public static final String UPDATE_PROFILE = "EXEC ProfileUpdate " +
-			"@id = %d, @groupid = %d, @firstName = '%s', @lastName = '%s', @email = '%s', @groupDescription = '%s'";
+			"@id = %d, @groupid = %d, @firstName = '%s', @lastName = '%s', @email = '%s', " +
+			"@groupDescription = '%s'";
 
 	public static final String MODIFY_PASSWORD = "EXEC ChangePassword " +
 			"@userId = %d, @password = '%s'";
@@ -111,4 +112,6 @@ public class SQLStrings {
 	public static final String GET_USER_BY_ID = "EXEC GetUserById " +
 			"@userId = %d";
 
+	public static final String SET_PROFILE_ICON = "EXEC SetProfileIcon " +
+			"@userId = ?, @profileIcon = ?";
 }

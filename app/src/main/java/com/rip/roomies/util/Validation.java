@@ -5,15 +5,19 @@ import android.widget.EditText;
 import org.apache.commons.validator.routines.EmailValidator;
 
 import java.util.Locale;
+import java.util.logging.Logger;
 
 /**
  * This is a class that can validate any user input based on what the input is.
  */
 public class Validation {
-	public enum ParamType {Identifier, Password, Email, Other};
+	private static final Logger log = Logger.getLogger(Validation.class.getName());
+
+	public enum ParamType {Identifier, Password, Email, SmallImage, Other};
 
 	private static final int MIN_IDENT_LENGTH = 4;
 	private static final int MIN_PASS_LENGTH = 8;
+	private static final int MAX_SMALL_IMAGE_SIZE = 8000;
 
 	/**
 	 * Validates a text field based on its type and whagt it contains.
@@ -99,6 +103,16 @@ public class Validation {
 		// Check if tbe address is valid. If not, return error message
 		if (!ev.isValid(param)) {
 			return String.format(Locale.US, DisplayStrings.INVALID, name);
+		}
+
+		return "";
+	}
+
+	public static String validateImage(byte[] image, ParamType type, String name) {
+		if (type == ParamType.SmallImage && image.length > MAX_SMALL_IMAGE_SIZE) {
+			log.info("Size: " + image.length);
+			return String.format(Locale.US, DisplayStrings.TOO_LARGE, name,
+					MAX_SMALL_IMAGE_SIZE + " bytes");
 		}
 
 		return "";

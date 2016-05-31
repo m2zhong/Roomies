@@ -1,5 +1,6 @@
 package com.rip.roomies.activities.home;
 
+import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.view.Display;
 import android.widget.Button;
@@ -19,6 +20,7 @@ import com.rip.roomies.activities.bulletin.AddBulletin;
 import com.rip.roomies.activities.bulletin.ModifyBulletin;
 import com.rip.roomies.activities.duties.ListAllDuties;
 import com.rip.roomies.activities.duties.ListMyDuties;
+import com.rip.roomies.activities.profile.Profile;
 import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
 import com.rip.roomies.util.Images;
@@ -67,10 +69,18 @@ public class Home extends GenericActivity {
 		first_name = user.getFirstName();
 		username.setText(" " + first_name + "!");
 
-		Button bulletinAddButton = (Button) findViewById(R.id.bulletin_addbtn);
-		container = (BulletinContainer) findViewById(R.id.bulletin_container);
+		ImageView profileBadge = (ImageView) findViewById(R.id.home_profilepicture);
 
 		final Activity self = this;
+		profileBadge.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				startActivity(new Intent(self, Profile.class));
+			}
+		});
+
+		Button bulletinAddButton = (Button) findViewById(R.id.bulletin_addbtn);
+		container = (BulletinContainer) findViewById(R.id.bulletin_container);
 
 		billScreen.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -120,6 +130,17 @@ public class Home extends GenericActivity {
 		logo.setImageBitmap(Images.getScaledDownBitmap(getResources(), R.mipmap.logowhite,
 				(int) (size.x * IMAGE_WIDTH_RATIO), (int) (size.y * IMAGE_HEIGHT_RATIO)));
 
+		User thisUser = User.getActiveUser();
+
+		if (thisUser == null || thisUser.getProfilePic() == null) {
+			profileBadge.setImageBitmap(Images.getScaledDownBitmap(getResources(),
+					R.mipmap.default_user_image, (int) (size.x * IMAGE_WIDTH_RATIO),
+					(int) (size.y * IMAGE_HEIGHT_RATIO)));
+		}
+		else {
+			profileBadge.setImageBitmap(BitmapFactory.decodeByteArray(thisUser.getProfilePic(),
+					0, thisUser.getProfilePic().length));
+		}
 
 		//listening to all the notification
 		try {
