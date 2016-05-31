@@ -100,4 +100,6 @@
 
 	<string name="join_group_header">Join Group</string>
 	<string name="join_groupbtn">Join Group</string>
+	<string name="addbill_des_length">(100 Characters)</string>
+	<string name="addbill_owe">Owe</string>
 </resources>

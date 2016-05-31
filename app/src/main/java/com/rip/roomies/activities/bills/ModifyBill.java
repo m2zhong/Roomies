@@ -22,6 +22,7 @@ public class ModifyBill extends GenericActivity {
     private EditText amount;
     private Button submitChanges;
     private final int EDIT_BILL_RESULT_CODE = 1;
+    private User currUser;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,7 +35,13 @@ public class ModifyBill extends GenericActivity {
         amount = (EditText) findViewById(R.id.editBillAmount);
         submitChanges = (Button) findViewById(R.id.submitBillChanges);
 
+        currUser=User.getActiveUser();
+
+        /* Setting Default spinner selection to blank User object */
         for (User u : Group.getActiveGroup().getMembers()) {
+
+            /* Making sure active user isn't listed*/
+            if(currUser.getId() != u.getId())
             name.addUser(u);
         }
 
@@ -42,6 +49,11 @@ public class ModifyBill extends GenericActivity {
         String desctext = getIntent().getStringExtra("Orig_Key_Description");
         String amounttext = getIntent().getStringExtra("Orig_Key_Amount");
         int rowID = Integer.parseInt(getIntent().getStringExtra("Key_Bill_Row_ID"));
+
+        /* Taking out "$" symbol before displaying amount in Edit Bill
+         * BugFix: $ causes error message for saving changes @OnClick */
+        if(amounttext.startsWith("$"))
+            amounttext=amounttext.substring(1);
 
         name.select(nametext);
         description.setText(desctext);
@@ -65,7 +77,7 @@ public class ModifyBill extends GenericActivity {
                 Intent intent = new Intent();
                 intent.putExtra("Upd_Key_Name", name.getSelected().toString());
                 intent.putExtra("Upd_Key_Description", description.getText().toString());
-                intent.putExtra("Upd_Key_Amount", amount.getText().toString());
+                intent.putExtra("Upd_Key_Amount", amount.getText().toString().substring(1));
                 setResult(EDIT_BILL_RESULT_CODE, intent);
                 finish();
             }
@@ -82,15 +94,17 @@ public class ModifyBill extends GenericActivity {
      * @return true if parseArgs failed, ie the user didnt enter in something.
      */
 
-    public boolean parseArgs(String name, String description, String amount, EditText etAmount) {
+    public boolean parseArgs(String name, String description, String amount,
+                             EditText etAmount) {
         float tempFloat;
         DecimalFormat df = new DecimalFormat("#.00");
 
         //check the name first.
-        if (name == "" || description == "" || amount == "") {
+        if (name == "" || description == "" || amount == "" ) {
             //the number the entered for the amount had non-numeric chars
             Toast.makeText(getApplicationContext(), "Make sure all fields are filled.",
                     Toast.LENGTH_LONG).show();
+            return false;
         }
 
         try {

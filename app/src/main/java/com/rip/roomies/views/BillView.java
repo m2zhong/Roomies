@@ -1,6 +1,7 @@
 package com.rip.roomies.views;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.widget.Button;
@@ -10,8 +11,8 @@ import android.widget.TextView;
 import com.rip.roomies.R;
 import com.rip.roomies.activities.bills.Bills;
 import com.rip.roomies.events.bills.ModifyBillListener;
+import com.rip.roomies.events.bills.PopUpBillListener;
 import com.rip.roomies.events.bills.RemindBillListener;
-import com.rip.roomies.events.bills.RemoveBillListener;
 import com.rip.roomies.models.Bill;
 import com.rip.roomies.util.InfoStrings;
 
@@ -108,6 +109,7 @@ public class BillView extends LinearLayout {
 		Button removeBill = new Button(getContext());
 		Button editBill = new Button(getContext());
 		Button remindBill = new Button(getContext());
+		Button paidBill = new Button(getContext());
 
 		/* Setting text Size */
 		name.setTextSize(20);
@@ -125,26 +127,42 @@ public class BillView extends LinearLayout {
 		removeBill.setText("Remove");
 		editBill.setText("Edit");
 		remindBill.setText("Remind");
+		paidBill.setText("Paid");
 
 		removeBill.setTextSize(20);
 		editBill.setTextSize(20);
 		remindBill.setTextSize(20);
+		paidBill.setTextSize(20);
+
+		/* Setting Font
+		removeBill.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
+		editBill.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
+		remindBill.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
+		paidBill.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));*/
 
 		removeBill.setTextColor(getResources().getColor(R.color.pink));
 		editBill.setTextColor(getResources().getColor(R.color.colorPrimary));
 		remindBill.setTextColor(getResources().getColor(R.color.colorPrimary));
+		paidBill.setTextColor(getResources().getColor(R.color.pink));
 
-		removeBill.setPadding(30,30, 30, 30);
-		editBill.setPadding(30, 30, 30, 30);
-		remindBill.setPadding(30,30,30,30);
+
 
         /* Changing Gray buttons to Blue bordered ones */
 		removeBill.setBackground(getResources().getDrawable(R.drawable.rec_border_pink));
 		editBill.setBackground(getResources().getDrawable(R.drawable.rec_border));
 		remindBill.setBackground(getResources().getDrawable(R.drawable.rec_border));
+		paidBill.setBackground(getResources().getDrawable(R.drawable.rec_border_pink));
 
 		//set the removeBill/editbill listeners
-		removeBill.setOnClickListener(new RemoveBillListener(this, bill, removeBill,
+
+		int removeLayoutID = R.layout.activity_confirm_bill_remove;
+		int paidLayoutID = R.layout.activity_confirm_bill_paid;
+
+		removeBill.setOnClickListener(new PopUpBillListener(activity, removeBill, removeLayoutID, this, bill, removeBill,
+				editBill, name,
+				amount, description, innerLayout, underline));
+
+		paidBill.setOnClickListener(new PopUpBillListener(activity, removeBill, paidLayoutID, this, bill, removeBill,
 				editBill, name,
 				amount, description, innerLayout, underline));
 
@@ -154,27 +172,46 @@ public class BillView extends LinearLayout {
 
 		remindBill.setOnClickListener(new RemindBillListener(this, bill, oweeID));
 
+
+
 		/* Getting User's Information from bill*/
 		name.setText(bill.getName());
 		amount.setText(String.valueOf(bill.getAmount()));
 		description.setText(bill.getDescription());
+
+		/* Accenting the name of each bill. Better to differentiate*/
+		name.setTypeface(Typeface.DEFAULT_BOLD);
+		description.setTextColor(getResources().getColor(R.color.black_overlay));
+
+		/* Removing negative sign in amount in YouOwe */
+		if (bill.getAmount()< 0)
+			amount.setText('$' + String.valueOf(bill.getAmount()).substring(1));
+		else
+			amount.setText('$' + String.valueOf(bill.getAmount()));
+
+
 
 		/* Setting up Layout Parameters for the buttons and bill info */
 
 		LinearLayout.LayoutParams editBill_lp = new LinearLayout.LayoutParams(
 				LinearLayout.LayoutParams.MATCH_PARENT,
 				LinearLayout.LayoutParams.WRAP_CONTENT,
-				1.0f);
+				0.33f);
 
 		LinearLayout.LayoutParams removeBill_lp = new LinearLayout.LayoutParams(
 				LinearLayout.LayoutParams.MATCH_PARENT,
 				LinearLayout.LayoutParams.WRAP_CONTENT,
-				1.0f);
+				0.33f);
 
 		LinearLayout.LayoutParams remindBill_lp = new LinearLayout.LayoutParams(
 				LinearLayout.LayoutParams.MATCH_PARENT,
 				LinearLayout.LayoutParams.WRAP_CONTENT,
-				1.0f);
+				0.33f);
+
+		LinearLayout.LayoutParams paidBill_lp = new LinearLayout.LayoutParams(
+				LinearLayout.LayoutParams.MATCH_PARENT,
+				LinearLayout.LayoutParams.WRAP_CONTENT,
+				0.33f);
 
 		LinearLayout.LayoutParams billInfo_lp = new LinearLayout.LayoutParams(
 				LinearLayout.LayoutParams.MATCH_PARENT,
@@ -183,25 +220,32 @@ public class BillView extends LinearLayout {
 		billInfo_lp.setMargins(40, 0, 0, 0);
 
 		/* Adding space between Buttons */
-		editBill_lp.setMargins(100,30,10,30);
-		removeBill_lp.setMargins(10,30,100,30);
-		remindBill_lp.setMargins(10,30,10,30);
+		editBill_lp.setMargins(20,15,10,20);
+		paidBill_lp.setMargins(10,15,20,20);
+		removeBill_lp.setMargins(10,15,20,20);
+		remindBill_lp.setMargins(10,15,10,20);
 
 
 		/* Setting Buttons in LinearView Horizontal for owe you */
 		innerLayout.addView(editBill, editBill_lp);
 
-		if(bill.getAmount()>0)
+		/* Removing negative sign in owe you before display */
+		if(bill.getAmount()>0){
 			innerLayout.addView(remindBill, remindBill_lp);
+			innerLayout.addView(removeBill, removeBill_lp);
+		}
 
-		innerLayout.addView(removeBill, removeBill_lp);
+		else
+			innerLayout.addView(paidBill, paidBill_lp);
+
+
 		innerLayout.setGravity(Gravity.CENTER);
 		addView(name, billInfo_lp);
 		addView(amount, billInfo_lp);
 		addView(description, billInfo_lp);
 		addView(innerLayout);
 		addView(underline);
-		setPadding(0,0,0,10);
+		setPadding(0,0,0,5);
 
 	}
 }
