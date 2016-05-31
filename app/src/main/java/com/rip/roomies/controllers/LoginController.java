@@ -2,8 +2,8 @@ package com.rip.roomies.controllers;
 
 import android.os.AsyncTask;
 
+import com.rip.roomies.functions.FindUserFunction;
 import com.rip.roomies.functions.LoginFunction;
-import com.rip.roomies.functions.PassRetrieveFunction;
 import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
 import com.rip.roomies.util.InfoStrings;
@@ -95,28 +95,28 @@ public class LoginController {
 	 * @param funct The funct to post results to
 	 * @param email The email to attempt to password recover
 	 */
-	public void passRetrieve(final PassRetrieveFunction funct, final String email) {
+	public void passRetrieve(final FindUserFunction funct, final String email) {
 		// Create and run a new thread
-		new AsyncTask<Void, Void, Boolean>() {
+		new AsyncTask<Void, Void, User>() {
 			@Override
-			public Boolean doInBackground(Void... v) {
+			public User doInBackground(Void... v) {
 				// Create request user
 				User request = new User(0, null, email);
 
 				log.info(String.format(Locale.US, InfoStrings.PASSRETRIEVE_CONTROLLER, email));
 
+				User response = request.findUser();
 				//need proper return type
-				return request.passRetrieve();
+				return response;
 			}
-
 			// If fail, call fail callback. Otherwise, call success callback
 			@Override
-			public void onPostExecute(Boolean request) {
-				if (!request) {
-					funct.passRetrieveFail();
+			public void onPostExecute(User response) {
+				if (response == null) {
+					funct.findUserFail();
 				}
 				else {
-					funct.passRetrieveSuccess();
+					funct.findUserSuccess(response);
 				}
 			}
 		}.execute();

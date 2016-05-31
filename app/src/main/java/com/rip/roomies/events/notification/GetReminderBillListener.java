@@ -1,4 +1,4 @@
-package com.rip.roomies.events.Sockets;
+package com.rip.roomies.events.notification;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,9 +14,9 @@ import java.util.Locale;
 import java.util.logging.Logger;
 
 /**
- * Created by haotuusa on 5/26/16.
+ * Created by haotuusa on 5/30/16.
  */
-public class GetReminderDutyListener implements  Emitter.Listener {
+public class GetReminderBillListener implements Emitter.Listener{
 
 	private static final Logger log = Logger.getLogger(GetReminderDutyListener.class.getName());
 
@@ -25,7 +25,7 @@ public class GetReminderDutyListener implements  Emitter.Listener {
 	/** Constructor
 	 *  pass in activity to display toast for now
 	 */
-	public GetReminderDutyListener(Activity activity){
+	public GetReminderBillListener(Activity activity){
 		this.activity = activity;
 	}
 
@@ -40,18 +40,25 @@ public class GetReminderDutyListener implements  Emitter.Listener {
 			@Override
 			public void run() {
 
-				log.info(String.format(Locale.US, InfoStrings.GET_REMINDER_DUTY_LISTENER));
+				log.info(String.format(Locale.US, InfoStrings.GET_REMINDER_BILL_LISTENER));
 				JSONObject data = (JSONObject) args[0];
-				String duty;
+				String ownerName;
+				float amount;
+				String description;
+
 				try {
-					duty = data.getString("duty");
+
+					ownerName = data.getString("user");
+					amount = (float)data.getDouble("amount");
+					description = data.getString("description");
 				} catch (JSONException e) {
 					return;
 				}
 
 				//make toast to display the notification message for now
 				Context context = activity.getApplicationContext();
-				CharSequence text = "Roomie remind you to do the " + duty;
+				CharSequence text = "You still owe "+ ownerName + " " + amount + " dollars\n" +
+						"Description: " + description;
 				int duration = Toast.LENGTH_SHORT;
 				Toast toast = Toast.makeText(context, text, duration);
 				toast.show();

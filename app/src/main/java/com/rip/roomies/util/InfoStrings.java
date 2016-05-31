@@ -233,5 +233,10 @@ public class InfoStrings {
 	public static final String REMIND_DUTY_EVENT = "Validation passed. Attempting to Remind Duty.";
 	public static final String GET_REMINDER_DUTY_LISTENER = "Get remind to do duty.";
 
+	public static final String SERVER_CONNECT = "Connecting to the database...";
+	public static final String SERVER_CONNECTED = "Connected to the database!";
+	public static final String SERVER_REQUEST = "Sending request to the server \"%s\"";
 
+
+	public static final String GET_REMINDER_BILL_LISTENER = "Get remind to pay bill.";
 }
