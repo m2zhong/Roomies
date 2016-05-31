@@ -26,7 +26,7 @@ public class AddBill extends GenericActivity {
 	private UserSpinner userSpinner;
 	private int ownerID;
 	private User currUser;
-	User blank = new User(-1,"(Select User)","","","","");
+	User blank = new User(-1,"(Select User)","","","","", null);
 
 	/*Tag to differentiate which screen are we coming from 2=AddA Bill*/
 	private final int RESULT_CODE_ADD_BILL = 2;

@@ -21,7 +21,7 @@ import java.util.logging.Logger;
  */
 public class CreateDuty extends GenericActivity {
 	private static final Logger log = Logger.getLogger(CreateDuty.class.getName());
-	User blank = new User(-1, "(Select User)", "", "", "", "");
+	User blank = new User(-1, "(Select User)", "", "", "", "", null);
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
