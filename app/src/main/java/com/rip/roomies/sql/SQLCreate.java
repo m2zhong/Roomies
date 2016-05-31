@@ -1,6 +1,7 @@
 package com.rip.roomies.sql;
 
 import com.rip.roomies.models.Bill;
+import com.rip.roomies.models.Bulletin;
 import com.rip.roomies.models.Duty;
 import com.rip.roomies.models.Good;
 import com.rip.roomies.models.Group;
@@ -200,13 +201,10 @@ public class SQLCreate {
 		try {
 			log.info(InfoStrings.CREATEBILL_SQL);
 
-			String temp = String.format(Locale.US, SQLStrings.CREATE_BILL, 18,
-					bill.getName(), bill.getDescription(), bill.getAmount());
-
-
 			// get the result table from query execution through sql
-			rset = SQLQuery.execute(String.format(Locale.US, SQLStrings.CREATE_BILL, 18,
-					bill.getName(), bill.getDescription(), bill.getAmount()));
+			rset = SQLQuery.execute(String.format(Locale.US, SQLStrings.CREATE_BILL,
+					User.getActiveUser().getId(), bill.getName(), bill.getDescription(),
+					bill.getAmount()));
 
 
 			rset.next();
@@ -225,6 +223,36 @@ public class SQLCreate {
 					resultName, resultDescription, resultAmount));
 
 			return new Bill(resultOwnerID, resultID, resultName, resultDescription, resultAmount);
+		}
+		catch (Exception e) {
+			log.severe(Exceptions.stacktraceToString(e));
+
+			return null;
+		}
+	}
+
+	public static Bulletin createBulletin(Bulletin bull) {
+		ResultSet rset;
+
+		try {
+			log.info(InfoStrings.CREATE_BULLETIN_SQL);
+
+			// get the result table from query execution through sql
+			rset = SQLQuery.execute(String.format(Locale.US, SQLStrings.CREATE_BULLETIN,
+					Group.getActiveGroup().getId(), bull.getContent()));
+
+			rset.next();
+
+			int resultID = rset.getInt("ID");
+			int resultGroupID = rset.getInt("GroupID");
+			String resultContent = rset.getString("Content");
+
+
+			//debug statement
+			log.info(String.format(Locale.US, InfoStrings.CREATE_BULLETIN_SUCCESSFUL, resultID,
+					resultGroupID, resultContent));
+
+			return new Bulletin(resultID, resultGroupID, resultContent);
 		}
 		catch (Exception e) {
 			log.severe(Exceptions.stacktraceToString(e));

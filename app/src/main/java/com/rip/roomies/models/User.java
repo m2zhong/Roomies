@@ -180,17 +180,6 @@ public class User implements Parcelable {
 	}
 
 
-
-	/**
-	 * Connects to the database and emails the User their password, which they have forgotten.
-	 *
-	 * @return true if the information used to retrieve the password was valid.
-	 */
-	public boolean passRetrieve() {
-		log.info(InfoStrings.PASSRETRIEVE_MODEL);
-		return SQLLogin.passRetrieve(this);
-	}
-
 	/**
 	 * Gets the duties that belong to a user in current group context.
 	 * @param group The group object of the context
@@ -209,6 +198,15 @@ public class User implements Parcelable {
 	public Good[] getGoods(Group group) {
 		log.info(InfoStrings.GET_USER_GOODS_MODEL);
 		return null; //TODO remove this function call
+	}
+
+	/**
+	 * Gets the bills that belong to this user.
+	 * @return The array of bills
+	 */
+	public Bill[] getBills() {
+		log.info(InfoStrings.GET_BILLS_MODEL);
+		return SQLGet.getUserBills(this);
 	}
 
 	//------- OBJECT METHODS -------//

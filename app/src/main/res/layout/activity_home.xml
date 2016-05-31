@@ -199,12 +199,12 @@
 
 						<TextView
 							android:id="@+id/to_view_my_duties"
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
+							android:layout_width="match_parent"
+							android:layout_height="match_parent"
 							android:fontFamily="sans-serif-thin"
 							android:gravity="center"
 							android:layout_gravity="center"
-							android:text="View My Tasks"
+							android:text="View My\nTasks"
 							android:textColor="@color/black"
 							android:textSize="50dp" />
 					</LinearLayout>
@@ -215,44 +215,42 @@
 					android:layout_height="1dp"
 					android:background="@color/black_overlay" />
 
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_weight=".6"
+				android:orientation="horizontal">
 				<TextView
-					android:layout_width="match_parent"
+					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:fontFamily="sans-serif"
 					android:paddingLeft="10dp"
 					android:paddingTop="5dp"
-					android:text="@string/houserule"
+					android:text="@string/bulletin"
 					android:textColor="@color/black"
-					android:textSize="25dp" />
+					android:textSize="25dp"
+					android:layout_weight="0.7"/>
+				<Button
+					android:id="@+id/bulletin_addbtn"
+					android:layout_width="30dp"
+					android:layout_height="30dp"
+					android:background="@drawable/circleblue"
+					android:text="@string/plus"
+					android:textColor="@color/colorAccent"
+					android:textSize="20dp"
+					android:layout_gravity="center_vertical|end"
+					android:layout_marginRight="10dp"/>
+				</LinearLayout>
 
-				<LinearLayout
-					android:id="@+id/board"
+				<com.rip.roomies.views.BulletinContainer
+					android:id="@+id/bulletin_container"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:orientation="vertical"
 					android:paddingBottom="10dp"
-					android:paddingLeft="60dp"
-					android:paddingRight="60dp">
-
-					<TextView
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:layout_marginTop="5dp"
-						android:fontFamily="sans-serif-thin"
-						android:text="-All rooomies shall consume coconut water and coconut water only"
-						android:textColor="@color/black"
-						android:textSize="20dp"
-						/>
-
-					<TextView
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:layout_marginTop="5dp"
-						android:fontFamily="sans-serif-thin"
-						android:text="-Every roomie shall give Gary $1 everytime they sneeze"
-						android:textColor="@color/black"
-						android:textSize="20dp" />
-				</LinearLayout>
+					android:paddingLeft="10dp"
+					android:paddingRight="10dp">
+				</com.rip.roomies.views.BulletinContainer>
 
 				<View
 					android:layout_width="match_parent"
@@ -340,10 +338,6 @@
 					android:id="@+id/to_view_my_duties"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-<<<<<<< HEAD
-					android:text="View My Tasks" />
-
-=======
 					android:text="View My Duties" />
 -->
 			</LinearLayout>

@@ -76,15 +76,4 @@ public class SQLLogin {
 			return null;
 		}
 	}
-
-	/**
-	 * This method attempts to do a password retrieval by sending an email to the email address
-	 * specified in the User parameter.
-	 * @param user The user object with email to send recovery to
-	 * @return True if successful, false otherwise
-	 */
-	public static boolean passRetrieve(User user) {
-		// TODO
-		return false;
-	}
 }
