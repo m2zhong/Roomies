@@ -6,21 +6,23 @@ import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import android.widget.QuickContactBadge;
 import com.github.nkzawa.socketio.client.Socket;
 import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.activities.bills.Bills;
 import com.rip.roomies.activities.duties.ListAllDuties;
-import com.rip.roomies.activities.duties.ListMyDuties;
+import com.rip.roomies.activities.profile.Profile;
+import com.rip.roomies.activities.goods.ListAllGoods;
+import com.rip.roomies.activities.tasks.ListMyTasks;
+import com.rip.roomies.util.Images;
+
 import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
 import com.rip.roomies.server.ServerListener;
 import com.rip.roomies.server.ServerRequest;
-import com.rip.roomies.util.Images;
 
 import java.net.URISyntaxException;
 import java.util.logging.Logger;
@@ -44,11 +46,23 @@ public class Home extends GenericActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 
+
 		dutiesScreen = (TextView) findViewById(R.id.home_overallduties);
+		TextView goodsScreen = (TextView) findViewById(R.id.home_shareditem);
 		billScreen = (TextView) findViewById(R.id.home_IOU);
-		dutiesScreen = (TextView) findViewById(R.id.home_overallduties);
+
 
 		final Activity self = this;
+
+		QuickContactBadge profileBadge = (QuickContactBadge) findViewById(R.id.home_profilepicture);
+
+		profileBadge.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				startActivity(new Intent(self, Profile.class));
+			}
+		});
+
 
 		billScreen.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -64,11 +78,27 @@ public class Home extends GenericActivity {
 			}
 		});
 
-		Button toMyDuties = (Button) findViewById(R.id.to_view_my_duties);
+
+		goodsScreen.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				startActivity(new Intent(self, ListAllGoods.class));
+			}
+		});
+		
+		TextView toMyDuties = (TextView) findViewById(R.id.to_view_my_duties);
+		toMyDuties.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View view){
+				startActivity(new Intent(self, ListMyTasks.class));
+			}
+		}
+		);
+
 		toMyDuties.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				self.startActivity(new Intent(self, ListMyDuties.class));
+				self.startActivity(new Intent(self, ListMyTasks.class));
 			}
 		});
 
@@ -77,7 +107,7 @@ public class Home extends GenericActivity {
 		display.getSize(size);
 
 		ImageView logo = (ImageView) findViewById(R.id.home_appname);
-		logo.setImageBitmap(Images.getScaledDownBitmap(getResources(), R.mipmap.logowhite,
+		logo.setImageBitmap(Images.getScaledDownBitmap(getResources(), R.mipmap.logo2,
 				(int) (size.x * IMAGE_WIDTH_RATIO), (int) (size.y * IMAGE_HEIGHT_RATIO)));
 
 

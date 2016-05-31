@@ -5,6 +5,7 @@ import com.rip.roomies.models.DutyLog;
 import com.rip.roomies.models.Good;
 import com.rip.roomies.models.GoodLog;
 import com.rip.roomies.models.Group;
+import com.rip.roomies.models.Task;
 import com.rip.roomies.models.User;
 import com.rip.roomies.util.Exceptions;
 import com.rip.roomies.util.InfoStrings;
@@ -21,6 +22,9 @@ import java.util.logging.Logger;
  */
 public class SQLGet {
 	private static final Logger log = Logger.getLogger(SQLGet.class.getName());
+
+	private static final int TYPE_DUTY = 1;
+	private static final int TYPE_GOOD = 2;
 
 	/**
 	 * Finds a specific group the user belongs to, along with all members
@@ -185,59 +189,62 @@ public class SQLGet {
 	}
 
 	/**
-	 * Finds a duty from the database using unique keys only
+	 * Gets the list of tasks that belong to the user in the current group context
 	 * @param group The group the user belongs to
-	 * @param user The user to search for a duty on the database
-	 * @return The full set of user's duties, or null if none could not be found
+	 * @param user The user to search for tasks on the database
+	 * @return The full set of user's tasks, or null if none could not be found
 	 */
-	public static Duty[] getUserDuties(Group group, User user) {
+	public static Task[] getUserTasks(Group group, User user) {
 		ResultSet rs;
 
 		try {
 			// Log finding user
-			log.info(InfoStrings.GET_USER_DUTIES_SQL);
+			log.info(InfoStrings.GET_USER_TASKS_SQL);
 
 			// Execute SQL
-			rs = SQLQuery.execute(String.format(Locale.US, SQLStrings.GET_USER_DUTIES,
+			rs = SQLQuery.execute(String.format(Locale.US, SQLStrings.GET_USER_TASKS,
 					group.getId(), user.getId()));
 
 			// If no rows, then finding failed
 			if (rs == null) {
-				log.info(InfoStrings.GET_USER_DUTIES_FAILED);
+				log.info(InfoStrings.GET_USER_TASKS_FAILED);
 				return null;
 			}
 			else {
-				ArrayList<Duty> duties = new ArrayList<>();
+				ArrayList<Task> tasks = new ArrayList<>();
 
 				while(rs.next()){
-					int resultId = rs.getInt("DutyID");
+					int resultType = rs.getInt("Type");
+					int resultId = rs.getInt("ID");
 					String resultName = rs.getString("Name");
 					String resultDescription = rs.getString("Description");
-					int resultGroup = rs.getInt("DutyGroupID");
+					int resultGroup = rs.getInt("GroupID");
 
-					User u = new User(
-							rs.getInt("ID"),
-							rs.getString("FirstName"),
-							rs.getString("LastName"),
-							rs.getString("Username"),
-							rs.getString("Email"),
-							null
-					);
+					Task temp;
 
-					Duty temp = new Duty(resultId, resultName, resultDescription, resultGroup, u, null);
+					if (resultType == TYPE_DUTY) {
+						temp = new Duty(resultId, resultName, resultDescription, resultGroup, user, null);
+					}
+					else if (resultType == TYPE_GOOD){
+						temp = new Good(resultId, resultName, resultDescription, resultGroup, user, null);
+					}
+					else {
+						return null;
+					}
+
 					temp = temp.getRotation();
 
-					duties.add(temp);
+					tasks.add(temp);
 
 				}
 
 				//debug statement
-				log.info(InfoStrings.GET_USER_DUTIES_SUCCESSFUL);
+				log.info(InfoStrings.GET_USER_TASKS_SUCCESSFUL);
 
-				Duty[] temp = new Duty[duties.size()];
+				Task[] temp = new Task[tasks.size()];
 
 				// Return a new user object
-				return duties.toArray(temp);
+				return tasks.toArray(temp);
 			}
 		}
 		catch (Exception e) {

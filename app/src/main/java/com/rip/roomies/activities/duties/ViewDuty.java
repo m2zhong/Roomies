@@ -31,7 +31,6 @@ public class ViewDuty extends GenericActivity {
 
 		//it's named action duty because it might be complete duty button or remind button
 		Button actionDuty;
-		Button viewLogs;
 		TextView dutyName;
 		TextView desc;
 		UserContainer users;
@@ -41,7 +40,6 @@ public class ViewDuty extends GenericActivity {
 		desc = (TextView) findViewById(R.id.description);
 		users = (UserContainer) findViewById(R.id.users_container);
 		actionDuty = (Button) findViewById(R.id.comp_duty_btn);
-		viewLogs = (Button) findViewById(R.id.logs_btn);
 
 		// Populate the information
 		Duty duty = getIntent().getExtras().getParcelable("Duty");
@@ -74,15 +72,6 @@ public class ViewDuty extends GenericActivity {
 			//trigger the event of reminding the person
 			actionDuty.setOnClickListener(new RemindDutyListener(this, currentAssignee.getId(), duty));
 		}
-
-		final Activity self = this;
-
-		viewLogs.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				startActivity(new Intent(self, ListDutyLogs.class));
-			}
-		});
 	}
 
 }

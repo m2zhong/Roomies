@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Layout;
 import android.util.AttributeSet;
@@ -28,7 +29,7 @@ import java.util.logging.Logger;
  * This class is a displayable view that represents a Duty object. It will display
  * any necessary information as well as style once implemented.
  */
-public class DutyView extends LinearLayout {
+public class DutyView extends TaskView {
 	private static final Logger log = Logger.getLogger(DutyView.class.getName());
 	public static final int EDIT_DUTY = 1;
 	public static final int VIEW_DUTY = 2;
@@ -79,8 +80,10 @@ public class DutyView extends LinearLayout {
 	/**
 	 * Sets up the layout for this DutyView.
 	 */
-	private void setupLayout() {
+	protected void setupLayout() {
 		log.info(String.format(InfoStrings.VIEW_SETUP, DutyView.class.getSimpleName()));
+
+		removeAllViews();
 
 		LinearLayout.LayoutParams w = new LayoutParams(
 				LayoutParams.MATCH_PARENT,
@@ -104,9 +107,9 @@ public class DutyView extends LinearLayout {
 				LayoutParams.WRAP_CONTENT,
 				LayoutParams.WRAP_CONTENT, 1.0f));
 
-		name.setTextColor(Color.parseColor("#007EE5"));
-		description.setTextColor(Color.parseColor("#007EE5"));
-		assignee.setTextColor(Color.parseColor("#007EE5"));
+		name.setTextColor(getResources().getColor(R.color.colorPrimary));
+		description.setTextColor(Color.BLACK);
+		assignee.setTextColor(Color.BLACK);
 
 		innerLayout.setOrientation(LinearLayout.VERTICAL);
 		innerLayout.setPadding(50, 50, 50, 50);
@@ -123,6 +126,7 @@ public class DutyView extends LinearLayout {
 		viewBtn.setText("View");
 		viewBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
 		viewBtn.setBackground(getResources().getDrawable(R.drawable.rec_border));
+		viewBtn.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
 		viewBtn.setPadding(50, 50, 50 , 50);
 		LinearLayout.LayoutParams v = new LayoutParams(
 				LayoutParams.WRAP_CONTENT,
@@ -147,9 +151,10 @@ public class DutyView extends LinearLayout {
 
 
 
-		editBtn.setText("Edit");
+		editBtn.setText(" Edit ");
 		editBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
 		editBtn.setBackground(getResources().getDrawable(R.drawable.rec_border));
+		editBtn.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
 		editBtn.setPadding(50, 50, 50 , 50);
 /*		editBtn.setLayoutParams(new LayoutParams(
 				LayoutParams.WRAP_CONTENT,

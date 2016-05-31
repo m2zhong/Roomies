@@ -37,7 +37,7 @@ public class SQLRemove {
 					groupId, userId));
 
 			// error happened when contacting sql server
-			if(rs == null || !rs.next()) {
+			if (rs == null || !rs.next()) {
 				// debug statement
 				log.info(InfoStrings.REMOVE_USER_FROM_GROUP_FAILED);
 				return null;
@@ -61,8 +61,7 @@ public class SQLRemove {
 				return new User(resultID, resultFirstName, resultLastName, resultUsername,
 						resultEmail, null);
 			}
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			// Log and return null on exception
 			log.severe(Exceptions.stacktraceToString(e));
 			return null;
@@ -82,7 +81,7 @@ public class SQLRemove {
 					duty.getId()));
 
 			// error happened when contacting sql server
-			if(rs == null || !rs.next()) {
+			if (rs == null || !rs.next()) {
 				// debug statement
 				log.info(InfoStrings.REMOVEDUTY_FAILED);
 				return null;
@@ -111,8 +110,7 @@ public class SQLRemove {
 				return new Duty(resultId, resultName, resultDescription, resultGroup,
 						u, duty.getUsers());
 			}
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			// Log and return null on exception
 			log.severe(Exceptions.stacktraceToString(e));
 			return null;
@@ -145,8 +143,7 @@ public class SQLRemove {
 
 			// Return a new user object
 			return new Bill(resultID, resultOwnerID, resultName, resultDescription, resultAmount);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			// Log and return null on exception
 			log.severe(Exceptions.stacktraceToString(e));
 			return null;
@@ -167,7 +164,7 @@ public class SQLRemove {
 					good.getId()));
 
 			// error happened when contacting sql server
-			if(rs == null || !rs.next()) {
+			if (rs == null || !rs.next()) {
 				// debug statement
 				log.info(InfoStrings.REMOVEGOOD_FAILED);
 				return null;
@@ -196,8 +193,7 @@ public class SQLRemove {
 				return new Good(resultId, resultName, resultDescription, resultGroup,
 						u, good.getUsers());
 			}
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			// Log and return null on exception
 			log.severe(Exceptions.stacktraceToString(e));
 			return null;

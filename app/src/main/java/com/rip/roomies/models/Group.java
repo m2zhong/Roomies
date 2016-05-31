@@ -143,6 +143,10 @@ public class Group {
 		activeGroup = group.getUsers();
 	}
 
+	public static void setActiveGroupDescription(String newDescription) {
+		activeGroup.description = newDescription;
+	}
+
 	public String getName() {
 		return name;
 	}
