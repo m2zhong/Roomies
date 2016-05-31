@@ -74,7 +74,6 @@ public class CompleteDutyListener implements View.OnClickListener, CompleteDutyF
 			//emit the action to server send complete duty notification
 			mSocket.emit(SocketStrings.COMPLETE_DUTY,
 					User.getActiveUser().getFirstName(), duty.getName());
-			mSocket.disconnect();
 		} catch (URISyntaxException e) {
 			throw new RuntimeException(e);
 		}

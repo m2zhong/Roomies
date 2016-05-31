@@ -61,7 +61,6 @@ public class PassRetrieveListener implements View.OnClickListener, FindUserFunct
 
 	@Override
 	public void findUserSuccess(User user) {
-		Toast.makeText(context, DisplayStrings.PASS_RETRIEVE_SUCCESS, Toast.LENGTH_SHORT).show();
 
 		log.info(String.format(Locale.US, InfoStrings.SWITCH_ACTIVITY_DELAYED,
 				Login.class.getName(), DisplayStrings.TOAST_SHORT_LENGTH));
@@ -76,16 +75,18 @@ public class PassRetrieveListener implements View.OnClickListener, FindUserFunct
 			mSocket.connect();
 			//emit the password retreive action
 			mSocket.emit(SocketStrings.PASSWORD_RETREIVE, user.getId(), user.getEmail());
-			mSocket.disconnect();
-		} catch (URISyntaxException e) {
+
+			Toast.makeText(context, DisplayStrings.PASS_RETRIEVE_SUCCESS, Toast.LENGTH_SHORT).show();
+			new Handler().postDelayed(new Runnable() {
+				@Override
+				public void run() {
+					context.toLogin();
+				}
+			}, DisplayStrings.TOAST_SHORT_LENGTH);
+
+		}catch (URISyntaxException e) {
+			Toast.makeText(context, DisplayStrings.PASS_RETRIEVE_FAIL, Toast.LENGTH_SHORT).show();
 			throw new RuntimeException(e);
 		}
-
-		new Handler().postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				context.toLogin();
-			}
-		}, DisplayStrings.TOAST_SHORT_LENGTH);
 	}
 }
