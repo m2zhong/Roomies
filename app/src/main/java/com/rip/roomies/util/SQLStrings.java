@@ -46,6 +46,18 @@ public class SQLStrings {
 	public static final String MODIFY_BILL_SQL = "EXEC ModifyBill " +
 			"@id = %d, @name = '%s', @description = '%s', @amount = %.2f;";
 
+	public static final String CREATE_BULLETIN = "EXEC CreateBulletin " +
+			"@groupid = %d, @content = '%s';";
+
+	public static final String GET_BULLETINS = "EXEC FindBulletins " +
+			"@groupid = %d;";
+
+	public static final String REMOVE_BULLETIN = "EXEC RemoveBulletin " +
+			"@id = %d;";
+
+	public static final String MODIFY_BULLETIN = "EXEC ModifyBulletin " +
+			"@id = %d, @content = '%s';";
+
 	public static final String CREATE_DUTY = "EXEC CreateDuty " +
 			"@name = '%s', @desc = '%s', @group = %d, @userIds = '%s'";
 

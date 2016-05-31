@@ -133,6 +133,15 @@ public class Group {
 		return SQLGet.getGroupGoodLogs(this);
 	}
 
+	/**
+	 * Gets the bulletins that belong to this group.
+	 * @return The array of bulletins
+	 */
+	public Bulletin[] getBulletins() {
+		log.info(InfoStrings.GET_BULLETINS_MODEL);
+		return SQLGet.getUserBulletins(this);
+	}
+
 	//------- OBJECT METHODS -------//
 
 	public static Group getActiveGroup() {

@@ -2,6 +2,8 @@ package com.rip.roomies.activities.home;
 
 import android.graphics.Point;
 import android.view.Display;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.app.Activity;
@@ -16,10 +18,14 @@ import com.github.nkzawa.socketio.client.Socket;
 import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.activities.bills.Bills;
+import com.rip.roomies.activities.bulletin.AddBulletin;
+import com.rip.roomies.activities.bulletin.ModifyBulletin;
 import com.rip.roomies.activities.duties.ListAllDuties;
 import com.rip.roomies.activities.profile.Profile;
 import com.rip.roomies.activities.goods.ListAllGoods;
 import com.rip.roomies.activities.tasks.ListMyTasks;
+import com.rip.roomies.controllers.HomeController;
+import com.rip.roomies.models.Bulletin;
 import com.rip.roomies.util.Images;
 import com.rip.roomies.events.Sockets.GetCompletionDutyListener;
 import com.rip.roomies.events.Sockets.GetReminderDutyListener;
@@ -28,6 +34,7 @@ import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
 import com.rip.roomies.util.InfoStrings;
 import com.rip.roomies.util.SocketStrings;
+import com.rip.roomies.views.BulletinContainer;
 
 import java.net.URISyntaxException;
 import java.util.Locale;
@@ -44,6 +51,12 @@ public class Home extends GenericActivity {
 	private static final double IMAGE_HEIGHT_RATIO = 2.0 / 25;
 
 	private Socket mSocket;
+	private BulletinContainer container;
+	private Bulletin editBull;
+	private TextView aBullCont;
+
+	private final int RESULT_CODE_MODIFY_BULLETIN = 1;
+	private final int RESULT_CODE_ADD_BULLETIN = 2;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +66,8 @@ public class Home extends GenericActivity {
 		TextView dutiesScreen = (TextView) findViewById(R.id.home_overallduties);
 		TextView goodsScreen = (TextView) findViewById(R.id.home_shareditem);
 		TextView billScreen = (TextView) findViewById(R.id.home_IOU);
+		Button bulletinAddButton = (Button) findViewById(R.id.bulletin_addbtn);
+		container = (BulletinContainer) findViewById(R.id.bulletin_container);
 
 		final Activity self = this;
 
@@ -81,6 +96,7 @@ public class Home extends GenericActivity {
 		});
 
 		setBalance(billScreen);
+		HomeController.populateBulletins(container);
 
 		goodsScreen.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -102,6 +118,14 @@ public class Home extends GenericActivity {
 			@Override
 			public void onClick(View v) {
 				self.startActivity(new Intent(self, ListMyTasks.class));
+			}
+		});
+
+		bulletinAddButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent i = new Intent(self, AddBulletin.class);
+				startActivityForResult(i, RESULT_CODE_ADD_BULLETIN);
 			}
 		});
 
@@ -146,5 +170,37 @@ public class Home extends GenericActivity {
 				billScreen.setText(result);
 			}
 		}.execute();
+	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode,resultCode,data);
+
+		if(resultCode == RESULT_CODE_MODIFY_BULLETIN) {
+			String updContent = data.getStringExtra("Key_New_Content");
+
+			editBull.setContent(updContent);
+			aBullCont.setText(updContent);
+
+			HomeController.getController().modifyBulletin(editBull);
+
+		}
+		else if(resultCode == RESULT_CODE_ADD_BULLETIN) {
+			String content = data.getStringExtra("Key_New_Content");
+
+			HomeController.getController().createBulletin(content, container);
+		}
+	}
+
+	public void toEditBillScreen(TextView content, Bulletin editBull) {
+		aBullCont = content;
+		this.editBull = editBull;
+
+		log.info(String.format(Locale.US, InfoStrings.SWITCH_ACTIVITY,
+				ModifyBulletin.class.getSimpleName()));
+
+		Intent i = new Intent(getApplicationContext(), ModifyBulletin.class);
+		i.putExtra("Orig_Key_Content", editBull.getContent());
+		startActivityForResult(i, RESULT_CODE_MODIFY_BULLETIN);
 	}
 }

@@ -2,6 +2,7 @@ package com.rip.roomies.sql;
 
 import com.rip.roomies.models.Bill;
 
+import com.rip.roomies.models.Bulletin;
 import com.rip.roomies.models.Duty;
 import com.rip.roomies.models.Good;
 import com.rip.roomies.models.Group;
@@ -143,6 +144,34 @@ public class SQLRemove {
 
 			// Return a new user object
 			return new Bill(resultOwnerID, resultID, resultName, resultDescription, resultAmount);
+		}
+		catch (Exception e) {
+			// Log and return null on exception
+			log.severe(Exceptions.stacktraceToString(e));
+			return null;
+		}
+	}
+
+	public static Bulletin removeBulletin(int rowID) {
+		log.info(InfoStrings.REMOVE_BULLETIN_SQL);
+
+		try {
+			ResultSet rs = SQLQuery.execute(String.format(Locale.US, SQLStrings.REMOVE_BULLETIN,
+					rowID));
+
+			rs.next();
+
+			// Get results of SQL statement.
+			int resultID = rs.getInt("ID");
+			int resultGroupID = rs.getInt("GroupID");
+			String resultContent = rs.getString("Content");
+
+			//debug statement
+			log.info(String.format(Locale.US, InfoStrings.REMOVE_BULLETIN_SUCCESSFUL,
+					resultID, resultGroupID, resultContent));
+
+			// Return a new user object
+			return new Bulletin(resultID, resultGroupID, resultContent);
 		}
 		catch (Exception e) {
 			// Log and return null on exception

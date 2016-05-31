@@ -1,6 +1,7 @@
 package com.rip.roomies.sql;
 
 import com.rip.roomies.models.Bill;
+import com.rip.roomies.models.Bulletin;
 import com.rip.roomies.models.Duty;
 import com.rip.roomies.models.DutyLog;
 import com.rip.roomies.models.Good;
@@ -430,6 +431,55 @@ public class SQLGet {
 			return null;
 		}
 	}
+
+	/**
+	 * Finds all bulletins associated with a group
+	 * @param group The group to acquire bulletins for
+	 * @return The full set of bulletins associated with this user
+	 */
+	public static Bulletin[] getUserBulletins(Group group) {
+		ResultSet rs;
+		try {
+			log.info(InfoStrings.GET_BULLETINS_SQL);
+
+			// Execute SQL
+			rs = SQLQuery.execute(String.format(Locale.US, SQLStrings.GET_BULLETINS, group.getId()));
+
+			// If no rows, then finding failed
+			if (rs == null) {
+				log.info(InfoStrings.GET_BULLETINS_FAILED);
+				return null;
+			}
+			else {
+				ArrayList<Bulletin> bulls = new ArrayList<>();
+
+				while (rs.next()) {
+					int resultId = rs.getInt("ID");
+					int resultGroupId = rs.getInt("groupID");
+					String resultContent = rs.getString("Content");
+
+					Bulletin temp = new Bulletin(resultId, resultGroupId, resultContent);
+
+					bulls.add(temp);
+				}
+
+				//debug statement
+				log.info(String.format(Locale.US, InfoStrings.GET_BULLETINS_SUCCESSFUL,
+						Group.getActiveGroup().getId()));
+
+				Bulletin[] temp = new Bulletin[bulls.size()];
+
+				// Return a new user object
+				return bulls.toArray(temp);
+			}
+		}
+		catch (Exception e) {
+			// Log and return null on exception
+			log.severe(Exceptions.stacktraceToString(e));
+			return null;
+		}
+	}
+
 	/**
 	 * Finds a good from the database using unique keys only
 	 * @param group The group to use to search for a good on the database

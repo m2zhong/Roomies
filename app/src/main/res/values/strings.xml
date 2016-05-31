@@ -37,7 +37,7 @@
 	<string name="trashduty">Trash Duty:</string>
 	<string name="youowe">Total you owe:</string>
 	<string name="reminder">Reminder:</string>
-	<string name="houserule">House Rules:</string>
+	<string name="bulletin">Bulletin Board:</string>
 	<string name="roomies_home">Your roomies</string>
 	<string name="shareditem_home">Shared\nItem</string>
 
@@ -67,7 +67,11 @@
 	<string name="addbill_pay">Pay</string>
 	<string name="addbill_submit">Submit</string>
 
-
+	<!--Bulletin Board-->
+	<string name="title_activity_add_bulletin">AddBulletin</string>
+	<string name="title_activity_modify_bulletin">ModifyBulletin</string>
+	<string name="bulletin_addbulletin_title">Add Bulletin</string>
+	<string name="bulletin_modifybulletin_title">Modify Bulletin</string>
 
     <!--Settings Screen-->
     <string name="settings_title">Setting</string>

@@ -1,6 +1,7 @@
 package com.rip.roomies.sql;
 
 import com.rip.roomies.models.Bill;
+import com.rip.roomies.models.Bulletin;
 import com.rip.roomies.models.Duty;
 import com.rip.roomies.models.Good;
 import com.rip.roomies.models.User;
@@ -209,6 +210,18 @@ public class SQLModify {
 			SQLQuery.execute(String.format(Locale.US, SQLStrings.MODIFY_BILL_SQL, billToModify.getRowID(),
 					billToModify.getName(), billToModify.getDescription(),
 					billToModify.getAmount()));
+		}
+		catch (Exception e) {
+			log.severe(Exceptions.stacktraceToString(e));
+			return;
+		}
+	}
+
+	public static void modifyBulletin(Bulletin bullToModify) {
+
+		try {
+			SQLQuery.execute(String.format(Locale.US, SQLStrings.MODIFY_BULLETIN, bullToModify.getRowID(),
+					bullToModify.getContent()));
 		}
 		catch (Exception e) {
 			log.severe(Exceptions.stacktraceToString(e));

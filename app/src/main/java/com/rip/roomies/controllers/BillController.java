@@ -132,7 +132,8 @@ public class BillController {
         new AsyncTask<Void, Void, Bill[]>() {
             @Override
             protected Bill[] doInBackground(Void... v) {
-                log.info(String.format(Locale.US, InfoStrings.GET_BILLS_CONTROLLER, User.getActiveUser().getId()));
+                log.info(String.format(Locale.US, InfoStrings.GET_BILLS_CONTROLLER,
+                        User.getActiveUser().getId()));
 
                 return User.getActiveUser().getBills();
             }

@@ -233,8 +233,36 @@ public class InfoStrings {
 	public static final String GET_USER_GOODS_CONTROLLER = "Viewing all duties from user with " +
 			"user id: %d and group id: %d\n";
 
-	public static final String GET_ROTATION_MODEL = "Getting the list of users on the duty's rotation.";
+	public static final String GET_ROTATION_MODEL = "Getting the list of users on the duty's rotation. \n";
 
+	public static final String GET_BULLETINS_CONTROLLER = "Getting bulletins based off current group: \n" +
+			"group id: %d";
+	public static final String GET_BULLETINS_MODEL = "Getting bulletins for current group";
+	public static final String GET_BULLETINS_SQL = "Getting bulletins...";
+	public static final String GET_BULLETINS_FAILED = "GetBulletins Failed!!";
+	public static final String GET_BULLETINS_SUCCESSFUL = "GetBulletins Successful!! \n" +
+			"GroupID: %d\n";
+
+	public static final String CREATE_BULLETIN_CONTROLLER = "Creating bulletin from input: \n" +
+			"%s";
+	public static final String CREATE_BULLETIN_MODEL = "Adding bulletin for current group";
+	public static final String CREATE_BULLETIN_SQL = "Creating bulletin...";
+	public static final String CREATE_BULLETIN_SUCCESSFUL = "CreateBulletin Successful!! \n" +
+			"ID: %d\n" +
+			"GroupID: %d\n" +
+			"Content: %s";
+
+	public static final String MODIFY_BULLETIN_CONTROLLER = "Modifying bulletin from input: \n" +
+			"%s";
+	public static final String MODIFY_BULLETIN_MODEL = "Modifying bulletin based off user input";
+
+	public static final String REMOVE_BULLETIN_CONTROLLER = "Removing bulletin with id %d";
+	public static final String REMOVE_BULLETIN_MODEL = "Removing bullleting from current group";
+	public static final String REMOVE_BULLETIN_SQL = "Removing bulletin...";
+	public static final String REMOVE_BULLETIN_SUCCESSFUL = "RemoveBulletin Successful!! \n" +
+			"ID: %d\n" +
+			"GroupID: %d\n" +
+			"Content: %s";
 
 	public static final String REMIND_DUTY_EVENT = "Validation passed. Attempting to Remind Duty.";
 	public static final String GET_REMINDER_DUTY_LISTENER = "Get remind to do duty.";
