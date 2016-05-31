@@ -38,8 +38,8 @@ public class Home extends GenericActivity {
 	private static final Logger log = Logger.getLogger(Home.class.getName());
 	private static final double IMAGE_WIDTH_RATIO = 3.0 / 10;
 	private static final double IMAGE_HEIGHT_RATIO = 2.0 / 25;
-
 	private Socket mSocket;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +83,7 @@ public class Home extends GenericActivity {
 		ImageView logo = (ImageView) findViewById(R.id.home_appname);
 		logo.setImageBitmap(Images.getScaledDownBitmap(getResources(), R.mipmap.logowhite,
 				(int) (size.x * IMAGE_WIDTH_RATIO), (int) (size.y * IMAGE_HEIGHT_RATIO)));
+
 
 		try {
 			//connection to the node.js server
