@@ -1,4 +1,4 @@
-package com.rip.roomies.events.Sockets;
+package com.rip.roomies.events.notification;
 
 import android.app.Activity;
 import android.content.Context;

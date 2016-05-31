@@ -5,16 +5,14 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.github.nkzawa.socketio.client.IO;
-import com.github.nkzawa.socketio.client.Socket;
 import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.activities.login.Login;
 import com.rip.roomies.controllers.LoginController;
 import com.rip.roomies.functions.FindUserFunction;
 import com.rip.roomies.models.User;
+import com.rip.roomies.server.ServerRequest;
 import com.rip.roomies.util.DisplayStrings;
 import com.rip.roomies.util.InfoStrings;
-import com.rip.roomies.util.SocketStrings;
 import com.rip.roomies.util.Validation;
 
 import java.net.URISyntaxException;
@@ -68,15 +66,16 @@ public class PassRetrieveListener implements View.OnClickListener, FindUserFunct
 
 		//socket here
 		//after actually completed back from controller, call the and remind everyone
-		Socket mSocket;
+//		Socket mSocket;
 		try {
-			//connection to the node.js server
-			mSocket = IO.socket(SocketStrings.SERVER_URL);
-			mSocket.connect();
-			//emit the password retreive action
-			mSocket.emit(SocketStrings.PASSWORD_RETREIVE, user.getId(), user.getEmail());
-
+//			//connection to the node.js server
+//			mSocket = IO.socket(SocketStrings.SERVER_URL);
+//			mSocket.connect();
+//			//emit the password retreive action
+//			mSocket.emit(SocketStrings.PASSWORD_RETRIEVE, user.getId(), user.getEmail());
+			ServerRequest.passwordRetrieve(user.getId(), user.getEmail());
 			Toast.makeText(context, DisplayStrings.PASS_RETRIEVE_SUCCESS, Toast.LENGTH_SHORT).show();
+
 			new Handler().postDelayed(new Runnable() {
 				@Override
 				public void run() {

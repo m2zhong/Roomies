@@ -1,30 +1,26 @@
 package com.rip.roomies.activities.home;
 
-import android.graphics.Point;
-import android.view.Display;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
 import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
-
 import com.rip.roomies.activities.bills.Bills;
-
 import com.rip.roomies.activities.duties.ListAllDuties;
 import com.rip.roomies.activities.duties.ListMyDuties;
-import com.rip.roomies.util.Images;
-import com.rip.roomies.events.Sockets.GetCompletionDutyListener;
-import com.rip.roomies.events.Sockets.GetReminderDutyListener;
 import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
-import com.rip.roomies.util.SocketStrings;
+import com.rip.roomies.server.ServerListener;
+import com.rip.roomies.server.ServerRequest;
+import com.rip.roomies.util.Images;
 
 import java.net.URISyntaxException;
 import java.util.logging.Logger;
@@ -85,20 +81,20 @@ public class Home extends GenericActivity {
 				(int) (size.x * IMAGE_WIDTH_RATIO), (int) (size.y * IMAGE_HEIGHT_RATIO)));
 
 
+		//listening to all the notification
 		try {
-			//connection to the node.js server
-			mSocket = IO.socket(SocketStrings.SERVER_URL);
-			mSocket.connect();
-			//make it start listening to reminder
-			log.info("listening to notification, " + User.getActiveUser().getId());
-			mSocket.emit(SocketStrings.NOTIFICATION_LISTEN, User.getActiveUser().getId());
-			mSocket.emit(SocketStrings.COMPLETION_LISTEN, Group.getActiveGroup().getId());
-			mSocket.on(SocketStrings.NOTIFICATION_DUTY, new GetReminderDutyListener(self));
-			mSocket.on(SocketStrings.COMPLETE_DUTY, new GetCompletionDutyListener(self));
+			ServerRequest.subscribToRoom(Group.getActiveGroup().getId());
+			ServerRequest.subscribToMyTopic(User.getActiveUser().getId());
+
+			ServerListener.activateCompleteDuty(self);
+			ServerListener.activateRemindDuty(self);
+//			ServerListener.activateCompleteCommonGood(self);
+//			ServerListener.activateRemindCommonGood(self);
 		}
 		catch (URISyntaxException e) {
 			throw new RuntimeException(e);
 		}
+
 	}
 
 	@Override
