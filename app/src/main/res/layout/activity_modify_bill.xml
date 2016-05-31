@@ -31,16 +31,20 @@
 			android:layout_height="wrap_content"
 			android:text="@string/addbill_name"
 			android:textColor="@color/colorPrimary"
-			android:textSize="25dp" />
+			android:textSize="30sp" />
 
 		<EditText
 			android:id="@+id/editBillDescription"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:layout_margin="5dp"
 			android:textColor="@color/black"
 			android:background="@drawable/edittextlight"
-			android:inputType="textMultiLine"
-			android:textSize="30dp" />
+			android:inputType="textShortMessage|textMultiLine"
+			android:maxLength="100"
+			android:hint="@string/addbill_des_length"
+			android:maxLines="3"
+			android:textSize="25sp" />
 
 		<TextView
 			android:layout_width="wrap_content"
@@ -48,29 +52,32 @@
 
 			android:text="@string/addbill_amount"
 			android:textColor="@color/colorPrimary"
-			android:textSize="25dp" />
+			android:textSize="30sp" />
 
 		<EditText
 			android:id="@+id/editBillAmount"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:layout_margin="5dp"
 			android:textColor="@color/black"
 			android:background="@drawable/edittextlight"
-			android:inputType="textMultiLine"
-			android:textSize="30dp" />
+			android:inputType="numberDecimal"
+			android:textSize="25sp" />
 
 		<TextView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:text="@string/addbill_who"
 			android:textColor="@color/colorPrimary"
-			android:textSize="25dp" />
+			android:textSize="30dp" />
 
 
 		<com.rip.roomies.views.UserSpinner
 			android:id="@+id/editBillName"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content">
+			android:layout_height="wrap_content"
+			android:background="@drawable/rec_border"
+			android:layout_margin="5dp">
 
 		</com.rip.roomies.views.UserSpinner>
 

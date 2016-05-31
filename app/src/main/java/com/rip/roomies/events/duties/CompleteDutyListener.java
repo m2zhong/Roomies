@@ -3,18 +3,17 @@ package com.rip.roomies.events.duties;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
+import android.widget.PopupWindow;
 import android.widget.Toast;
 
-import com.github.nkzawa.socketio.client.IO;
-import com.github.nkzawa.socketio.client.Socket;
 import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.controllers.DutyController;
 import com.rip.roomies.functions.CompleteDutyFunction;
 import com.rip.roomies.models.Duty;
 import com.rip.roomies.models.User;
+import com.rip.roomies.server.ServerRequest;
 import com.rip.roomies.util.DisplayStrings;
 import com.rip.roomies.util.InfoStrings;
-import com.rip.roomies.util.SocketStrings;
 
 import java.net.URISyntaxException;
 import java.util.Locale;
@@ -28,6 +27,7 @@ public class CompleteDutyListener implements View.OnClickListener, CompleteDutyF
 
 	private Duty duty;
 	private GenericActivity activity;
+	private PopupWindow popupWindow;
 
 	/**
 	 * Complete Duty Listener Constructor
@@ -35,9 +35,10 @@ public class CompleteDutyListener implements View.OnClickListener, CompleteDutyF
 	 * @param context  Activity that is using the listener
 	 * @param duty  The existing duty object in a view
 	 */
-	public CompleteDutyListener(GenericActivity context, Duty duty) {
+	public CompleteDutyListener(GenericActivity context, Duty duty, PopupWindow popUpWindow) {
 		this.duty = duty;
 		this.activity = context;
+		this.popupWindow=popUpWindow;
 	}
 
 	/**
@@ -47,6 +48,8 @@ public class CompleteDutyListener implements View.OnClickListener, CompleteDutyF
 	 */
 	@Override
 	public void onClick(View v) {
+
+		popupWindow.dismiss();
 		/*String Buffer for Error Message*/
 		StringBuilder errMessage = new StringBuilder();
 
@@ -65,22 +68,11 @@ public class CompleteDutyListener implements View.OnClickListener, CompleteDutyF
 		/* Complete Duty Activity*/
 		DutyController.getController().completeDuty(this, duty.getId());
 
-
-
-		//after actually completed back from controller, call the and remind everyone
-		Socket mSocket;
 		try {
-			//connection to the node.js server
-			mSocket = IO.socket(SocketStrings.SERVER_URL);
-			mSocket.connect();
-			//make it start listening to reminder
-			mSocket.emit(SocketStrings.COMPLETE_DUTY,
-					User.getActiveUser().getFirstName(), duty.getName());
+			ServerRequest.completeDuty(User.getActiveUser().getFirstName(), duty.getName());
 		} catch (URISyntaxException e) {
 			throw new RuntimeException(e);
 		}
-
-
 	}
 
 	@Override
