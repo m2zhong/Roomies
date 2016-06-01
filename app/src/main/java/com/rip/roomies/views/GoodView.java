@@ -13,8 +13,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.rip.roomies.R;
+import com.rip.roomies.activities.goods.ListAllGoods;
 import com.rip.roomies.activities.goods.ModifyGood;
-import com.rip.roomies.activities.goods.ViewGood;
+import com.rip.roomies.events.goods.CompleteGoodListener;
 import com.rip.roomies.models.Good;
 import com.rip.roomies.util.InfoStrings;
 
@@ -31,6 +32,7 @@ public class GoodView extends TaskView {
 	public static final int EDIT_GOOD = 1;
 	public static final int VIEW_GOOD = 2;
 	public static final int ADD_GOOD = 3;
+	public static final int COMPLETE_GOOD=4;
 
 	private Good good;
 
@@ -97,7 +99,7 @@ public class GoodView extends TaskView {
 		TextView name = new TextView(getContext());
 		TextView description = new TextView(getContext());
 		TextView assignee = new TextView(getContext());
-		Button viewBtn = new Button(getContext());
+		Button completebtn = new Button(getContext());
 		Button editBtn = new Button(getContext());
 		LinearLayout innerLayout = new LinearLayout(getContext());
 		innerLayout.setLayoutParams(new LayoutParams(
@@ -105,11 +107,15 @@ public class GoodView extends TaskView {
 				LayoutParams.WRAP_CONTENT, 1.0f));
 
 		name.setTextColor(getResources().getColor(R.color.colorPrimary));
-		description.setTextColor(Color.BLACK);
+		description.setTextColor(getResources().getColor(R.color.black_overlay));
 		assignee.setTextColor(Color.BLACK);
 
+		name.setTextSize(25);
+		description.setTextSize(15);
+		assignee.setTextSize(15);
+
 		innerLayout.setOrientation(LinearLayout.VERTICAL);
-		innerLayout.setPadding(50, 50, 50, 50);
+		innerLayout.setPadding(25, 25, 25, 25);
 
 		name.setText(good.getName());
 		description.setText(good.getDescription());
@@ -117,48 +123,21 @@ public class GoodView extends TaskView {
 		assignee.setText(fullName);
 
 		innerLayout.addView(name);
-		innerLayout.addView(description);
 		innerLayout.addView(assignee);
-
-		viewBtn.setText("View");
-		viewBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
-		viewBtn.setBackground(getResources().getDrawable(R.drawable.rec_border));
-		viewBtn.setPadding(50, 50, 50 , 50);
-		LinearLayout.LayoutParams v = new LayoutParams(
-				LayoutParams.WRAP_CONTENT,
-				LayoutParams.WRAP_CONTENT);
-		v.gravity = Gravity.CENTER_VERTICAL;
-		v.setMargins(10, 50, 10, 50);
-		viewBtn.setLayoutParams(v);
-/*		viewBtn.setLayoutParams(new LayoutParams(
-				LayoutParams.WRAP_CONTENT,
-				LayoutParams.MATCH_PARENT, 1.0f));*/
-		viewBtn.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				log.info(String.format(Locale.US, InfoStrings.SWITCH_ACTIVITY,
-						ViewGood.class.getSimpleName()));
-
-				Intent i = new Intent(getContext(), ViewGood.class);
-				i.putExtra("Good", good);
-				((Activity) getContext()).startActivityForResult(i, VIEW_GOOD);
-			}
-		});
-
-
+		innerLayout.addView(description);
 
 		editBtn.setText("Edit");
 		editBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
 		editBtn.setBackground(getResources().getDrawable(R.drawable.rec_border));
-		editBtn.setPadding(50, 50, 50 , 50);
+		editBtn.setPadding(20, 20, 20 , 20);
 /*		editBtn.setLayoutParams(new LayoutParams(
 				LayoutParams.WRAP_CONTENT,
 				LayoutParams.MATCH_PARENT, 1.0f)); */
 		LinearLayout.LayoutParams p = new LayoutParams(
 				LayoutParams.WRAP_CONTENT,
 				LayoutParams.WRAP_CONTENT);
-		p.gravity = Gravity.CENTER_VERTICAL;
-		p.setMargins(10, 50, 10, 50);
+		p.gravity = Gravity.CENTER;
+		p.setMargins(10, 20, 10, 20);
 		editBtn.setLayoutParams(p);
 		editBtn.setOnClickListener(new OnClickListener() {
 			@Override
@@ -172,6 +151,23 @@ public class GoodView extends TaskView {
 			}
 		});
 
+		completebtn.setText("Complete");
+		completebtn.setTextColor(getResources().getColor(R.color.colorPrimary));
+		completebtn.setBackground(getResources().getDrawable(R.drawable.rec_border));
+		completebtn.setPadding(20, 20, 20 , 20);
+		LinearLayout.LayoutParams v = new LayoutParams(
+				LayoutParams.WRAP_CONTENT,
+				LayoutParams.WRAP_CONTENT);
+		v.gravity = Gravity.CENTER;
+		v.setMargins(10, 20, 10, 20);
+		completebtn.setLayoutParams(v);
+/*		viewBtn.setLayoutParams(new LayoutParams(
+				LayoutParams.WRAP_CONTENT,
+				LayoutParams.MATCH_PARENT, 1.0f));*/
+
+		completebtn.setOnClickListener(new CompleteGoodListener((ListAllGoods) getContext(),
+				this, good));
+
 		LinearLayout hline = new LinearLayout(getContext());
 		hline.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1));
 		hline.setBackgroundColor(Color.BLACK);
@@ -179,11 +175,12 @@ public class GoodView extends TaskView {
 		LinearLayout outerLayout = new LinearLayout(getContext());
 		outerLayout.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
 				ViewGroup.LayoutParams.MATCH_PARENT));
+
 		outerLayout.setOrientation(LinearLayout.HORIZONTAL);
 
 		outerLayout.addView(innerLayout);
-		outerLayout.addView(viewBtn);
 		outerLayout.addView(editBtn);
+		outerLayout.addView(completebtn);
 
 		addView(outerLayout);
 		addView(hline);
