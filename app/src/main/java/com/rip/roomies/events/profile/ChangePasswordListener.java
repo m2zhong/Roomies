@@ -7,7 +7,11 @@ import android.widget.Toast;
 import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.controllers.ProfileController;
 import com.rip.roomies.functions.ChangePassFunction;
+import com.rip.roomies.models.User;
+import com.rip.roomies.util.DisplayStrings;
 import com.rip.roomies.util.Validation;
+
+import java.util.Locale;
 
 /**
  * Created by VinnysMacOS on 5/29/16.
@@ -17,11 +21,14 @@ public class ChangePasswordListener implements View.OnClickListener, ChangePassF
     GenericActivity activity;
     EditText previousPassword;
     EditText newPassword;
+    EditText cfnewPassword;
 
-    public ChangePasswordListener(GenericActivity activity, EditText previousPassword, EditText newPassword) {
+    public ChangePasswordListener(GenericActivity activity, EditText previousPassword, EditText newPassword,
+                                  EditText cfnewPassword) {
         this.activity = activity;
         this.previousPassword = previousPassword;
         this.newPassword = newPassword;
+        this.cfnewPassword = cfnewPassword;
     }
 
     @Override
@@ -49,7 +56,8 @@ public class ChangePasswordListener implements View.OnClickListener, ChangePassF
 
 
         //at this point new password works therefore update the password in the DB
-        ProfileController.getController().changePassword(this, newPassword.getText().toString(), previousPassword.getText().toString());
+        ProfileController.getController().changePassword(this, newPassword.getText().toString(),
+                previousPassword.getText().toString(), cfnewPassword.getText().toString());
 
     }
 
@@ -61,11 +69,25 @@ public class ChangePasswordListener implements View.OnClickListener, ChangePassF
 
     @Override
     public void changePassFailure() {
-        String errorMessage = "Try again";
+        ///previousPassword.setText("");
+        ///newPassword.setText("");
+        ///cfnewPassword.setText("");
+        String errMsg = "";
 
-        Toast.makeText(activity, errorMessage, Toast.LENGTH_LONG).show();
-        previousPassword.setText("");
-        newPassword.setText("");
+        if(!(newPassword.getText().toString().equals(cfnewPassword.getText().toString()))) {
+            errMsg += String.format(Locale.US, DisplayStrings.FIELD_MISMATCH,
+                    "Password", "Confirm Password");
+
+            errMsg = errMsg.substring(0, errMsg.length() - 1);
+            Toast.makeText(activity, errMsg, Toast.LENGTH_SHORT).show();
+        }
+        else
+            Toast.makeText(activity, DisplayStrings.LOGIN_FAIL, Toast.LENGTH_LONG).show();
+
+        errMsg = "";
+
+//        String errorMessage = "Try again";
+//        Toast.makeText(activity, errorMessage, Toast.LENGTH_LONG).show();
     }
 
 }

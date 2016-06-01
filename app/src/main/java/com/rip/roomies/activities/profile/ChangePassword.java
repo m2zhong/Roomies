@@ -13,6 +13,7 @@ public class ChangePassword extends GenericActivity {
     private Button btSubmitPassword;
     private EditText etPreviousPassword;
     private EditText etNewPassword;
+    private EditText cfNewPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,8 +23,10 @@ public class ChangePassword extends GenericActivity {
         btSubmitPassword = (Button) findViewById(R.id.settings_submitpassword);
         etPreviousPassword = (EditText) findViewById(R.id.settings_previouspassword);
         etNewPassword = (EditText) findViewById(R.id.settings_newpassword);
+        cfNewPassword = (EditText) findViewById(R.id.settings_cfnewpassword);
 
-        btSubmitPassword.setOnClickListener(new ChangePasswordListener(this, etPreviousPassword, etNewPassword));
+        btSubmitPassword.setOnClickListener(new ChangePasswordListener(this, etPreviousPassword,
+                etNewPassword, cfNewPassword));
 
     }
 }

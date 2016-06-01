@@ -163,7 +163,7 @@ public class DutyView extends TaskView {
 		editBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
 		editBtn.setBackground(getResources().getDrawable(R.drawable.rec_border));
 //		editBtn.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
-		editBtn.setPadding(50, 50, 50 , 50);
+		editBtn.setPadding(50, 50, 50, 50);
 		LinearLayout.LayoutParams p = new LayoutParams(
 				LayoutParams.WRAP_CONTENT,
 				LayoutParams.WRAP_CONTENT);
@@ -183,6 +183,7 @@ public class DutyView extends TaskView {
 		});
 
 
+
 		actBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
 		actBtn.setBackground(getResources().getDrawable(R.drawable.rec_border));
 //		viewBtn.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
@@ -194,12 +195,10 @@ public class DutyView extends TaskView {
 		actBtn.setLayoutParams(v);
 
 		User currentAssignee = duty.getAssignee();
-
 		if (currentAssignee.getId() == User.getActiveUser().getId()) {
 			actBtn.setText("Complete");
 			actBtn.setPadding(50, 50, 50 , 50);
 		}
-
 		else{
 			actBtn.setText("Remind");
 			actBtn.setPadding(90, 50, 90 , 50);
@@ -207,25 +206,15 @@ public class DutyView extends TaskView {
 
 
 		actBtn.setOnClickListener(new OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
-
 				User currentAssignee = duty.getAssignee();
-
 				if (currentAssignee.getId() == User.getActiveUser().getId()) {
-//					((Button) v).setText("Complete");
-
 					int popUpID = R.layout.activity_confirm_duty_comp;
-
 					((Button) v).setOnClickListener(new PopUpDutyListener(
 							(ListAllDuties) getContext(), ((Button) v), popUpID, duty));
-
 				}
-
 				else{
-//					((Button) v).setText("Remind");
-
 					((Button) v).setOnClickListener(new RemindDutyListener(
 							(ListAllDuties) getContext(), currentAssignee.getId(), duty));
 				}
