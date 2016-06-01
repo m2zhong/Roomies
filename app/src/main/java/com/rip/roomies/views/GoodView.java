@@ -107,11 +107,15 @@ public class GoodView extends TaskView {
 				LayoutParams.WRAP_CONTENT, 1.0f));
 
 		name.setTextColor(getResources().getColor(R.color.colorPrimary));
-		description.setTextColor(Color.BLACK);
+		description.setTextColor(getResources().getColor(R.color.black_overlay));
 		assignee.setTextColor(Color.BLACK);
 
+		name.setTextSize(25);
+		description.setTextSize(15);
+		assignee.setTextSize(15);
+
 		innerLayout.setOrientation(LinearLayout.VERTICAL);
-		innerLayout.setPadding(50, 50, 50, 50);
+		innerLayout.setPadding(25, 25, 25, 25);
 
 		name.setText(good.getName());
 		description.setText(good.getDescription());
@@ -119,23 +123,21 @@ public class GoodView extends TaskView {
 		assignee.setText(fullName);
 
 		innerLayout.addView(name);
-		innerLayout.addView(description);
 		innerLayout.addView(assignee);
-
-
+		innerLayout.addView(description);
 
 		editBtn.setText("Edit");
 		editBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
 		editBtn.setBackground(getResources().getDrawable(R.drawable.rec_border));
-		editBtn.setPadding(50, 50, 50 , 50);
+		editBtn.setPadding(20, 20, 20 , 20);
 /*		editBtn.setLayoutParams(new LayoutParams(
 				LayoutParams.WRAP_CONTENT,
 				LayoutParams.MATCH_PARENT, 1.0f)); */
 		LinearLayout.LayoutParams p = new LayoutParams(
 				LayoutParams.WRAP_CONTENT,
 				LayoutParams.WRAP_CONTENT);
-		p.gravity = Gravity.CENTER_VERTICAL;
-		p.setMargins(10, 50, 10, 50);
+		p.gravity = Gravity.CENTER;
+		p.setMargins(10, 20, 10, 20);
 		editBtn.setLayoutParams(p);
 		editBtn.setOnClickListener(new OnClickListener() {
 			@Override
@@ -152,12 +154,12 @@ public class GoodView extends TaskView {
 		completebtn.setText("Complete");
 		completebtn.setTextColor(getResources().getColor(R.color.colorPrimary));
 		completebtn.setBackground(getResources().getDrawable(R.drawable.rec_border));
-		completebtn.setPadding(50, 50, 50 , 50);
+		completebtn.setPadding(20, 20, 20 , 20);
 		LinearLayout.LayoutParams v = new LayoutParams(
 				LayoutParams.WRAP_CONTENT,
 				LayoutParams.WRAP_CONTENT);
-		v.gravity = Gravity.CENTER_VERTICAL;
-		v.setMargins(10, 50, 10, 50);
+		v.gravity = Gravity.CENTER;
+		v.setMargins(10, 20, 10, 20);
 		completebtn.setLayoutParams(v);
 /*		viewBtn.setLayoutParams(new LayoutParams(
 				LayoutParams.WRAP_CONTENT,
@@ -177,8 +179,8 @@ public class GoodView extends TaskView {
 		outerLayout.setOrientation(LinearLayout.HORIZONTAL);
 
 		outerLayout.addView(innerLayout);
-		outerLayout.addView(completebtn);
 		outerLayout.addView(editBtn);
+		outerLayout.addView(completebtn);
 
 		addView(outerLayout);
 		addView(hline);

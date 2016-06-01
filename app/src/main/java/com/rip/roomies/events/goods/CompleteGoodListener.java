@@ -1,13 +1,19 @@
 package com.rip.roomies.events.goods;
 
-import android.app.Activity;
-import android.content.Intent;
+import android.content.Context;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import com.rip.roomies.R;
-import com.rip.roomies.activities.goods.CompleteGoods;
 import com.rip.roomies.activities.goods.ListAllGoods;
+import com.rip.roomies.activities.goods.ViewGood;
+import com.rip.roomies.controllers.GoodController;
 import com.rip.roomies.functions.CompleteGoodFunction;
 import com.rip.roomies.models.Good;
 import com.rip.roomies.util.DisplayStrings;
@@ -47,11 +53,9 @@ public class CompleteGoodListener implements View.OnClickListener, CompleteGoodF
 	public void onClick(View v) {
 
 		log.info(String.format(Locale.US, InfoStrings.SWITCH_ACTIVITY,
-				CompleteGoods.class.getSimpleName()));
+				ViewGood.class.getSimpleName()));
 
 
-
-		/*
 		int popUpLayoutID = R.layout.activity_confirm_complete_good;
 
 		//Creating inflater
@@ -71,12 +75,11 @@ public class CompleteGoodListener implements View.OnClickListener, CompleteGoodF
 		Button btnYes = (Button) popupView.findViewById(R.id.yes_btn);
 		Button btnNo = (Button) popupView.findViewById(R.id.no_btn);
 
-		amount = Double.valueOf(userInput.getText().toString());
-
 		final CompleteGoodFunction self = this;
 		btnYes.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				amount = Double.valueOf(userInput.getText().toString());
 				GoodController.getController().completeGood(self, good.getId(), amount);
 				popupWindow.dismiss();
 			}
@@ -90,7 +93,7 @@ public class CompleteGoodListener implements View.OnClickListener, CompleteGoodF
 				popupWindow.dismiss();
 			}
 		});
-		popupWindow.showAtLocation(btnYes, Gravity.CENTER, 0, 0);*/
+		popupWindow.showAtLocation(btnYes, Gravity.CENTER, 0, 0);
 	}
 		@Override
 		public void completeGoodFail() {
@@ -99,10 +102,6 @@ public class CompleteGoodListener implements View.OnClickListener, CompleteGoodF
 
 		@Override
 		public void completeGoodSuccess (Good good){
-			Intent i = context.getIntent();
-			i.putExtra("Good", good);
-			context.setResult(Activity.RESULT_OK, i);
-			context.finish();
 		}
 	}
 
