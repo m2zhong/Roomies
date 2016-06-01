@@ -170,6 +170,11 @@ public class Group {
 		activeGroup.description = newDescription;
 	}
 
+	public static void logoff() {
+		log.info(InfoStrings.LOGOFF);
+		activeGroup = null;
+	}
+
 	public String getName() {
 		return name;
 	}
