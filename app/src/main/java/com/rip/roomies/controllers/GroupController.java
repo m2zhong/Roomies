@@ -113,14 +113,20 @@ public class GroupController {
 			@Override
 			public Group doInBackground(Void... v) {
 				Group group = new Group(name, "");
+				// Look for the group name that was inputted, if non-existent, fail.
 				Group databaseGroup = group.findGroup();
 				if (databaseGroup == null)
 					return null;
 
+				// If the user is logged in, add them to the database
 				User activeUser = User.getActiveUser();
 				if (activeUser != null)
-					databaseGroup.addUsers(activeUser);
-				
+					databaseGroup = databaseGroup.addUsers(activeUser);
+
+				if (databaseGroup != null) {
+					Group.setActiveGroup(group);
+				}
+
 				return databaseGroup;
 			}
 
@@ -129,7 +135,6 @@ public class GroupController {
 				if (group == null)
 					funct.joinGroupFail();
 				else {
-					Group.setActiveGroup(group);
 					funct.joinGroupSuccess(group);
 				}
 			}
