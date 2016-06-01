@@ -12,6 +12,8 @@ import com.rip.roomies.events.bills.AddBillListener;
 import com.rip.roomies.models.Bill;
 import com.rip.roomies.views.BillContainer;
 
+import java.text.DecimalFormat;
+
 public class Bills extends GenericActivity {
 
     private final int EDIT_BILL_RESULT_CODE= 1;
@@ -21,6 +23,9 @@ public class Bills extends GenericActivity {
 
     private BillContainer youowe_bills_container;
     private BillContainer oweyou_bills_container;
+    private TextView you_owe_balance;
+    private TextView owe_you_balance;
+    private TextView total_balance;
     private Button addBill;
     private Bill theBillToEdit;
 
@@ -38,8 +43,16 @@ public class Bills extends GenericActivity {
         addBill = (Button) findViewById(R.id.add_bill_btn);
         youowe_bills_container = (BillContainer) findViewById(R.id.bills_youowe_container);
         oweyou_bills_container = (BillContainer) findViewById(R.id.bills_oweyou_container);
+        you_owe_balance = (TextView) findViewById(R.id.bill_youowe_balance);
+        owe_you_balance = (TextView) findViewById(R.id.bill_oweyou_balance);
+        total_balance = (TextView) findViewById(R.id.bill_total);
 
         addBill.setOnClickListener(new AddBillListener(this, youowe_bills_container,oweyou_bills_container));
+
+        //populate list of bills
+        BillController controller = BillController.getController();
+        controller.setActivity(this);
+        controller.populateBills(youowe_bills_container, oweyou_bills_container);
     }
 
 
@@ -54,7 +67,7 @@ public class Bills extends GenericActivity {
      *
      */
     public void toEditBillScreen(TextView name, TextView description, TextView amount, Bill theBillToEdit) {
-        //grab the TextView's for this particular bill.
+        //grab the TextViews for this particular bill.
         aBillsAmount = amount;
         aBillsDescription = description;
         aBillsName = name;
@@ -68,7 +81,7 @@ public class Bills extends GenericActivity {
         //and amount are filled correctly.
         intent.putExtra("Orig_Key_Name", name.getText());
         intent.putExtra("Orig_Key_Description", description.getText());
-        intent.putExtra("Orig_Key_Amount", amount.getText());
+        intent.putExtra("Orig_Key_Amount", String.valueOf(theBillToEdit.getAmount()));
         intent.putExtra("Key_Bill_Row_ID", String.valueOf(theBillToEdit.getRowID()));
 
         //Start the ModifyBill activity, when its finished, onActivityResult
@@ -104,19 +117,45 @@ public class Bills extends GenericActivity {
             String updDescription = data.getStringExtra("Upd_Key_Description");
             String updAmount = data.getStringExtra("Upd_Key_Amount");
 
+            //remove previous amount from balance
+            if (theBillToEdit.getAmount() < 0)
+                addToYouOweBalance(-1*theBillToEdit.getAmount());
+            else
+                addToOweYouBalance(-1*theBillToEdit.getAmount());
+
             //reset the bills name,description,amount to whatever the user edited.
             theBillToEdit.setName(updName);
             theBillToEdit.setDescription(updDescription);
-            theBillToEdit.setAmount(Float.parseFloat(updAmount));
+            DecimalFormat cash = new DecimalFormat("$#.##");
+            cash.setMinimumFractionDigits(2);
+            boolean negative = false;
+            if (updAmount.charAt(0) == '$')
+                updAmount = updAmount.substring(1);
+            else if (updAmount.charAt(0) == '-' && updAmount.charAt(1) == '$') {
+                negative = true;
+                updAmount = updAmount.substring(2);
+            }
+
+            if (negative)
+                theBillToEdit.setAmount(-1 * Float.parseFloat(updAmount));
+            else
+                theBillToEdit.setAmount(Float.parseFloat(updAmount));
 
             //reset the text for the 3 TextViews of the bill the user
             //selected in the main IOU's page.
             aBillsName.setText(updName);
             aBillsDescription.setText(updDescription);
-            aBillsAmount.setText(updAmount);
+            aBillsAmount.setText("$" + updAmount);
 
             //update the DB bill entry
             BillController.getController().modifyBill(theBillToEdit);
+
+
+            //add new amount to balance
+            if (theBillToEdit.getAmount() < 0)
+                addToYouOweBalance(theBillToEdit.getAmount());
+            else
+                addToOweYouBalance(theBillToEdit.getAmount());
 
         }
         else if(resultCode == ADD_BILL_RESULT_CODE) {
@@ -136,4 +175,33 @@ public class Bills extends GenericActivity {
         this.toHome();
     }
 
+    public void addToYouOweBalance(float change) {
+        addToBalance(you_owe_balance, -1*change);
+        addToBalance(total_balance, change);
+    }
+
+    public void addToOweYouBalance(float change) {
+        addToBalance(owe_you_balance, change);
+        addToBalance(total_balance, change);
+    }
+
+    private void addToBalance(final TextView balance, final float change) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                String balanceString = balance.getText().toString();
+                if (balanceString.charAt(0) == '-')
+                    balanceString = '-' + balanceString.substring(2);
+                else
+                    balanceString = balanceString.substring(1);
+                float bal = Float.parseFloat(balanceString);
+                bal += change;
+
+                DecimalFormat cash = new DecimalFormat("$#.##");
+                cash.setMinimumFractionDigits(2);
+
+                balance.setText(cash.format(bal));
+            }
+        });
+    }
 }

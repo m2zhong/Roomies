@@ -1,6 +1,7 @@
 package com.rip.roomies.activities.bills;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,8 +14,6 @@ import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
 import com.rip.roomies.views.UserSpinner;
 
-import java.text.DecimalFormat;
-
 public class AddBill extends GenericActivity {
 
 	private EditText name;
@@ -24,6 +23,9 @@ public class AddBill extends GenericActivity {
 	private Button addbill_request;
 	private UserSpinner userSpinner;
 	private int ownerID;
+	private User currUser;
+	User blank = new User(-1,"(Select User)","","","","", null);
+
 	/*Tag to differentiate which screen are we coming from 2=AddA Bill*/
 	private final int RESULT_CODE_ADD_BILL = 2;
 
@@ -39,10 +41,22 @@ public class AddBill extends GenericActivity {
 		addbill_request=(Button) findViewById(R.id.addbill_request);
 		userSpinner = (UserSpinner) findViewById(R.id.group_users_spinner);
 
+		addbill_request.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
+		addbill_pay.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
+
+		currUser=User.getActiveUser();
+
+		/* Make Spinner's default selection blank */
+
+		userSpinner.addUser(blank);
 
 		for (User u : Group.getActiveGroup().getMembers()) {
+
+			/* Making sure active user is not listed */
+			if(currUser.getId() != u.getId())
 			userSpinner.addUser(u);
 		}
+
 
 		addbill_request.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -50,7 +64,7 @@ public class AddBill extends GenericActivity {
 				String updatedAmount;
 				//if parseARgs returns false, means user entered in something wrong.
 				if (!parseArgs(userSpinner.toString(), description.getText().toString(),
-						amount.getText().toString(), amount)) {
+						amount.getText().toString(), amount, userSpinner.getSelected().getId())) {
 					return;
 				}
 
@@ -73,8 +87,8 @@ public class AddBill extends GenericActivity {
 			public void onClick(View v) {
 				String updatedAmount;
 				//if parseARgs returns false, means user entered in something wrong.
-				if (!parseArgs(userSpinner.toString(), description.getText().toString(),
-						amount.getText().toString(), amount)) {
+				if (!parseArgs(userSpinner.getSelected().toString(), description.getText().toString(),
+						amount.getText().toString(), amount, userSpinner.getSelected().getId())) {
 					return;
 				}
 
@@ -100,15 +114,15 @@ public class AddBill extends GenericActivity {
 	 * @return true if parseArgs failed, ie the user didnt enter in something.
 	 */
 
-	public boolean parseArgs(String name, String description, String amount, EditText etAmount) {
+	public boolean parseArgs(String name, String description, String amount, EditText etAmount, int userID) {
 		float tempFloat;
-		DecimalFormat df = new DecimalFormat("#.00");
 
 		//check the name first.
-		if (name == "" || description == "" || amount == "") {
+		if (name == "" || userID == -1 || description == "" || amount == "") {
 			//the number the entered for the amount had non-numeric chars
 			Toast.makeText(getApplicationContext(), "Make sure all fields are filled.",
 					Toast.LENGTH_LONG).show();
+			return false;
 		}
 
 		try {

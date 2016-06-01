@@ -37,7 +37,7 @@
 	<string name="trashduty">Trash Duty:</string>
 	<string name="youowe">Total you owe:</string>
 	<string name="reminder">Reminder:</string>
-	<string name="houserule">House Rules:</string>
+	<string name="bulletin">Bulletin Board:</string>
 	<string name="roomies_home">Your roomies</string>
 	<string name="shareditem_home">Shared\nItem</string>
 
@@ -53,7 +53,7 @@
 	<!--Bill-->
 	<string name="bill_title">Bill</string>
 	<string name="bill_youowe_total">You owe:</string>
-	<string name="bill_oweyou_total">Owe you:</string>
+	<string name="bill_oweyou_total">You requested:</string>
 	<string name="bill_incompletebtns">View Incomplete</string>
 	<string name="bill_requestbtn">Request</string>
 	<string name="bill_paynbtn">Pay</string>
@@ -67,7 +67,11 @@
 	<string name="addbill_pay">Pay</string>
 	<string name="addbill_submit">Submit</string>
 
-
+	<!--Bulletin Board-->
+	<string name="title_activity_add_bulletin">AddBulletin</string>
+	<string name="title_activity_modify_bulletin">ModifyBulletin</string>
+	<string name="bulletin_addbulletin_title">Add Bulletin</string>
+	<string name="bulletin_modifybulletin_title">Modify Bulletin</string>
 
     <!--Settings Screen-->
     <string name="settings_title">Setting</string>
@@ -100,4 +104,6 @@
 
 	<string name="join_group_header">Join Group</string>
 	<string name="join_groupbtn">Join Group</string>
+	<string name="addbill_des_length">(100 Characters)</string>
+	<string name="addbill_owe">Owe</string>
 </resources>

@@ -1,12 +1,19 @@
 package com.rip.roomies.activities.profile;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Point;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.rip.roomies.R;
@@ -15,8 +22,17 @@ import com.rip.roomies.events.profile.EditProfileListener;
 import com.rip.roomies.events.profile.LeaveGroupListener;
 import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
+import com.rip.roomies.util.Exceptions;
+import com.rip.roomies.util.Images;
+
+import java.io.InputStream;
+import java.util.logging.Logger;
 
 public class Profile extends GenericActivity implements View.OnClickListener {
+	private static final Logger log = Logger.getLogger(Profile.class.getName());
+	private static final double IMAGE_WIDTH_RATIO = 1.0 / 3;
+    private static final double IMAGE_HEIGHT_RATIO = 1.0 / 5;
+	private static final int SELECT_IMAGE = 1;
 
     private TextView tvTapToEdit;
     private EditText etFirstName;
@@ -28,6 +44,10 @@ public class Profile extends GenericActivity implements View.OnClickListener {
     private Button btLeaveGroup;
     private User thisUser;
     private Group thisUsersGroup;
+    private ImageView userProfile;
+
+	private int imageWidth;
+	private int imageHeight;
 
 
     @Override
@@ -47,6 +67,8 @@ public class Profile extends GenericActivity implements View.OnClickListener {
         btChangePassword = (Button) findViewById(R.id.settings_changepassword);
         btSaveChanges = (Button) findViewById(R.id.settings_submitbtn);
         btLeaveGroup = (Button) findViewById(R.id.settings_leavebtn);
+        userProfile = (ImageView) findViewById(R.id.settings_user_profile);
+
 
         //lock the editable fields
         etFirstName.setEnabled(false); etLastName.setEnabled(false);
@@ -63,6 +85,22 @@ public class Profile extends GenericActivity implements View.OnClickListener {
             etGroupDescription.setText(thisUsersGroup.getDescription());
         }
 
+	    Display display = getWindowManager().getDefaultDisplay();
+	    Point size = new Point();
+	    display.getSize(size);
+
+	    imageWidth = (int) (size.x * IMAGE_WIDTH_RATIO);
+	    imageHeight = (int) (size.y * IMAGE_HEIGHT_RATIO);
+
+	    if (thisUser == null || thisUser.getProfilePic() == null) {
+		    userProfile.setImageBitmap(Images.getScaledDownBitmap(getResources(),
+				    R.mipmap.default_user_image, imageWidth, imageHeight));
+	    }
+	    else {
+		    userProfile.setImageBitmap(BitmapFactory.decodeByteArray(thisUser.getProfilePic(),
+				    0, thisUser.getProfilePic().length));
+	    }
+
         etFirstName.setBackgroundColor(Color.WHITE);
         etFirstName.setBackgroundColor(Color.WHITE);
         etLastName.setBackgroundColor(Color.WHITE);
@@ -71,12 +109,23 @@ public class Profile extends GenericActivity implements View.OnClickListener {
 
 
         //set the listeners for the leavegroup button/submit changes button
-        btSaveChanges.setOnClickListener(new EditProfileListener(this, etFirstName, etLastName, etEmail, etGroupDescription));
+        btSaveChanges.setOnClickListener(new EditProfileListener(this, etFirstName, etLastName,
+		        etEmail, etGroupDescription, userProfile));
         btLeaveGroup.setOnClickListener(new LeaveGroupListener(this));
         btChangePassword.setOnClickListener(this);
 
 
         tvTapToEdit.setOnClickListener(this);
+
+	    final Activity self = this;
+	    userProfile.setOnClickListener(new View.OnClickListener() {
+		    @Override
+		    public void onClick(View v) {
+			    Intent intent = new Intent(Intent.ACTION_PICK);
+			    intent.setType("image/*");
+			    self.startActivityForResult(intent, SELECT_IMAGE);
+		    }
+	    });
 
     }
 
@@ -109,4 +158,19 @@ public class Profile extends GenericActivity implements View.OnClickListener {
         }
 
     }
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+
+		if (requestCode == SELECT_IMAGE && resultCode == RESULT_OK) {
+			try {
+				userProfile.setImageBitmap(Images.getScaledDownBitmap(getContentResolver(),
+						data.getData(), imageWidth, imageHeight));
+			}
+			catch (Exception e) {
+				log.severe(Exceptions.stacktraceToString(e));
+			}
+		}
+	}
 }

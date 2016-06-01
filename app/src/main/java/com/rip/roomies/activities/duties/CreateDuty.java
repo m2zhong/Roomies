@@ -21,6 +21,7 @@ import java.util.logging.Logger;
  */
 public class CreateDuty extends GenericActivity {
 	private static final Logger log = Logger.getLogger(CreateDuty.class.getName());
+	User blank = new User(-1, "(Select User)", "", "", "", "", null);
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,7 @@ public class CreateDuty extends GenericActivity {
 		addDuty = (Button) findViewById(R.id.add_duty_btn);
 		removeUser = (Button) findViewById(R.id.rem_user_btn);
 
+		allUsers.addUser(blank);
 		for(User u : Group.getActiveGroup().getMembers()) {
 			allUsers.addUser(u);
 		}

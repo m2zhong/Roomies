@@ -1,10 +1,12 @@
 package com.rip.roomies.models;
 
 import com.rip.roomies.sql.SQLCreate;
+import com.rip.roomies.sql.SQLGet;
 import com.rip.roomies.sql.SQLModify;
 import com.rip.roomies.sql.SQLRemove;
 import com.rip.roomies.util.InfoStrings;
 
+import java.text.DecimalFormat;
 import java.util.logging.Logger;
 
 /**
@@ -17,7 +19,6 @@ public class Bill {
     private String name = "";
     private String description = "";
     private float amount = 0;
-
 
    // private static User activeUser;
     private static final Logger log = Logger.getLogger(Bill.class.getName());
@@ -79,6 +80,37 @@ public class Bill {
 
     public void modifyBill(Bill billToModify) {
         SQLModify.modifyBill(billToModify);
+    }
+
+    public static CharSequence getTotalBalance() {
+        log.info(InfoStrings.GET_BILLS_MODEL);
+        Bill[] bills = SQLGet.getUserBills(User.getActiveUser());
+        float total = 0;
+
+        if (bills != null) {
+            for (Bill bill : bills) {
+                total += bill.getAmount();
+            }
+        }
+
+        DecimalFormat cash = new DecimalFormat("$#");
+        return cash.format(total);
+    }
+
+    public static CharSequence getNegativeBalance() {
+        log.info(InfoStrings.GET_BILLS_MODEL);
+        Bill[] bills = SQLGet.getUserBills(User.getActiveUser());
+        float total = 0;
+
+        if (bills != null) {
+            for (Bill bill : bills) {
+                if (bill.getAmount() < 0)
+                    total -= bill.getAmount();
+            }
+        }
+
+        DecimalFormat cash = new DecimalFormat("$#");
+        return cash.format(total);
     }
 
 

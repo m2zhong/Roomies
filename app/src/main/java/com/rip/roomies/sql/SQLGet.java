@@ -1,5 +1,7 @@
 package com.rip.roomies.sql;
 
+import com.rip.roomies.models.Bill;
+import com.rip.roomies.models.Bulletin;
 import com.rip.roomies.models.Duty;
 import com.rip.roomies.models.DutyLog;
 import com.rip.roomies.models.Good;
@@ -56,7 +58,8 @@ public class SQLGet {
 					String last = rs.getString("LastName");
 					String username = rs.getString("Username");
 					String email = rs.getString("Email");
-					users.add(new User(id, first, last, username, email, null));
+					byte[] profilePic = rs.getBytes("ProfileIcon");
+					users.add(new User(id, first, last, username, email, null, profilePic));
 				}
 
 				User[] temp = new User[users.size()];
@@ -162,7 +165,8 @@ public class SQLGet {
 							rs.getString("LastName"),
 							rs.getString("Username"),
 							rs.getString("Email"),
-							null
+							null,
+							rs.getBytes("ProfileIcon")
 					);
 
 					Duty temp = new Duty(resultId, resultName, resultDescription, resultGroup, u, null);
@@ -284,8 +288,9 @@ public class SQLGet {
 					String last = rs.getString("LastName");
 					String username = rs.getString("Username");
 					String email = rs.getString("Email");
+					byte[] profilePic = rs.getBytes("ProfileIcon");
 
-					users.add(new User(id, first, last, username, email, null));
+					users.add(new User(id, first, last, username, email, null, profilePic));
 				} while(rs.next());
 
 				//debug statement
@@ -353,8 +358,9 @@ public class SQLGet {
 					String last = getUser.getString("LastName");
 					String username = getUser.getString("Username");
 					String email = getUser.getString("Email");
+					byte[] profilePic = rs.getBytes("ProfileIcon");
 
-					User assignee = new User(userId, first, last, username, email, null);
+					User assignee = new User(userId, first, last, username, email, null, profilePic);
 
 					DutyLog temp = new DutyLog(resultId, resultName, resultDescription, resultGroup,
 							completeDate, dutyId, assignee);
@@ -370,6 +376,105 @@ public class SQLGet {
 
 				// Return a new user object
 				return logs.toArray(temp);
+			}
+		}
+		catch (Exception e) {
+			// Log and return null on exception
+			log.severe(Exceptions.stacktraceToString(e));
+			return null;
+		}
+	}
+
+	/**
+	 * Finds all bills associated with a user
+	 * @param user The user to acquire bills for
+	 * @return The full set of bills associated with this user
+	 */
+	public static Bill[] getUserBills(User user) {
+		ResultSet rs;
+		try {
+			log.info(InfoStrings.GET_BILLS_SQL);
+
+			// Execute SQL
+			rs = SQLQuery.execute(String.format(Locale.US, SQLStrings.GET_BILLS, user.getId()));
+
+			// If no rows, then finding failed
+			if (rs == null) {
+				log.info(InfoStrings.GET_BILLS_FAILED);
+				return null;
+			}
+			else {
+				ArrayList<Bill> bills = new ArrayList<>();
+
+				while (rs.next()) {
+					int resultId = rs.getInt("ID");
+					int resultOwnerId = rs.getInt("OwnerID");
+					String resultName = rs.getString("Name");
+					String resultDescription = rs.getString("Description");
+					float resultAmount = rs.getFloat("Amount");
+
+					Bill temp = new Bill(resultOwnerId, resultId, resultName, resultDescription,
+							resultAmount);
+
+					bills.add(temp);
+				}
+
+				//debug statement
+				log.info(String.format(Locale.US, InfoStrings.GET_BILLS_SUCCESSFUL,
+						User.getActiveUser().getId()));
+
+				Bill[] temp = new Bill[bills.size()];
+
+				// Return a new user object
+				return bills.toArray(temp);
+			}
+		}
+		catch (Exception e) {
+			// Log and return null on exception
+			log.severe(Exceptions.stacktraceToString(e));
+			return null;
+		}
+	}
+
+	/**
+	 * Finds all bulletins associated with a group
+	 * @param group The group to acquire bulletins for
+	 * @return The full set of bulletins associated with this user
+	 */
+	public static Bulletin[] getUserBulletins(Group group) {
+		ResultSet rs;
+		try {
+			log.info(InfoStrings.GET_BULLETINS_SQL);
+
+			// Execute SQL
+			rs = SQLQuery.execute(String.format(Locale.US, SQLStrings.GET_BULLETINS, group.getId()));
+
+			// If no rows, then finding failed
+			if (rs == null) {
+				log.info(InfoStrings.GET_BULLETINS_FAILED);
+				return null;
+			}
+			else {
+				ArrayList<Bulletin> bulls = new ArrayList<>();
+
+				while (rs.next()) {
+					int resultId = rs.getInt("ID");
+					int resultGroupId = rs.getInt("groupID");
+					String resultContent = rs.getString("Content");
+
+					Bulletin temp = new Bulletin(resultId, resultGroupId, resultContent);
+
+					bulls.add(temp);
+				}
+
+				//debug statement
+				log.info(String.format(Locale.US, InfoStrings.GET_BULLETINS_SUCCESSFUL,
+						Group.getActiveGroup().getId()));
+
+				Bulletin[] temp = new Bulletin[bulls.size()];
+
+				// Return a new user object
+				return bulls.toArray(temp);
 			}
 		}
 		catch (Exception e) {
@@ -415,7 +520,8 @@ public class SQLGet {
 							rs.getString("LastName"),
 							rs.getString("Username"),
 							rs.getString("Email"),
-							null
+							null,
+							rs.getBytes("ProfileIcon")
 					);
 
 					Good temp = new Good(resultId, resultName, resultDescription, resultGroup, u, null);
@@ -471,8 +577,9 @@ public class SQLGet {
 					String last = rs.getString("LastName");
 					String username = rs.getString("Username");
 					String email = rs.getString("Email");
+					byte[] profilePic = rs.getBytes("ProfileIcon");
 
-					users.add(new User(id, first, last, username, email, null));
+					users.add(new User(id, first, last, username, email, null, profilePic));
 				} while(rs.next());
 
 				//debug statement
@@ -541,8 +648,9 @@ public class SQLGet {
 					String last = getUser.getString("LastName");
 					String username = getUser.getString("Username");
 					String email = getUser.getString("Email");
+					byte[] profilePic = rs.getBytes("ProfileIcon");
 
-					User assignee = new User(userId, first, last, username, email, null);
+					User assignee = new User(userId, first, last, username, email, null, profilePic);
 
 					GoodLog temp = new GoodLog(resultId, resultName, resultDescription, resultGroup,
 							completeDate, dutyId, assignee, price);

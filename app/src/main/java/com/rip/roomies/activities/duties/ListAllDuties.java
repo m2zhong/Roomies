@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.rip.roomies.R;
@@ -66,8 +67,14 @@ public class ListAllDuties extends GenericActivity implements ListAllDutiesFunct
 	/** @inheritDoc **/
 	@Override
 	public void listAllDutiesSuccess(Duty[] duties) {
-		for (Duty d : duties) {
-			dc.addDuty(d);
+		if (duties == null || duties.length == 0) {
+			TextView msg = (TextView) findViewById(R.id.no_duties_msg);
+			msg.setVisibility(View.VISIBLE);
+		}
+		else {
+			for (Duty d : duties) {
+				dc.addDuty(d);
+			}
 		}
 	}
 
@@ -79,6 +86,11 @@ public class ListAllDuties extends GenericActivity implements ListAllDutiesFunct
 
 			if (toRemove) {
 				dc.removeDuty(duty);
+
+				if (dc.getDuties() == null || dc.getDuties().length == 0) {
+					TextView msg = (TextView) findViewById(R.id.no_duties_msg);
+					msg.setVisibility(View.VISIBLE);
+				}
 			}
 			else {
 				dc.modifyDuty(duty);
@@ -91,6 +103,9 @@ public class ListAllDuties extends GenericActivity implements ListAllDutiesFunct
 		else if (requestCode == DutyView.ADD_DUTY && resultCode == RESULT_OK) {
 			Duty duty = data.getExtras().getParcelable("Duty");
 			dc.addDuty(duty);
+
+			TextView msg = (TextView) findViewById(R.id.no_duties_msg);
+			msg.setVisibility(View.GONE);
 		}
 	}
 }

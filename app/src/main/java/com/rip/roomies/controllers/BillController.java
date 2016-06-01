@@ -2,7 +2,9 @@ package com.rip.roomies.controllers;
 
 import android.os.AsyncTask;
 
+import com.rip.roomies.activities.bills.Bills;
 import com.rip.roomies.models.Bill;
+import com.rip.roomies.models.User;
 import com.rip.roomies.util.InfoStrings;
 import com.rip.roomies.views.BillContainer;
 
@@ -17,6 +19,7 @@ public class BillController {
 
     private static BillController controller;
     private BillContainer bills;
+    private Bills activity;
 
     /**
      * Gets the singleton bill controller.
@@ -60,16 +63,21 @@ public class BillController {
                     //add the bill returned from the DB to the BillContainer. Has uniq bill id, owner id, name, desc, amount...
 
                     if(amount.startsWith("-")){
-                        youowe_bills_container.addBill(result, oweeID);}
-                    else
+                        youowe_bills_container.addBill(result, oweeID);
+                        activity.addToYouOweBalance(result.getAmount());
+                    }
+                    else {
                         oweyou_bills_container.addBill(result, oweeID);
+                        activity.addToOweYouBalance(result.getAmount());
+                    }
 
                 }
             }
         }.execute();
     }
 
-    public void removeBill(final int billRowID) {
+    public void removeBill(final int billRowID,
+                           final BillContainer container) {
         // Create and run a new thread
         new AsyncTask<Void, Void, Bill>() {
             @Override
@@ -87,7 +95,11 @@ public class BillController {
                 //if the bill returned wasnt null,remove it from the billcontainer
                 if (result != null) {
                     //remove the bill from the BillContainer.
-                    bills.removeBill(result);
+                    container.removeBill(result);
+                    if (result.getAmount() < 0)
+                        activity.addToYouOweBalance(-1*result.getAmount());
+                    else
+                        activity.addToOweYouBalance(-1*result.getAmount());
                 }
             }
         }.execute();
@@ -114,5 +126,42 @@ public class BillController {
 
     }
 
+    public void populateBills(final BillContainer youowe_bills_container,
+                         final BillContainer oweyou_bills_container) {
+        // Create and run a new thread
+        new AsyncTask<Void, Void, Bill[]>() {
+            @Override
+            protected Bill[] doInBackground(Void... v) {
+                log.info(String.format(Locale.US, InfoStrings.GET_BILLS_CONTROLLER,
+                        User.getActiveUser().getId()));
+
+                return User.getActiveUser().getBills();
+            }
+
+            @Override
+            protected void onPostExecute(Bill[] result) {
+                //if the array returned wasn't null, add each bill to the appropriate container
+                if (result != null) {
+                    for (Bill bill : result) {
+                        if (bill.getAmount() < 0) {
+                            bill.setAmount(bill.getAmount());
+                            youowe_bills_container.addBill(bill, ""); //TODO play nice with reminder
+                            activity.addToYouOweBalance(bill.getAmount());
+                        }
+                        else {
+                            oweyou_bills_container.addBill(bill, ""); //TODO play nice with reminder
+                            activity.addToOweYouBalance(bill.getAmount());
+                        }
+                    }
+                }
+            }
+
+        }.execute();
+
+    }
+
+    public void setActivity(Bills activity) {
+        this.activity = activity;
+    }
 
 }

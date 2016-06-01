@@ -2,6 +2,7 @@ package com.rip.roomies.sql;
 
 import com.rip.roomies.models.Bill;
 
+import com.rip.roomies.models.Bulletin;
 import com.rip.roomies.models.Duty;
 import com.rip.roomies.models.Good;
 import com.rip.roomies.models.Group;
@@ -52,6 +53,7 @@ public class SQLRemove {
 				String resultFirstName = rs.getString("FirstName");
 				String resultUsername = rs.getString("Username");
 				String resultEmail = rs.getString("Email");
+				byte[] profilePic = rs.getBytes("ProfileIcon");
 
 				//debug statement
 				log.info(String.format(Locale.US, InfoStrings.REMOVE_USER_FROM_GROUP_SUCCESSFUL,
@@ -59,7 +61,7 @@ public class SQLRemove {
 
 				// Return a new user object
 				return new User(resultID, resultFirstName, resultLastName, resultUsername,
-						resultEmail, null);
+						resultEmail, null, profilePic);
 			}
 		} catch (Exception e) {
 			// Log and return null on exception
@@ -100,7 +102,8 @@ public class SQLRemove {
 						rs.getString("LastName"),
 						rs.getString("Username"),
 						rs.getString("Email"),
-						null
+						null,
+						rs.getBytes("ProfileIcon")
 				);
 
 				// debug statement
@@ -142,8 +145,37 @@ public class SQLRemove {
 					resultID, resultOwnerID, resultName, resultDescription, resultAmount));
 
 			// Return a new user object
-			return new Bill(resultID, resultOwnerID, resultName, resultDescription, resultAmount);
-		} catch (Exception e) {
+			return new Bill(resultOwnerID, resultID, resultName, resultDescription, resultAmount);
+		}
+		catch (Exception e) {
+			// Log and return null on exception
+			log.severe(Exceptions.stacktraceToString(e));
+			return null;
+		}
+	}
+
+	public static Bulletin removeBulletin(int rowID) {
+		log.info(InfoStrings.REMOVE_BULLETIN_SQL);
+
+		try {
+			ResultSet rs = SQLQuery.execute(String.format(Locale.US, SQLStrings.REMOVE_BULLETIN,
+					rowID));
+
+			rs.next();
+
+			// Get results of SQL statement.
+			int resultID = rs.getInt("ID");
+			int resultGroupID = rs.getInt("GroupID");
+			String resultContent = rs.getString("Content");
+
+			//debug statement
+			log.info(String.format(Locale.US, InfoStrings.REMOVE_BULLETIN_SUCCESSFUL,
+					resultID, resultGroupID, resultContent));
+
+			// Return a new user object
+			return new Bulletin(resultID, resultGroupID, resultContent);
+		}
+		catch (Exception e) {
 			// Log and return null on exception
 			log.severe(Exceptions.stacktraceToString(e));
 			return null;
@@ -183,7 +215,8 @@ public class SQLRemove {
 						rs.getString("LastName"),
 						rs.getString("Username"),
 						rs.getString("Email"),
-						null
+						null,
+						rs.getBytes("ProfileIcon")
 				);
 
 				// debug statement

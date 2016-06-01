@@ -59,7 +59,9 @@ public class ProfileController {
     }
 
 
-    public void updateProfile(final UpdateProfileFunction funct, final String firstName, final String lastName, final String email,  final String groupDescription) {
+    public void updateProfile(final UpdateProfileFunction funct, final String firstName,
+                              final String lastName, final String email,
+                              final String groupDescription, final byte[] profilePic) {
         // Create and run a new thread
         new AsyncTask<Void, Void, Integer>() {
             @Override
@@ -69,7 +71,9 @@ public class ProfileController {
                 //        name, description));
 
                 // Create request group and get response from createGroup()
-                return User.getActiveUser().updateProfile(firstName, lastName, email, groupDescription);
+
+                return User.getActiveUser().updateProfile(firstName, lastName, email,
+		                groupDescription, profilePic);
             }
 
             @Override

@@ -1,11 +1,15 @@
 package com.rip.roomies.util;
 
+import android.content.ContentResolver;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 
 import com.rip.roomies.R;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.logging.Logger;
 
 /**
@@ -13,6 +17,8 @@ import java.util.logging.Logger;
  */
 public class Images {
 	private static final Logger log = Logger.getLogger(Images.class.getName());
+
+	private static final int MAX_QUALITY = 100;
 
 	/**
 	 * Get a bitmap of the desired resource that is scaled down to the requested size so that
@@ -29,10 +35,43 @@ public class Images {
 		BitmapFactory.decodeResource(res, id, options);
 
 		options.inSampleSize = getSampleSize(options, width, height);
-		log.info("Sample Size: " + options.inSampleSize);
 
 		options.inJustDecodeBounds = false;
 		return BitmapFactory.decodeResource(res, id, options);
+	}
+
+	/**
+	 * Gets a scaled down bitmap based on an input stream.
+	 * @param resolver The resolver of the activity
+	 * @param image The image uri to get stream of
+	 * @param width The desired width of the image
+	 * @param height The desired height of the image
+	 * @return The scaled down bitmap
+	 * @throws IOException If the stream cannot be opened
+	 */
+	public static Bitmap getScaledDownBitmap(ContentResolver resolver, Uri image,
+	                                         int width, int height) throws IOException {
+		InputStream stream = resolver.openInputStream(image);
+
+		BitmapFactory.Options options = new BitmapFactory.Options();
+		options.inJustDecodeBounds = true;
+		BitmapFactory.decodeStream(stream, null, options);
+
+		options.inSampleSize = getSampleSize(options, width, height);
+
+		if (stream != null) {
+			stream.close();
+		}
+
+		stream = resolver.openInputStream(image);
+		options.inJustDecodeBounds = false;
+		Bitmap bmp = BitmapFactory.decodeStream(stream, null, options);
+
+		if (stream != null) {
+			stream.close();
+		}
+
+		return bmp;
 	}
 
 	/**

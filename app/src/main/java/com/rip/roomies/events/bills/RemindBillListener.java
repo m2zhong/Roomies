@@ -24,7 +24,7 @@ public class RemindBillListener implements View.OnClickListener{
 	}
 
 	@Override
-	public void onClick(View v){
+	public void onClick(View v) {
 		/* INSER REMINDER FUNCTION CALL HERE (HAO) */
 		try {
 			ServerRequest.remindBill(Integer.parseInt(oweeID), User.getActiveUser().getFirstName(),
@@ -33,6 +33,5 @@ public class RemindBillListener implements View.OnClickListener{
 		catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
-
 	}
 }
