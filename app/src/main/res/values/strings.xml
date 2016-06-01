@@ -89,6 +89,7 @@
     <string name="settings_firstname">First Name</string>
     <string name="settings_lastname">Last Name</string>
     <string name="settings_changepassword">Change Password</string>
+	<string name="settings_inviteusers">Invite Users to Group</string>
 
     <!--Reminder Screen-->
     <string name="reminder_title">Reminders</string>
