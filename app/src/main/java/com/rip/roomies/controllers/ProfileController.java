@@ -1,14 +1,11 @@
 package com.rip.roomies.controllers;
 
-import android.graphics.Bitmap;
 import android.os.AsyncTask;
 
 import com.rip.roomies.functions.ChangePassFunction;
 import com.rip.roomies.functions.UpdateProfileFunction;
 import com.rip.roomies.models.User;
-import com.rip.roomies.util.Exceptions;
 
-import java.io.ByteArrayOutputStream;
 import java.util.logging.Logger;
 
 /**

@@ -139,13 +139,15 @@ public class SQLRemove {
 			String resultName = rs.getString("name");
 			String resultDescription = rs.getString("Description");
 			float resultAmount = rs.getFloat("Amount");
+			int resultOweeID= rs.getInt("OweeID");
 
 			//debug statement
 			log.info(String.format(Locale.US, InfoStrings.REMOVE_BILL_FROM_TABLE_SUCCESS,
 					resultID, resultOwnerID, resultName, resultDescription, resultAmount));
 
 			// Return a new user object
-			return new Bill(resultOwnerID, resultID, resultName, resultDescription, resultAmount);
+			return new Bill(resultOwnerID, resultID, resultName, resultDescription,
+						resultAmount, resultOweeID);
 		}
 		catch (Exception e) {
 			// Log and return null on exception

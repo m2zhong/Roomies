@@ -136,10 +136,12 @@
 			android:name=".activities.goods.ViewGood"
 			android:configChanges="orientation|keyboardHidden|screenSize"
 			android:theme="@style/FullscreenTheme" />
+
 		<activity
 			android:name=".activities.goods.ModifyGood"
 			android:configChanges="orientation|keyboardHidden|screenSize"
 			android:theme="@style/FullscreenTheme" />
+
 	    <activity
 		    android:name=".activities.bulletin.AddBulletin"
 		    android:label="@string/title_activity_add_bulletin"
@@ -148,6 +150,25 @@
 		    android:name=".activities.bulletin.ModifyBulletin"
 		    android:label="@string/title_activity_modify_bulletin"
 		    android:screenOrientation="portrait"/>
+
+	    <!-- [START firebase_service] -->
+	    <service
+		    android:name=".service.MessagingService">
+		    <intent-filter>
+			    <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+		    </intent-filter>
+	    </service>
+	    <!-- [END firebase_service] -->
+	    <!-- [START firebase_iid_service] -->
+	    <service
+		    android:name=".service.IDService">
+		    <intent-filter>
+			    <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+		    </intent-filter>
+	    </service>
+	    <!-- [END firebase_iid_service] -->
+
+
 	</application>
 
 </manifest>

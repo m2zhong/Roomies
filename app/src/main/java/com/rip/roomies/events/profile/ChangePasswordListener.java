@@ -7,7 +7,6 @@ import android.widget.Toast;
 import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.controllers.ProfileController;
 import com.rip.roomies.functions.ChangePassFunction;
-import com.rip.roomies.models.User;
 import com.rip.roomies.util.DisplayStrings;
 import com.rip.roomies.util.Validation;
 
@@ -72,6 +71,7 @@ public class ChangePasswordListener implements View.OnClickListener, ChangePassF
         previousPassword.setText("");
         newPassword.setText("");
         cfnewPassword.setText("");
+
         String errMsg = "";
 
         if(!(newPassword.getText().toString().equals(cfnewPassword.getText().toString()))) {
@@ -86,8 +86,10 @@ public class ChangePasswordListener implements View.OnClickListener, ChangePassF
 
         errMsg = "";
 
+
 //        String errorMessage = "Try again";
 //        Toast.makeText(activity, errorMessage, Toast.LENGTH_LONG).show();
     }
+
 
 }

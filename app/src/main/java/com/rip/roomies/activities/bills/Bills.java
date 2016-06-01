@@ -162,7 +162,7 @@ public class Bills extends GenericActivity {
             String newName = data.getStringExtra("Key_New_Name");
             String newDescription = data.getStringExtra("Key_New_Description");
             String newAmount = data.getStringExtra("Key_New_Amount");
-            String oweeID = data.getStringExtra("Key_New_oweeID");
+            int oweeID = Integer.parseInt(data.getStringExtra("Key_New_oweeID"));
 
             //the args are all OK to be inserted into the database, ie amount is a parsable float
             BillController.getController().createBill(newName, newDescription, newAmount, youowe_bills_container,

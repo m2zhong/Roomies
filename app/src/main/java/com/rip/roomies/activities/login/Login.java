@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.events.login.LoginListener;
@@ -32,6 +33,8 @@ public class Login extends GenericActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
+
+		log.info("InstanceID token: " + FirebaseInstanceId.getInstance().getToken());
 
 		/* Linking xml objects to java */
 		EditText username = (EditText) findViewById(R.id.username);

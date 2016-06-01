@@ -29,7 +29,6 @@ public class BillView extends LinearLayout {
 	Bills activity;
 
 	private Bill bill;
-	private String oweeID;
 	private BillContainer container;
 
 	/**
@@ -39,10 +38,9 @@ public class BillView extends LinearLayout {
 		super(context);
 	}
 
-	public BillView(Context context, Bills activity, String oweeID, BillContainer container) {
+	public BillView(Context context, Bills activity, BillContainer container) {
 		super(context);
 		this.activity = activity;
-		this.oweeID = oweeID;
 		this.container = container;
 	}
 
@@ -175,7 +173,7 @@ public class BillView extends LinearLayout {
 				this, name,
 				amount, description));
 
-		remindBill.setOnClickListener(new RemindBillListener(this, bill, oweeID));
+		remindBill.setOnClickListener(new RemindBillListener(this, bill));
 
 
 

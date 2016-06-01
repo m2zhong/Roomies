@@ -6,6 +6,7 @@ import android.content.Intent;
 import com.rip.roomies.activities.duties.ListAllDuties;
 import com.rip.roomies.activities.home.Home;
 import com.rip.roomies.activities.login.Login;
+import com.rip.roomies.application.MyApplication;
 import com.rip.roomies.util.InfoStrings;
 
 import java.util.logging.Logger;
@@ -44,5 +45,18 @@ public abstract class GenericActivity extends Activity {
 		log.info(String.format(InfoStrings.SWITCH_ACTIVITY, ListAllDuties.class.getName()));
 
 		startActivity(new Intent(this, ListAllDuties.class));
+	}
+
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		MyApplication.activityResumed();
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		MyApplication.activityPaused();
 	}
 }
