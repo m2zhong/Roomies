@@ -1,5 +1,10 @@
 package com.rip.roomies.activities.duties;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
+
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -36,6 +41,11 @@ public class ViewDuty extends GenericActivity {
 		desc = (TextView) findViewById(R.id.description);
 		users = (UserContainer) findViewById(R.id.users_container);
 		actionDuty = (Button) findViewById(R.id.comp_duty_btn);
+
+		dutyName.setTextColor(getResources().getColor(R.color.colorPrimary));
+		dutyName.setTypeface(null, Typeface.BOLD);
+
+		desc.setTextColor(Color.BLACK);
 
 		// Populate the information
 		Duty duty = getIntent().getExtras().getParcelable("Duty");

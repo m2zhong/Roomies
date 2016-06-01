@@ -70,6 +70,7 @@ public class ViewGood extends GenericActivity {
 			//actionGood.setOnClickListener(new RemindGoodListener(this, currentAssignee.getId(), good));
 		}
 
+
 		final Activity self = this;
 
 		viewLogs.setOnClickListener(new View.OnClickListener() {
@@ -78,5 +79,6 @@ public class ViewGood extends GenericActivity {
 				startActivity(new Intent(self, ListGoodLogs.class));
 			}
 		});
+
 	}
 }
