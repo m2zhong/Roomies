@@ -69,9 +69,9 @@ public class ChangePasswordListener implements View.OnClickListener, ChangePassF
 
     @Override
     public void changePassFailure() {
-        ///previousPassword.setText("");
-        ///newPassword.setText("");
-        ///cfnewPassword.setText("");
+        previousPassword.setText("");
+        newPassword.setText("");
+        cfnewPassword.setText("");
         String errMsg = "";
 
         if(!(newPassword.getText().toString().equals(cfnewPassword.getText().toString()))) {
