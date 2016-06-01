@@ -86,7 +86,3 @@ public class PopUpBillListener implements View.OnClickListener{
 		popupWindow.showAtLocation(callerBtn, Gravity.CENTER,0,0);
 	}
 }
-
-/*new RemoveBillListener(this, bill, removeBill,
-				editBill, name,
-				amount, description, innerLayout, underline)*/

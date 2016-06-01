@@ -59,6 +59,7 @@ public class ViewGood extends GenericActivity {
 			actionGood.setText("Complete " + good.getName());
 			//triggering event of completing the good, go change database, rotation...etc
 			//todo implement
+
 			//actionGood.setOnClickListener(new CompleteGoodListener(this, good));
 		}
 		//the case when another person is the assignee
