@@ -17,7 +17,7 @@ public class RemoveBillListener implements View.OnClickListener {
 
     private LinearLayout context;
     private Button removeBill, editBill;
-    private TextView name, amount,description;
+    private TextView name, amount, description;
     private Bill selectedBill;
     private LinearLayout innerLayout;
     private LinearLayout underline;
@@ -27,24 +27,24 @@ public class RemoveBillListener implements View.OnClickListener {
                               TextView name, TextView description, TextView amount, LinearLayout innerLayout,
                               LinearLayout underline, PopupWindow popupWindow) {
         this.context = context;
-        this.removeBill = removeBill; this.editBill = editBill;
-        this.name = name; this.description = description; this.amount = amount;
+        this.removeBill = removeBill;
+        this.editBill = editBill;
+        this.name = name;
+        this.description = description;
+        this.amount = amount;
         this.selectedBill = selectedBill;
-        this.innerLayout=innerLayout;
-        this.underline=underline;
-        this.popupWindow=popupWindow;
+        this.innerLayout = innerLayout;
+        this.underline = underline;
+        this.popupWindow = popupWindow;
     }
 
     @Override
     public void onClick(View v) {
         //first remove the selectedBill from the DB
         popupWindow.dismiss();
-        BillController.getController().removeBill(selectedBill.getRowID(), ((BillView)context).getContainer());
+        BillController.getController().removeBill(selectedBill.getRowID(), ((BillView) context).getContainer());
 
         //now remove its contents from the view.
-        context.removeView(removeBill); context.removeView(editBill);
-        context.removeView(name); context.removeView(amount); context.removeView(description);
-        context.removeView(editBill); context.removeView(removeBill);
-        context.removeView(innerLayout); context.removeView(underline);
+        context.removeAllViews();
     }
 }
