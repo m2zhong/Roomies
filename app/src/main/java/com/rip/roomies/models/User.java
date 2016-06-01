@@ -277,8 +277,8 @@ public class User implements Parcelable {
 		dest.writeString(email);
 		dest.writeString(password);
 
-		dest.writeInt(profilePic.length);
-		dest.writeByteArray(profilePic);
+		dest.writeInt((profilePic != null) ? profilePic.length : 0 );
+		dest.writeByteArray((profilePic!=null) ? profilePic : new byte[0]);
 	}
 
 

@@ -76,6 +76,8 @@ public class ViewDuty extends GenericActivity {
 			/* Start popup windown upon click*/
 			actionDuty.setOnClickListener(new PopUpDutyListener(this, actionDuty, popUpID, duty));
 
+			//actionDuty.setOnClickListener(new CompleteDutyListener(this, duty));
+
 		}
 		//the case when another person is the assignee
 		else {
