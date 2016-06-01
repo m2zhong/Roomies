@@ -17,9 +17,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.rip.roomies.R;
+import com.rip.roomies.activities.GenericActivity;
+import com.rip.roomies.activities.duties.ListAllDuties;
 import com.rip.roomies.activities.duties.ModifyDuty;
 import com.rip.roomies.activities.duties.ViewDuty;
+import com.rip.roomies.events.duties.PopUpDutyListener;
+import com.rip.roomies.events.duties.RemindDutyListener;
 import com.rip.roomies.models.Duty;
+import com.rip.roomies.models.User;
 import com.rip.roomies.util.InfoStrings;
 
 import java.util.Locale;
@@ -100,8 +105,12 @@ public class DutyView extends TaskView {
 		TextView name = new TextView(getContext());
 		TextView description = new TextView(getContext());
 		TextView assignee = new TextView(getContext());
-		Button viewBtn = new Button(getContext());
+//		Button viewBtn = new Button(getContext());
 		Button editBtn = new Button(getContext());
+		Button actBtn = new Button(getContext());
+
+		Boolean act;
+
 		LinearLayout innerLayout = new LinearLayout(getContext());
 		innerLayout.setLayoutParams(new LayoutParams(
 				LayoutParams.WRAP_CONTENT,
@@ -125,7 +134,7 @@ public class DutyView extends TaskView {
 		innerLayout.addView(description);
 		innerLayout.addView(assignee);
 
-		viewBtn.setText("View");
+/*		viewBtn.setText("View");
 		viewBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
 		viewBtn.setBackground(getResources().getDrawable(R.drawable.rec_border));
 //		viewBtn.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
@@ -147,10 +156,10 @@ public class DutyView extends TaskView {
 				((Activity) getContext()).startActivityForResult(i, VIEW_DUTY);
 			}
 		});
+*/
 
 
-
-		editBtn.setText(" Edit ");
+		editBtn.setText("Edit");
 		editBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
 		editBtn.setBackground(getResources().getDrawable(R.drawable.rec_border));
 //		editBtn.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
@@ -173,6 +182,56 @@ public class DutyView extends TaskView {
 			}
 		});
 
+
+		actBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
+		actBtn.setBackground(getResources().getDrawable(R.drawable.rec_border));
+//		viewBtn.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
+		LinearLayout.LayoutParams v = new LayoutParams(
+				LayoutParams.WRAP_CONTENT,
+				LayoutParams.WRAP_CONTENT);
+		v.gravity = Gravity.CENTER_VERTICAL;
+		v.setMargins(10, 50, 10, 50);
+		actBtn.setLayoutParams(v);
+
+		User currentAssignee = duty.getAssignee();
+
+		if (currentAssignee.getId() == User.getActiveUser().getId()) {
+			actBtn.setText("Complete");
+			actBtn.setPadding(50, 50, 50 , 50);
+		}
+
+		else{
+			actBtn.setText("Remind");
+			actBtn.setPadding(90, 50, 90 , 50);
+		}
+
+
+		actBtn.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+
+				User currentAssignee = duty.getAssignee();
+
+				if (currentAssignee.getId() == User.getActiveUser().getId()) {
+//					((Button) v).setText("Complete");
+
+					int popUpID = R.layout.activity_confirm_duty_comp;
+
+					((Button) v).setOnClickListener(new PopUpDutyListener(
+							(ListAllDuties) getContext(), ((Button) v), popUpID, duty));
+
+				}
+
+				else{
+//					((Button) v).setText("Remind");
+
+					((Button) v).setOnClickListener(new RemindDutyListener(
+							(ListAllDuties) getContext(), currentAssignee.getId(), duty));
+				}
+			}
+		});
+
 		LinearLayout hline = new LinearLayout(getContext());
 		hline.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1));
 		hline.setBackgroundColor(Color.BLACK);
@@ -183,8 +242,9 @@ public class DutyView extends TaskView {
 		outerLayout.setOrientation(LinearLayout.HORIZONTAL);
 
 		outerLayout.addView(innerLayout);
-		outerLayout.addView(viewBtn);
+//		outerLayout.addView(viewBtn);
 		outerLayout.addView(editBtn);
+		outerLayout.addView(actBtn);
 
 		addView(outerLayout);
 		addView(hline);
