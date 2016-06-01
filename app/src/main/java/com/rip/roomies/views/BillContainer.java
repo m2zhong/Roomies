@@ -56,14 +56,14 @@ public class BillContainer extends ScrollView {
      * @param newBill The new Bill to add
      * @param oweeID
      */
-    public void addBill(Bill newBill, String oweeID) {
+    public void addBill(Bill newBill) {
         log.info(String.format(InfoStrings.CONTAINER_ADD,
                 BillView.class.getName(),  BillContainer.class.getName()));
 
         //add our newly created bill to our dynamic arraylist of bills.
         bills.add(newBill);
 
-        BillView billView = new BillView(getContext(), (Bills)getContext(), oweeID, this);
+        BillView billView = new BillView(getContext(), (Bills)getContext(), this);
         billView.setBill(newBill);
         billLayout.addView(billView);
     }

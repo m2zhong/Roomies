@@ -14,8 +14,6 @@ import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
 import com.rip.roomies.views.UserSpinner;
 
-import java.text.DecimalFormat;
-
 public class AddBill extends GenericActivity {
 
 	private EditText name;
@@ -70,12 +68,11 @@ public class AddBill extends GenericActivity {
 					return;
 				}
 
-
 				//otherwise amount is a valid float, so keep going
 				//pass the 3 fields back to activities.bills.Bills
 				Intent intent = new Intent();
 				intent.putExtra("Key_New_Name", userSpinner.getSelected().toString());
-				intent.putExtra("Key_New_oweeID", userSpinner.getSelected().getId());
+				intent.putExtra("Key_New_oweeID", Integer.toString(userSpinner.getSelected().getId()));
 				intent.putExtra("Key_New_Description", description.getText().toString());
 				intent.putExtra("Key_New_Amount", amount.getText().toString());
 				setResult(RESULT_CODE_ADD_BILL, intent);
@@ -99,7 +96,7 @@ public class AddBill extends GenericActivity {
 				//pass the 3 fields back to activities.bills.Bills
 				Intent intent = new Intent();
 				intent.putExtra("Key_New_Name", userSpinner.getSelected().toString());
-				intent.putExtra("Key_New_oweeID", userSpinner.getSelected().getId());
+				intent.putExtra("Key_New_oweeID", Integer.toString(userSpinner.getSelected().getId()));
 				intent.putExtra("Key_New_Description", description.getText().toString());
 				intent.putExtra("Key_New_Amount", "-"+amount.getText().toString());
 				setResult(RESULT_CODE_ADD_BILL, intent);

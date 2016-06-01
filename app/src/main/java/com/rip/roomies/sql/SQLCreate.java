@@ -204,7 +204,7 @@ public class SQLCreate {
 			// get the result table from query execution through sql
 			rset = SQLQuery.execute(String.format(Locale.US, SQLStrings.CREATE_BILL,
 					User.getActiveUser().getId(), bill.getName(), bill.getDescription(),
-					bill.getAmount()));
+					bill.getAmount(), bill.getOweeID()) );
 
 
 			rset.next();
@@ -216,13 +216,13 @@ public class SQLCreate {
 			String resultName = rset.getString("name");
 			String resultDescription = rset.getString("Description");
 			float resultAmount = rset.getFloat("Amount");
-
+			int resultOweeID = rset.getInt("OweeID");
 
 			//debug statement
 			log.info(String.format(Locale.US, InfoStrings.CREATEBILL_SUCCESSFULL, resultID,
 					resultName, resultDescription, resultAmount));
 
-			return new Bill(resultOwnerID, resultID, resultName, resultDescription, resultAmount);
+			return new Bill(resultOwnerID, resultID, resultName, resultDescription, resultAmount, resultOweeID);
 		}
 		catch (Exception e) {
 			log.severe(Exceptions.stacktraceToString(e));

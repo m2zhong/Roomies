@@ -273,4 +273,6 @@ public class InfoStrings {
 
 
 	public static final String GET_REMINDER_BILL_LISTENER = "Get remind to pay bill.";
+	public static final String GET_COMPLETION_CSG_LISTENER = "";
+	public static final String GET_REMINDER_CSG_LISTENER = "";
 }

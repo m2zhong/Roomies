@@ -36,7 +36,7 @@ public class BillController {
     public void createBill(final String name, final String description, final String amount,
                            final BillContainer youowe_bills_container,
                            final BillContainer oweyou_bills_container,
-                           final String oweeID) {
+                           final int oweeID) {
 
         if(amount.startsWith("-"))
             this.bills = youowe_bills_container;
@@ -51,7 +51,7 @@ public class BillController {
                         name, description, Float.parseFloat(amount)));
 
                 // Create request user and get response from createUser()
-                Bill request = new Bill(name, description, Float.parseFloat(amount));
+                Bill request = new Bill(name, description, Float.parseFloat(amount), oweeID);
                 Bill response = request.createBill();
                 return response;
             }
@@ -63,11 +63,11 @@ public class BillController {
                     //add the bill returned from the DB to the BillContainer. Has uniq bill id, owner id, name, desc, amount...
 
                     if(amount.startsWith("-")){
-                        youowe_bills_container.addBill(result, oweeID);
+                        youowe_bills_container.addBill(result);
                         activity.addToYouOweBalance(result.getAmount());
                     }
                     else {
-                        oweyou_bills_container.addBill(result, oweeID);
+                        oweyou_bills_container.addBill(result);
                         activity.addToOweYouBalance(result.getAmount());
                     }
 
@@ -145,11 +145,11 @@ public class BillController {
                     for (Bill bill : result) {
                         if (bill.getAmount() < 0) {
                             bill.setAmount(bill.getAmount());
-                            youowe_bills_container.addBill(bill, ""); //TODO play nice with reminder
+                            youowe_bills_container.addBill(bill); //TODO play nice with reminder
                             activity.addToYouOweBalance(bill.getAmount());
                         }
                         else {
-                            oweyou_bills_container.addBill(bill, ""); //TODO play nice with reminder
+                            oweyou_bills_container.addBill(bill); //TODO play nice with reminder
                             activity.addToOweYouBalance(bill.getAmount());
                         }
                     }

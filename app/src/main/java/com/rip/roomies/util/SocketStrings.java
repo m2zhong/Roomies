@@ -22,5 +22,5 @@ public class SocketStrings {
 	public static final String NOTIFICATION_LISTEN =  "listen to notification";
 	public static final String COMPLETION_LISTEN = "listen to completion";
 
-
+	public static final String REFRESH_TOKEN = "refresh token";
 }
