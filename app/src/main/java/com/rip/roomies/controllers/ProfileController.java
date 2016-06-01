@@ -24,7 +24,8 @@ public class ProfileController {
     }
 
 
-    public void changePassword(final ChangePassFunction funct, final String newPassword, final String oldPassword) {
+    public void changePassword(final ChangePassFunction funct, final String newPassword, final String oldPassword,
+                               final String cfnewPassword) {
         // Create and run a new thread
         new AsyncTask<Void, Void, Integer>() {
             @Override
@@ -35,7 +36,8 @@ public class ProfileController {
 
 
 
-                if (new User(User.getActiveUser().getUsername(), oldPassword).login() == null) {
+                if (new User(User.getActiveUser().getUsername(), oldPassword).login() == null
+                        || (!newPassword.equals(cfnewPassword))) {
                     //previous password doesnt match that in database
                     return null;
                 }

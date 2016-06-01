@@ -80,6 +80,7 @@
     <string name="settings_username">Username:</string>
     <string name="settings_previouspassword">Previous Password:</string>
     <string name="settings_newpassword">New Password:</string>
+    <string name="settings_cfnewpassword">Confirm Password:</string>
     <string name="settings_submitpassword">Submit Password</string>
     <string name="settings_description">Group Description:</string>
     <string name="settings_groupname">Group Name:</string>
