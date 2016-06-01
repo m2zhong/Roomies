@@ -173,6 +173,11 @@ public class Home extends GenericActivity {
 			}
 			@Override
 			protected void onPostExecute(CharSequence result) {
+				if (result.charAt(1) == '0')
+					billScreen.setTextColor(getResources().getColor(R.color.green));
+				else
+					billScreen.setTextColor(getResources().getColor(R.color.pink));
+
 				billScreen.setText(result);
 			}
 		}.execute();

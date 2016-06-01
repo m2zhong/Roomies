@@ -61,11 +61,12 @@ public class ChangePasswordListener implements View.OnClickListener, ChangePassF
 
     @Override
     public void changePassFailure() {
-        String errorMessage = "Try again";
+        String errorMessage = "Incorrect Previous Password";
 
         Toast.makeText(activity, errorMessage, Toast.LENGTH_LONG).show();
         previousPassword.setText("");
         newPassword.setText("");
     }
+
 
 }
