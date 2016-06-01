@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.QuickContactBadge;
 import android.widget.TextView;
 
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.activities.bills.Bills;
@@ -19,7 +20,6 @@ import com.rip.roomies.activities.profile.Profile;
 import com.rip.roomies.activities.tasks.ListMyTasks;
 import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
-import com.rip.roomies.server.ServerListener;
 import com.rip.roomies.server.ServerRequest;
 import com.rip.roomies.util.Images;
 
@@ -43,11 +43,18 @@ public class Home extends GenericActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 
+		//right when load in home screen update the token
+		try {
+			ServerRequest.refreshToken(User.getActiveUser().getId(), FirebaseInstanceId.getInstance().getToken());
+		}
+		catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+
 
 		dutiesScreen = (TextView) findViewById(R.id.home_overallduties);
 		TextView goodsScreen = (TextView) findViewById(R.id.home_shareditem);
 		billScreen = (TextView) findViewById(R.id.home_IOU);
-
 
 		final Activity self = this;
 
@@ -107,22 +114,14 @@ public class Home extends GenericActivity {
 		logo.setImageBitmap(Images.getScaledDownBitmap(getResources(), R.mipmap.logo2,
 				(int) (size.x * IMAGE_WIDTH_RATIO), (int) (size.y * IMAGE_HEIGHT_RATIO)));
 
-
-		//listening to all the notification
+		//make server listening to all the notification
 		try {
 			ServerRequest.subscribToRoom(Group.getActiveGroup().getId());
 			ServerRequest.subscribToMyTopic(User.getActiveUser().getId());
-
-			ServerListener.activateCompleteDuty(self);
-			ServerListener.activateRemindDuty(self);
-			ServerListener.activateRemindBill(self);
-			ServerListener.activateCompleteCommonGood(self);
-			ServerListener.activateRemindCommonGood(self);
 		}
 		catch (URISyntaxException e) {
 			throw new RuntimeException(e);
 		}
-
 	}
 
 	@Override
