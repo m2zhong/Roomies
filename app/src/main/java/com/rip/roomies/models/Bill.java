@@ -19,6 +19,8 @@ public class Bill {
     private String name = "";
     private String description = "";
     private float amount = 0;
+    //added for owee
+    private int oweeID;
 
    // private static User activeUser;
     private static final Logger log = Logger.getLogger(Bill.class.getName());
@@ -35,10 +37,11 @@ public class Bill {
      * @param description The descipriton associated with this bill.
      * @param amount The amount associated with this bill.
      */
-    public Bill(String name, String description, float amount) {
+    public Bill(String name, String description, float amount, int oweeID) {
         this.name = name;
         this.description = description;
         this.amount = amount;
+        this.oweeID = oweeID;
     }
 
 
@@ -51,12 +54,13 @@ public class Bill {
      * @param description The description associated with this bill.
      * @param amount The amount associated with this bill.
      */
-    public Bill(int ownerID, int rowID, String name, String description, float amount) {
+    public Bill(int ownerID, int rowID, String name, String description, float amount, int oweeID) {
         this.ownerID = ownerID;
         this.rowID = rowID;
         this.name = name;
         this.description = description;
         this.amount = amount;
+        this.oweeID = oweeID;
     }
 
 
@@ -153,5 +157,14 @@ public class Bill {
 
     public void setDescription(String newDescription) {
         this.description = newDescription;
+    }
+
+    //extra to work around
+    public void setOweeID(int oweeID) {
+        this.oweeID = oweeID;
+    }
+
+    public int getOweeID() {
+        return oweeID;
     }
 }

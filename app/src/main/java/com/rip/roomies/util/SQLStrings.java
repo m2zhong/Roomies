@@ -35,7 +35,7 @@ public class SQLStrings {
 
 	public static final String CREATE_BILL = "EXEC CreateBill " +
 			"@owner_id = %d, " +
-			"@name = '%s', @description = '%s', @amount = %.2f;";
+			"@name = '%s', @description = '%s', @amount = %.2f, @owee_id = %d";
 
 	public static final String GET_BILLS = "EXEC FindBills " +
 			"@owner_id = %d;";

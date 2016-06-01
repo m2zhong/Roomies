@@ -16,18 +16,16 @@ import java.net.URISyntaxException;
 
 public class RemindBillListener implements View.OnClickListener{
 	private Bill bill;
-	private String oweeID;
 
-	public RemindBillListener(LinearLayout context, Bill bill, String oweeID) {
+	public RemindBillListener(LinearLayout context, Bill bill) {
 		this.bill=bill;
-		this.oweeID=oweeID;
 	}
 
 	@Override
 	public void onClick(View v) {
 		/* INSER REMINDER FUNCTION CALL HERE (HAO) */
 		try {
-			ServerRequest.remindBill(Integer.parseInt(oweeID), User.getActiveUser().getFirstName(),
+			ServerRequest.remindBill(bill.getOweeID(), User.getActiveUser().getFirstName(),
 					bill.getAmount(), bill.getDescription());
 		}
 		catch (URISyntaxException e) {

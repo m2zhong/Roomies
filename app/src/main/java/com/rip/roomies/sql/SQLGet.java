@@ -412,9 +412,10 @@ public class SQLGet {
 					String resultName = rs.getString("Name");
 					String resultDescription = rs.getString("Description");
 					float resultAmount = rs.getFloat("Amount");
+					int resultOweeID = rs.getInt("OweeID");
 
 					Bill temp = new Bill(resultOwnerId, resultId, resultName, resultDescription,
-							resultAmount);
+							resultAmount, resultOweeID);
 
 					bills.add(temp);
 				}
