@@ -86,6 +86,7 @@
         <activity
             android:name=".activities.duties.CreateDuty"
             android:configChanges="orientation|keyboardHidden|screenSize"
+			android:windowSoftInputMode="adjustNothing"
             android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".activities.duties.ListAllDuties"
@@ -94,6 +95,7 @@
         <activity
             android:name=".activities.duties.ModifyDuty"
             android:configChanges="orientation|keyboardHidden|screenSize"
+			android:windowSoftInputMode="adjustNothing"
             android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".activities.duties.ViewDuty"

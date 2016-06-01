@@ -6,6 +6,7 @@ import com.rip.roomies.sql.SQLFind;
 import com.rip.roomies.sql.SQLGet;
 import com.rip.roomies.util.InfoStrings;
 
+import java.util.Arrays;
 import java.util.logging.Logger;
 
 /**
@@ -75,7 +76,20 @@ public class Group {
 
 		// We add members to this object in case it is already activeGroup
 		if (group != null) {
-			members = group.getMembers();
+			int membersLength = (members != null) ? members.length : 0;
+			User[] updatedUsers = group.getMembers();
+			int updatedUsersLength = (updatedUsers != null) ? updatedUsers.length : 0;
+			User[] finalUsers = new User[membersLength + updatedUsersLength];
+			int j = 0;
+			for (int i = 0; i < membersLength; ++i) {
+				finalUsers[j++] = members[i];
+			}
+			for (int i = 0; i < updatedUsersLength; ++i) {
+				finalUsers[j++] = updatedUsers[i];
+			}
+
+			members = finalUsers;
+			group = new Group(group.getId(), group.getName(), group.getDescription(), finalUsers);
 		}
 
 		return group;
@@ -154,6 +168,11 @@ public class Group {
 
 	public static void setActiveGroupDescription(String newDescription) {
 		activeGroup.description = newDescription;
+	}
+
+	public static void logoff() {
+		log.info(InfoStrings.LOGOFF);
+		activeGroup = null;
 	}
 
 	public String getName() {

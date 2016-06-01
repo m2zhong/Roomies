@@ -104,9 +104,9 @@ public class GoodView extends TaskView {
 				LayoutParams.WRAP_CONTENT,
 				LayoutParams.WRAP_CONTENT, 1.0f));
 
-		name.setTextColor(Color.parseColor("#007EE5"));
-		description.setTextColor(Color.parseColor("#007EE5"));
-		assignee.setTextColor(Color.parseColor("#007EE5"));
+		name.setTextColor(getResources().getColor(R.color.colorPrimary));
+		description.setTextColor(Color.BLACK);
+		assignee.setTextColor(Color.BLACK);
 
 		innerLayout.setOrientation(LinearLayout.VERTICAL);
 		innerLayout.setPadding(50, 50, 50, 50);

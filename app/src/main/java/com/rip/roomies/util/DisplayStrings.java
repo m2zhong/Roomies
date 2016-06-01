@@ -42,8 +42,8 @@ public class DisplayStrings {
 	public static final String PASS_RETRIEVE_SUCCESS = "Password reset successful.\n" +
 			"Please check your email for your temporary password.";
 
-	public static final String FIND_USER_FAIL = "Could not find that user.\n" +
-			"Make sure the username entered is correct.";
+	public static final String FIND_USER_FAIL = "Could not get that user.\n" +
+			"Either username is incorrect or that user is already in a group.";
 
 	public static final String INVITE_USERS_FAIL = "Could not invite user(s) to group.\n";
 

@@ -88,6 +88,7 @@ public class LoginController {
 	 */
 	public void logoff() {
 		User.logoff();
+		Group.logoff();
 	}
 
 	/**

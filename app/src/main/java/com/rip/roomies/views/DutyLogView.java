@@ -1,10 +1,14 @@
 package com.rip.roomies.views;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.util.AttributeSet;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.rip.roomies.R;
 import com.rip.roomies.models.DutyLog;
 import com.rip.roomies.util.InfoStrings;
 
@@ -71,7 +75,7 @@ public class DutyLogView extends LinearLayout {
 		setLayoutParams(new LayoutParams(
 				LayoutParams.MATCH_PARENT,
 				LayoutParams.WRAP_CONTENT));
-		setOrientation(LinearLayout.HORIZONTAL);
+		setOrientation(LinearLayout.VERTICAL);
 
 		TextView name = new TextView(getContext());
 		TextView description = new TextView(getContext());
@@ -79,23 +83,50 @@ public class DutyLogView extends LinearLayout {
 		TextView completeDate = new TextView(getContext());
 		LinearLayout innerLayout = new LinearLayout(getContext());
 
-		innerLayout.setOrientation(LinearLayout.VERTICAL);
+
 
 		name.setText(dutyLog.getName());
+		name.setTextColor(getResources().getColor(R.color.colorPrimary));
+		name.setTypeface(null, Typeface.BOLD);
+
 		description.setText(dutyLog.getDescription());
+		description.setTextColor(Color.BLACK);
 
 		String fullName = dutyLog.getAssignee().getFirstName() + " " + dutyLog.getAssignee().getLastName();
 		assignee.setText(fullName);
+		assignee.setTextColor(Color.BLACK);
 
 		DateFormat compDate = new SimpleDateFormat("MM/dd/yyyy");
 		String text = compDate.format(dutyLog.getCompletion());
 		completeDate.setText(text);
+
+
+
+		innerLayout.setOrientation(LinearLayout.VERTICAL);
+		innerLayout.setPadding(50, 50, 50, 50);
+
+
 
 		innerLayout.addView(name);
 		innerLayout.addView(description);
 		innerLayout.addView(assignee);
 		innerLayout.addView(completeDate);
 
-		addView(innerLayout);
+
+
+		LinearLayout hline = new LinearLayout(getContext());
+		hline.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1));
+		hline.setBackgroundColor(Color.BLACK);
+
+		LinearLayout outerLayout = new LinearLayout(getContext());
+		outerLayout.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+				ViewGroup.LayoutParams.MATCH_PARENT));
+		outerLayout.setOrientation(LinearLayout.HORIZONTAL);
+
+
+		outerLayout.addView(innerLayout);
+
+		addView(outerLayout);
+		addView(hline);
 	}
 }

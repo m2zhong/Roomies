@@ -61,6 +61,6 @@ public class CreateGroupListener implements View.OnClickListener, CreateGroupFun
 		log.info(String.format(Locale.US, InfoStrings.SWITCH_ACTIVITY_DELAYED,
 				InviteUsers.class.getName(), DisplayStrings.TOAST_LONG_LENGTH));
 
-		context.startActivity(new Intent(context, InviteUsers.class));
+		context.toHome();
 	}
 }

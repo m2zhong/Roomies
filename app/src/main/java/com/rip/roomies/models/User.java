@@ -23,6 +23,7 @@ public class User implements Parcelable {
 	private String email = "";
 	private String password = "";
 	private byte[] profilePic = null;
+	private int groupId;
 
 	private static User activeUser;
 	private static final Logger log = Logger.getLogger(User.class.getName());
@@ -266,6 +267,14 @@ public class User implements Parcelable {
 
 	public static void setActiveUser(User user) {
 		activeUser = user;
+	}
+
+	public void setGroupId(int groupId) {
+		this.groupId = groupId;
+	}
+
+	public int getGroupId() {
+		return groupId;
 	}
 
 	@Override

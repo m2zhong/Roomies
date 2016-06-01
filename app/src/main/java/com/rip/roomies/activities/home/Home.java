@@ -2,14 +2,22 @@ package com.rip.roomies.activities.home;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Display;
+
 import android.view.View;
+
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
+
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -22,9 +30,13 @@ import com.rip.roomies.activities.duties.ListAllDuties;
 import com.rip.roomies.activities.goods.ListAllGoods;
 import com.rip.roomies.activities.profile.Profile;
 import com.rip.roomies.activities.tasks.ListMyTasks;
+
 import com.rip.roomies.controllers.HomeController;
 import com.rip.roomies.models.Bill;
 import com.rip.roomies.models.Bulletin;
+
+import com.rip.roomies.controllers.LoginController;
+
 import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
 import com.rip.roomies.server.ServerRequest;
@@ -161,7 +173,38 @@ public class Home extends GenericActivity {
 
 	@Override
 	public void onBackPressed() {
-		// This does nothing
+		LayoutInflater layoutInflater
+				= (LayoutInflater) getBaseContext()
+				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+		View popupView = layoutInflater.inflate(R.layout.confirm_logoff, null);
+		final PopupWindow popupWindow = new PopupWindow(
+				popupView,
+				ViewGroup.LayoutParams.MATCH_PARENT,
+				ViewGroup.LayoutParams.MATCH_PARENT);
+
+		Button btnYes = (Button)popupView.findViewById(R.id.yes_btn);
+		Button btnNo = (Button)popupView.findViewById(R.id.no_btn);
+
+		btnYes.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				popupWindow.dismiss();
+				LoginController.getController().logoff();
+				toLogin();
+			}
+		});
+
+		btnNo.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				log.info(String.format(Locale.US, InfoStrings.SWITCH_ACTIVITY,
+						Home.class.getSimpleName()));
+				popupWindow.dismiss();
+
+			}
+		});
+		popupWindow.showAtLocation(container, Gravity.CENTER,0,0);
 	}
 
 	private void setBalance(final TextView billScreen) {
