@@ -28,7 +28,11 @@ import android.util.Log;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.rip.roomies.R;
+import com.rip.roomies.activities.bills.Bills;
+import com.rip.roomies.activities.duties.ListAllDuties;
+import com.rip.roomies.activities.home.Home;
 import com.rip.roomies.activities.login.Login;
+import com.rip.roomies.application.MyApplication;
 
 public class MessagingService extends FirebaseMessagingService{
 
@@ -61,8 +65,25 @@ public class MessagingService extends FirebaseMessagingService{
      *
      * @param message FCM message body received.
      */
-    private void sendNotification(String title,String message) {
-        Intent intent = new Intent(this, Login.class);
+    private void sendNotification(String title, String message) {
+
+        Intent intent;
+        if(MyApplication.isActivityVisible()) {
+            switch (title){
+            case "Duty Completion":case "Duty Reminder":
+                intent = new Intent(this, ListAllDuties.class );
+                break;
+            case "Bill Reminder":
+                intent = new Intent(this, Bills.class);
+                break;
+            default:
+                intent = new Intent(this, Home.class);
+            }
+        }
+        else {
+            intent = new Intent(this, Login.class);
+        }
+        
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
                 PendingIntent.FLAG_ONE_SHOT);
