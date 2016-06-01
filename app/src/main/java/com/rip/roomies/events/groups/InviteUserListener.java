@@ -37,7 +37,8 @@ public class InviteUserListener implements View.OnClickListener, InviteUsersFunc
 			GroupController.getController().addUsersToGroup(this, container.getUsers());
 		}
 		else {
-			context.toHome();
+			Toast.makeText(context, String.format(Locale.US, DisplayStrings.MISSING_FIELD, "Users"),
+					Toast.LENGTH_LONG).show();
 		}
 	}
 
@@ -47,5 +48,5 @@ public class InviteUserListener implements View.OnClickListener, InviteUsersFunc
 	}
 
 	@Override
-	public void inviteUsersSuccess(Group group) { context.toHome(); }
+	public void inviteUsersSuccess(Group group) { context.finish(); }
 }
