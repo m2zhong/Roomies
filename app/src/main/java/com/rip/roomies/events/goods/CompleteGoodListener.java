@@ -1,22 +1,13 @@
 package com.rip.roomies.events.goods;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import com.rip.roomies.R;
-import com.rip.roomies.activities.GenericActivity;
+import com.rip.roomies.activities.goods.CompleteGoods;
 import com.rip.roomies.activities.goods.ListAllGoods;
-import com.rip.roomies.activities.goods.ViewGood;
-import com.rip.roomies.controllers.GoodController;
 import com.rip.roomies.functions.CompleteGoodFunction;
 import com.rip.roomies.models.Good;
 import com.rip.roomies.util.DisplayStrings;
@@ -26,16 +17,18 @@ import com.rip.roomies.views.GoodView;
 import java.util.Locale;
 import java.util.logging.Logger;
 
+
 /**
  * Created by michaelzhong on 5/31/16.
  */
 public class CompleteGoodListener implements View.OnClickListener, CompleteGoodFunction {
-	private GenericActivity context;
+	private ListAllGoods context;
 	private Good good;
 	private int popUpLayoutID;
 	private GoodView goodview;
 	private static final Logger log = Logger.getLogger(CompleteGoodListener.class.getName());
 	private double amount; //for bill $ amount
+	public static final int COMPLETE_GOOD = 4;
 
 	/**
 	 * CONSTRUCTOR
@@ -54,10 +47,15 @@ public class CompleteGoodListener implements View.OnClickListener, CompleteGoodF
 	public void onClick(View v) {
 
 		log.info(String.format(Locale.US, InfoStrings.SWITCH_ACTIVITY,
-				ViewGood.class.getSimpleName()));
+				CompleteGoods.class.getSimpleName()));
+
+
+
+		/*
+		int popUpLayoutID = R.layout.activity_confirm_complete_good;
+
 		//Creating inflater
-		LayoutInflater layoutInflater = (LayoutInflater) context.getBaseContext()
-				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
 		//Inflating popup window layout
 		View popupView = layoutInflater.inflate(popUpLayoutID, null);
@@ -73,12 +71,12 @@ public class CompleteGoodListener implements View.OnClickListener, CompleteGoodF
 		Button btnYes = (Button) popupView.findViewById(R.id.yes_btn);
 		Button btnNo = (Button) popupView.findViewById(R.id.no_btn);
 
+		amount = Double.valueOf(userInput.getText().toString());
 
 		final CompleteGoodFunction self = this;
 		btnYes.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				amount = Double.valueOf(userInput.getText().toString());
 				GoodController.getController().completeGood(self, good.getId(), amount);
 				popupWindow.dismiss();
 			}
@@ -92,19 +90,19 @@ public class CompleteGoodListener implements View.OnClickListener, CompleteGoodF
 				popupWindow.dismiss();
 			}
 		});
-		popupWindow.showAtLocation(btnYes, Gravity.CENTER,0,0);
+		popupWindow.showAtLocation(btnYes, Gravity.CENTER, 0, 0);*/
+	}
+		@Override
+		public void completeGoodFail() {
+			Toast.makeText(context, DisplayStrings.CREATE_GOOD_FAIL, Toast.LENGTH_LONG).show();
+		}
+
+		@Override
+		public void completeGoodSuccess (Good good){
+			Intent i = context.getIntent();
+			i.putExtra("Good", good);
+			context.setResult(Activity.RESULT_OK, i);
+			context.finish();
+		}
 	}
 
-	@Override
-	public void completeGoodFail() {
-		Toast.makeText(context, DisplayStrings.CREATE_GOOD_FAIL, Toast.LENGTH_LONG).show();
-	}
-
-	@Override
-	public void completeGoodSuccess(Good good) {
-		Intent i = context.getIntent();
-		i.putExtra("Good",good);
-		context.setResult(Activity.RESULT_OK,i);
-		context.finish();
-	}
-}

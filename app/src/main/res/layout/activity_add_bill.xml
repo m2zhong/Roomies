@@ -101,7 +101,6 @@
 				android:layout_marginTop="30dp"
 				android:gravity="center"
 				android:orientation="horizontal">
-
 				<Button
 					android:id="@+id/addbill_request"
 					android:layout_width="150dp"

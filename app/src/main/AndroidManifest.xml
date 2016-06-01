@@ -140,6 +140,10 @@
 		    android:configChanges="orientation|keyboard|screenSize"
 		    android:theme="@style/FullscreenTheme"/>
 	    <activity
+		    android:name=".activities.goods.CompleteGoods"
+		    android:configChanges="orientation|keyboard|screenSize"
+		    android:theme="@style/FullscreenTheme"/>
+	    <activity
 		    android:name=".activities.bulletin.AddBulletin"
 		    android:label="@string/title_activity_add_bulletin"
 		    android:screenOrientation="portrait"/>

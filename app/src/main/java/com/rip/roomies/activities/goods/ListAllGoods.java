@@ -49,13 +49,17 @@ public class ListAllGoods extends GenericActivity implements ListAllGoodsFunctio
 		});
 	}
 
-	/** @inheritDoc **/
+	/**
+	 * @inheritDoc
+	 **/
 	@Override
 	public void listAllGoodsFail() {
 		Toast.makeText(this, DisplayStrings.LIST_ALL_GOODS_FAIL, Toast.LENGTH_LONG).show();
 	}
 
-	/** @inheritDoc **/
+	/**
+	 * @inheritDoc
+	 **/
 	@Override
 	public void listAllGoodsSuccess(Good[] goods) {
 		if (goods == null || goods.length == 0) {
@@ -97,6 +101,13 @@ public class ListAllGoods extends GenericActivity implements ListAllGoodsFunctio
 
 			TextView msg = (TextView) findViewById(R.id.no_goods_msg);
 			msg.setVisibility(View.GONE);
+
+		}
+
+		else if (requestCode == GoodView.COMPLETE_GOOD && resultCode == RESULT_OK) {
+			Good good = data.getExtras().getParcelable("Good");
+			gc.removeGood(good);
+
 		}
 	}
 }

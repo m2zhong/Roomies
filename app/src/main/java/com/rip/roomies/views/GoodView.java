@@ -32,6 +32,7 @@ public class GoodView extends TaskView {
 	public static final int EDIT_GOOD = 1;
 	public static final int VIEW_GOOD = 2;
 	public static final int ADD_GOOD = 3;
+	public static final int COMPLETE_GOOD=4;
 
 	private Good good;
 
@@ -161,6 +162,7 @@ public class GoodView extends TaskView {
 /*		viewBtn.setLayoutParams(new LayoutParams(
 				LayoutParams.WRAP_CONTENT,
 				LayoutParams.MATCH_PARENT, 1.0f));*/
+
 		completebtn.setOnClickListener(new CompleteGoodListener((ListAllGoods) getContext(),
 				this, good));
 
