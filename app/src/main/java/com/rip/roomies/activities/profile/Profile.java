@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
+import com.rip.roomies.activities.groups.InviteUsers;
 import com.rip.roomies.events.profile.EditProfileListener;
 import com.rip.roomies.events.profile.LeaveGroupListener;
 import com.rip.roomies.models.Group;
@@ -41,7 +42,7 @@ public class Profile extends GenericActivity implements View.OnClickListener {
     private EditText etGroupDescription;
     private Button btChangePassword;
     private Button btSaveChanges;
-    private Button btLeaveGroup;
+    //private Button btLeaveGroup;
     private User thisUser;
     private Group thisUsersGroup;
     private ImageView userProfile;
@@ -66,7 +67,7 @@ public class Profile extends GenericActivity implements View.OnClickListener {
         etGroupDescription = (EditText) findViewById(R.id.settings_description);
         btChangePassword = (Button) findViewById(R.id.settings_changepassword);
         btSaveChanges = (Button) findViewById(R.id.settings_submitbtn);
-        btLeaveGroup = (Button) findViewById(R.id.settings_leavebtn);
+        //btLeaveGroup = (Button) findViewById(R.id.settings_leavebtn);
         userProfile = (ImageView) findViewById(R.id.settings_user_profile);
 
 
@@ -111,7 +112,7 @@ public class Profile extends GenericActivity implements View.OnClickListener {
         //set the listeners for the leavegroup button/submit changes button
         btSaveChanges.setOnClickListener(new EditProfileListener(this, etFirstName, etLastName,
 		        etEmail, etGroupDescription, userProfile));
-        btLeaveGroup.setOnClickListener(new LeaveGroupListener(this));
+        //btLeaveGroup.setOnClickListener(new LeaveGroupListener(this));
         btChangePassword.setOnClickListener(this);
 
 
@@ -124,6 +125,14 @@ public class Profile extends GenericActivity implements View.OnClickListener {
 			    Intent intent = new Intent(Intent.ACTION_PICK);
 			    intent.setType("image/*");
 			    self.startActivityForResult(intent, SELECT_IMAGE);
+		    }
+	    });
+
+	    Button inviteUsers = (Button) findViewById(R.id.settings_inviteusers_btn);
+		inviteUsers.setOnClickListener(new View.OnClickListener() {
+		    @Override
+		    public void onClick(View v) {
+			    self.startActivity(new Intent(self, InviteUsers.class));
 		    }
 	    });
 

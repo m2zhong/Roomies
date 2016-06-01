@@ -156,20 +156,33 @@
                 android:textColor="@color/colorPrimary"
                 android:textSize="30sp" />
 
+	        <Button
+		        android:id="@+id/settings_inviteusers_btn"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="bottom|center_horizontal"
+		        android:layout_marginBottom="10dp"
+		        android:layout_marginTop="30dp"
+		        android:background="@drawable/rec_border"
+		        android:fontFamily="sans-serif-thin"
+		        android:padding="10dp"
+		        android:text="@string/settings_inviteusers"
+		        android:textColor="@color/colorPrimary"
+		        android:textSize="30sp" />
 
-            <Button
+            <!--<Button
                 android:id="@+id/settings_leavebtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center_horizontal"
                 android:layout_marginBottom="10dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/rec_border_pink"
                 android:fontFamily="sans-serif-thin"
                 android:padding="10dp"
                 android:text="@string/settings_leave"
                 android:textColor="@color/pink"
-                android:textSize="30sp" />
+                android:textSize="30sp" />-->
 
             <Button
                 android:id="@+id/settings_submitbtn"

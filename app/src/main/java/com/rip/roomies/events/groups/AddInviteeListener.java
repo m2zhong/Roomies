@@ -56,6 +56,11 @@ public class AddInviteeListener implements View.OnClickListener, FindUserFunctio
 
 	@Override
 	public void findUserSuccess(User user) {
+		if (user.getGroupId() != 0) {
+			findUserFail();
+			return;
+		}
+
 		container.addUser(user);
 	}
 }

@@ -47,6 +47,7 @@ public class SQLFind {
 				String resultUsername = rs.getString("Username");
 				String resultEmail = rs.getString("Email");
 				byte[] profilePic = rs.getBytes("ProfileIcon");
+				int groupId = rs.getInt("GroupID");
 
 				// This checks if multiple rows were returned. If so, then finding failed
 				if (rs.next()) {

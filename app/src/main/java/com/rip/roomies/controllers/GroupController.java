@@ -51,7 +51,14 @@ public class GroupController {
 
 				// Create request group and get response from createGroup()
 				Group request = new Group(name, description);
-				return request.createGroup(User.getActiveUser());
+				Group response = request.createGroup(User.getActiveUser());
+
+				if (response != null) {
+					Group.setActiveGroup(response);
+					response = Group.getActiveGroup();
+				}
+
+				return response;
 			}
 
 			@Override
@@ -63,7 +70,6 @@ public class GroupController {
 
 				// Otherwise, print success
 				else {
-					Group.setActiveGroup(response);
 					funct.createGroupSuccess(response);
 				}
 			}
@@ -92,7 +98,14 @@ public class GroupController {
 						group.getId(), group.getName(), usersString));
 
 				// Add users to the group specified
-				return group.addUsers(users);
+				Group response = group.addUsers(users);
+
+				if (response != null) {
+					Group.setActiveGroup(response);
+					response = Group.getActiveGroup();
+				}
+
+				return response;
 			}
 
 			@Override
@@ -121,6 +134,7 @@ public class GroupController {
 				// If the user is logged in, add them to the database
 				User activeUser = User.getActiveUser();
 				if (activeUser != null)
+
 					databaseGroup = databaseGroup.addUsers(activeUser);
 
 				if (databaseGroup != null) {
