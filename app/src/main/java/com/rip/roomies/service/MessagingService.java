@@ -31,7 +31,7 @@ import com.rip.roomies.R;
 import com.rip.roomies.activities.bills.Bills;
 import com.rip.roomies.activities.duties.ListAllDuties;
 import com.rip.roomies.activities.home.Home;
-import com.rip.roomies.activities.login.Login;
+import com.rip.roomies.activities.login.SplashScreen;
 import com.rip.roomies.application.MyApplication;
 
 public class MessagingService extends FirebaseMessagingService{
@@ -81,7 +81,7 @@ public class MessagingService extends FirebaseMessagingService{
             }
         }
         else {
-            intent = new Intent(this, Login.class);
+            intent = new Intent(this, SplashScreen.class);
         }
         
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
