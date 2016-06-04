@@ -28,10 +28,10 @@ public class PopUpDutyListener implements View.OnClickListener{
 	private Button callerbtn;
 
 	public PopUpDutyListener(GenericActivity context, Button caller,int popUpID, Duty duty ){
-		this.context=context;
-		this.layoutID=popUpID;
-		this.duty=duty;
-		this.callerbtn=caller;
+		this.context = context;
+		this.layoutID = popUpID;
+		this.duty = duty;
+		this.callerbtn = caller;
 
 	}
 

@@ -38,7 +38,7 @@ public class CompleteDutyListener implements View.OnClickListener, CompleteDutyF
 	public CompleteDutyListener(GenericActivity context, Duty duty, PopupWindow popUpWindow) {
 		this.duty = duty;
 		this.activity = context;
-		this.popupWindow=popUpWindow;
+		this.popupWindow = popUpWindow;
 	}
 
 	/**
