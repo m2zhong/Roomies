@@ -4,12 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Typeface;
-import android.os.Bundle;
-import android.text.Layout;
 import android.util.AttributeSet;
 import android.view.Gravity;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -17,10 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.rip.roomies.R;
-import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.activities.duties.ListAllDuties;
 import com.rip.roomies.activities.duties.ModifyDuty;
-import com.rip.roomies.activities.duties.ViewDuty;
 import com.rip.roomies.events.duties.PopUpDutyListener;
 import com.rip.roomies.events.duties.RemindDutyListener;
 import com.rip.roomies.models.Duty;
@@ -96,10 +90,16 @@ public class DutyView extends TaskView {
 		setLayoutParams(w);
 		setOrientation(LinearLayout.VERTICAL);
 
-
+/*
+		setLayoutParams(new LayoutParams(
+				LayoutParams.MATCH_PARENT,
+				LayoutParams.WRAP_CONTENT));
+		setOrientation(LinearLayout.HORIZONTAL);
+*/
 		TextView name = new TextView(getContext());
 		TextView description = new TextView(getContext());
 		TextView assignee = new TextView(getContext());
+//		Button viewBtn = new Button(getContext());
 		Button editBtn = new Button(getContext());
 		Button actBtn = new Button(getContext());
 
@@ -111,13 +111,16 @@ public class DutyView extends TaskView {
 				LayoutParams.WRAP_CONTENT, 1.0f));
 
 		name.setTextColor(getResources().getColor(R.color.colorPrimary));
-		name.setTypeface(null, Typeface.BOLD);
+		name.setTextSize(25);
 
 		description.setTextColor(Color.BLACK);
-		assignee.setTextColor(Color.BLACK);
+		description.setTextSize(15);
+
+		assignee.setTextColor(getResources().getColor(R.color.black_overlay));
+		assignee.setTextSize(15);
 
 		innerLayout.setOrientation(LinearLayout.VERTICAL);
-		innerLayout.setPadding(50, 50, 50, 50);
+		innerLayout.setPadding(20, 20, 20, 20);
 
 		name.setText(duty.getName());
 		description.setText(duty.getDescription());
@@ -128,16 +131,40 @@ public class DutyView extends TaskView {
 		innerLayout.addView(description);
 		innerLayout.addView(assignee);
 
+/*		viewBtn.setText("View");
+		viewBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
+		viewBtn.setBackground(getResources().getDrawable(R.drawable.rec_border));
+//		viewBtn.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
+		viewBtn.setPadding(50, 50, 50 , 50);
+		LinearLayout.LayoutParams v = new LayoutParams(
+				LayoutParams.WRAP_CONTENT,
+				LayoutParams.WRAP_CONTENT);
+		v.gravity = Gravity.CENTER_VERTICAL;
+		v.setMargins(10, 50, 10, 50);
+		viewBtn.setLayoutParams(v);
+		viewBtn.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				log.info(String.format(Locale.US, InfoStrings.SWITCH_ACTIVITY,
+						ViewDuty.class.getSimpleName()));
+
+				Intent i = new Intent(getContext(), ViewDuty.class);
+				i.putExtra("Duty", duty);
+				((Activity) getContext()).startActivityForResult(i, VIEW_DUTY);
+			}
+		});
+*/
 
 
 		editBtn.setText("Edit");
 		editBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
 		editBtn.setBackground(getResources().getDrawable(R.drawable.rec_border));
-		editBtn.setPadding(50, 50, 50, 50);
+//		editBtn.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
+		editBtn.setPadding(20, 10, 20, 10);
 		LinearLayout.LayoutParams p = new LayoutParams(
 				LayoutParams.WRAP_CONTENT,
 				LayoutParams.WRAP_CONTENT);
-		p.gravity = Gravity.CENTER_VERTICAL;
+		p.gravity = Gravity.CENTER;
 		p.setMargins(10, 50, 10, 50);
 		editBtn.setLayoutParams(p);
 		editBtn.setOnClickListener(new OnClickListener() {
@@ -153,23 +180,25 @@ public class DutyView extends TaskView {
 		});
 
 
+
 		actBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
 		actBtn.setBackground(getResources().getDrawable(R.drawable.rec_border));
+//		viewBtn.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
 		LinearLayout.LayoutParams v = new LayoutParams(
 				LayoutParams.WRAP_CONTENT,
 				LayoutParams.WRAP_CONTENT);
-		v.gravity = Gravity.CENTER_VERTICAL;
+		v.gravity = Gravity.CENTER;
 		v.setMargins(10, 50, 10, 50);
 		actBtn.setLayoutParams(v);
 
 		User currentAssignee = duty.getAssignee();
 		if (currentAssignee.getId() == User.getActiveUser().getId()) {
 			actBtn.setText("Complete");
-			actBtn.setPadding(50, 50, 50 , 50);
+			actBtn.setPadding(10, 20, 10 , 20);
 		}
 		else{
 			actBtn.setText("Remind");
-			actBtn.setPadding(90, 50, 90 , 50);
+			actBtn.setPadding(10, 20, 10 , 20);
 		}
 
 
@@ -199,6 +228,7 @@ public class DutyView extends TaskView {
 		outerLayout.setOrientation(LinearLayout.HORIZONTAL);
 
 		outerLayout.addView(innerLayout);
+//		outerLayout.addView(viewBtn);
 		outerLayout.addView(editBtn);
 		outerLayout.addView(actBtn);
 
