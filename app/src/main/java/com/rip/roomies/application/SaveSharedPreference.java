@@ -9,8 +9,8 @@ import android.preference.PreferenceManager;
  */
 public class SaveSharedPreference
 {
-    static final String USERNAME= "";
-    static final String PASSWORD= "";
+    static final String USERNAME = "username";
+    static final String PASSWORD = "password";
 
     static SharedPreferences getSharedPreferences(Context ctx) {
         return PreferenceManager.getDefaultSharedPreferences(ctx);

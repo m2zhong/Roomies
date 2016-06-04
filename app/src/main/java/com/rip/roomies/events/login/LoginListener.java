@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.activities.groups.GroupChoice;
+import com.rip.roomies.application.SaveSharedPreference;
 import com.rip.roomies.controllers.LoginController;
 import com.rip.roomies.functions.LoginFunction;
 import com.rip.roomies.models.Group;
@@ -15,7 +16,6 @@ import com.rip.roomies.util.DisplayStrings;
 import com.rip.roomies.util.InfoStrings;
 import com.rip.roomies.util.Validation;
 
-import java.util.Locale;
 import java.util.logging.Logger;
 
 /**
@@ -83,7 +83,12 @@ public class LoginListener implements View.OnClickListener, LoginFunction {
 			activity.startActivity(new Intent(activity, GroupChoice.class));
 		}
 		else {
+			SaveSharedPreference.setUsername(activity, username.getText().toString());
+			SaveSharedPreference.setPassword(activity, password.getText().toString());
 			activity.toHome();
+			//not just to home
+
+
 		}
 	}
 }
