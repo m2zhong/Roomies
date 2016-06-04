@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.activities.groups.GroupChoice;
+import com.rip.roomies.application.SaveSharedPreference;
 import com.rip.roomies.controllers.LoginController;
 import com.rip.roomies.functions.LoginFunction;
 import com.rip.roomies.models.Group;
@@ -80,6 +81,14 @@ public class LoginListener implements View.OnClickListener, LoginFunction {
 	@Override
 	public void loginSuccess(User user) {
 		if (Group.getActiveGroup() == null) {
+			if(SaveSharedPreference.getUsername(activity).length() == 0 || SaveSharedPreference.getPassword(activity).length() == 0) {
+				log.info("username: " + SaveSharedPreference.getUsername(activity) + "\n");
+				log.info("password: " + SaveSharedPreference.getPassword(activity) + "\n");
+				SaveSharedPreference.setUsername(activity, username.getText().toString());
+				SaveSharedPreference.setPassword(activity, password.getText().toString());
+				log.info("username: " + SaveSharedPreference.getUsername(activity) + "\n");
+				log.info("password: " + SaveSharedPreference.getPassword(activity) + "\n");
+			}
 			activity.startActivity(new Intent(activity, GroupChoice.class));
 		}
 		else {
