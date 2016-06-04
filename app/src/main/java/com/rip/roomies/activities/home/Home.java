@@ -191,12 +191,12 @@ public class Home extends GenericActivity {
 			@Override
 			public void onClick(View v) {
 				if(SaveSharedPreference.getUsername(v.getContext()).length() != 0 || SaveSharedPreference.getPassword(v.getContext()).length() != 0) {
-					log.info("username: " + SaveSharedPreference.getUsername(v.getContext()) + "\n");
-					log.info("password: " + SaveSharedPreference.getPassword(v.getContext()) + "\n");
+					log.info("username: " + SaveSharedPreference.getUsername(v.getContext()) + " 1 from logout" + "\n");
+					log.info("password: " + SaveSharedPreference.getPassword(v.getContext()) + "1 from logout" + "\n");
 					SaveSharedPreference.clearUsername(v.getContext());
 					SaveSharedPreference.clearPassword(v.getContext());
-					log.info("username: " + SaveSharedPreference.getUsername(v.getContext()) + "\n");
-					log.info("password: " + SaveSharedPreference.getPassword(v.getContext()) + "\n");
+					log.info("username: " + SaveSharedPreference.getUsername(v.getContext()) + "2 from logout" + "\n");
+					log.info("password: " + SaveSharedPreference.getPassword(v.getContext()) + "2 from logout" + "\n");
 
 				}
 				popupWindow.dismiss();
