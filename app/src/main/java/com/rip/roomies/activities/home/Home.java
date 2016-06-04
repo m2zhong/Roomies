@@ -31,6 +31,7 @@ import com.rip.roomies.activities.goods.ListAllGoods;
 import com.rip.roomies.activities.profile.Profile;
 import com.rip.roomies.activities.tasks.ListMyTasks;
 
+import com.rip.roomies.application.SaveSharedPreference;
 import com.rip.roomies.controllers.HomeController;
 import com.rip.roomies.models.Bill;
 import com.rip.roomies.models.Bulletin;
@@ -189,6 +190,15 @@ public class Home extends GenericActivity {
 		btnYes.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				if(SaveSharedPreference.getUsername(v.getContext()).length() != 0 || SaveSharedPreference.getPassword(v.getContext()).length() != 0) {
+					log.info("username: " + SaveSharedPreference.getUsername(v.getContext()) + "\n");
+					log.info("password: " + SaveSharedPreference.getPassword(v.getContext()) + "\n");
+					SaveSharedPreference.clearUsername(v.getContext());
+					SaveSharedPreference.clearPassword(v.getContext());
+					log.info("username: " + SaveSharedPreference.getUsername(v.getContext()) + "\n");
+					log.info("password: " + SaveSharedPreference.getPassword(v.getContext()) + "\n");
+
+				}
 				popupWindow.dismiss();
 				LoginController.getController().logoff();
 				toLogin();
