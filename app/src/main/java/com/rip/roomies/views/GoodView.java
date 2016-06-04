@@ -13,10 +13,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.rip.roomies.R;
+import com.rip.roomies.activities.duties.ListAllDuties;
 import com.rip.roomies.activities.goods.ListAllGoods;
 import com.rip.roomies.activities.goods.ModifyGood;
+import com.rip.roomies.events.duties.PopUpDutyListener;
+import com.rip.roomies.events.duties.RemindDutyListener;
 import com.rip.roomies.events.goods.CompleteGoodListener;
+import com.rip.roomies.events.goods.PopUpGoodListener;
+import com.rip.roomies.events.goods.RemindGoodListener;
 import com.rip.roomies.models.Good;
+import com.rip.roomies.models.User;
 import com.rip.roomies.util.InfoStrings;
 
 import java.util.Locale;
@@ -90,16 +96,10 @@ public class GoodView extends TaskView {
 		setLayoutParams(w);
 		setOrientation(LinearLayout.VERTICAL);
 
-/*
-		setLayoutParams(new LayoutParams(
-				LayoutParams.MATCH_PARENT,
-				LayoutParams.WRAP_CONTENT));
-		setOrientation(LinearLayout.HORIZONTAL);
-*/
 		TextView name = new TextView(getContext());
 		TextView description = new TextView(getContext());
 		TextView assignee = new TextView(getContext());
-		Button completebtn = new Button(getContext());
+		Button actBtn = new Button(getContext());
 		Button editBtn = new Button(getContext());
 		LinearLayout innerLayout = new LinearLayout(getContext());
 		innerLayout.setLayoutParams(new LayoutParams(
@@ -130,9 +130,6 @@ public class GoodView extends TaskView {
 		editBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
 		editBtn.setBackground(getResources().getDrawable(R.drawable.rec_border));
 		editBtn.setPadding(20, 20, 20 , 20);
-/*		editBtn.setLayoutParams(new LayoutParams(
-				LayoutParams.WRAP_CONTENT,
-				LayoutParams.MATCH_PARENT, 1.0f)); */
 		LinearLayout.LayoutParams p = new LayoutParams(
 				LayoutParams.WRAP_CONTENT,
 				LayoutParams.WRAP_CONTENT);
@@ -151,22 +148,42 @@ public class GoodView extends TaskView {
 			}
 		});
 
-		completebtn.setText("Complete");
-		completebtn.setTextColor(getResources().getColor(R.color.colorPrimary));
-		completebtn.setBackground(getResources().getDrawable(R.drawable.rec_border));
-		completebtn.setPadding(20, 20, 20 , 20);
+
+		actBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
+		actBtn.setBackground(getResources().getDrawable(R.drawable.rec_border));
 		LinearLayout.LayoutParams v = new LayoutParams(
 				LayoutParams.WRAP_CONTENT,
 				LayoutParams.WRAP_CONTENT);
-		v.gravity = Gravity.CENTER;
-		v.setMargins(10, 20, 10, 20);
-		completebtn.setLayoutParams(v);
-/*		viewBtn.setLayoutParams(new LayoutParams(
-				LayoutParams.WRAP_CONTENT,
-				LayoutParams.MATCH_PARENT, 1.0f));*/
+		v.gravity = Gravity.CENTER_VERTICAL;
+		v.setMargins(10, 50, 10, 50);
+		actBtn.setLayoutParams(v);
 
-		completebtn.setOnClickListener(new CompleteGoodListener((ListAllGoods) getContext(),
-				this, good));
+		User currentAssignee = good.getAssignee();
+		if (currentAssignee.getId() == User.getActiveUser().getId()) {
+			actBtn.setText("Complete");
+			actBtn.setPadding(50, 50, 50 , 50);
+		}
+		else{
+			actBtn.setText("Remind");
+			actBtn.setPadding(90, 50, 90 , 50);
+		}
+
+		actBtn.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				User currentAssignee = good.getAssignee();
+				if (currentAssignee.getId() == User.getActiveUser().getId()) {
+					int popUpID = R.layout.activity_confirm_complete_good;
+					((Button) v).setOnClickListener(new PopUpGoodListener(
+							(ListAllGoods) getContext(), ((Button) v), popUpID, good));
+				}
+				else{
+					((Button) v).setOnClickListener(new RemindGoodListener(
+							(ListAllGoods) getContext(), currentAssignee.getId(), good));
+				}
+			}
+		});
+
 
 		LinearLayout hline = new LinearLayout(getContext());
 		hline.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1));
@@ -175,12 +192,11 @@ public class GoodView extends TaskView {
 		LinearLayout outerLayout = new LinearLayout(getContext());
 		outerLayout.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
 				ViewGroup.LayoutParams.MATCH_PARENT));
-
 		outerLayout.setOrientation(LinearLayout.HORIZONTAL);
 
 		outerLayout.addView(innerLayout);
 		outerLayout.addView(editBtn);
-		outerLayout.addView(completebtn);
+		outerLayout.addView(actBtn);
 
 		addView(outerLayout);
 		addView(hline);

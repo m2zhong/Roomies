@@ -218,6 +218,7 @@ public class InfoStrings {
 	public static final String REMOVE_GOOD_MODEL = "Removing a good based off the current object";
 	public static final String REMOVE_GOOD_CONTROLLER = "Removing a good with the id %d.\n";
 
+	public static final String COMPLETE_GOOD_EVENT = "Validation passed. Attempting to complete good.";
 	public static final String COMPLETE_GOOD_MODEL = "Completing a good based off the current object";
 	public static final String COMPLETE_GOOD_CONTROLLER = "Completing a good with the id %d.\n";
 
@@ -266,6 +267,9 @@ public class InfoStrings {
 
 	public static final String REMIND_DUTY_EVENT = "Validation passed. Attempting to Remind Duty.";
 	public static final String GET_REMINDER_DUTY_LISTENER = "Get remind to do duty.";
+
+	public static final String REMIND_GOOD_EVENT = "Validation passed. Attempting to Remind Good.";
+	public static final String GET_REMINDER_GOOD_LISTENER = "Get remind to do good.";
 
 	public static final String SERVER_CONNECT = "Connecting to the database...";
 	public static final String SERVER_CONNECTED = "Connected to the database!";

@@ -40,6 +40,7 @@ public class Profile extends GenericActivity implements View.OnClickListener {
     private EditText etLastName;
     private EditText etEmail;
     private EditText etGroupDescription;
+    private EditText etGroupName;
     private Button btChangePassword;
     private Button btSaveChanges;
     //private Button btLeaveGroup;
@@ -65,6 +66,7 @@ public class Profile extends GenericActivity implements View.OnClickListener {
         etLastName = (EditText) findViewById(R.id.settings_lastname);
         etEmail = (EditText) findViewById(R.id.settings_email);
         etGroupDescription = (EditText) findViewById(R.id.settings_description);
+        etGroupName = (EditText) findViewById(R.id.settings_gname);
         btChangePassword = (Button) findViewById(R.id.settings_changepassword);
         btSaveChanges = (Button) findViewById(R.id.settings_submitbtn);
         //btLeaveGroup = (Button) findViewById(R.id.settings_leavebtn);
@@ -74,6 +76,7 @@ public class Profile extends GenericActivity implements View.OnClickListener {
         //lock the editable fields
         etFirstName.setEnabled(false); etLastName.setEnabled(false);
         etEmail.setEnabled(false); etGroupDescription.setEnabled(false);
+        etGroupName.setEnabled(false);
 
         //Load the information for this user
         thisUser = User.getActiveUser();
@@ -84,6 +87,7 @@ public class Profile extends GenericActivity implements View.OnClickListener {
             etLastName.setText(thisUser.getLastName());
             etEmail.setText(thisUser.getEmail());
             etGroupDescription.setText(thisUsersGroup.getDescription());
+            etGroupName.setText(thisUsersGroup.getName());
         }
 
 	    Display display = getWindowManager().getDefaultDisplay();
@@ -103,10 +107,11 @@ public class Profile extends GenericActivity implements View.OnClickListener {
 	    }
 
         etFirstName.setBackgroundColor(Color.WHITE);
-        etFirstName.setBackgroundColor(Color.WHITE);
+        //etFirstName.setBackgroundColor(Color.WHITE);
         etLastName.setBackgroundColor(Color.WHITE);
         etEmail.setBackgroundColor(Color.WHITE);
         etGroupDescription.setBackgroundColor(Color.WHITE);
+        etGroupName.setBackgroundColor(Color.WHITE);
 
 
         //set the listeners for the leavegroup button/submit changes button
