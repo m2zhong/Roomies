@@ -8,7 +8,7 @@ public class SocketStrings {
 	//connection url
 	public static final String SERVER_URL = "https://cse110-fcmtest.herokuapp.com";
 //	public static final String SERVER_URL = "https://cse110-server.herokuapp.com";
-//	public static final String SERVER_URL = "localhost:3000";
+//	public static final String SERVER_URL = "http://192.168.0.21:3000";
 
 	//Strings for all the event android side listen from and emit to server, name has to be exact
 	public static final String COMPLETE_DUTY = "complete duty";

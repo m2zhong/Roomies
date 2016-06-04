@@ -18,7 +18,7 @@ public class Group {
     private int id;
 	private User[] members;
 
-	private static Group activeGroup;
+	private static Group activeGroup = null;
 	private static final Logger log = Logger.getLogger(Group.class.getName());
 
 	//------- CONSTRUCTORS -------//
