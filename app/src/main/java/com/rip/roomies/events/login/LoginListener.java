@@ -15,7 +15,6 @@ import com.rip.roomies.util.DisplayStrings;
 import com.rip.roomies.util.InfoStrings;
 import com.rip.roomies.util.Validation;
 
-import java.util.Locale;
 import java.util.logging.Logger;
 
 /**
@@ -84,6 +83,9 @@ public class LoginListener implements View.OnClickListener, LoginFunction {
 		}
 		else {
 			activity.toHome();
+			//not just to home
+
+
 		}
 	}
 }
