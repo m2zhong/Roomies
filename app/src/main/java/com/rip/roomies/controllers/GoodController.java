@@ -220,8 +220,7 @@ public class GoodController {
 	 * Attempts to mark the duty with the specified id as completed.
 	 * @param funct The funct to post results to
 	 * @param id The unique id of this duty in the database
-	 * @param amount
-	 */
+	 *//*
 	public void completeGood(final CompleteGoodFunction funct, final int id, final double amount) {
 		// Create and run a new thread
 		new AsyncTask<Void, Void, Good>() {
@@ -232,6 +231,31 @@ public class GoodController {
 				// Create request user and get response from login()
 				Good request = new Good(id);
 				return request.complete(amount);
+			}
+
+			// If fail, call fail callback. Otherwise, call success callback
+			@Override
+			public void onPostExecute(Good response) {
+				if (response == null) {
+					funct.completeGoodFail();
+				}
+				else {
+					funct.completeGoodSuccess(response);
+				}
+			}
+		}.execute();
+	}*/
+
+	public void completeGood(final CompleteGoodFunction funct, final int id) {
+		// Create and run a new thread
+		new AsyncTask<Void, Void, Good>() {
+			@Override
+			public Good doInBackground(Void... v) {
+				log.info(String.format(Locale.US, InfoStrings.COMPLETE_GOOD_CONTROLLER, id));
+
+				// Create request user and get response from login()
+				Good request = new Good(id);
+				return request.complete();
 			}
 
 			// If fail, call fail callback. Otherwise, call success callback
