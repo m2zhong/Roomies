@@ -139,7 +139,8 @@
 		<activity
 			android:name=".activities.goods.ModifyGood"
 			android:configChanges="orientation|keyboardHidden|screenSize"
-			android:theme="@style/FullscreenTheme" />
+			android:theme="@style/FullscreenTheme"
+			android:windowSoftInputMode="adjustPan"/>
 
 	    <activity
 		    android:name=".activities.bulletin.AddBulletin"

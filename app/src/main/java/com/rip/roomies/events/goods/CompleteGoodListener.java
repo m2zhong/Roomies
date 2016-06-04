@@ -1,6 +1,7 @@
 package com.rip.roomies.events.goods;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,7 +34,6 @@ public class CompleteGoodListener implements View.OnClickListener, CompleteGoodF
 	private int popUpLayoutID;
 	private GoodView goodview;
 	private static final Logger log = Logger.getLogger(CompleteGoodListener.class.getName());
-	private double amount; //for bill $ amount
 	public static final int COMPLETE_GOOD = 4;
 
 	/**
@@ -79,9 +79,17 @@ public class CompleteGoodListener implements View.OnClickListener, CompleteGoodF
 		btnYes.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				amount = Double.valueOf(userInput.getText().toString());
-				GoodController.getController().completeGood(self, good.getId(), amount);
-				popupWindow.dismiss();
+				if (userInput.length() == 0) {
+					Toast.makeText(context,"Enter an amount.",Toast.LENGTH_SHORT).show();
+					return;
+				}
+				else {
+					Double amount = Double.parseDouble(userInput.getText().toString());
+					Intent i = new Intent();
+					context.startActivityForResult(i, COMPLETE_GOOD);
+					GoodController.getController().completeGood(self, good.getId(), amount);
+					popupWindow.dismiss();
+				}
 			}
 		});
 
@@ -102,6 +110,7 @@ public class CompleteGoodListener implements View.OnClickListener, CompleteGoodF
 
 		@Override
 		public void completeGoodSuccess (Good good){
+
 		}
 	}
 

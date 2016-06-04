@@ -79,7 +79,7 @@ public class GoodView extends TaskView {
 	/**
 	 * Sets up the layout for this GoodView.
 	 */
-	protected void setupLayout() {
+	protected void setupLayout(){
 		log.info(String.format(InfoStrings.VIEW_SETUP, GoodView.class.getSimpleName()));
 
 		removeAllViews();
