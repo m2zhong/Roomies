@@ -248,7 +248,7 @@ public class SQLCreate {
 
 			// get the result table from query execution through sql
 			rset = SQLQuery.execute(String.format(Locale.US, SQLStrings.CREATE_BULLETIN,
-					Group.getActiveGroup().getId(), bull.getContent()));
+					Group.getActiveGroup().getId(), SQLQuery.sanitize(bull.getContent())));
 
 			rset.next();
 
