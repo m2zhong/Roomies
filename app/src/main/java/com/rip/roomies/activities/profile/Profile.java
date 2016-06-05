@@ -48,6 +48,8 @@ public class Profile extends GenericActivity implements View.OnClickListener {
 	private int imageWidth;
 	private int imageHeight;
 
+	private boolean imageChanged = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,7 +116,7 @@ public class Profile extends GenericActivity implements View.OnClickListener {
 
         //set the listeners for the leavegroup button/submit changes button
         btSaveChanges.setOnClickListener(new EditProfileListener(this, etFirstName, etLastName,
-		        etEmail, etGroupDescription, userProfile));
+		        etEmail, etGroupDescription, (imageChanged) ? userProfile : null));
         //btLeaveGroup.setOnClickListener(new LeaveGroupListener(this));
         btChangePassword.setOnClickListener(this);
 
@@ -182,6 +184,7 @@ public class Profile extends GenericActivity implements View.OnClickListener {
 			try {
 				userProfile.setImageBitmap(Images.getScaledDownBitmap(getContentResolver(),
 						data.getData(), imageWidth, imageHeight));
+				imageChanged = true;
 			}
 			catch (Exception e) {
 				log.severe(Exceptions.stacktraceToString(e));
