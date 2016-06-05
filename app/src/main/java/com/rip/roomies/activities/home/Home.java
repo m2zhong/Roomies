@@ -208,6 +208,14 @@ public class Home extends GenericActivity {
 				}
 				popupWindow.dismiss();
 				popupEnabled = false;
+
+				try {
+					ServerRequest.refreshToken(user.getId(), "");
+				}
+				catch (URISyntaxException e) {
+					e.printStackTrace();
+				}
+
 				LoginController.getController().logoff();
 				toLogin();
 			}
