@@ -3,10 +3,12 @@ package com.rip.roomies.views;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.rip.roomies.R;
 import com.rip.roomies.models.User;
 import com.rip.roomies.util.InfoStrings;
 
@@ -72,6 +74,12 @@ public class UserView extends LinearLayout {
 				ViewGroup.LayoutParams.WRAP_CONTENT));
 		setOrientation(LinearLayout.VERTICAL);
 
+		LinearLayout hline = new LinearLayout(getContext());
+		LayoutParams hParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1);
+		hParams.gravity = Gravity.CENTER;
+		hline.setLayoutParams(hParams);
+		hline.setBackgroundColor(Color.BLACK);
+
 		TextView name = new TextView(getContext());
 		TextView username = new TextView(getContext());
 		TextView email = new TextView(getContext());
@@ -81,11 +89,19 @@ public class UserView extends LinearLayout {
 		username.setText(user.getUsername());
 		email.setText(user.getEmail());
 
+		name.setTextColor(getResources().getColor(R.color.colorPrimary));
+		name.setTextSize(20);
+
+		LinearLayout btmBorder = new LinearLayout(getContext());
+		LayoutParams btmBorderp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1);
+		btmBorderp.gravity = Gravity.CENTER_HORIZONTAL;
+		btmBorder.setLayoutParams(btmBorderp);
+		btmBorder.setBackgroundColor(getResources().getColor(R.color.black));
+
 		name.setTextColor(Color.BLACK);
 		name.setPadding(50, 50, 50, 50);
 		addView(name);
-
-		//addView(username);
-		//addView(email);
+		addView(hline);
+		addView(btmBorder);
 	}
 }

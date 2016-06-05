@@ -61,7 +61,7 @@ public class SQLFind {
 
 				// Return a new user object
 				return new User(resultID, resultFirstName, resultLastName, resultUsername,
-						resultEmail, null, profilePic);
+						resultEmail, null, profilePic, groupId);
 			}
 		}
 		catch (Exception e) {
