@@ -157,11 +157,11 @@ public class BillController {
                     for (Bill bill : result) {
                         if (bill.getAmount() < 0) {
                             bill.setAmount(bill.getAmount());
-                            youowe_bills_container.addBill(bill); //TODO play nice with reminder
+                            youowe_bills_container.addBill(bill);
                             activity.addToYouOweBalance(bill.getAmount());
                         }
                         else {
-                            oweyou_bills_container.addBill(bill); //TODO play nice with reminder
+                            oweyou_bills_container.addBill(bill);
                             activity.addToOweYouBalance(bill.getAmount());
                         }
                     }
