@@ -272,7 +272,7 @@ public class Home extends GenericActivity {
 			String updContent = data.getStringExtra("Key_New_Content");
 
 			editBull.setContent(updContent);
-			aBullCont.setText(updContent);
+			aBullCont.setText('"' + updContent + '"');
 
 			HomeController.getController().modifyBulletin(editBull);
 
