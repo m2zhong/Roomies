@@ -128,6 +128,7 @@
 		<activity
 			android:name=".activities.goods.CreateGood"
 			android:configChanges="orientation|keyboardHidden|screenSize"
+			android:windowSoftInputMode="adjustNothing"
 			android:theme="@style/FullscreenTheme"/>
 		<activity
 			android:name=".activities.goods.ListAllGoods"
