@@ -74,6 +74,15 @@
 				android:textColor="@color/black"
 				android:textSize="20sp" />
 
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginEnd="5dp"
+				android:layout_marginStart="5dp"
+				android:text="Roomie(s) in charge: "
+				android:textColor="@color/colorPrimary"
+				android:textSize="25dp" />
+
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
@@ -113,8 +122,6 @@
 				android:id="@+id/users_container"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent" />
-
-
 		</LinearLayout>
 	</ScrollView>
 
@@ -135,5 +142,6 @@
 			android:text="Add Duty"
 			android:textColor="@color/colorPrimary"
 			android:textSize="30sp" />
+
 	</LinearLayout>
 </FrameLayout>
