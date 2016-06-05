@@ -109,7 +109,7 @@ public class Validation {
 	}
 
 	public static String validateImage(byte[] image, ParamType type, String name) {
-		if (type == ParamType.SmallImage && image.length > MAX_SMALL_IMAGE_SIZE) {
+		if (type == ParamType.SmallImage && image != null && image.length > MAX_SMALL_IMAGE_SIZE) {
 			log.info("Size: " + image.length);
 			return String.format(Locale.US, DisplayStrings.TOO_LARGE, name,
 					MAX_SMALL_IMAGE_SIZE + " bytes");

@@ -11,6 +11,10 @@ public class Conversions {
 	private static final char[] hexChars = "0123456789ABCDEF".toCharArray();
 
 	public static String byteArrayToHexString(byte[] data) {
+		if (data == null) {
+			return "NULL";
+		}
+
 		char[] hexString = new char[data.length * 2 + 2];
 		hexString[0] = '0';
 		hexString[1] = 'x';

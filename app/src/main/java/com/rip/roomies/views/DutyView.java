@@ -196,32 +196,29 @@ public class DutyView extends TaskView {
 		v.setMargins(10, 50, 10, 50);
 		actBtn.setLayoutParams(v);
 
+
+		//disabling the button her according to the timestamp
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+
+
+
 		User currentAssignee = duty.getAssignee();
+		//completion
 		if (currentAssignee.getId() == User.getActiveUser().getId()) {
 			actBtn.setText("Complete");
 			actBtn.setPadding(10, 20, 10 , 20);
+			int popUpID = R.layout.activity_confirm_duty_comp;
+			actBtn.setOnClickListener(new PopUpDutyListener(
+					(GenericActivity) getContext(), (CompleteDutyFunction) getContext(),
+					actBtn, popUpID, duty));
 		}
+		//remind others
 		else{
 			actBtn.setText("Remind");
 			actBtn.setPadding(10, 20, 10 , 20);
+			actBtn.setOnClickListener(new RemindDutyListener(
+					(GenericActivity) getContext(), currentAssignee.getId(), duty));
 		}
-
-		actBtn.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				User currentAssignee = duty.getAssignee();
-				if (currentAssignee.getId() == User.getActiveUser().getId()) {
-					int popUpID = R.layout.activity_confirm_duty_comp;
-					((Button) v).setOnClickListener(new PopUpDutyListener(
-							(GenericActivity) getContext(), (CompleteDutyFunction) getContext(),
-							((Button) v), popUpID, duty));
-				}
-				else{
-					((Button) v).setOnClickListener(new RemindDutyListener(
-							(GenericActivity) getContext(), currentAssignee.getId(), duty));
-				}
-			}
-		});
 
 		LinearLayout hline = new LinearLayout(getContext());
 		LayoutParams hlinep = new LayoutParams(200,1);

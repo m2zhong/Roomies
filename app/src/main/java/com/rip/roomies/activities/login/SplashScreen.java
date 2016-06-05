@@ -48,8 +48,7 @@ public class SplashScreen extends GenericActivity implements LoginFunction{
 				String username = SaveSharedPreference.getUsername(activity);
 				String password = SaveSharedPreference.getPassword(activity);
 				if(username.length() != 0 && password.length() != 0) {
-					LoginController.getController().login(func, SaveSharedPreference.getUsername(activity),
-							SaveSharedPreference.getPassword(activity));
+					LoginController.getController().login(func, username, password);
 				}
 				else {
 					toLogin();
