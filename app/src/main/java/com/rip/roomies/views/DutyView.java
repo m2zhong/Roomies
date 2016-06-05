@@ -4,10 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-<<<<<<< HEAD
 import android.graphics.Typeface;
-=======
->>>>>>> 3d0ffe2d11f484bf87d5837425fe5ffeb6eeafd1
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
@@ -17,12 +14,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.rip.roomies.R;
+import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.activities.duties.ListAllDuties;
 import com.rip.roomies.activities.duties.ModifyDuty;
-<<<<<<< HEAD
-=======
+
 import com.rip.roomies.events.duties.CompleteDutyListener;
->>>>>>> 3d0ffe2d11f484bf87d5837425fe5ffeb6eeafd1
 import com.rip.roomies.events.duties.PopUpDutyListener;
 import com.rip.roomies.events.duties.RemindDutyListener;
 import com.rip.roomies.functions.CompleteDutyFunction;
@@ -101,15 +97,13 @@ public class DutyView extends TaskView {
 		setLayoutParams(w);
 		setOrientation(LinearLayout.VERTICAL);
 
-<<<<<<< HEAD
-=======
+
 /*
 		setLayoutParams(new LayoutParams(
 				LayoutParams.MATCH_PARENT,
 				LayoutParams.WRAP_CONTENT));
 		setOrientation(LinearLayout.HORIZONTAL);
 */
->>>>>>> 3d0ffe2d11f484bf87d5837425fe5ffeb6eeafd1
 		TextView name = new TextView(getContext());
 		TextView description = new TextView(getContext());
 		TextView assignee = new TextView(getContext());
@@ -143,8 +137,7 @@ public class DutyView extends TaskView {
 		innerLayout.addView(description);
 		innerLayout.addView(assignee);
 
-<<<<<<< HEAD
-=======
+
 /*		viewBtn.setText("View");
 		viewBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
 		viewBtn.setBackground(getResources().getDrawable(R.drawable.rec_border));
@@ -170,7 +163,6 @@ public class DutyView extends TaskView {
 */
 
 
->>>>>>> 3d0ffe2d11f484bf87d5837425fe5ffeb6eeafd1
 		editBtn.setText("Edit");
 		editBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
 		editBtn.setBackground(getResources().getDrawable(R.drawable.rec_border));

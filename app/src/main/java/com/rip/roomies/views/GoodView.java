@@ -14,11 +14,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.rip.roomies.R;
-<<<<<<< HEAD
 import com.rip.roomies.activities.goods.ListAllGoods;
-=======
 import com.rip.roomies.activities.GenericActivity;
->>>>>>> 3d0ffe2d11f484bf87d5837425fe5ffeb6eeafd1
 import com.rip.roomies.activities.goods.ModifyGood;
 import com.rip.roomies.events.goods.PopUpGoodListener;
 import com.rip.roomies.events.goods.RemindGoodListener;
