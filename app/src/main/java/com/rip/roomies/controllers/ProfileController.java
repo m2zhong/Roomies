@@ -73,9 +73,13 @@ public class ProfileController {
                 //        name, description));
 
                 // Create request group and get response from createGroup()
+                byte[] image = User.getActiveUser().getProfilePic();
+                if (profilePic != null) {
+                    image = profilePic;
+                }
 
                 return User.getActiveUser().updateProfile(firstName, lastName, email,
-		                groupDescription, profilePic);
+		                groupDescription, image);
             }
 
             @Override
