@@ -22,7 +22,7 @@ public class SQLQuery {
 
 	//roomies_app.....password=#room1es4lyfe
 	// The connection string to connect to database
-	private static final String CONN_STRING = "jdbc:jtds:sqlserver://rationallyimpairedprogrammers.database.windows.net:1433/cse110_dev;user=roomies_app;password=#room1es4lyfe;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;instance=SQLEXPRESS;";
+	private static final String CONN_STRING = "jdbc:jtds:sqlserver://rationallyimpairedprogrammers.database.windows.net:1433/cse110_dev;user=roomies_app;password=#room1es4lyfe;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;instance=SQLEXPRESS;socketKeepAlive=true;";
 
 	/**
 	 * Helper class that initiates the connection to the database, setting the

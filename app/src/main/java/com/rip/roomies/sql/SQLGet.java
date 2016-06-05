@@ -358,7 +358,7 @@ public class SQLGet {
 					String last = getUser.getString("LastName");
 					String username = getUser.getString("Username");
 					String email = getUser.getString("Email");
-					byte[] profilePic = rs.getBytes("ProfileIcon");
+					byte[] profilePic = getUser.getBytes("ProfileIcon");
 
 					User assignee = new User(userId, first, last, username, email, null, profilePic);
 
@@ -409,10 +409,20 @@ public class SQLGet {
 				while (rs.next()) {
 					int resultId = rs.getInt("ID");
 					int resultOwnerId = rs.getInt("OwnerID");
-					String resultName = rs.getString("Name");
+//					String resultName = rs.getString("Name");
 					String resultDescription = rs.getString("Description");
 					float resultAmount = rs.getFloat("Amount");
 					int resultOweeID = rs.getInt("OweeID");
+					String resultName;
+					if(User.getActiveUser().getId() == resultOweeID) {
+						resultAmount = -resultAmount;
+						resultName = Group.getActiveGroup().getMember(resultOwnerId).getName();
+					}
+					else{
+//						resultName = User.getActiveUser().getName();
+						resultName = Group.getActiveGroup().getMember(resultOweeID).getName();
+					}
+
 
 					Bill temp = new Bill(resultOwnerId, resultId, resultName, resultDescription,
 							resultAmount, resultOweeID);

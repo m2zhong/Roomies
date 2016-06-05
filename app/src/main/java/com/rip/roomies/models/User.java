@@ -320,4 +320,8 @@ public class User implements Parcelable {
 		in.readByteArray(temp);
 		profilePic = temp;
 	}
+
+	public String getName() {
+		return firstName + " " + lastName;
+	}
 }

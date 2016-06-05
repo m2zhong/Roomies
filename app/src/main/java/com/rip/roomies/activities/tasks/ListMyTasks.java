@@ -9,8 +9,11 @@ import android.widget.Toast;
 import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.controllers.DutyController;
+import com.rip.roomies.functions.CompleteDutyFunction;
+import com.rip.roomies.functions.CompleteGoodFunction;
 import com.rip.roomies.functions.ListMyTasksFunction;
 import com.rip.roomies.models.Duty;
+import com.rip.roomies.models.Good;
 import com.rip.roomies.models.Task;
 import com.rip.roomies.util.DisplayStrings;
 import com.rip.roomies.views.DutyContainer;
@@ -20,7 +23,8 @@ import com.rip.roomies.views.TaskContainer;
 /**
  * The activity of when the user wishes to view his or her duties.
  */
-public class ListMyTasks extends GenericActivity implements ListMyTasksFunction {
+public class ListMyTasks extends GenericActivity implements ListMyTasksFunction,
+		CompleteDutyFunction, CompleteGoodFunction {
 	TaskContainer tc;
 
 	@Override
@@ -76,5 +80,25 @@ public class ListMyTasks extends GenericActivity implements ListMyTasksFunction 
 			TextView msg = (TextView) findViewById(R.id.no_tasks_msg);
 			msg.setVisibility(View.GONE);
 		}
+	}
+
+	@Override
+	public void completeGoodFail() {
+		Toast.makeText(this, DisplayStrings.COMPLETE_GOOD_FAIL, Toast.LENGTH_LONG).show();
+	}
+
+	@Override
+	public void completeGoodSuccess(Good good) {
+		tc.completeTask(good);
+	}
+
+	@Override
+	public void completeDutyFail() {
+		Toast.makeText(this, DisplayStrings.COMPLETE_DUTY_FAIL, Toast.LENGTH_LONG).show();
+	}
+
+	@Override
+	public void completeDutySuccess(Duty d) {
+		tc.completeTask(d);
 	}
 }

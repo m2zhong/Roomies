@@ -14,10 +14,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.rip.roomies.R;
+<<<<<<< HEAD
 import com.rip.roomies.activities.goods.ListAllGoods;
+=======
+import com.rip.roomies.activities.GenericActivity;
+>>>>>>> 3d0ffe2d11f484bf87d5837425fe5ffeb6eeafd1
 import com.rip.roomies.activities.goods.ModifyGood;
 import com.rip.roomies.events.goods.PopUpGoodListener;
 import com.rip.roomies.events.goods.RemindGoodListener;
+import com.rip.roomies.functions.CompleteGoodFunction;
 import com.rip.roomies.models.Good;
 import com.rip.roomies.models.User;
 import com.rip.roomies.util.InfoStrings;
@@ -82,7 +87,7 @@ public class GoodView extends TaskView {
 	/**
 	 * Sets up the layout for this GoodView.
 	 */
-	protected void setupLayout() {
+	protected void setupLayout(){
 		log.info(String.format(InfoStrings.VIEW_SETUP, GoodView.class.getSimpleName()));
 
 		removeAllViews();
@@ -171,11 +176,12 @@ public class GoodView extends TaskView {
 				if (currentAssignee.getId() == User.getActiveUser().getId()) {
 					int popUpID = R.layout.activity_confirm_complete_good;
 					((Button) v).setOnClickListener(new PopUpGoodListener(
-							(ListAllGoods) getContext(), ((Button) v), popUpID, good));
+							(GenericActivity) getContext(), (CompleteGoodFunction) getContext(),
+							((Button) v), popUpID, good));
 				}
 				else{
 					((Button) v).setOnClickListener(new RemindGoodListener(
-							(ListAllGoods) getContext(), currentAssignee.getId(), good));
+							(GenericActivity) getContext(), currentAssignee.getId(), good));
 				}
 			}
 		});

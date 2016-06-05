@@ -14,47 +14,98 @@
 		android:background="@color/colorPrimary"
 		android:gravity="center_horizontal"
 		android:padding="10dp"
-		android:textSize="30sp"
 		android:text="Modify Good"
-		android:textColor="@color/colorAccent"/>
+		android:textColor="@color/colorAccent"
+		android:textSize="30sp" />
+
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginEnd="5dp"
+		android:layout_marginStart="5dp"
+		android:text="Name of item:"
+		android:textColor="@color/colorPrimary"
+		android:textSize="25dp" />
 
 	<EditText
 		android:id="@+id/good_name"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:hint="Name"
-		android:textColor="@color/black"/>
+		android:textColor="@color/black"
+		android:layout_marginEnd="5dp"
+		android:layout_marginStart="5dp"
+		android:background="@drawable/edittextlight"
+		android:padding="2dp" />
+
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginEnd="5dp"
+		android:layout_marginStart="5dp"
+		android:text="Item description:"
+		android:textColor="@color/colorPrimary"
+		android:textSize="25dp" />
 
 	<EditText
 		android:id="@+id/description"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:hint="Description"
-		android:textColor="@color/black"/>
+		android:textColor="@color/black"
+		android:layout_marginEnd="5dp"
+		android:layout_marginStart="5dp"
+		android:background="@drawable/edittextlight"
+		android:paddingBottom="2dp" />
+
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginEnd="5dp"
+		android:layout_marginStart="5dp"
+		android:text="Shared with:"
+		android:textColor="@color/colorPrimary"
+		android:textSize="25dp" />
 
 	<LinearLayout
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content">
+		android:layout_height="wrap_content"
+		android:layout_margin="5dp"
+		android:orientation="horizontal">
 
 		<com.rip.roomies.views.UserSpinner
 			android:id="@+id/group_users_spinner"
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_weight="1" />
-
-		<Button
-			android:id="@+id/add_user_btn"
 			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:width="50dp"
-			android:text="+" />
+			android:layout_height="match_parent"
+			android:layout_gravity="left"
+			android:layout_weight=".77"
+			android:background="@drawable/rec_border"/>
 
-		<Button
+		<LinearLayout
 			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="-"
-			android:id="@+id/rem_user_btn"
-			android:layout_weight="0.10"/>
+			android:layout_height="match_parent"
+			android:layout_gravity="right"
+			android:orientation="horizontal">
+
+			<Button
+				android:id="@+id/add_user_btn"
+				android:layout_width="50dp"
+				android:layout_height="match_parent"
+				android:layout_margin="5dp"
+				android:width="50dp"
+				android:background="@drawable/circleblue"
+				android:text="+"
+				android:textSize="30dp" />
+
+			<Button
+				android:id="@+id/rem_user_btn"
+				android:layout_width="50dp"
+				android:layout_height="match_parent"
+				android:layout_margin="5dp"
+				android:background="@drawable/circleblue"
+				android:text="-"
+				android:textSize="30dp" />
+		</LinearLayout>
 
 	</LinearLayout>
 
@@ -101,5 +152,6 @@
 			android:textSize="20sp"
 			android:text="Remove Good" />
 	</LinearLayout>
+
 
 </LinearLayout>
