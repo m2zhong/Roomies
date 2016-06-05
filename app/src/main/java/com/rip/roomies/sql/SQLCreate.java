@@ -203,8 +203,8 @@ public class SQLCreate {
 
 			// get the result table from query execution through sql
 			rset = SQLQuery.execute(String.format(Locale.US, SQLStrings.CREATE_BILL,
-					User.getActiveUser().getId(), bill.getName(), bill.getDescription(),
-					bill.getAmount(), bill.getOweeID()) );
+					bill.getOwnerID(), bill.getName(), bill.getDescription(),
+					bill.getAmount(), bill.getOweeID()));
 
 
 			rset.next();
@@ -213,10 +213,19 @@ public class SQLCreate {
 			//so pass the column number accordingly to get the info about the bill
 			int resultID = rset.getInt("ID");
 			int resultOwnerID = rset.getInt("OwnerID");
-			String resultName = rset.getString("name");
+//			String resultName = rset.getString("name");
 			String resultDescription = rset.getString("Description");
 			float resultAmount = rset.getFloat("Amount");
 			int resultOweeID = rset.getInt("OweeID");
+			String resultName;
+			if(User.getActiveUser().getId() == resultOweeID) {
+				resultAmount = -resultAmount;
+				resultName = Group.getActiveGroup().getMember(resultOwnerID).getName();
+			}
+			else{
+//				resultName = User.getActiveUser().getName();
+				resultName = Group.getActiveGroup().getMember(resultOweeID).getName();
+			}
 
 			//debug statement
 			log.info(String.format(Locale.US, InfoStrings.CREATEBILL_SUCCESSFULL, resultID,

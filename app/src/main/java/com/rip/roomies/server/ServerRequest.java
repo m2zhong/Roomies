@@ -51,6 +51,14 @@ public class ServerRequest {
 						receiverId, ownerName, amount, description);
 	}
 
+	public static void payBill(int receiverId, String oweeName,
+	                              float amount, String description) throws URISyntaxException{
+		Server.getConnection().emit(SocketStrings.NOTIFICATION_BILL,
+				receiverId, oweeName, amount, description);
+	}
+
+
+
 	public static void refreshToken(int userID, String token) throws  URISyntaxException{
 		Server.getConnection().emit(SocketStrings.REFRESH_TOKEN, userID, token);
 	}
