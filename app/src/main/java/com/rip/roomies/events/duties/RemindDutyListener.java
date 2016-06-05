@@ -46,7 +46,7 @@ public class RemindDutyListener implements View.OnClickListener {
 		try {
 			ServerRequest.remindDuty(duty.getId(), receiverID, duty.getName());
 			button.setEnabled(false);
-			Toast.makeText(activity.getApplicationContext(), "Reminder Sent, please wait for another 24" +
+			Toast.makeText(activity.getApplicationContext(), "Reminder Sent, please wait for another 6" +
 					" hours to send another one", Toast.LENGTH_SHORT).show();
 			button.setBackground(activity.getResources().getDrawable(R.drawable.rec_border_gray));
 			button.setTextColor(activity.getResources().getColor(R.color.black_overlay));

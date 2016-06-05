@@ -212,7 +212,7 @@ public abstract class Task<TLog extends TaskLog, T extends Task<TLog, T>> implem
 		   oldTime =  time.getTime();
 		long currentTime = System.currentTimeMillis();
 		long timeDiff = (currentTime - oldTime);
-		return (timeDiff < 86400000);
+		return (timeDiff < 21600000);
 	}
 
 }

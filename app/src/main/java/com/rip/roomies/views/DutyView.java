@@ -224,11 +224,6 @@ public class DutyView extends TaskView {
 		}
 
 
-
-
-
-
-
 		LinearLayout hline = new LinearLayout(getContext());
 		hline.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1));
 		hline.setBackgroundColor(Color.BLACK);

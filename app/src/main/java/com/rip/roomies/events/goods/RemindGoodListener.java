@@ -48,7 +48,7 @@ public class RemindGoodListener implements View.OnClickListener {
             button.setEnabled(false);
             button.setBackground(activity.getResources().getDrawable(R.drawable.rec_border_gray));
             button.setTextColor(activity.getResources().getColor(R.color.black_overlay));
-            Toast.makeText(activity.getApplicationContext(), "Reminder Sent, please wait for another 24" +
+            Toast.makeText(activity.getApplicationContext(), "Reminder Sent, please wait for another 6" +
                     " hours to send another one", Toast.LENGTH_SHORT).show();
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);

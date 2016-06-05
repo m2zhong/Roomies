@@ -184,6 +184,6 @@ public class Bill {
             oldTime =  time.getTime();
         long currentTime = System.currentTimeMillis();
         long timeDiff = (currentTime - oldTime);
-        return (timeDiff < 86400000);
+        return (timeDiff < 21600000);
     }
 }
