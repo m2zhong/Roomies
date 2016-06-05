@@ -31,6 +31,7 @@ import com.google.firebase.messaging.RemoteMessage;
 import com.rip.roomies.R;
 import com.rip.roomies.activities.bills.Bills;
 import com.rip.roomies.activities.duties.ListAllDuties;
+import com.rip.roomies.activities.goods.ListAllGoods;
 import com.rip.roomies.activities.home.Home;
 import com.rip.roomies.activities.login.SplashScreen;
 import com.rip.roomies.application.MyApplication;
@@ -73,6 +74,9 @@ public class MessagingService extends FirebaseMessagingService{
             switch (title){
             case "Duty Completion":case "Duty Reminder":
                 intent = new Intent(this, ListAllDuties.class );
+                break;
+            case "Shared Item Completion":case "Shared Item Reminder":
+                intent = new Intent(this, ListAllGoods.class);
                 break;
             case "Bill Reminder":
                 intent = new Intent(this, Bills.class);

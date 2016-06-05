@@ -1,5 +1,9 @@
 package com.rip.roomies.events.duties;
 
+
+
+
+
 import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
@@ -13,7 +17,6 @@ import com.rip.roomies.models.Duty;
 import com.rip.roomies.util.DisplayStrings;
 import com.rip.roomies.util.InfoStrings;
 import com.rip.roomies.util.Validation;
-import com.rip.roomies.views.DutyView;
 import com.rip.roomies.views.UserContainer;
 
 import java.util.Locale;

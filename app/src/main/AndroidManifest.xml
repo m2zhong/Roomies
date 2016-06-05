@@ -144,7 +144,8 @@
 		<activity
 			android:name=".activities.goods.ModifyGood"
 			android:configChanges="orientation|keyboardHidden|screenSize"
-			android:theme="@style/FullscreenTheme"/>
+			android:theme="@style/FullscreenTheme"
+			android:windowSoftInputMode="adjustNothing"/>
 		<activity
 			android:name=".activities.bulletin.AddBulletin"
 			android:label="@string/title_activity_add_bulletin"
