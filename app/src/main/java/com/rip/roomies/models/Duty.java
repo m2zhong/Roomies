@@ -102,4 +102,19 @@ public class Duty extends Task<DutyLog, Duty> {
 		dutyView.setDuty(this);
 		return dutyView;
 	}
+
+	//------- OBJECT METHODS -------//
+
+	@Override
+	public boolean equals(Object o) {
+		if (o == null) {
+			return false;
+		}
+		else if (o instanceof Duty) {
+			return (getId() == ((Duty) o).getId());
+		}
+		else {
+			return false;
+		}
+	}
 }
