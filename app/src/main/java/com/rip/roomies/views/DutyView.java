@@ -193,12 +193,6 @@ public class DutyView extends TaskView {
 		v.setMargins(10, 50, 10, 50);
 		actBtn.setLayoutParams(v);
 
-
-		//disabling the button her according to the timestamp
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-
-
-
 		User currentAssignee = duty.getAssignee();
 		//completion
 		if (currentAssignee.getId() == User.getActiveUser().getId()) {
@@ -215,11 +209,24 @@ public class DutyView extends TaskView {
 		else{
 			actBtn.setText("Remind");
 			actBtn.setPadding(10, 20, 10 , 20);
+
 			actBtn.setTextColor(getResources().getColor(R.color.pink));
 			actBtn.setBackground(getResources().getDrawable(R.drawable.rec_border_pink));
-			actBtn.setOnClickListener(new RemindDutyListener(
+			actBtn.setOnClickListener(new RemindDutyListener(actBtn ,
 					(GenericActivity) getContext(), currentAssignee.getId(), duty));
+
+			if(duty.reminded()) {
+				actBtn.setBackground(getResources().getDrawable(R.drawable.rec_border_gray));
+				actBtn.setTextColor(getResources().getColor(R.color.black_overlay));
+				actBtn.setEnabled(false);
+			}
+			else {
+				actBtn.setBackground(getResources().getDrawable(R.drawable.rec_border_pink));
+				actBtn.setTextColor(getResources().getColor(R.color.pink));
+				actBtn.setEnabled(true);
+			}
 		}
+
 
 		LinearLayout hline = new LinearLayout(getContext());
 		LayoutParams hlinep = new LayoutParams(200,1);

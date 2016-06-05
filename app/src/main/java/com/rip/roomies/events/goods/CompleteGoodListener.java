@@ -118,7 +118,7 @@ public class CompleteGoodListener implements View.OnClickListener {
 		popupWindow.showAtLocation(btnYes, Gravity.CENTER, 0, 0); */
 
 
-		popupWindow.dismiss();
+
 		//String Buffer for Error Message*/
 		StringBuilder errMessage = new StringBuilder();
 
@@ -135,12 +135,21 @@ public class CompleteGoodListener implements View.OnClickListener {
 
 		log.info(InfoStrings.COMPLETE_GOOD_EVENT);
 		// Complete Duty Activity*/\
-		double amount = Double.parseDouble(userInput.getText().toString());
+		double amount = 0;
+		String input = userInput.getText().toString();
+		if(!input.isEmpty()) {
+			amount = Double.parseDouble(userInput.getText().toString());
+			popupWindow.dismiss();
+		}
+		else{
+			Toast.makeText(activity, "Please enter the amount", Toast.LENGTH_SHORT).show();
+			return;
+		}
 		GoodController.getController().completeGood(funct, good.getId(), amount);
 //		GoodController.getController().completeGood(this, good.getId());
 
 		try {
-			ServerRequest.completeCommonGood(User.getActiveUser().getFirstName(), good.getName());
+			ServerRequest.completeCommonGood(good.getId(),User.getActiveUser().getFirstName(), good.getName());
 		}
 		catch (URISyntaxException e) {
 			throw new RuntimeException(e);

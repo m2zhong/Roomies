@@ -6,6 +6,7 @@ import com.rip.roomies.sql.SQLModify;
 import com.rip.roomies.sql.SQLRemove;
 import com.rip.roomies.util.InfoStrings;
 
+import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.util.logging.Logger;
 
@@ -21,6 +22,7 @@ public class Bill {
     private float amount = 0;
     //added for owee
     private int oweeID;
+    private Timestamp time;
 
    // private static User activeUser;
     private static final Logger log = Logger.getLogger(Bill.class.getName());
@@ -167,5 +169,21 @@ public class Bill {
 
     public int getOweeID() {
         return oweeID;
+    }
+
+    public void setTime(Timestamp time) {
+        this.time = time;
+    }
+    public Timestamp getTime(){
+        return time;
+    }
+
+    public boolean reminded() {
+        long oldTime = 0;
+        if(time != null)
+            oldTime =  time.getTime();
+        long currentTime = System.currentTimeMillis();
+        long timeDiff = (currentTime - oldTime);
+        return (timeDiff < 21600000);
     }
 }
