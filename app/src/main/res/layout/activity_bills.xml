@@ -17,6 +17,9 @@
 			android:orientation="vertical"
 			tools:context="com.rip.roomies.activities.bills.Bills">
 
+			<FrameLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content">
 			<TextView
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
@@ -26,6 +29,18 @@
 				android:text="@string/bill_title"
 				android:textColor="@color/colorAccent"
 				android:textSize="35dp" />
+
+			<Button
+				android:id="@+id/add_bill_btn"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center|right"
+				android:background="@android:color/transparent"
+				android:text="+"
+				android:textColor="@color/colorAccent"
+				android:textSize="30dp"/>
+
+			</FrameLayout>
 
 			<LinearLayout
 				android:layout_width="match_parent"
@@ -137,17 +152,6 @@
 						android:textSize="40sp" />
 				</LinearLayout>
 
-				<Button
-					android:id="@+id/add_bill_btn"
-					android:layout_width="70dp"
-					android:layout_height="70dp"
-					android:layout_gravity="end"
-					android:layout_margin="10dp"
-					android:background="@drawable/circleblue"
-					android:text="+"
-					android:textColor="@color/colorAccent"
-					android:textSize="30dp"
-					/>
 			</FrameLayout>
 		</LinearLayout>
 	</ScrollView>
