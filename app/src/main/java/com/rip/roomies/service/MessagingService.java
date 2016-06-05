@@ -74,7 +74,6 @@ public class MessagingService extends FirebaseMessagingService{
             switch (title){
             case "Duty Completion":case "Duty Reminder":
                 intent = new Intent(this, ListAllDuties.class );
-
                 break;
             case "Shared Item Completion":case "Shared Item Reminder":
                 intent = new Intent(this, ListAllGoods.class);
