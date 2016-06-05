@@ -70,6 +70,7 @@ public class CreateDutyListener implements View.OnClickListener, CreateDutyFunct
 			return;
 		}
 
+
 		log.info(InfoStrings.CREATE_DUTY_EVENT);
 
 		/* Create Duty Activity*/

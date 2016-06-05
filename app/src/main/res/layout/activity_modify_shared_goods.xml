@@ -22,12 +22,14 @@
         android:id="@+id/duty_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textCursorDrawable="@null"
         android:hint="Name" />
 
     <EditText
         android:id="@+id/description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textCursorDrawable="@null"
         android:hint="Description" />
 
     <LinearLayout

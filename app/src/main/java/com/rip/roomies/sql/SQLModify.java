@@ -233,7 +233,7 @@ public class SQLModify {
 		try {
 			SQLQuery.execute(String.format(Locale.US, SQLStrings.MODIFY_BILL_SQL, billToModify.getRowID(),
 					billToModify.getName(), billToModify.getDescription(),
-					billToModify.getAmount()));
+					Math.abs(billToModify.getAmount())));
 		}
 		catch (Exception e) {
 			log.severe(Exceptions.stacktraceToString(e));

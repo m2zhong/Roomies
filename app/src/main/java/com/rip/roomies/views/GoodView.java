@@ -117,6 +117,12 @@ public class GoodView extends TaskView {
 		assignee.setPadding(30,10,0,10);
 		innerLayout.addView(name);
 		innerLayout.addView(assignee);
+
+		if(description.getText().length()==0 ||
+				description.getText().toString().trim().length()==0){
+			description.setText("(No Description)");
+		}
+		
 		innerLayout.addView(description);
 
 		editBtn.setText("Edit");
