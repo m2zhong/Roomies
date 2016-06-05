@@ -69,6 +69,7 @@ public class SplashScreen extends GenericActivity implements LoginFunction{
 	@Override
 	public void loginFail() {
 		Toast.makeText(this, DisplayStrings.LOGIN_FAIL, Toast.LENGTH_LONG).show();
+		toLogin();
 	}
 
 	@Override

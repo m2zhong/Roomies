@@ -122,7 +122,7 @@ public class GoodView extends TaskView {
 				description.getText().toString().trim().length()==0){
 			description.setText("(No Description)");
 		}
-		
+
 		innerLayout.addView(description);
 
 		editBtn.setText("Edit");
