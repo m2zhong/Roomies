@@ -140,6 +140,7 @@ public class SQLRemove {
 			String resultDescription = rs.getString("Description");
 			float resultAmount = rs.getFloat("Amount");
 			int resultOweeID= rs.getInt("OweeID");
+			if (User.getActiveUser().getId() == resultOweeID) resultAmount *= -1;
 
 			//debug statement
 			log.info(String.format(Locale.US, InfoStrings.REMOVE_BILL_FROM_TABLE_SUCCESS,
