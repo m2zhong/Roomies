@@ -117,7 +117,8 @@ public class Home extends GenericActivity {
 		});
 
 		setBalance(billScreen);
-		HomeController.populateBulletins(container);
+		TextView noBulletinsMsg = (TextView) findViewById(R.id.no_bulletins_msg);
+		HomeController.populateBulletins(container, noBulletinsMsg);
 
 		goodsScreen.setOnClickListener(new View.OnClickListener() {
 			@Override
