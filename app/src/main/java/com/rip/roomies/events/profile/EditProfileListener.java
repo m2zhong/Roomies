@@ -3,7 +3,6 @@ package com.rip.roomies.events.profile;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.view.View;
 import android.widget.EditText;
@@ -15,14 +14,11 @@ import com.rip.roomies.controllers.ProfileController;
 import com.rip.roomies.functions.UpdateProfileFunction;
 import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
-import com.rip.roomies.util.DisplayStrings;
 import com.rip.roomies.util.Exceptions;
 import com.rip.roomies.util.Images;
 import com.rip.roomies.util.Validation;
 
 import java.io.ByteArrayOutputStream;
-import java.util.Arrays;
-import java.util.Locale;
 import java.util.logging.Logger;
 
 /**
@@ -135,6 +131,7 @@ public class EditProfileListener implements View.OnClickListener, UpdateProfileF
 	    i.putExtra("FirstName", user.getFirstName());
         activity.setResult(Activity.RESULT_OK, i);
 		activity.finish();
+	    activity.toHome();
     }
 
 	public void setUpdated(boolean isUpdated) {
