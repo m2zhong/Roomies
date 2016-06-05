@@ -33,11 +33,6 @@ import java.util.logging.Logger;
 public class GoodView extends TaskView {
 	private static final Logger log = Logger.getLogger(GoodView.class.getName());
 
-	public static final int EDIT_GOOD = 1;
-	public static final int VIEW_GOOD = 2;
-	public static final int ADD_GOOD = 3;
-	public static final int COMPLETE_GOOD = 4;
-
 	private Good good;
 
 	/**

@@ -18,7 +18,9 @@ import com.rip.roomies.models.Task;
 import com.rip.roomies.util.DisplayStrings;
 import com.rip.roomies.views.DutyContainer;
 import com.rip.roomies.views.DutyView;
+import com.rip.roomies.views.GoodView;
 import com.rip.roomies.views.TaskContainer;
+import com.rip.roomies.views.TaskView;
 
 /**
  * The activity of when the user wishes to view his or her duties.
@@ -57,7 +59,7 @@ public class ListMyTasks extends GenericActivity implements ListMyTasksFunction,
 
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (requestCode == DutyView.EDIT_DUTY && resultCode == RESULT_OK) {
+		if (requestCode == TaskView.EDIT_DUTY && resultCode == RESULT_OK) {
 			Duty duty = data.getExtras().getParcelable("Duty");
 			boolean toRemove = data.getExtras().getBoolean("toRemove");
 
@@ -73,12 +75,28 @@ public class ListMyTasks extends GenericActivity implements ListMyTasksFunction,
 				tc.modifyTask(duty);
 			}
 		}
-		else if (requestCode == DutyView.VIEW_DUTY && resultCode == RESULT_OK) {
+		else if (requestCode == TaskView.VIEW_DUTY && resultCode == RESULT_OK) {
 			Duty duty = data.getExtras().getParcelable("Duty");
 			tc.removeTask(duty);
 
 			TextView msg = (TextView) findViewById(R.id.no_tasks_msg);
 			msg.setVisibility(View.GONE);
+		}
+		else if (requestCode == TaskView.EDIT_GOOD && resultCode == RESULT_OK) {
+			Good good = data.getExtras().getParcelable("Good");
+			boolean toRemove = data.getExtras().getBoolean("toRemove");
+
+			if (toRemove) {
+				tc.removeTask(good);
+
+				if (tc.getTasks() == null || tc.getTasks().length == 0) {
+					TextView msg = (TextView) findViewById(R.id.no_goods_msg);
+					msg.setVisibility(View.VISIBLE);
+				}
+			}
+			else {
+				tc.modifyTask(good);
+			}
 		}
 	}
 
