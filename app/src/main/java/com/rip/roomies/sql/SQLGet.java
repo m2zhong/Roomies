@@ -470,7 +470,7 @@ public class SQLGet {
 
 				while (rs.next()) {
 					int resultId = rs.getInt("ID");
-					int resultGroupId = rs.getInt("groupID");
+					int resultGroupId = rs.getInt("GroupID");
 					String resultContent = rs.getString("Content");
 
 					Bulletin temp = new Bulletin(resultId, resultGroupId, resultContent);
