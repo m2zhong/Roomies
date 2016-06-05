@@ -11,6 +11,7 @@ import android.widget.PopupWindow;
 import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.activities.duties.ViewDuty;
+import com.rip.roomies.functions.CompleteDutyFunction;
 import com.rip.roomies.models.Duty;
 import com.rip.roomies.util.InfoStrings;
 
@@ -26,9 +27,12 @@ public class PopUpDutyListener implements View.OnClickListener{
 	private int layoutID;
 	private Duty duty;
 	private Button callerbtn;
+	private CompleteDutyFunction funct;
 
-	public PopUpDutyListener(GenericActivity context, Button caller,int popUpID, Duty duty ){
+	public PopUpDutyListener(GenericActivity context, CompleteDutyFunction funct,
+	                         Button caller, int popUpID, Duty duty ){
 		this.context = context;
+		this.funct = funct;
 		this.layoutID = popUpID;
 		this.duty = duty;
 		this.callerbtn = caller;
@@ -51,7 +55,7 @@ public class PopUpDutyListener implements View.OnClickListener{
 		Button btnYes = (Button)popupView.findViewById(R.id.yes_btn);
 		Button btnNo = (Button)popupView.findViewById(R.id.no_btn);
 
-		btnYes.setOnClickListener(new CompleteDutyListener(context, duty, popupWindow));
+		btnYes.setOnClickListener(new CompleteDutyListener(context, funct, duty, popupWindow));
 
 		btnNo.setOnClickListener(new View.OnClickListener() {
 			@Override

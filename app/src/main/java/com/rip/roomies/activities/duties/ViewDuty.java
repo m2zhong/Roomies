@@ -74,7 +74,7 @@ public class ViewDuty extends GenericActivity {
 			int popUpID = R.layout.activity_confirm_duty_comp;
 
 			/* Start popup windown upon click*/
-			actionDuty.setOnClickListener(new PopUpDutyListener(this, actionDuty, popUpID, duty));
+			//actionDuty.setOnClickListener(new PopUpDutyListener(this, actionDuty, popUpID, duty));
 
 			//actionDuty.setOnClickListener(new CompleteDutyListener(this, duty));
 

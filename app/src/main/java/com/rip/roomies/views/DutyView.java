@@ -13,10 +13,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.rip.roomies.R;
+import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.activities.duties.ListAllDuties;
 import com.rip.roomies.activities.duties.ModifyDuty;
+import com.rip.roomies.events.duties.CompleteDutyListener;
 import com.rip.roomies.events.duties.PopUpDutyListener;
 import com.rip.roomies.events.duties.RemindDutyListener;
+import com.rip.roomies.functions.CompleteDutyFunction;
 import com.rip.roomies.models.Duty;
 import com.rip.roomies.models.User;
 import com.rip.roomies.util.InfoStrings;
@@ -209,11 +212,12 @@ public class DutyView extends TaskView {
 				if (currentAssignee.getId() == User.getActiveUser().getId()) {
 					int popUpID = R.layout.activity_confirm_duty_comp;
 					((Button) v).setOnClickListener(new PopUpDutyListener(
-							(ListAllDuties) getContext(), ((Button) v), popUpID, duty));
+							(GenericActivity) getContext(), (CompleteDutyFunction) getContext(),
+							((Button) v), popUpID, duty));
 				}
 				else{
 					((Button) v).setOnClickListener(new RemindDutyListener(
-							(ListAllDuties) getContext(), currentAssignee.getId(), duty));
+							(GenericActivity) getContext(), currentAssignee.getId(), duty));
 				}
 			}
 		});
