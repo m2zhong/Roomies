@@ -108,7 +108,7 @@ public class EditProfileListener implements View.OnClickListener, UpdateProfileF
 	    if (profilePic != null && updated) {
 		    Bitmap bmp = ((BitmapDrawable) profilePic.getDrawable()).getBitmap();
 		    ByteArrayOutputStream stream = new ByteArrayOutputStream();
-		    bmp.compress(Bitmap.CompressFormat.JPEG, 0, stream);
+		    bmp.compress(Bitmap.CompressFormat.JPEG, 50, stream);
 		    image = stream.toByteArray();
 		    try {
 			    stream.close();
