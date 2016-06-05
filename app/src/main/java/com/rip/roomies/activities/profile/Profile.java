@@ -154,8 +154,6 @@ public class Profile extends GenericActivity implements View.OnClickListener {
 
         switch (v.getId()) {
             case R.id.settings_tap_hint:
-	            btm_divider.setVisibility(View.VISIBLE);
-				btSaveChanges.setVisibility(View.VISIBLE);
                 //change background color to light gray
                 etFirstName.setBackgroundColor(Color.LTGRAY);
                 etLastName.setBackgroundColor(Color.LTGRAY);
