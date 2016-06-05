@@ -112,8 +112,8 @@ public class DutyLogView extends LinearLayout {
 
 
 		innerLayout.addView(name);
-		innerLayout.addView(description);
 		innerLayout.addView(assignee);
+		innerLayout.addView(description);
 		innerLayout.addView(completeDate);
 
 

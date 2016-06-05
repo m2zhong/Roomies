@@ -76,7 +76,6 @@ public class UserContainer extends ScrollView {
 
 		else {
 			users.add(newUser);
-
 			UserView userView = new UserView(getContext());
 			userView.setUser(newUser);
 			userLayout.addView(userView);

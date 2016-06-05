@@ -203,7 +203,7 @@ public class DutyView extends TaskView {
 		outerLayout.addView(editBtn);
 		outerLayout.addView(actBtn);
 
-		addView(outerLayout);
 		addView(hline);
+		addView(outerLayout);
 	}
 }

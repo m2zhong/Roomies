@@ -3,6 +3,7 @@ package com.rip.roomies.views;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -72,6 +73,12 @@ public class UserView extends LinearLayout {
 				ViewGroup.LayoutParams.WRAP_CONTENT));
 		setOrientation(LinearLayout.VERTICAL);
 
+		LinearLayout hline = new LinearLayout(getContext());
+		LayoutParams hParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1);
+		hParams.gravity = Gravity.CENTER;
+		hline.setLayoutParams(hParams);
+		hline.setBackgroundColor(Color.BLACK);
+
 		TextView name = new TextView(getContext());
 		TextView username = new TextView(getContext());
 		TextView email = new TextView(getContext());
@@ -84,8 +91,6 @@ public class UserView extends LinearLayout {
 		name.setTextColor(Color.BLACK);
 		name.setPadding(50, 50, 50, 50);
 		addView(name);
-
-		//addView(username);
-		//addView(email);
+		addView(hline);
 	}
 }
