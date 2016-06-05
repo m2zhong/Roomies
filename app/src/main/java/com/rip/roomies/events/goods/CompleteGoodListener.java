@@ -3,6 +3,7 @@ package com.rip.roomies.events.goods;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
@@ -24,16 +25,18 @@ import java.util.logging.Logger;
 /**
  * Created by michaelzhong on 5/31/16.
  */
-public class CompleteGoodListener implements View.OnClickListener, CompleteGoodFunction {
-//	private ListAllGoods context;
+public class CompleteGoodListener implements View.OnClickListener {
+	//	private ListAllGoods context;
 	private Good good;
 	private GenericActivity activity;
 	private PopupWindow popupWindow;
-//	private int popUpLayoutID;
+	//	private int popUpLayoutID;
 //	private GoodView goodview;
 	private static final Logger log = Logger.getLogger(CompleteGoodListener.class.getName());
-//	private double amount; //for bill $ amount
+	//private double amount; //for bill $ amount
 	public static final int COMPLETE_GOOD = 4;
+	private EditText userInput;
+	private CompleteGoodFunction funct;
 
 	/**
 	 * CONSTRUCTOR
@@ -48,20 +51,22 @@ public class CompleteGoodListener implements View.OnClickListener, CompleteGoodF
 		this.popUpLayoutID = R.layout.activity_confirm_complete_good;
 	}
 */
-	/*
-	public CompleteGoodListener(GenericActivity context, Good good, PopupWindow popUpWindow, double amount) {
+
+	public CompleteGoodListener(GenericActivity context, CompleteGoodFunction funct,
+	                            Good good, PopupWindow popUpWindow, EditText userInput) {
 		this.good = good;
+		this.funct = funct;
 		this.activity = context;
 		this.popupWindow = popUpWindow;
-		this.amount = amount;
-	}*/
-
+		this.userInput = userInput;
+	}
+	/*
 	public CompleteGoodListener(GenericActivity context, Good good, PopupWindow popUpWindow) {
 		this.good = good;
 		this.activity = context;
 		this.popupWindow = popUpWindow;
 	}
-
+	*/
 
 
 	/**
@@ -117,14 +122,14 @@ public class CompleteGoodListener implements View.OnClickListener, CompleteGoodF
 
 
 		popupWindow.dismiss();
-		/*String Buffer for Error Message*/
+		//String Buffer for Error Message*/
 		StringBuilder errMessage = new StringBuilder();
 
-		/* Check if duty is null*/
+		// Check if duty is null*/
 		if (good == null) {
 			errMessage.append(String.format(Locale.US, DisplayStrings.MISSING_FIELD, "Good"));
 		}
-		/* Check if error occurred*/
+		// Check if error occurred*/
 		if (errMessage.length() != 0) {
 			String errMsg = errMessage.substring(0, errMessage.length() - 1);
 			Toast.makeText(activity, errMsg, Toast.LENGTH_SHORT).show();
@@ -132,30 +137,19 @@ public class CompleteGoodListener implements View.OnClickListener, CompleteGoodF
 		}
 
 		log.info(InfoStrings.COMPLETE_GOOD_EVENT);
-		/* Complete Duty Activity*/
-//		GoodController.getController().completeGood(this, good.getId(), amount);
-		GoodController.getController().completeGood(this, good.getId());
+		// Complete Duty Activity*/\
+		double amount = Double.parseDouble(userInput.getText().toString());
+		GoodController.getController().completeGood(funct, good.getId(), amount);
+//		GoodController.getController().completeGood(this, good.getId());
 
 		try {
 			ServerRequest.completeCommonGood(User.getActiveUser().getFirstName(), good.getName());
-		} catch (URISyntaxException e) {
+		}
+		catch (URISyntaxException e) {
 			throw new RuntimeException(e);
 		}
 
 
-
 	}
-		@Override
-		public void completeGoodFail() {
-			Toast.makeText(activity, DisplayStrings.COMPLETE_GOOD_FAIL, Toast.LENGTH_LONG).show();
-		}
-
-		@Override
-		public void completeGoodSuccess (Good good){
-			Intent i = activity.getIntent();
-			i.putExtra("Good", good);
-			activity.setResult(Activity.RESULT_OK, i);
-			activity.finish();
-		}
-	}
+}
 

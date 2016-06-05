@@ -79,7 +79,7 @@ public class TaskContainer extends ScrollView {
 				TaskView.class.getSimpleName(), TaskContainer.class.getSimpleName()));
 
 		for (int i = 0; i < tasks.size(); ++i) {
-			if (tasks.get(i).getId() == toMod.getId()) {
+			if (tasks.get(i).equals(toMod)) {
 				tasks.set(i, toMod);
 
 				taskLayout.removeViewAt(i);
@@ -97,9 +97,24 @@ public class TaskContainer extends ScrollView {
 				TaskView.class.getSimpleName(), TaskContainer.class.getSimpleName()));
 
 		for (int i = 0; i < tasks.size(); ++i) {
-			if (tasks.get(i).getId() == toRem.getId()) {
+			if (tasks.get(i).equals(toRem)) {
 				tasks.remove(i);
 				taskLayout.removeViewAt(i);
+				return;
+			}
+		}
+	}
+
+	public void completeTask(Task toCom) {
+		log.info(String.format(Locale.US, InfoStrings.CONTAINER_MODIFY,
+				TaskView.class.getSimpleName(), TaskContainer.class.getSimpleName()));
+
+		for (int i = 0; i < tasks.size(); ++i) {
+			if (tasks.get(i).equals(toCom)) {
+				if (tasks.get(i).getAssignee().getId() != toCom.getAssignee().getId()) {
+					tasks.remove(i);
+					taskLayout.removeViewAt(i);
+				}
 				return;
 			}
 		}

@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.controllers.DutyController;
+import com.rip.roomies.functions.CompleteDutyFunction;
 import com.rip.roomies.functions.ListAllDutiesFunction;
 import com.rip.roomies.models.Duty;
 import com.rip.roomies.util.DisplayStrings;
@@ -22,7 +23,7 @@ import java.util.logging.Logger;
 /**
  * The activity of when the user wishes to view all the group's duties.
  */
-public class ListAllDuties extends GenericActivity implements ListAllDutiesFunction {
+public class ListAllDuties extends GenericActivity implements ListAllDutiesFunction, CompleteDutyFunction {
 	private static final Logger log = Logger.getLogger(ListAllDuties.class.getName());
 	DutyContainer dc;
 
@@ -107,5 +108,15 @@ public class ListAllDuties extends GenericActivity implements ListAllDutiesFunct
 			TextView msg = (TextView) findViewById(R.id.no_duties_msg);
 			msg.setVisibility(View.GONE);
 		}
+	}
+
+	@Override
+	public void completeDutyFail() {
+		Toast.makeText(this, DisplayStrings.COMPLETE_DUTY_FAIL, Toast.LENGTH_LONG).show();
+	}
+
+	@Override
+	public void completeDutySuccess(Duty d) {
+		dc.modifyDuty(d);
 	}
 }

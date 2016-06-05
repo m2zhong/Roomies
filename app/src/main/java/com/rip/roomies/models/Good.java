@@ -105,4 +105,19 @@ public class Good extends Task<GoodLog, Good> {
         goodView.setGood(this);
         return goodView;
     }
+
+    //------- OBJECT METHODS -------//
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null) {
+            return false;
+        }
+        else if (o instanceof Good) {
+            return (getId() == ((Good) o).getId());
+        }
+        else {
+            return false;
+        }
+    }
 }

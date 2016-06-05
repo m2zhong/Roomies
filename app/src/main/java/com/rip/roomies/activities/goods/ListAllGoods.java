@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.controllers.GoodController;
+import com.rip.roomies.functions.CompleteGoodFunction;
 import com.rip.roomies.functions.ListAllGoodsFunction;
 import com.rip.roomies.models.Good;
 import com.rip.roomies.util.DisplayStrings;
@@ -22,13 +23,14 @@ import java.util.logging.Logger;
 /**
  * Created by johndoney on 5/30/16.
  */
-public class ListAllGoods extends GenericActivity implements ListAllGoodsFunction {
+public class ListAllGoods extends GenericActivity implements ListAllGoodsFunction, CompleteGoodFunction {
 	private static final Logger log = Logger.getLogger(ListAllGoods.class.getName());
 	GoodContainer gc;
 
 	@Override
 	public void onCreate(Bundle savedInstance) {
 		Button addGood;
+		Button goodLogs;
 
 		super.onCreate(savedInstance);
 		setContentView(R.layout.activity_list_all_goods);
@@ -36,6 +38,7 @@ public class ListAllGoods extends GenericActivity implements ListAllGoodsFunctio
 		/* Linking xml objects to java */
 		gc = (GoodContainer) findViewById(R.id.good_list);
 		addGood = (Button) findViewById(R.id.good_addbtn);
+		goodLogs = (Button) findViewById(R.id.logs_btn);
 
 		final Activity self = this;
 
@@ -45,6 +48,13 @@ public class ListAllGoods extends GenericActivity implements ListAllGoodsFunctio
 			@Override
 			public void onClick(View view) {
 				startActivityForResult(new Intent(self, CreateGood.class), GoodView.ADD_GOOD);
+			}
+		});
+
+		goodLogs.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(self, ListGoodLogs.class));
 			}
 		});
 	}
@@ -108,5 +118,15 @@ public class ListAllGoods extends GenericActivity implements ListAllGoodsFunctio
 			Good good = data.getExtras().getParcelable("Good");
 			gc.removeGood(good);
 		}
+	}
+
+	@Override
+	public void completeGoodFail() {
+		Toast.makeText(this, DisplayStrings.COMPLETE_GOOD_FAIL, Toast.LENGTH_LONG).show();
+	}
+
+	@Override
+	public void completeGoodSuccess(Good good) {
+		gc.modifyGood(good);
 	}
 }
