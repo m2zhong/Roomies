@@ -101,7 +101,7 @@
 								android:text="@string/welcomehome"
 								android:layout_gravity="left|top"
 								android:textColor="@color/black"
-								android:textSize="30sp" />
+								android:textSize="20sp" />
 
 							<TextView
 								android:id="@+id/home_username"
@@ -112,7 +112,7 @@
 								android:layout_gravity="center"
 								android:gravity="center"
 								android:textColor="@color/black"
-								android:textSize="50dp" />
+								android:textSize="30dp" />
 						</LinearLayout>
 
 					</LinearLayout>
@@ -152,7 +152,7 @@
 							android:text="$0"
 							android:textAlignment="center"
 							android:textColor="@color/green"
-							android:textSize="70dp" />
+							android:textSize="60dp" />
 					</LinearLayout>
 
 					<View

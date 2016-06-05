@@ -55,8 +55,9 @@
                 android:layout_marginRight="10dp"
                 android:background="@android:color/transparent"
                 android:textColor="@color/black"
+                android:maxLength="30"
                 android:textCursorDrawable="@null"
-                android:textSize="30dp" />
+                android:textSize="20sp" />
 
             <View
                 android:layout_width="match_parent"
@@ -83,7 +84,8 @@
                 android:background="@android:color/transparent"
                 android:textColor="@color/black"
                 android:textCursorDrawable="@null"
-                android:textSize="30dp" />
+                android:maxLength="30"
+                android:textSize="20dp" />
 
             <View
                 android:layout_width="match_parent"
@@ -112,7 +114,7 @@
                 android:background="@android:color/transparent"
                 android:textColor="@color/black"
                 android:textCursorDrawable="@null"
-                android:textSize="30dp" />
+                android:textSize="20sp" />
 
             <View
                 android:layout_width="match_parent"
@@ -138,7 +140,7 @@
                 android:layout_marginRight="10dp"
                 android:background="@android:color/transparent"
                 android:textColor="@color/black"
-                android:textSize="30dp" />
+                android:textSize="20sp" />
 
             <View
                 android:layout_width="match_parent"
@@ -164,8 +166,10 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:background="@android:color/transparent"
+                android:maxLength="100"
+                android:inputType="textShortMessage|textMultiLine"
                 android:textColor="@color/black"
-                android:textSize="30dp" />
+                android:textSize="20sp" />
 
 	        <View
 		        android:layout_width="100dp"
