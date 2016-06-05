@@ -107,9 +107,8 @@ public class GoodView extends TaskView {
 
 		name.setTextColor(getResources().getColor(R.color.colorPrimary));
 		name.setTypeface(null, Typeface.BOLD);
-
-		description.setTextColor(Color.BLACK);
 		assignee.setTextColor(Color.BLACK);
+		description.setTextColor(getResources().getColor(R.color.black_overlay));
 
 		innerLayout.setOrientation(LinearLayout.VERTICAL);
 		innerLayout.setPadding(25, 25, 25, 25);
@@ -119,6 +118,8 @@ public class GoodView extends TaskView {
 		String fullName = good.getAssignee().getFirstName() + " " + good.getAssignee().getLastName();
 		assignee.setText(fullName);
 
+		description.setPadding(30,10,0,10);
+		assignee.setPadding(30,10,0,10);
 		innerLayout.addView(name);
 		innerLayout.addView(assignee);
 		innerLayout.addView(description);
@@ -146,8 +147,6 @@ public class GoodView extends TaskView {
 		});
 
 
-		actBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
-		actBtn.setBackground(getResources().getDrawable(R.drawable.rec_border));
 		LinearLayout.LayoutParams v = new LayoutParams(
 				LayoutParams.WRAP_CONTENT,
 				LayoutParams.WRAP_CONTENT);
@@ -159,6 +158,8 @@ public class GoodView extends TaskView {
 		if (currentAssignee.getId() == User.getActiveUser().getId()) {
 			actBtn.setText("Complete");
 			actBtn.setPadding(50, 50, 50 , 50);
+			actBtn.setTextColor(getResources().getColor(R.color.dark_green));
+			actBtn.setBackground(getResources().getDrawable(R.drawable.rec_border_green));
 			int popUpID = R.layout.activity_confirm_complete_good;
 			actBtn.setOnClickListener(new PopUpGoodListener(
 					(GenericActivity) getContext(), (CompleteGoodFunction) getContext(),
@@ -167,6 +168,8 @@ public class GoodView extends TaskView {
 		else{
 			actBtn.setText("Remind");
 			actBtn.setPadding(90, 50, 90 , 50);
+			actBtn.setTextColor(getResources().getColor(R.color.pink));
+			actBtn.setBackground(getResources().getDrawable(R.drawable.rec_border_pink));
 			actBtn.setOnClickListener(new RemindGoodListener(
 					(GenericActivity) getContext(), currentAssignee.getId(), good));
 		}
