@@ -11,6 +11,8 @@ import com.rip.roomies.util.InfoStrings;
 import com.rip.roomies.util.SQLStrings;
 import com.rip.roomies.util.WarningStrings;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.sql.Blob;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
