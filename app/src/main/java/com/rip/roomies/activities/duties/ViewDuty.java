@@ -1,17 +1,13 @@
 package com.rip.roomies.activities.duties;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
-
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
-import com.rip.roomies.events.duties.PopUpDutyListener;
 import com.rip.roomies.events.duties.RemindDutyListener;
 import com.rip.roomies.models.Duty;
 import com.rip.roomies.models.User;
@@ -84,7 +80,7 @@ public class ViewDuty extends GenericActivity {
 			//change the button name to reminding the person
 			actionDuty.setText("Remind " + currentAssignee.getFirstName());
 			//trigger the event of reminding the person
-			actionDuty.setOnClickListener(new RemindDutyListener(this, currentAssignee.getId(), duty));
+			actionDuty.setOnClickListener(new RemindDutyListener(actionDuty, this, currentAssignee.getId(), duty));
 		}
 	}
 

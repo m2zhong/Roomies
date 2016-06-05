@@ -1,7 +1,5 @@
 package com.rip.roomies.events.duties;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.view.View;
 import android.widget.PopupWindow;
 import android.widget.Toast;
@@ -9,7 +7,6 @@ import android.widget.Toast;
 import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.controllers.DutyController;
 import com.rip.roomies.functions.CompleteDutyFunction;
-import com.rip.roomies.functions.CompleteGoodFunction;
 import com.rip.roomies.models.Duty;
 import com.rip.roomies.models.User;
 import com.rip.roomies.server.ServerRequest;
@@ -73,7 +70,7 @@ public class CompleteDutyListener implements View.OnClickListener {
 		DutyController.getController().completeDuty(funct, duty.getId());
 
 		try {
-			ServerRequest.completeDuty(User.getActiveUser().getFirstName(), duty.getName());
+			ServerRequest.completeDuty(duty.getId(), User.getActiveUser().getFirstName(), duty.getName());
 		} catch (URISyntaxException e) {
 			throw new RuntimeException(e);
 		}

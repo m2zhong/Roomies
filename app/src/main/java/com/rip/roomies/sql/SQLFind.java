@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 public class SQLFind {
 	private static final Logger log = Logger.getLogger(SQLFind.class.getName());
 
+
 	/**
 	 * Finds a user from the database using unique keys only
 	 * @param user The object to use to search for a user on the database

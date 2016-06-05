@@ -15,6 +15,7 @@ import com.rip.roomies.util.SQLStrings;
 
 import java.sql.Date;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.logging.Logger;
@@ -158,7 +159,7 @@ public class SQLGet {
 					String resultName = rs.getString("Name");
 					String resultDescription = rs.getString("Description");
 					int resultGroup = rs.getInt("DutyGroupID");
-
+					Timestamp time = rs.getTimestamp("TimeReminded");
 					User u = new User(
 							rs.getInt("ID"),
 							rs.getString("FirstName"),
@@ -170,6 +171,7 @@ public class SQLGet {
 					);
 
 					Duty temp = new Duty(resultId, resultName, resultDescription, resultGroup, u, null);
+					temp.setTime(time);
 					temp = temp.getRotation();
 
 					duties.add(temp);
@@ -224,22 +226,27 @@ public class SQLGet {
 					String resultDescription = rs.getString("Description");
 					int resultGroup = rs.getInt("GroupID");
 
+					SQLQuery.execute(String.format(Locale.US, SQLStrings.GET_USER_TASKS,
+							group.getId(), user.getId()));
+
 					Task temp;
 
 					if (resultType == TYPE_DUTY) {
+
+
 						temp = new Duty(resultId, resultName, resultDescription, resultGroup, user, null);
 					}
 					else if (resultType == TYPE_GOOD){
+//						ResultSet rset = SQLQuery.execute( "EXEC GetGoodTimeDiff @id = " + resultId);
+//						rset.next();
 						temp = new Good(resultId, resultName, resultDescription, resultGroup, user, null);
 					}
 					else {
 						return null;
 					}
-
 					temp = temp.getRotation();
 
 					tasks.add(temp);
-
 				}
 
 				//debug statement
@@ -300,8 +307,10 @@ public class SQLGet {
 				temp = users.toArray(temp);
 
 				// Return a new user object
-				return new Duty(duty.getId(), duty.getName(), duty.getDescription(),
+				Duty duty2 = new Duty(duty.getId(), duty.getName(), duty.getDescription(),
 						duty.getGroupId(), duty.getAssignee(), temp);
+				duty2.setTime(duty.getTime());
+				return duty2;
 			}
 		}
 		catch (Exception e) {
@@ -413,6 +422,8 @@ public class SQLGet {
 					String resultDescription = rs.getString("Description");
 					float resultAmount = rs.getFloat("Amount");
 					int resultOweeID = rs.getInt("OweeID");
+					Timestamp time = rs.getTimestamp("TimeReminded");
+
 					String resultName;
 					if(User.getActiveUser().getId() == resultOweeID) {
 						resultAmount = -resultAmount;
@@ -426,7 +437,7 @@ public class SQLGet {
 
 					Bill temp = new Bill(resultOwnerId, resultId, resultName, resultDescription,
 							resultAmount, resultOweeID);
-
+					temp.setTime(time);
 					bills.add(temp);
 				}
 
@@ -524,7 +535,7 @@ public class SQLGet {
 					String resultName = rs.getString("Name");
 					String resultDescription = rs.getString("Description");
 					int resultGroup = rs.getInt("GroupID");
-
+					Timestamp time = rs.getTimestamp("TimeReminded");
 					User u = new User(
 							rs.getInt("ID"),
 							rs.getString("FirstName"),
@@ -537,7 +548,7 @@ public class SQLGet {
 
 					Good temp = new Good(resultId, resultName, resultDescription, resultGroup, u, null);
 					temp = temp.getRotation();
-
+					temp.setTime(time);
 					goods.add(temp);
 
 				}
@@ -600,8 +611,10 @@ public class SQLGet {
 				temp = users.toArray(temp);
 
 				// Return a new user object
-				return new Good(good.getId(), good.getName(), good.getDescription(),
+				Good temp_good = new Good(good.getId(), good.getName(), good.getDescription(),
 						good.getGroupId(), good.getAssignee(), temp);
+				temp_good.setTime(good.getTime());
+				return temp_good;
 			}
 		}
 		catch (Exception e) {
