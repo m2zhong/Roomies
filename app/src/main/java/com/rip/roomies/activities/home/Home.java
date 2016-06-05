@@ -62,6 +62,7 @@ public class Home extends GenericActivity {
 	private BulletinContainer container;
 	private Bulletin editBull;
 	private TextView aBullCont;
+	private boolean popupEnabled = false;
 
 	private final int RESULT_CODE_MODIFY_BULLETIN = 1;
 	private final int RESULT_CODE_ADD_BULLETIN = 2;
@@ -174,6 +175,12 @@ public class Home extends GenericActivity {
 
 	@Override
 	public void onBackPressed() {
+		if (popupEnabled) {
+			return;
+		}
+
+		popupEnabled = true;
+
 		LayoutInflater layoutInflater
 				= (LayoutInflater) getBaseContext()
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -200,6 +207,7 @@ public class Home extends GenericActivity {
 
 				}
 				popupWindow.dismiss();
+				popupEnabled = false;
 				LoginController.getController().logoff();
 				toLogin();
 			}
@@ -211,6 +219,7 @@ public class Home extends GenericActivity {
 				log.info(String.format(Locale.US, InfoStrings.SWITCH_ACTIVITY,
 						Home.class.getSimpleName()));
 				popupWindow.dismiss();
+				popupEnabled = false;
 
 			}
 		});
