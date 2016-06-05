@@ -6,12 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.PopupWindow;
 
 import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
-import com.rip.roomies.activities.goods.ListAllGoods;
 import com.rip.roomies.activities.goods.ViewGood;
 import com.rip.roomies.models.Good;
 import com.rip.roomies.util.InfoStrings;
@@ -60,8 +58,8 @@ public class PopUpGoodListener implements View.OnClickListener{
         popupWindow.update();*/
 
        // amount = Double.valueOf(userInput.getText().toString());
-//        amount = Double.parseDouble(userInput.getText().toString());
-//        btnYes.setOnClickListener(new CompleteGoodListener(context, good, popupWindow, amount));
+        //amount = Double.parseDouble(userInput.getText().toString());
+    //btnYes.setOnClickListener(new CompleteGoodListener(context, good, popupWindow, amount));
         btnYes.setOnClickListener(new CompleteGoodListener(context, good, popupWindow));
 
         btnNo.setOnClickListener(new View.OnClickListener() {

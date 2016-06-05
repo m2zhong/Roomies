@@ -49,6 +49,7 @@ import java.net.URISyntaxException;
 import java.util.Locale;
 import java.util.logging.Logger;
 
+
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
@@ -62,6 +63,7 @@ public class Home extends GenericActivity {
 	private BulletinContainer container;
 	private Bulletin editBull;
 	private TextView aBullCont;
+	public int popUpWindowCount = 0;
 
 	private final int RESULT_CODE_MODIFY_BULLETIN = 1;
 	private final int RESULT_CODE_ADD_BULLETIN = 2;
@@ -88,9 +90,15 @@ public class Home extends GenericActivity {
 		first_name = user.getFirstName();
 		username.setText(" " + first_name + "!");
 
-		ImageView profileBadge = (ImageView) findViewById(R.id.home_profilepicture);
-
 		final Activity self = this;
+		username.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				startActivity(new Intent(self, Profile.class));
+			}
+		});
+
+		ImageView profileBadge = (ImageView) findViewById(R.id.home_profilepicture);
 		profileBadge.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
@@ -174,47 +182,59 @@ public class Home extends GenericActivity {
 
 	@Override
 	public void onBackPressed() {
-		LayoutInflater layoutInflater
-				= (LayoutInflater) getBaseContext()
-				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		if (popUpWindowCount < 1) {
+			LayoutInflater layoutInflater
+					= (LayoutInflater) getBaseContext()
+					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-		View popupView = layoutInflater.inflate(R.layout.confirm_logoff, null);
-		final PopupWindow popupWindow = new PopupWindow(
-				popupView,
-				ViewGroup.LayoutParams.MATCH_PARENT,
-				ViewGroup.LayoutParams.MATCH_PARENT);
+			final View popupView = layoutInflater.inflate(R.layout.confirm_logoff, null);
+			final PopupWindow popupWindow = new PopupWindow(
+					popupView,
+					ViewGroup.LayoutParams.MATCH_PARENT,
+					ViewGroup.LayoutParams.MATCH_PARENT);
 
-		Button btnYes = (Button)popupView.findViewById(R.id.yes_btn);
-		Button btnNo = (Button)popupView.findViewById(R.id.no_btn);
+			Button btnYes = (Button) popupView.findViewById(R.id.yes_btn);
+			Button btnNo = (Button) popupView.findViewById(R.id.no_btn);
 
-		btnYes.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				if(SaveSharedPreference.getUsername(v.getContext()).length() != 0 || SaveSharedPreference.getPassword(v.getContext()).length() != 0) {
-					log.info("username: " + SaveSharedPreference.getUsername(v.getContext()) + " 1 from logout" + "\n");
-					log.info("password: " + SaveSharedPreference.getPassword(v.getContext()) + "1 from logout" + "\n");
-					SaveSharedPreference.clearUsername(v.getContext());
-					SaveSharedPreference.clearPassword(v.getContext());
-					log.info("username: " + SaveSharedPreference.getUsername(v.getContext()) + "2 from logout" + "\n");
-					log.info("password: " + SaveSharedPreference.getPassword(v.getContext()) + "2 from logout" + "\n");
+			btnYes.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					if (SaveSharedPreference.getUsername(v.getContext()).length() != 0 || SaveSharedPreference.getPassword(v.getContext()).length() != 0) {
+						log.info("username: " + SaveSharedPreference.getUsername(v.getContext()) + " 1 from logout" + "\n");
+						log.info("password: " + SaveSharedPreference.getPassword(v.getContext()) + "1 from logout" + "\n");
+						SaveSharedPreference.clearUsername(v.getContext());
+						SaveSharedPreference.clearPassword(v.getContext());
+						log.info("username: " + SaveSharedPreference.getUsername(v.getContext()) + "2 from logout" + "\n");
+						log.info("password: " + SaveSharedPreference.getPassword(v.getContext()) + "2 from logout" + "\n");
+
+					}
+					popupWindow.dismiss();
+					popUpWindowCount--;
+					LoginController.getController().logoff();
+					toLogin();
+				}
+			});
+
+			btnNo.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					log.info(String.format(Locale.US, InfoStrings.SWITCH_ACTIVITY,
+							Home.class.getSimpleName()));
+					popupWindow.dismiss();
+					popUpWindowCount--;
 
 				}
-				popupWindow.dismiss();
-				LoginController.getController().logoff();
-				toLogin();
-			}
-		});
+			});
+			/* Recording this popup Window count */
+			popUpWindowCount++;
+			popupWindow.showAtLocation(container, Gravity.CENTER, 0, 0);
+		}
 
-		btnNo.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				log.info(String.format(Locale.US, InfoStrings.SWITCH_ACTIVITY,
-						Home.class.getSimpleName()));
-				popupWindow.dismiss();
+		else{
+			return;
+		}
 
-			}
-		});
-		popupWindow.showAtLocation(container, Gravity.CENTER,0,0);
+
 	}
 
 	private void setBalance(final TextView billScreen) {
@@ -224,12 +244,15 @@ public class Home extends GenericActivity {
 			protected CharSequence doInBackground(Void... v) {
 				return Bill.getNegativeBalance();
 			}
+
 			@Override
 			protected void onPostExecute(CharSequence result) {
-				if (result.charAt(1) == '0')
+				if (result.charAt(1) == '0') {
 					billScreen.setTextColor(getResources().getColor(R.color.green));
-				else
+				}
+				else {
 					billScreen.setTextColor(getResources().getColor(R.color.pink));
+				}
 
 				billScreen.setText(result);
 			}
@@ -238,18 +261,18 @@ public class Home extends GenericActivity {
 
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode,resultCode,data);
+		super.onActivityResult(requestCode, resultCode, data);
 
-		if(resultCode == RESULT_CODE_MODIFY_BULLETIN) {
+		if (resultCode == RESULT_CODE_MODIFY_BULLETIN) {
 			String updContent = data.getStringExtra("Key_New_Content");
 
 			editBull.setContent(updContent);
-			aBullCont.setText(updContent);
+			aBullCont.setText('"' + updContent + '"');
 
 			HomeController.getController().modifyBulletin(editBull);
 
 		}
-		else if(resultCode == RESULT_CODE_ADD_BULLETIN) {
+		else if (resultCode == RESULT_CODE_ADD_BULLETIN) {
 			String content = data.getStringExtra("Key_New_Content");
 
 			HomeController.getController().createBulletin(content, container);

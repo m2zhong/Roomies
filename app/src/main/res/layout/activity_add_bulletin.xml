@@ -38,6 +38,7 @@
                 android:inputType="textMultiLine"
                 android:height="300dp"
                 android:maxLength="250"
+                android:textCursorDrawable="@null"
                 android:textSize="30dp"
                 android:hint="Write new bulletin here\n(250 characters max)"
                 android:gravity="top"/>

@@ -30,7 +30,7 @@
                 android:gravity="center_horizontal"
                 android:text="@string/settings_hint"
                 android:textColor="@color/colorPrimary"
-                android:textSize="30sp" />
+                android:textSize="20sp" />
 
             <View
                 android:layout_width="match_parent"
@@ -44,8 +44,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:text="@string/settings_firstname"
-                android:textColor="@color/black"
-                android:textSize="25sp" />
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/settings_firstname"
@@ -55,7 +55,8 @@
                 android:layout_marginRight="10dp"
                 android:background="@android:color/transparent"
                 android:textColor="@color/black"
-                android:textSize="35dp" />
+                android:textCursorDrawable="@null"
+                android:textSize="30dp" />
 
             <View
                 android:layout_width="match_parent"
@@ -70,8 +71,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:text="@string/settings_lastname"
-                android:textColor="@color/black"
-                android:textSize="25sp" />
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/settings_lastname"
@@ -81,7 +82,8 @@
                 android:layout_marginRight="10dp"
                 android:background="@android:color/transparent"
                 android:textColor="@color/black"
-                android:textSize="35dp" />
+                android:textCursorDrawable="@null"
+                android:textSize="30dp" />
 
             <View
                 android:layout_width="match_parent"
@@ -98,8 +100,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:text="@string/settings_email"
-                android:textColor="@color/black"
-                android:textSize="25sp" />
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/settings_email"
@@ -109,7 +111,8 @@
                 android:layout_marginRight="10dp"
                 android:background="@android:color/transparent"
                 android:textColor="@color/black"
-                android:textSize="35dp" />
+                android:textCursorDrawable="@null"
+                android:textSize="30dp" />
 
             <View
                 android:layout_width="match_parent"
@@ -123,18 +126,19 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:text="@string/settings_groupname"
-                android:textColor="@color/black"
-                android:textSize="25sp" />
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/settings_gname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textCursorDrawable="@null"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:background="@android:color/transparent"
                 android:textColor="@color/black"
-                android:textSize="35dp" />
+                android:textSize="30dp" />
 
             <View
                 android:layout_width="match_parent"
@@ -149,18 +153,27 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:text="@string/settings_description"
-                android:textColor="@color/black"
-                android:textSize="25sp" />
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/settings_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textCursorDrawable="@null"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:background="@android:color/transparent"
                 android:textColor="@color/black"
-                android:textSize="35dp" />
+                android:textSize="30dp" />
+
+	        <View
+		        android:layout_width="100dp"
+		        android:layout_height="1dp"
+		        android:layout_marginBottom="10dp"
+		        android:layout_marginTop="30dp"
+		        android:layout_gravity="center"
+		        android:background="@color/black_overlay" />
 
 
             <Button
@@ -169,13 +182,14 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center_horizontal"
                 android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/rec_border"
-                android:fontFamily="sans-serif-thin"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/rec_border_pink"
+                android:fontFamily="sans-serif"
                 android:padding="10dp"
                 android:text="@string/settings_changepassword"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/pink"
                 android:textSize="30sp" />
+
 
 	        <Button
 		        android:id="@+id/settings_inviteusers_btn"
@@ -183,13 +197,14 @@
 		        android:layout_height="wrap_content"
 		        android:layout_gravity="bottom|center_horizontal"
 		        android:layout_marginBottom="10dp"
-		        android:layout_marginTop="30dp"
-		        android:background="@drawable/rec_border"
-		        android:fontFamily="sans-serif-thin"
+		        android:layout_marginTop="10dp"
+		        android:background="@drawable/rec_border_green"
+		        android:fontFamily="sans-serif"
 		        android:padding="10dp"
 		        android:text="@string/settings_inviteusers"
-		        android:textColor="@color/colorPrimary"
+		        android:textColor="@color/green"
 		        android:textSize="30sp" />
+
 
             <!--<Button
                 android:id="@+id/settings_leavebtn"
@@ -204,16 +219,26 @@
                 android:text="@string/settings_leave"
                 android:textColor="@color/pink"
                 android:textSize="30sp" />-->
+	        <View
+		        android:id="@+id/settings_bottom_divider"
+		        android:visibility="gone"
+		        android:layout_width="100dp"
+		        android:layout_height="1dp"
+		        android:layout_marginBottom="10dp"
+		        android:layout_marginTop="30dp"
+		        android:layout_gravity="center"
+		        android:background="@color/black_overlay" />
 
             <Button
+	            android:visibility="gone"
                 android:id="@+id/settings_submitbtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center_horizontal"
                 android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="30dp"
                 android:background="@drawable/rec_border"
-                android:fontFamily="sans-serif-thin"
+                android:fontFamily="sans-serif"
                 android:padding="10dp"
                 android:text="@string/settings_submitbtn"
                 android:textColor="@color/colorPrimary"

@@ -82,7 +82,7 @@ public class BulletinView extends LinearLayout {
 		log.info(String.format(InfoStrings.VIEW_SETUP, BulletinView.class.getSimpleName()));
 
 		LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-		lp.setMargins(0, 5, 0, 5);
+		lp.setMargins(20, 5, 0, 5);
 		setLayoutParams(lp);
 		setOrientation(LinearLayout.HORIZONTAL);
 
@@ -110,7 +110,7 @@ public class BulletinView extends LinearLayout {
 		LayoutParams lpm = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 		lpm.width = (int)(30 * getContext().getResources().getDisplayMetrics().density); //30dp
 		lpm.height = (int)(30 * getContext().getResources().getDisplayMetrics().density); //30dp
-		lpm.setMargins(10, 10, 0, 10);
+		lpm.setMargins(15, 10, 0, 10);
 		removeButton.setLayoutParams(lpm);
 		editButton.setLayoutParams(lpm);
 		removeButton.setGravity(Gravity.END | Gravity.CENTER_VERTICAL);
@@ -123,7 +123,7 @@ public class BulletinView extends LinearLayout {
 		editButton.setOnClickListener(new ModifyBulletinListener(activity, bull, content));
 
 		/* Getting information from bulletin */
-		content.setText(bull.getContent());
+		content.setText('"' + bull.getContent() + '"');
 
 		/* Add fields to view */
 		rightLayout.addView(editButton);

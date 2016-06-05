@@ -2,11 +2,9 @@ package com.rip.roomies.activities.profile;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Point;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.View;
@@ -20,13 +18,11 @@ import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.activities.groups.InviteUsers;
 import com.rip.roomies.events.profile.EditProfileListener;
-import com.rip.roomies.events.profile.LeaveGroupListener;
 import com.rip.roomies.models.Group;
 import com.rip.roomies.models.User;
 import com.rip.roomies.util.Exceptions;
 import com.rip.roomies.util.Images;
 
-import java.io.InputStream;
 import java.util.logging.Logger;
 
 public class Profile extends GenericActivity implements View.OnClickListener {
@@ -43,6 +39,7 @@ public class Profile extends GenericActivity implements View.OnClickListener {
     private EditText etGroupName;
     private Button btChangePassword;
     private Button btSaveChanges;
+	private View btm_divider;
     //private Button btLeaveGroup;
     private User thisUser;
     private Group thisUsersGroup;
@@ -69,6 +66,7 @@ public class Profile extends GenericActivity implements View.OnClickListener {
         etGroupName = (EditText) findViewById(R.id.settings_gname);
         btChangePassword = (Button) findViewById(R.id.settings_changepassword);
         btSaveChanges = (Button) findViewById(R.id.settings_submitbtn);
+	    btm_divider = (View) findViewById(R.id.settings_bottom_divider);
         //btLeaveGroup = (Button) findViewById(R.id.settings_leavebtn);
         userProfile = (ImageView) findViewById(R.id.settings_user_profile);
 
@@ -154,7 +152,8 @@ public class Profile extends GenericActivity implements View.OnClickListener {
 
         switch (v.getId()) {
             case R.id.settings_tap_hint:
-
+	            btm_divider.setVisibility(View.VISIBLE);
+				btSaveChanges.setVisibility(View.VISIBLE);
                 //change background color to light gray
                 etFirstName.setBackgroundColor(Color.LTGRAY);
                 etLastName.setBackgroundColor(Color.LTGRAY);
@@ -173,6 +172,8 @@ public class Profile extends GenericActivity implements View.OnClickListener {
 
     }
 
+
+
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
@@ -187,4 +188,5 @@ public class Profile extends GenericActivity implements View.OnClickListener {
 			}
 		}
 	}
+
 }
