@@ -40,7 +40,7 @@ public class RemindDutyListener implements View.OnClickListener {
 	@Override
 	public void onClick(View v) {
 		try {
-			ServerRequest.remindDuty(receiverID, duty.getName());
+			ServerRequest.remindDuty(duty.getId(), receiverID, duty.getName());
 		} catch (URISyntaxException e) {
 			throw new RuntimeException(e);
 		}

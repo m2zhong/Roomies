@@ -25,7 +25,7 @@ public class RemindBillListener implements View.OnClickListener{
 	public void onClick(View v) {
 		/* INSER REMINDER FUNCTION CALL HERE (HAO) */
 		try {
-			ServerRequest.remindBill(bill.getOweeID(), User.getActiveUser().getFirstName(),
+			ServerRequest.remindBill(bill.getRowID(), bill.getOweeID(), User.getActiveUser().getFirstName(),
 					bill.getAmount(), bill.getDescription());
 		}
 		catch (URISyntaxException e) {

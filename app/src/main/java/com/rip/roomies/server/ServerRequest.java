@@ -37,17 +37,17 @@ public class ServerRequest {
 		Server.getConnection().emit(SocketStrings.COMPLETE_CSG, receiverName, csgName);
 	}
 
-	public static void remindDuty(int receiverId, String dutyName)throws URISyntaxException{
-		Server.getConnection().emit(SocketStrings.NOTIFICATION_DUTY, receiverId, dutyName);
+	public static void remindDuty(int dutyId, int receiverId, String dutyName)throws URISyntaxException{
+		Server.getConnection().emit(SocketStrings.NOTIFICATION_DUTY, dutyId, receiverId, dutyName);
 	}
 
-	public static void remindCommonGood(int receiverId, String csgName)throws URISyntaxException{
-		Server.getConnection().emit(SocketStrings.NOTIFICATION_CSG, receiverId, csgName);
+	public static void remindCommonGood(int csgId, int receiverId, String csgName)throws URISyntaxException{
+		Server.getConnection().emit(SocketStrings.NOTIFICATION_CSG, csgId, receiverId, csgName);
 	}
 
-	public static void remindBill(int receiverId, String ownerName,
+	public static void remindBill(int billId, int receiverId, String ownerName,
 	                              float amount, String description) throws URISyntaxException{
-		Server.getConnection().emit(SocketStrings.NOTIFICATION_BILL,
+		Server.getConnection().emit(SocketStrings.NOTIFICATION_BILL, billId,
 						receiverId, ownerName, amount, description);
 	}
 

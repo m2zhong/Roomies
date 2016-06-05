@@ -6,6 +6,9 @@ import android.os.Parcelable;
 
 import com.rip.roomies.views.TaskView;
 
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.logging.Logger;
 
 /**
@@ -20,7 +23,9 @@ public abstract class Task<TLog extends TaskLog, T extends Task<TLog, T>> implem
 	private int groupId;
 	private User assignee;
 	private User[] users;
+	private Timestamp time;
 
+	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 	//------- CONSTRUCTORS -------//
 
 	/**
@@ -192,4 +197,21 @@ public abstract class Task<TLog extends TaskLog, T extends Task<TLog, T>> implem
 
 		users = temp;
 	}
+
+	public void setTime(Timestamp time) {
+		this.time = time;
+	}
+
+	public Timestamp getTime(){
+		return time;
+	}
+
+	public boolean reminded() {
+
+		long oldTime =  time.getTime();
+		long currentTime = System.currentTimeMillis();
+		long timeDiff = (currentTime - oldTime);
+		return (timeDiff < 86400000);
+	}
+
 }

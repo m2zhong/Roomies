@@ -117,4 +117,5 @@ public class Duty extends Task<DutyLog, Duty> {
 			return false;
 		}
 	}
+
 }
