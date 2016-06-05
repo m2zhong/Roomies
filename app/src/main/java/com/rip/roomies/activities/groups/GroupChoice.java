@@ -3,13 +3,24 @@ package com.rip.roomies.activities.groups;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.PopupWindow;
 
 import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
+import com.rip.roomies.application.SaveSharedPreference;
+import com.rip.roomies.controllers.LoginController;
+import com.rip.roomies.util.InfoStrings;
+
+import java.util.Locale;
+import java.util.logging.Logger;
 
 public class GroupChoice extends GenericActivity {
+	private static final Logger log = Logger.getLogger(GroupChoice.class.getName());
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +50,46 @@ public class GroupChoice extends GenericActivity {
 
 	@Override
 	public void onBackPressed() {
-		// This is supposed to do nothing
+		LayoutInflater layoutInflater
+				= (LayoutInflater) getBaseContext()
+				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+		View popupView = layoutInflater.inflate(R.layout.confirm_logoff, null);
+		final PopupWindow popupWindow = new PopupWindow(
+				popupView,
+				ViewGroup.LayoutParams.MATCH_PARENT,
+				ViewGroup.LayoutParams.MATCH_PARENT);
+
+		Button btnYes = (Button)popupView.findViewById(R.id.yes_btn);
+		Button btnNo = (Button)popupView.findViewById(R.id.no_btn);
+
+		btnYes.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if(SaveSharedPreference.getUsername(v.getContext()).length() != 0 || SaveSharedPreference.getPassword(v.getContext()).length() != 0) {
+					log.info("username: " + SaveSharedPreference.getUsername(v.getContext()) + " 1 from logout" + "\n");
+					log.info("password: " + SaveSharedPreference.getPassword(v.getContext()) + "1 from logout" + "\n");
+					SaveSharedPreference.clearUsername(v.getContext());
+					SaveSharedPreference.clearPassword(v.getContext());
+					log.info("username: " + SaveSharedPreference.getUsername(v.getContext()) + "2 from logout" + "\n");
+					log.info("password: " + SaveSharedPreference.getPassword(v.getContext()) + "2 from logout" + "\n");
+
+				}
+				popupWindow.dismiss();
+				LoginController.getController().logoff();
+				toLogin();
+			}
+		});
+
+		btnNo.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				log.info(String.format(Locale.US, InfoStrings.SWITCH_ACTIVITY,
+						GroupChoice.class.getSimpleName()));
+				popupWindow.dismiss();
+
+			}
+		});
+		popupWindow.showAtLocation(btnNo, Gravity.CENTER,0,0);
 	}
 }
