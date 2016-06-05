@@ -25,8 +25,8 @@
 	<string name="delete">Delete</string>
 
 	<string name="create_group_header">Create Group</string>
-	<string name="group_name_hint">name</string>
-	<string name="group_desription_hint">description</string>
+	<string name="group_name_hint">Pick a group name</string>
+	<string name="group_desription_hint">Give it a description</string>
 	<string name="invitees_header">invitees</string>
 	<string name="invitee_add_hint">invitee isername</string>
 
@@ -39,7 +39,7 @@
 	<string name="reminder">Reminder:</string>
 	<string name="bulletin">Bulletin Board:</string>
 	<string name="roomies_home">Your roomies</string>
-	<string name="shareditem_home">Shared\nItem</string>
+	<string name="shareditem_home">Shared\nItems</string>
 
 
 	<string name="overallduties_home">Overall\nDuties</string>
@@ -107,4 +107,5 @@
 	<string name="join_groupbtn">Join Group</string>
 	<string name="addbill_des_length">(100 Characters)</string>
 	<string name="addbill_owe">Owe</string>
+	<string name="home_edit_profile_hint">Edit Profile</string>
 </resources>

@@ -1,14 +1,11 @@
 package com.rip.roomies.events.goods;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import com.rip.roomies.activities.GenericActivity;
-import com.rip.roomies.activities.goods.ListAllGoods;
 import com.rip.roomies.controllers.GoodController;
 import com.rip.roomies.functions.CompleteGoodFunction;
 import com.rip.roomies.models.Good;

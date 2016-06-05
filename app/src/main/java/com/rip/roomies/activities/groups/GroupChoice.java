@@ -12,7 +12,6 @@ import android.widget.PopupWindow;
 
 import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
-import com.rip.roomies.activities.home.Home;
 import com.rip.roomies.application.SaveSharedPreference;
 import com.rip.roomies.controllers.LoginController;
 import com.rip.roomies.models.User;
