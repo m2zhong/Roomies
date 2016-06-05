@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
@@ -15,10 +14,7 @@ import android.widget.TextView;
 
 import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
-import com.rip.roomies.activities.duties.ListAllDuties;
 import com.rip.roomies.activities.duties.ModifyDuty;
-
-import com.rip.roomies.events.duties.CompleteDutyListener;
 import com.rip.roomies.events.duties.PopUpDutyListener;
 import com.rip.roomies.events.duties.RemindDutyListener;
 import com.rip.roomies.functions.CompleteDutyFunction;
@@ -133,6 +129,8 @@ public class DutyView extends TaskView {
 		String fullName = duty.getAssignee().getFirstName() + " " + duty.getAssignee().getLastName();
 		assignee.setText(fullName);
 
+		assignee.setPadding(30,10,0,10);
+		description.setPadding(30,10,0,10);
 		innerLayout.addView(name);
 		innerLayout.addView(description);
 		innerLayout.addView(assignee);
@@ -188,8 +186,8 @@ public class DutyView extends TaskView {
 
 
 
-		actBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
-		actBtn.setBackground(getResources().getDrawable(R.drawable.rec_border));
+		actBtn.setTextColor(getResources().getColor(R.color.dark_green));
+		actBtn.setBackground(getResources().getDrawable(R.drawable.rec_border_green));
 //		viewBtn.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
 		LinearLayout.LayoutParams v = new LayoutParams(
 				LayoutParams.WRAP_CONTENT,
@@ -198,35 +196,34 @@ public class DutyView extends TaskView {
 		v.setMargins(10, 50, 10, 50);
 		actBtn.setLayoutParams(v);
 
+
+		//disabling the button her according to the timestamp
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+
+
+
 		User currentAssignee = duty.getAssignee();
+		//completion
 		if (currentAssignee.getId() == User.getActiveUser().getId()) {
 			actBtn.setText("Complete");
 			actBtn.setPadding(10, 20, 10 , 20);
+			int popUpID = R.layout.activity_confirm_duty_comp;
+			actBtn.setOnClickListener(new PopUpDutyListener(
+					(GenericActivity) getContext(), (CompleteDutyFunction) getContext(),
+					actBtn, popUpID, duty));
 		}
+		//remind others
 		else{
 			actBtn.setText("Remind");
 			actBtn.setPadding(10, 20, 10 , 20);
+			actBtn.setOnClickListener(new RemindDutyListener(
+					(GenericActivity) getContext(), currentAssignee.getId(), duty));
 		}
 
-		actBtn.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				User currentAssignee = duty.getAssignee();
-				if (currentAssignee.getId() == User.getActiveUser().getId()) {
-					int popUpID = R.layout.activity_confirm_duty_comp;
-					((Button) v).setOnClickListener(new PopUpDutyListener(
-							(GenericActivity) getContext(), (CompleteDutyFunction) getContext(),
-							((Button) v), popUpID, duty));
-				}
-				else{
-					((Button) v).setOnClickListener(new RemindDutyListener(
-							(GenericActivity) getContext(), currentAssignee.getId(), duty));
-				}
-			}
-		});
-
 		LinearLayout hline = new LinearLayout(getContext());
-		hline.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1));
+		LayoutParams hlinep = new LayoutParams(200,1);
+		hlinep.gravity=Gravity.CENTER_HORIZONTAL;
+		hline.setLayoutParams(hlinep);
 		hline.setBackgroundColor(Color.BLACK);
 
 		LinearLayout outerLayout = new LinearLayout(getContext());
