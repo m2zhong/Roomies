@@ -34,7 +34,7 @@ public class ModifyBulletin extends GenericActivity {
 		submit.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if (!parseArgs(content.toString())) {
+				if (!parseArgs(content.getText().toString())) {
 					return;
 				}
 
@@ -52,7 +52,7 @@ public class ModifyBulletin extends GenericActivity {
 	 * @return true if parseArgs failed, ie the user didnt enter in something.
 	 */
 	public boolean parseArgs(String content) {
-		if (content == "") {
+		if (content == "" || content.trim().length()==0) {
 			Toast.makeText(getApplicationContext(), "Make sure all fields are filled.",
 					Toast.LENGTH_LONG).show();
 			return false;
