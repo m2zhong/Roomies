@@ -43,7 +43,9 @@ public class ChangePasswordListener implements View.OnClickListener, ChangePassF
 
 
         StringBuilder errMessage = new StringBuilder();
-        errMessage.append(Validation.validate(newPassword, Validation.ParamType.Password, "Password"));
+        errMessage.append(Validation.validate(previousPassword, Validation.ParamType.Password, "Old Password"));
+        errMessage.append(Validation.validate(newPassword, Validation.ParamType.Password, "New Password"));
+        errMessage.append(Validation.validate(cfnewPassword, Validation.ParamType.Password, "Confirm Password"));
 
 		/* Check if error occured*/
         if (errMessage.length() != 0) {

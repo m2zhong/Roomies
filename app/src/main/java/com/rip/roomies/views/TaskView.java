@@ -14,6 +14,16 @@ import java.util.logging.Logger;
 public abstract class TaskView extends LinearLayout {
 	private static final Logger log = Logger.getLogger(TaskView.class.getName());
 
+	public static final int EDIT_GOOD = 1;
+	public static final int VIEW_GOOD = 2;
+	public static final int ADD_GOOD = 3;
+	public static final int COMPLETE_GOOD = 4;
+
+	public static final int EDIT_DUTY = 5;
+	public static final int VIEW_DUTY = 6;
+	public static final int ADD_DUTY = 7;
+
+
 	private Task task;
 
 	/**
