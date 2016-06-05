@@ -98,16 +98,9 @@ public class DutyView extends TaskView {
 		setOrientation(LinearLayout.VERTICAL);
 
 
-/*
-		setLayoutParams(new LayoutParams(
-				LayoutParams.MATCH_PARENT,
-				LayoutParams.WRAP_CONTENT));
-		setOrientation(LinearLayout.HORIZONTAL);
-*/
 		TextView name = new TextView(getContext());
 		TextView description = new TextView(getContext());
 		TextView assignee = new TextView(getContext());
-//		Button viewBtn = new Button(getContext());
 		Button editBtn = new Button(getContext());
 		Button actBtn = new Button(getContext());
 
@@ -137,36 +130,9 @@ public class DutyView extends TaskView {
 		innerLayout.addView(description);
 		innerLayout.addView(assignee);
 
-
-/*		viewBtn.setText("View");
-		viewBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
-		viewBtn.setBackground(getResources().getDrawable(R.drawable.rec_border));
-//		viewBtn.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
-		viewBtn.setPadding(50, 50, 50 , 50);
-		LinearLayout.LayoutParams v = new LayoutParams(
-				LayoutParams.WRAP_CONTENT,
-				LayoutParams.WRAP_CONTENT);
-		v.gravity = Gravity.CENTER_VERTICAL;
-		v.setMargins(10, 50, 10, 50);
-		viewBtn.setLayoutParams(v);
-		viewBtn.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				log.info(String.format(Locale.US, InfoStrings.SWITCH_ACTIVITY,
-						ViewDuty.class.getSimpleName()));
-
-				Intent i = new Intent(getContext(), ViewDuty.class);
-				i.putExtra("Duty", duty);
-				((Activity) getContext()).startActivityForResult(i, VIEW_DUTY);
-			}
-		});
-*/
-
-
 		editBtn.setText("Edit");
 		editBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
 		editBtn.setBackground(getResources().getDrawable(R.drawable.rec_border));
-//		editBtn.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
 		editBtn.setPadding(20, 10, 20, 10);
 		LinearLayout.LayoutParams p = new LayoutParams(
 				LayoutParams.WRAP_CONTENT,
@@ -190,7 +156,6 @@ public class DutyView extends TaskView {
 
 		actBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
 		actBtn.setBackground(getResources().getDrawable(R.drawable.rec_border));
-//		viewBtn.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
 		LinearLayout.LayoutParams v = new LayoutParams(
 				LayoutParams.WRAP_CONTENT,
 				LayoutParams.WRAP_CONTENT);
@@ -235,7 +200,6 @@ public class DutyView extends TaskView {
 		outerLayout.setOrientation(LinearLayout.HORIZONTAL);
 
 		outerLayout.addView(innerLayout);
-//		outerLayout.addView(viewBtn);
 		outerLayout.addView(editBtn);
 		outerLayout.addView(actBtn);
 
