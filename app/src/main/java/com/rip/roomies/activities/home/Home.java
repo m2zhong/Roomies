@@ -3,6 +3,7 @@ package com.rip.roomies.activities.home;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.os.AsyncTask;
@@ -57,15 +58,19 @@ public class Home extends GenericActivity {
 	private static final Logger log = Logger.getLogger(Home.class.getName());
 	private static final double IMAGE_WIDTH_RATIO = 3.0 / 10;
 	private static final double IMAGE_HEIGHT_RATIO = 2.0 / 25;
+
 	private User user;
 	private CharSequence first_name;
 	private BulletinContainer container;
 	private Bulletin editBull;
 	private TextView aBullCont;
 	private boolean popupEnabled = false;
+	private TextView username;
+	private ImageView profileBadge;
 
-	private final int RESULT_CODE_MODIFY_BULLETIN = 1;
-	private final int RESULT_CODE_ADD_BULLETIN = 2;
+	private static final int RESULT_CODE_MODIFY_BULLETIN = 1;
+	private static final int RESULT_CODE_ADD_BULLETIN = 2;
+	private static final int UPDATE_PROFILE = 3;
 	final Activity self = this;
 
 	@Override
@@ -84,7 +89,7 @@ public class Home extends GenericActivity {
 		TextView dutiesScreen = (TextView) findViewById(R.id.home_overallduties);
 		TextView goodsScreen = (TextView) findViewById(R.id.home_shareditem);
 		TextView billScreen = (TextView) findViewById(R.id.home_IOU);
-		TextView username = (TextView) findViewById(R.id.home_username);
+		username = (TextView) findViewById(R.id.home_username);
 
 		user = User.getActiveUser();
 		first_name = user.getFirstName();
@@ -96,11 +101,11 @@ public class Home extends GenericActivity {
 			}
 		});
 
-		ImageView profileBadge = (ImageView) findViewById(R.id.home_profilepicture);
+		profileBadge = (ImageView) findViewById(R.id.home_profilepicture);
 		profileBadge.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				startActivity(new Intent(self, Profile.class));
+				startActivityForResult(new Intent(self, Profile.class), UPDATE_PROFILE);
 			}
 		});
 
@@ -263,7 +268,7 @@ public class Home extends GenericActivity {
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode,resultCode,data);
 
-		if(resultCode == RESULT_CODE_MODIFY_BULLETIN) {
+		if(requestCode == RESULT_CODE_MODIFY_BULLETIN && resultCode == RESULT_OK) {
 			String updContent = data.getStringExtra("Key_New_Content");
 
 			editBull.setContent(updContent);
@@ -272,10 +277,17 @@ public class Home extends GenericActivity {
 			HomeController.getController().modifyBulletin(editBull);
 
 		}
-		else if(resultCode == RESULT_CODE_ADD_BULLETIN) {
+		else if(requestCode == RESULT_CODE_ADD_BULLETIN && resultCode == RESULT_OK) {
 			String content = data.getStringExtra("Key_New_Content");
 
 			HomeController.getController().createBulletin(content, container);
+		}
+		else if (requestCode == UPDATE_PROFILE && resultCode == RESULT_OK) {
+			Bitmap bmp = data.getExtras().getParcelable("ProfileIcon");
+			if (bmp != null) {
+				profileBadge.setImageBitmap(bmp);
+			}
+			username.setText(" " + data.getExtras().getString("FirstName") + "!");
 		}
 	}
 

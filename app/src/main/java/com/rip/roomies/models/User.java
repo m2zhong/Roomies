@@ -172,7 +172,7 @@ public class User implements Parcelable {
 
 
 
-	public Integer updateProfile(String firstName, String lastName, String email,
+	public User updateProfile(String firstName, String lastName, String email,
 	                             String groupDescription, byte[] profilePic) {
 
 		return SQLModify.updateProfile(Group.getActiveGroup().getId(), User.getActiveUser().getId(),

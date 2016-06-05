@@ -138,7 +138,7 @@ public class SQLModify {
 	}
 
 
-	public static Integer updateProfile (int groupID, int userID, String firstName, String lastName,
+	public static User updateProfile (int groupID, int userID, String firstName, String lastName,
 	                                     String email, String groupDescription, byte[] profilePic) {
 		ResultSet rset;
 
@@ -146,7 +146,6 @@ public class SQLModify {
 
 			//debug statement
 			//log.info(InfoStrings.MODIFYDUTY_SQL);
-
 			String profilePicString = Conversions.byteArrayToHexString(profilePic);
 
 			// get the result table from query execution through sql
@@ -161,6 +160,7 @@ public class SQLModify {
 			}
 			// if there is a rset
 			else {
+				byte[] image = profilePic;
 
 				// debug statement
 				//log.info(String.format(Locale.US, InfoStrings.MODIFYDUTY_SUCCESSFUL,
@@ -169,10 +169,20 @@ public class SQLModify {
 				if (pstmt != null) {
 					pstmt.setInt(1, userID);
 					pstmt.setBytes(2, profilePic);
-					pstmt.executeQuery();
+					ResultSet rs = pstmt.executeQuery();
+
+					if (rs != null && rs.next()) {
+						image = rs.getBytes("ProfileIcon");
+					}
 				}
 
-				return 1;
+				return new User(rset.getInt("ID"),
+						rset.getString("FirstName"),
+						rset.getString("LastName"),
+						rset.getString("Username"),
+						rset.getString("Email"),
+						null,
+						image);
 			}
 		}
 		catch (Exception e) {

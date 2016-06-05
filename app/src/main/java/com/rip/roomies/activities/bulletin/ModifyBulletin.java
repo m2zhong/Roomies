@@ -40,7 +40,7 @@ public class ModifyBulletin extends GenericActivity {
 
 				Intent intent = new Intent();
 				intent.putExtra("Key_New_Content", content.getText().toString());
-				setResult(RESULT_CODE_MODIFY_BULLETIN, intent);
+				setResult(RESULT_OK, intent);
 				finish();
 			}
 
