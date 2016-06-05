@@ -36,7 +36,7 @@ public class RemindBillListener implements View.OnClickListener{
 					bill.getAmount(), bill.getDescription());
 			button.setBackground(context.getResources().getDrawable(R.drawable.rec_border_gray));
 			button.setTextColor(context.getResources().getColor(R.color.black_overlay));
-			Toast.makeText(context.getContext(), "Reminder Sent, please wait for another 24" +
+			Toast.makeText(context.getContext(), "Reminder Sent, please wait for another 6" +
 					" hours to send another one", Toast.LENGTH_SHORT).show();
 			button.setEnabled(false);
 
