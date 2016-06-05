@@ -107,7 +107,6 @@ public class ListAllGoods extends GenericActivity implements ListAllGoodsFunctio
 		else if (requestCode == GoodView.COMPLETE_GOOD && resultCode == RESULT_OK) {
 			Good good = data.getExtras().getParcelable("Good");
 			gc.removeGood(good);
-
 		}
 	}
 }

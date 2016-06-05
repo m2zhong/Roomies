@@ -358,7 +358,7 @@ public class SQLGet {
 					String last = getUser.getString("LastName");
 					String username = getUser.getString("Username");
 					String email = getUser.getString("Email");
-					byte[] profilePic = rs.getBytes("ProfileIcon");
+					byte[] profilePic = getUser.getBytes("ProfileIcon");
 
 					User assignee = new User(userId, first, last, username, email, null, profilePic);
 
