@@ -34,18 +34,12 @@ public class RemindBillListener implements View.OnClickListener{
 		try {
 			ServerRequest.remindBill(bill.getRowID(), bill.getOweeID(), User.getActiveUser().getFirstName(),
 					bill.getAmount(), bill.getDescription());
-			if(bill.reminded()) {
-				button.setBackground(context.getResources().getDrawable(R.drawable.rec_border_gray));
-				button.setTextColor(context.getResources().getColor(R.color.black_overlay));
-				button.setEnabled(false);
-				Toast.makeText(context.getContext(), "Reminder Sent, please wait for another 24" +
-						" hours to send another one", Toast.LENGTH_SHORT).show();
-			}
-			else {
-				button.setBackground(context.getResources().getDrawable(R.drawable.rec_border_pink));
-				button.setTextColor(context.getResources().getColor(R.color.pink));
-				button.setEnabled(true);
-			}
+			button.setBackground(context.getResources().getDrawable(R.drawable.rec_border_gray));
+			button.setTextColor(context.getResources().getColor(R.color.black_overlay));
+			Toast.makeText(context.getContext(), "Reminder Sent, please wait for another 24" +
+					" hours to send another one", Toast.LENGTH_SHORT).show();
+			button.setEnabled(false);
+
 		}
 		catch (URISyntaxException e) {
 			e.printStackTrace();

@@ -175,6 +175,17 @@ public class BillView extends LinearLayout {
 
 		remindBill.setOnClickListener(new RemindBillListener(remindBill,this, bill));
 
+		if(bill.reminded()) {
+			remindBill.setBackground(getResources().getDrawable(R.drawable.rec_border_gray));
+			remindBill.setTextColor(getResources().getColor(R.color.black_overlay));
+			remindBill.setEnabled(false);
+		}
+		else {
+			remindBill.setBackground(getResources().getDrawable(R.drawable.rec_border_pink));
+			remindBill.setTextColor(getResources().getColor(R.color.pink));
+			remindBill.setEnabled(true);
+		}
+
 
 
 		/* Getting User's Information from bill*/
