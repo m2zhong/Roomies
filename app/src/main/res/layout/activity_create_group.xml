@@ -39,8 +39,8 @@
 			android:paddingBottom="5dp"
 			android:paddingLeft="10dp"
 			android:textColorHint="@color/text"
-			android:textSize="20sp"
-			/>
+			android:textCursorDrawable="@null"
+			android:textSize="20sp" />
 
 		<EditText
 			android:id="@+id/group_description"
@@ -58,6 +58,7 @@
 			android:maxLength="100"
 			android:textColorHint="@color/text"
 			android:textColor="@color/colorAccent"
+			android:textCursorDrawable="@null"
 			android:textSize="20sp" />
 
 		<Button

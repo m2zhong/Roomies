@@ -192,9 +192,9 @@ public class BillView extends LinearLayout {
 
 		/* Removing negative sign in amount in YouOwe */
 		if (bill.getAmount()< 0)
-			amount.setText('$' + String.valueOf(bill.getAmount()).substring(1));
+			amount.setText(cash.format(bill.getAmount()*-1));
 		else
-			amount.setText('$' + String.valueOf(bill.getAmount()));
+			amount.setText(cash.format(bill.getAmount()));
 
 
 

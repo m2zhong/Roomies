@@ -1,5 +1,7 @@
 package com.rip.roomies.events.profile;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -19,6 +21,7 @@ import com.rip.roomies.util.Images;
 import com.rip.roomies.util.Validation;
 
 import java.io.ByteArrayOutputStream;
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.logging.Logger;
 
@@ -34,24 +37,30 @@ public class EditProfileListener implements View.OnClickListener, UpdateProfileF
     private EditText etEmail;
     private EditText etGroupDescription;
 	private ImageView profilePic;
+	private int width;
+	private int height;
+	private boolean updated = false;
 
     public EditProfileListener(GenericActivity activity, EditText etFirstName, EditText etLastName,
-                               EditText etEmail, EditText etGroupDescription, ImageView profilePic) {
+                               EditText etEmail, EditText etGroupDescription, ImageView profilePic,
+                               int width, int height) {
         this.activity = activity;
         this.etFirstName = etFirstName;
         this.etLastName = etLastName;
         this.etEmail = etEmail;
         this.etGroupDescription = etGroupDescription;
 		this.profilePic = profilePic;
+	    this.width = width;
+	    this.height = height;
     }
 
     @Override
     public void onClick(View v) {
 	    byte[] image = null;
-	    if (profilePic != null) {
+	    if (profilePic != null && updated) {
 		    Bitmap bmp = ((BitmapDrawable) profilePic.getDrawable()).getBitmap();
 		    ByteArrayOutputStream stream = new ByteArrayOutputStream();
-		    bmp.compress(Bitmap.CompressFormat.JPEG, 0, stream);
+		    bmp.compress(Bitmap.CompressFormat.JPEG, 50, stream);
 		    image = stream.toByteArray();
 		    try {
 			    stream.close();
@@ -89,17 +98,17 @@ public class EditProfileListener implements View.OnClickListener, UpdateProfileF
     }
 
     @Override
-    public void updateProfileSuccess() {
+    public void updateProfileSuccess(User user) {
         //trim the whitespace off all the Strings
         String firstname = etFirstName.getText().toString().trim();
         String lastname = etLastName.getText().toString().trim();
         String email = etEmail.getText().toString().trim();
 
 	    byte[] image = null;
-	    if (profilePic != null) {
+	    if (profilePic != null && updated) {
 		    Bitmap bmp = ((BitmapDrawable) profilePic.getDrawable()).getBitmap();
 		    ByteArrayOutputStream stream = new ByteArrayOutputStream();
-		    bmp.compress(Bitmap.CompressFormat.JPEG, 0, stream);
+		    bmp.compress(Bitmap.CompressFormat.JPEG, 50, stream);
 		    image = stream.toByteArray();
 		    try {
 			    stream.close();
@@ -115,7 +124,20 @@ public class EditProfileListener implements View.OnClickListener, UpdateProfileF
 
         //update active group
         Group.setActiveGroupDescription(etGroupDescription.getText().toString());
-        activity.finish();
 
+	    byte[] updatedImg = user.getProfilePic();
+	    Bitmap bmp = null;
+	    if (updatedImg != null) {
+		    bmp = Images.getScaledDownBitmap(updatedImg, width, height);
+	    }
+	    Intent i = activity.getIntent();
+	    i.putExtra("ProfileIcon", bmp);
+	    i.putExtra("FirstName", user.getFirstName());
+        activity.setResult(Activity.RESULT_OK, i);
+		activity.finish();
     }
+
+	public void setUpdated(boolean isUpdated) {
+		updated = isUpdated;
+	}
 }

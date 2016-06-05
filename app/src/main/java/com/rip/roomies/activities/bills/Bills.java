@@ -81,7 +81,9 @@ public class Bills extends GenericActivity {
         //and amount are filled correctly.
         intent.putExtra("Orig_Key_Name", name.getText());
         intent.putExtra("Orig_Key_Description", description.getText());
-        intent.putExtra("Orig_Key_Amount", String.valueOf(theBillToEdit.getAmount()));
+        DecimalFormat format = new DecimalFormat("#.##");
+        format.setMinimumFractionDigits(2);
+        intent.putExtra("Orig_Key_Amount", format.format(theBillToEdit.getAmount()));
         intent.putExtra("Key_Bill_Row_ID", String.valueOf(theBillToEdit.getRowID()));
 
         //Start the ModifyBill activity, when its finished, onActivityResult
@@ -145,7 +147,7 @@ public class Bills extends GenericActivity {
             //selected in the main IOU's page.
             aBillsName.setText(updName);
             aBillsDescription.setText(updDescription);
-            aBillsAmount.setText("$" + updAmount);
+            aBillsAmount.setText(cash.format(Float.parseFloat(updAmount)));
 
             //update the DB bill entry
             BillController.getController().modifyBill(theBillToEdit);

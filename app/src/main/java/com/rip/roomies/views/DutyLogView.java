@@ -88,17 +88,21 @@ public class DutyLogView extends LinearLayout {
 		name.setText(dutyLog.getName());
 		name.setTextColor(getResources().getColor(R.color.colorPrimary));
 		name.setTypeface(null, Typeface.BOLD);
+		name.setTextSize(20);
 
 		description.setText(dutyLog.getDescription());
 		description.setTextColor(Color.BLACK);
+		description.setTextSize(15);
 
 		String fullName = dutyLog.getAssignee().getFirstName() + " " + dutyLog.getAssignee().getLastName();
 		assignee.setText(fullName);
 		assignee.setTextColor(Color.BLACK);
+		assignee.setTextSize(15);
 
-		DateFormat compDate = new SimpleDateFormat("MM/dd/yyyy");
+		DateFormat compDate = new SimpleDateFormat("MM/dd/yyyy  |  hh:mm a");
 		String text = compDate.format(dutyLog.getCompletion());
 		completeDate.setText(text);
+		completeDate.setTextColor(getResources().getColor(R.color.black_overlay));
 
 
 
@@ -108,8 +112,8 @@ public class DutyLogView extends LinearLayout {
 
 
 		innerLayout.addView(name);
-		innerLayout.addView(description);
 		innerLayout.addView(assignee);
+		innerLayout.addView(description);
 		innerLayout.addView(completeDate);
 
 

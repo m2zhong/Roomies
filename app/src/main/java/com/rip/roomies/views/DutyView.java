@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
@@ -31,11 +32,6 @@ import java.util.logging.Logger;
  */
 public class DutyView extends TaskView {
 	private static final Logger log = Logger.getLogger(DutyView.class.getName());
-
-	public static final int EDIT_DUTY = 1;
-	public static final int VIEW_DUTY = 2;
-	public static final int ADD_DUTY = 3;
-	public static final int COMPLETE_GOOD = 4;
 
 	private Duty duty;
 
@@ -113,13 +109,10 @@ public class DutyView extends TaskView {
 				LayoutParams.WRAP_CONTENT, 1.0f));
 
 		name.setTextColor(getResources().getColor(R.color.colorPrimary));
-		name.setTextSize(25);
+		name.setTypeface(null, Typeface.BOLD);
+		assignee.setTextColor(Color.BLACK);
+		description.setTextColor(getResources().getColor(R.color.black_overlay));
 
-		description.setTextColor(Color.BLACK);
-		description.setTextSize(15);
-
-		assignee.setTextColor(getResources().getColor(R.color.black_overlay));
-		assignee.setTextSize(15);
 
 		innerLayout.setOrientation(LinearLayout.VERTICAL);
 		innerLayout.setPadding(20, 20, 20, 20);
@@ -129,9 +122,17 @@ public class DutyView extends TaskView {
 		String fullName = duty.getAssignee().getFirstName() + " " + duty.getAssignee().getLastName();
 		assignee.setText(fullName);
 
+		assignee.setPadding(30,10,0,10);
+		description.setPadding(30,10,0,10);
 		innerLayout.addView(name);
-		innerLayout.addView(description);
 		innerLayout.addView(assignee);
+
+		if(description.getText().length()==0 ||
+				description.getText().toString().trim().length()==0){
+			description.setText("(No Description)");
+		}
+
+		innerLayout.addView(description);
 
 
 /*		viewBtn.setText("View");
@@ -184,8 +185,6 @@ public class DutyView extends TaskView {
 
 
 
-		actBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
-		actBtn.setBackground(getResources().getDrawable(R.drawable.rec_border));
 //		viewBtn.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
 		LinearLayout.LayoutParams v = new LayoutParams(
 				LayoutParams.WRAP_CONTENT,
@@ -199,6 +198,8 @@ public class DutyView extends TaskView {
 		if (currentAssignee.getId() == User.getActiveUser().getId()) {
 			actBtn.setText("Complete");
 			actBtn.setPadding(10, 20, 10 , 20);
+			actBtn.setTextColor(getResources().getColor(R.color.dark_green));
+			actBtn.setBackground(getResources().getDrawable(R.drawable.rec_border_green));
 			int popUpID = R.layout.activity_confirm_duty_comp;
 			actBtn.setOnClickListener(new PopUpDutyListener(
 					(GenericActivity) getContext(), (CompleteDutyFunction) getContext(),
@@ -208,6 +209,9 @@ public class DutyView extends TaskView {
 		else{
 			actBtn.setText("Remind");
 			actBtn.setPadding(10, 20, 10 , 20);
+
+			actBtn.setTextColor(getResources().getColor(R.color.pink));
+			actBtn.setBackground(getResources().getDrawable(R.drawable.rec_border_pink));
 			actBtn.setOnClickListener(new RemindDutyListener(actBtn ,
 					(GenericActivity) getContext(), currentAssignee.getId(), duty));
 
@@ -225,7 +229,9 @@ public class DutyView extends TaskView {
 
 
 		LinearLayout hline = new LinearLayout(getContext());
-		hline.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1));
+		LayoutParams hlinep = new LayoutParams(200,1);
+		hlinep.gravity = Gravity.CENTER_HORIZONTAL;
+		hline.setLayoutParams(hlinep);
 		hline.setBackgroundColor(Color.BLACK);
 
 		LinearLayout outerLayout = new LinearLayout(getContext());
@@ -234,11 +240,10 @@ public class DutyView extends TaskView {
 		outerLayout.setOrientation(LinearLayout.HORIZONTAL);
 
 		outerLayout.addView(innerLayout);
-//		outerLayout.addView(viewBtn);
 		outerLayout.addView(editBtn);
 		outerLayout.addView(actBtn);
 
-		addView(outerLayout);
 		addView(hline);
+		addView(outerLayout);
 	}
 }

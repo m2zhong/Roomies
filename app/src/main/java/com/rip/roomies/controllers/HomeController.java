@@ -1,7 +1,10 @@
 package com.rip.roomies.controllers;
 
 import android.os.AsyncTask;
+import android.view.View;
+import android.widget.TextView;
 
+import com.rip.roomies.R;
 import com.rip.roomies.activities.bills.Bills;
 import com.rip.roomies.activities.home.Home;
 import com.rip.roomies.models.Bill;
@@ -22,6 +25,7 @@ public class HomeController {
     private static final Logger log = Logger.getLogger(HomeController.class.getName());
 
     private static HomeController controller;
+	private static TextView noBulletinsMsg;
 
     /**
      * Gets the singleton home controller.
@@ -53,6 +57,7 @@ public class HomeController {
                 //if the bulletin returned wasn't null, add it to the container
                 if (result != null) {
                     container.addBulletin(result);
+	                noBulletinsMsg.setVisibility(View.GONE);
                 }
             }
         }.execute();
@@ -76,6 +81,8 @@ public class HomeController {
                 if (result != null) {
                     //remove the bulletin from the BulletinContainer.
                     container.removeBulletin(result);
+	                if (container.getBulletins().length == 0)
+		                noBulletinsMsg.setVisibility(View.VISIBLE);
                 }
             }
         }.execute();
@@ -100,23 +107,27 @@ public class HomeController {
 
     }
 
-    public static void populateBulletins(final BulletinContainer container) {
+    public static void populateBulletins(final BulletinContainer container, final TextView msg) {
         // Create and run a new thread
         new AsyncTask<Void, Void, Bulletin[]>() {
             @Override
             protected Bulletin[] doInBackground(Void... v) {
                 log.info(String.format(Locale.US, InfoStrings.GET_BULLETINS_CONTROLLER,
                         Group.getActiveGroup().getId()));
-
+				noBulletinsMsg = msg;
                 return Group.getActiveGroup().getBulletins();
             }
 
             @Override
             protected void onPostExecute(Bulletin[] result) {
-                if (result != null) {
+                if (result != null && result.length != 0) {
+	                noBulletinsMsg.setVisibility(View.GONE);
                     for (Bulletin bull : result) {
                             container.addBulletin(bull);
                     }
+                }
+                else {
+                    noBulletinsMsg.setVisibility(View.VISIBLE);
                 }
             }
 

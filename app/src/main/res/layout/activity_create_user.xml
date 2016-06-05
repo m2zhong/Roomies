@@ -37,6 +37,7 @@
                 android:paddingBottom="5dp"
                 android:textColorHint="@color/text"
                 android:textSize="20sp"
+                android:textCursorDrawable="@null"
                 android:textColor="@color/colorAccent"/>
 
             <EditText
@@ -54,6 +55,7 @@
                 android:background="@drawable/underline"
                 android:textColorHint="@color/text"
                 android:textSize="20sp"
+                android:textCursorDrawable="@null"
                 android:textColor="@color/colorAccent"/>
 
             <EditText
@@ -71,6 +73,7 @@
                 android:background="@drawable/underline"
                 android:textColorHint="@color/text"
                 android:textSize="20sp"
+                android:textCursorDrawable="@null"
                 android:textColor="@color/colorAccent"/>
 
             <EditText
@@ -87,6 +90,7 @@
                 android:background="@drawable/underline"
                 android:textColorHint="@color/text"
                 android:textSize="20sp"
+                android:textCursorDrawable="@null"
                 android:inputType="textEmailAddress"
                 android:textColor="@color/colorAccent"/>
 
@@ -105,6 +109,7 @@
                 android:background="@drawable/underline"
                 android:textColorHint="@color/text"
                 android:textSize="20sp"
+                android:textCursorDrawable="@null"
                 android:textColor="@color/colorAccent"/>
 
             <EditText
@@ -122,6 +127,7 @@
                 android:background="@drawable/underline"
                 android:textColorHint="@color/text"
                 android:textSize="20sp"
+                android:textCursorDrawable="@null"
                 android:textColor="@color/colorAccent"/>
 
             <Button

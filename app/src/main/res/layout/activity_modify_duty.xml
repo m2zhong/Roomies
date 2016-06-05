@@ -25,7 +25,7 @@
 				android:background="@color/colorPrimary"
 				android:gravity="center_horizontal"
 				android:padding="10dp"
-				android:text="Add Duties"
+				android:text="Modify Duty"
 				android:textColor="@color/colorAccent"
 				android:textSize="30sp" />
 
@@ -48,6 +48,7 @@
 				android:inputType="textPersonName"
 				android:paddingBottom="5dp"
 				android:paddingTop="5dp"
+				android:textCursorDrawable="@null"
 				android:textColor="@color/black"
 				android:textSize="20sp" />
 
@@ -68,11 +69,21 @@
 				android:background="@drawable/edittextlight"
 				android:hint="Description"
 				android:inputType="textShortMessage|textMultiLine"
-				android:maxLength="200"
+				android:maxLength="100"
+				android:textCursorDrawable="@null"
 				android:paddingBottom="5dp"
 				android:paddingTop="5dp"
 				android:textColor="@color/black"
 				android:textSize="20sp" />
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginEnd="5dp"
+				android:layout_marginStart="5dp"
+				android:text="Roomie(s) in charge: "
+				android:textColor="@color/colorPrimary"
+				android:textSize="25dp" />
 
 			<LinearLayout
 				android:layout_width="match_parent"
@@ -80,6 +91,7 @@
 				android:layout_margin="5dp"
 				android:gravity="center"
 				android:orientation="horizontal">
+
 
 				<com.rip.roomies.views.UserSpinner
 					android:id="@+id/group_users_spinner"
@@ -96,7 +108,8 @@
 					android:width="50dp"
 					android:background="@drawable/circleblue"
 					android:text="+"
-					android:textSize="25dp" />
+					android:textSize="25dp"
+					android:textColor="@color/colorAccent"/>
 
 				<Button
 					android:id="@+id/rem_user_btn"
@@ -105,7 +118,8 @@
 					android:layout_margin="2dp"
 					android:background="@drawable/circleblue"
 					android:text="-"
-					android:textSize="25dp" />
+					android:textSize="25dp"
+					android:textColor="@color/colorAccent"/>
 
 			</LinearLayout>
 

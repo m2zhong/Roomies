@@ -1,10 +1,14 @@
 package com.rip.roomies.views;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.util.AttributeSet;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.rip.roomies.R;
 import com.rip.roomies.models.GoodLog;
 import com.rip.roomies.util.InfoStrings;
 
@@ -71,7 +75,7 @@ public class GoodLogView extends LinearLayout {
 		setLayoutParams(new LayoutParams(
 				LayoutParams.MATCH_PARENT,
 				LayoutParams.WRAP_CONTENT));
-		setOrientation(LinearLayout.HORIZONTAL);
+		setOrientation(LinearLayout.VERTICAL);
 
 		TextView name = new TextView(getContext());
 		TextView description = new TextView(getContext());
@@ -79,23 +83,49 @@ public class GoodLogView extends LinearLayout {
 		TextView completeDate = new TextView(getContext());
 		LinearLayout innerLayout = new LinearLayout(getContext());
 
+
+		name.setTextColor(getResources().getColor(R.color.colorPrimary));
+		name.setTypeface(null, Typeface.BOLD);
+		name.setTextSize(20);
+
+		description.setTextColor(Color.BLACK);
+		description.setTextSize(15);
+
+		assignee.setTextColor(Color.BLACK);
+		assignee.setTextSize(15);
+
+		DateFormat compDate = new SimpleDateFormat("MM/dd/yyyy  |  hh:mm a");
+		String text = compDate.format(goodLog.getCompletion());
+		completeDate.setTextColor(getResources().getColor(R.color.black_overlay));
+
+
 		innerLayout.setOrientation(LinearLayout.VERTICAL);
+		innerLayout.setPadding(50, 50, 50, 50);
 
 		name.setText(goodLog.getName());
 		description.setText(goodLog.getDescription());
 
 		String fullName = goodLog.getAssignee().getFirstName() + " " + goodLog.getAssignee().getLastName();
-		assignee.setText(fullName);
 
-		DateFormat compDate = new SimpleDateFormat("MM/dd/yyyy");
-		String text = compDate.format(goodLog.getCompletion());
+		assignee.setText(fullName);
 		completeDate.setText(text);
 
+		LinearLayout hline = new LinearLayout(getContext());
+		hline.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1));
+		hline.setBackgroundColor(Color.BLACK);
+
+		LinearLayout outerLayout = new LinearLayout(getContext());
+		outerLayout.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+				ViewGroup.LayoutParams.MATCH_PARENT));
+		outerLayout.setOrientation(LinearLayout.HORIZONTAL);
+
+
 		innerLayout.addView(name);
-		innerLayout.addView(description);
 		innerLayout.addView(assignee);
+		innerLayout.addView(description);
 		innerLayout.addView(completeDate);
 
 		addView(innerLayout);
+		addView(hline);
 	}
 }

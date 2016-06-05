@@ -65,9 +65,9 @@ public class ProfileController {
                               final String lastName, final String email,
                               final String groupDescription, final byte[] profilePic) {
         // Create and run a new thread
-        new AsyncTask<Void, Void, Integer>() {
+        new AsyncTask<Void, Void, User>() {
             @Override
-            protected Integer doInBackground(Void... params) {
+            protected User doInBackground(Void... params) {
                 // Debug user entered fields
                 // log.info(String.format(Locale.US, InfoStrings.CREATEGROUP_CONTROLLER,
                 //        name, description));
@@ -83,12 +83,12 @@ public class ProfileController {
             }
 
             @Override
-            protected void onPostExecute(Integer response) {
+            protected void onPostExecute(User response) {
                 if (response == null) {
                     funct.updateProfileFailure();
                 }
                 else {
-                    funct.updateProfileSuccess();
+                    funct.updateProfileSuccess(response);
                 }
             }
         }.execute();
