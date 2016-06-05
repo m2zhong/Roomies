@@ -11,24 +11,26 @@
 	<TextView
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		android:background="@color/colorPrimary"
 		android:gravity="center_horizontal"
 		android:padding="10dp"
 		android:textSize="30sp"
 		android:text="Modify Good"
-		android:textColor="@color/colorAccent"
-		android:background="@color/colorPrimary"/>
+		android:textColor="@color/colorAccent"/>
 
 	<EditText
 		android:id="@+id/good_name"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:hint="Name" />
+		android:hint="Name"
+		android:textColor="@color/black"/>
 
 	<EditText
 		android:id="@+id/description"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:hint="Description" />
+		android:hint="Description"
+		android:textColor="@color/black"/>
 
 	<LinearLayout
 		android:layout_width="match_parent"
@@ -56,35 +58,48 @@
 
 	</LinearLayout>
 
+	<ScrollView
+		android:id="@+id/scrollView"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content">
+
 	<com.rip.roomies.views.UserContainer
 		android:id="@+id/users_container"
 		android:layout_width="match_parent"
 		android:layout_height="0dp"
 		android:layout_weight="1" />
 
-	<Button
-		android:id="@+id/mod_good_btn"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_gravity="bottom|center_horizontal"
-		android:layout_marginBottom="10dp"
-		android:background="@drawable/rec_border"
-		android:padding="20dp"
-		android:textColor="@color/colorPrimary"
-		android:textSize="20sp"
-		android:text="Modify Good" />
+	</ScrollView>
 
-	<Button
-		android:id="@+id/rem_good_btn"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_gravity="bottom|center_horizontal"
-		android:layout_marginBottom="10dp"
-		android:background="@drawable/rec_border_pink"
-		android:padding="20dp"
-		android:textColor="@color/pink"
-		android:textSize="20sp"
-		android:text="Remove Good" />
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:gravity="bottom|center_horizontal"
+		android:orientation="vertical">
 
+		<Button
+			android:id="@+id/mod_good_btn"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="bottom|center_horizontal"
+			android:layout_marginBottom="10dp"
+			android:background="@drawable/rec_border"
+			android:padding="20dp"
+			android:textColor="@color/colorPrimary"
+			android:textSize="20sp"
+			android:text="Modify Good" />
+
+		<Button
+			android:id="@+id/rem_good_btn"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="bottom|center_horizontal"
+			android:layout_marginBottom="10dp"
+			android:background="@drawable/rec_border_pink"
+			android:padding="20dp"
+			android:textColor="@color/pink"
+			android:textSize="20sp"
+			android:text="Remove Good" />
+	</LinearLayout>
 
 </LinearLayout>

@@ -5,11 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.os.Bundle;
-import android.text.Layout;
 import android.util.AttributeSet;
 import android.view.Gravity;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -17,10 +14,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.rip.roomies.R;
-import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.activities.duties.ListAllDuties;
 import com.rip.roomies.activities.duties.ModifyDuty;
-import com.rip.roomies.activities.duties.ViewDuty;
 import com.rip.roomies.events.duties.PopUpDutyListener;
 import com.rip.roomies.events.duties.RemindDutyListener;
 import com.rip.roomies.models.Duty;
@@ -36,9 +31,11 @@ import java.util.logging.Logger;
  */
 public class DutyView extends TaskView {
 	private static final Logger log = Logger.getLogger(DutyView.class.getName());
+
 	public static final int EDIT_DUTY = 1;
 	public static final int VIEW_DUTY = 2;
 	public static final int ADD_DUTY = 3;
+	public static final int COMPLETE_GOOD = 4;
 
 	private Duty duty;
 
@@ -96,14 +93,11 @@ public class DutyView extends TaskView {
 		setLayoutParams(w);
 		setOrientation(LinearLayout.VERTICAL);
 
-
 		TextView name = new TextView(getContext());
 		TextView description = new TextView(getContext());
 		TextView assignee = new TextView(getContext());
 		Button editBtn = new Button(getContext());
 		Button actBtn = new Button(getContext());
-
-		Boolean act;
 
 		LinearLayout innerLayout = new LinearLayout(getContext());
 		innerLayout.setLayoutParams(new LayoutParams(
@@ -127,8 +121,6 @@ public class DutyView extends TaskView {
 		innerLayout.addView(name);
 		innerLayout.addView(description);
 		innerLayout.addView(assignee);
-
-
 
 		editBtn.setText("Edit");
 		editBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
@@ -171,7 +163,6 @@ public class DutyView extends TaskView {
 			actBtn.setText("Remind");
 			actBtn.setPadding(90, 50, 90 , 50);
 		}
-
 
 		actBtn.setOnClickListener(new OnClickListener() {
 			@Override
