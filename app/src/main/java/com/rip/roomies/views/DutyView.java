@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.activities.duties.ListAllDuties;
 import com.rip.roomies.activities.duties.ModifyDuty;
+
 import com.rip.roomies.events.duties.CompleteDutyListener;
 import com.rip.roomies.events.duties.PopUpDutyListener;
 import com.rip.roomies.events.duties.RemindDutyListener;
@@ -33,9 +35,11 @@ import java.util.logging.Logger;
  */
 public class DutyView extends TaskView {
 	private static final Logger log = Logger.getLogger(DutyView.class.getName());
+
 	public static final int EDIT_DUTY = 1;
 	public static final int VIEW_DUTY = 2;
 	public static final int ADD_DUTY = 3;
+	public static final int COMPLETE_GOOD = 4;
 
 	private Duty duty;
 
@@ -93,6 +97,7 @@ public class DutyView extends TaskView {
 		setLayoutParams(w);
 		setOrientation(LinearLayout.VERTICAL);
 
+
 /*
 		setLayoutParams(new LayoutParams(
 				LayoutParams.MATCH_PARENT,
@@ -105,8 +110,6 @@ public class DutyView extends TaskView {
 //		Button viewBtn = new Button(getContext());
 		Button editBtn = new Button(getContext());
 		Button actBtn = new Button(getContext());
-
-		Boolean act;
 
 		LinearLayout innerLayout = new LinearLayout(getContext());
 		innerLayout.setLayoutParams(new LayoutParams(
@@ -133,6 +136,7 @@ public class DutyView extends TaskView {
 		innerLayout.addView(name);
 		innerLayout.addView(description);
 		innerLayout.addView(assignee);
+
 
 /*		viewBtn.setText("View");
 		viewBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
@@ -203,7 +207,6 @@ public class DutyView extends TaskView {
 			actBtn.setText("Remind");
 			actBtn.setPadding(10, 20, 10 , 20);
 		}
-
 
 		actBtn.setOnClickListener(new OnClickListener() {
 			@Override
