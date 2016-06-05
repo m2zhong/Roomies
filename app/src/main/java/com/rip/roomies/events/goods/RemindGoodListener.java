@@ -40,7 +40,7 @@ public class RemindGoodListener implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         try {
-            ServerRequest.remindDuty(receiverID, good.getName());
+            ServerRequest.remindCommonGood(receiverID, good.getName());
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }

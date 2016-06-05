@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.rip.roomies.R;
+import com.rip.roomies.activities.goods.ListAllGoods;
 import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.activities.goods.ModifyGood;
 import com.rip.roomies.events.goods.PopUpGoodListener;
@@ -35,7 +37,7 @@ public class GoodView extends TaskView {
 	public static final int EDIT_GOOD = 1;
 	public static final int VIEW_GOOD = 2;
 	public static final int ADD_GOOD = 3;
-	public static final int COMPLETE_GOOD=4;
+	public static final int COMPLETE_GOOD = 4;
 
 	private Good good;
 
@@ -98,18 +100,17 @@ public class GoodView extends TaskView {
 		TextView assignee = new TextView(getContext());
 		Button actBtn = new Button(getContext());
 		Button editBtn = new Button(getContext());
+
 		LinearLayout innerLayout = new LinearLayout(getContext());
 		innerLayout.setLayoutParams(new LayoutParams(
 				LayoutParams.WRAP_CONTENT,
 				LayoutParams.WRAP_CONTENT, 1.0f));
 
 		name.setTextColor(getResources().getColor(R.color.colorPrimary));
-		description.setTextColor(getResources().getColor(R.color.black_overlay));
-		assignee.setTextColor(Color.BLACK);
+		name.setTypeface(null, Typeface.BOLD);
 
-		name.setTextSize(25);
-		description.setTextSize(15);
-		assignee.setTextSize(15);
+		description.setTextColor(Color.BLACK);
+		assignee.setTextColor(Color.BLACK);
 
 		innerLayout.setOrientation(LinearLayout.VERTICAL);
 		innerLayout.setPadding(25, 25, 25, 25);
@@ -126,12 +127,12 @@ public class GoodView extends TaskView {
 		editBtn.setText("Edit");
 		editBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
 		editBtn.setBackground(getResources().getDrawable(R.drawable.rec_border));
-		editBtn.setPadding(20, 20, 20 , 20);
+		editBtn.setPadding(50, 50, 50, 50);
 		LinearLayout.LayoutParams p = new LayoutParams(
 				LayoutParams.WRAP_CONTENT,
 				LayoutParams.WRAP_CONTENT);
 		p.gravity = Gravity.CENTER;
-		p.setMargins(10, 20, 10, 20);
+		p.setMargins(10, 50, 10, 50);
 		editBtn.setLayoutParams(p);
 		editBtn.setOnClickListener(new OnClickListener() {
 			@Override

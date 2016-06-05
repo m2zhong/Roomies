@@ -56,8 +56,7 @@ public class ServerRequest {
 		Server.getConnection().emit(SocketStrings.NOTIFICATION_BILL,
 				receiverId, oweeName, amount, description);
 	}
-
-
+	
 
 	public static void refreshToken(int userID, String token) throws  URISyntaxException{
 		Server.getConnection().emit(SocketStrings.REFRESH_TOKEN, userID, token);

@@ -68,7 +68,5 @@ public class ModifyDuty extends GenericActivity {
 		addUser.setOnClickListener(new AddRotationListener(this, users, allUsers));
 		removeUser.setOnClickListener(new RemoveRotationListener(this, users));
 		removeDuty.setOnClickListener(new RemoveDutyListener(this, duty));
-
-
 	}
 }
