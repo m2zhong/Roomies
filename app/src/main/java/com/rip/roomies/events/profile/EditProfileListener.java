@@ -47,15 +47,18 @@ public class EditProfileListener implements View.OnClickListener, UpdateProfileF
 
     @Override
     public void onClick(View v) {
-	    Bitmap bmp = ((BitmapDrawable) profilePic.getDrawable()).getBitmap();
-	    ByteArrayOutputStream stream = new ByteArrayOutputStream();
-	    bmp.compress(Bitmap.CompressFormat.JPEG, 0, stream);
-	    byte[] image = stream.toByteArray();
-	    try {
-		    stream.close();
-	    }
-	    catch (Exception e) {
-		    log.severe(Exceptions.stacktraceToString(e));
+	    byte[] image = null;
+	    if (profilePic != null) {
+		    Bitmap bmp = ((BitmapDrawable) profilePic.getDrawable()).getBitmap();
+		    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+		    bmp.compress(Bitmap.CompressFormat.JPEG, 0, stream);
+		    image = stream.toByteArray();
+		    try {
+			    stream.close();
+		    }
+		    catch (Exception e) {
+			    log.severe(Exceptions.stacktraceToString(e));
+		    }
 	    }
 
 	    String errMsg = "";
@@ -92,15 +95,18 @@ public class EditProfileListener implements View.OnClickListener, UpdateProfileF
         String lastname = etLastName.getText().toString().trim();
         String email = etEmail.getText().toString().trim();
 
-	    Bitmap bmp = ((BitmapDrawable) profilePic.getDrawable()).getBitmap();
-	    ByteArrayOutputStream stream = new ByteArrayOutputStream();
-	    bmp.compress(Bitmap.CompressFormat.JPEG, 0, stream);
-	    byte[] image = stream.toByteArray();
-	    try {
-		    stream.close();
-	    }
-	    catch (Exception e) {
-		    log.severe(Exceptions.stacktraceToString(e));
+	    byte[] image = null;
+	    if (profilePic != null) {
+		    Bitmap bmp = ((BitmapDrawable) profilePic.getDrawable()).getBitmap();
+		    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+		    bmp.compress(Bitmap.CompressFormat.JPEG, 0, stream);
+		    image = stream.toByteArray();
+		    try {
+			    stream.close();
+		    }
+		    catch (Exception e) {
+			    log.severe(Exceptions.stacktraceToString(e));
+		    }
 	    }
 
         //update the active user

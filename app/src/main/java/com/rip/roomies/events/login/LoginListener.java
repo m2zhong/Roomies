@@ -79,16 +79,14 @@ public class LoginListener implements View.OnClickListener, LoginFunction {
 
 	@Override
 	public void loginSuccess(User user) {
+		SaveSharedPreference.setUsername(activity, username.getText().toString());
+		SaveSharedPreference.setPassword(activity, password.getText().toString());
 		if (Group.getActiveGroup() == null) {
 			activity.startActivity(new Intent(activity, GroupChoice.class));
 		}
 		else {
-			SaveSharedPreference.setUsername(activity, username.getText().toString());
-			SaveSharedPreference.setPassword(activity, password.getText().toString());
 			activity.toHome();
 			//not just to home
-
-
 		}
 	}
 }
