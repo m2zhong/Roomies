@@ -9,9 +9,6 @@ import android.widget.Toast;
 
 import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
-import com.rip.roomies.models.Group;
-import com.rip.roomies.models.User;
-import com.rip.roomies.views.UserSpinner;
 
 public class AddBulletin extends GenericActivity {
 
@@ -34,10 +31,9 @@ public class AddBulletin extends GenericActivity {
 			public void onClick(View v) {
 				String updatedAmount;
 				//if parseARgs returns false, means user entered in something wrong.
-				if (!parseArgs(content.toString())) {
+				if (!parseArgs(content.getText().toString())) {
 					return;
 				}
-
 				//pass the 3 fields back to activities.home.Home
 				Intent intent = new Intent();
 				intent.putExtra("Key_New_Content", content.getText().toString());
@@ -53,7 +49,7 @@ public class AddBulletin extends GenericActivity {
 	 * @return true if parseArgs failed, ie the user didnt enter in something.
 	 */
 	public boolean parseArgs(String content) {
-		if (content.equals("")) {
+		if (content.equals("") || content.trim().length()==0) {
 			Toast.makeText(getApplicationContext(), "Make sure all fields are filled.",
 					Toast.LENGTH_LONG).show();
 			return false;

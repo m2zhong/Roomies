@@ -66,7 +66,7 @@
 			android:theme="@style/FullscreenTheme">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
-				android:value="com.rip.roomies.activities.home.Home"/>
+				android:value="com.rip.roomies.activities.login.Login"/>
 		</activity>
 		<activity
 			android:name=".activities.home.Home"
