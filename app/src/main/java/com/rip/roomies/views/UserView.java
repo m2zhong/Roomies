@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.rip.roomies.R;
 import com.rip.roomies.models.User;
 import com.rip.roomies.util.InfoStrings;
 
@@ -88,9 +89,19 @@ public class UserView extends LinearLayout {
 		username.setText(user.getUsername());
 		email.setText(user.getEmail());
 
+		name.setTextColor(getResources().getColor(R.color.colorPrimary));
+		name.setTextSize(20);
+
+		LinearLayout btmBorder = new LinearLayout(getContext());
+		LayoutParams btmBorderp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1);
+		btmBorderp.gravity = Gravity.CENTER_HORIZONTAL;
+		btmBorder.setLayoutParams(btmBorderp);
+		btmBorder.setBackgroundColor(getResources().getColor(R.color.black));
+
 		name.setTextColor(Color.BLACK);
 		name.setPadding(50, 50, 50, 50);
 		addView(name);
 		addView(hline);
+		addView(btmBorder);
 	}
 }

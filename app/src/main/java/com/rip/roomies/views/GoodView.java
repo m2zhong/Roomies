@@ -127,7 +127,7 @@ public class GoodView extends TaskView {
 		editBtn.setText("Edit");
 		editBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
 		editBtn.setBackground(getResources().getDrawable(R.drawable.rec_border));
-		editBtn.setPadding(50, 50, 50, 50);
+		actBtn.setPadding(10, 20, 10, 20);
 		LinearLayout.LayoutParams p = new LayoutParams(
 				LayoutParams.WRAP_CONTENT,
 				LayoutParams.WRAP_CONTENT);
@@ -157,9 +157,9 @@ public class GoodView extends TaskView {
 		User currentAssignee = good.getAssignee();
 		if (currentAssignee.getId() == User.getActiveUser().getId()) {
 			actBtn.setText("Complete");
-			actBtn.setPadding(50, 50, 50 , 50);
 			actBtn.setTextColor(getResources().getColor(R.color.dark_green));
 			actBtn.setBackground(getResources().getDrawable(R.drawable.rec_border_green));
+			actBtn.setPadding(10, 20, 10, 20);
 			int popUpID = R.layout.activity_confirm_complete_good;
 			actBtn.setOnClickListener(new PopUpGoodListener(
 					(GenericActivity) getContext(), (CompleteGoodFunction) getContext(),
@@ -167,18 +167,19 @@ public class GoodView extends TaskView {
 		}
 		else{
 			actBtn.setText("Remind");
-			actBtn.setPadding(90, 50, 90 , 50);
 			actBtn.setTextColor(getResources().getColor(R.color.pink));
 			actBtn.setBackground(getResources().getDrawable(R.drawable.rec_border_pink));
+			actBtn.setPadding(10, 20, 10, 20);
 			actBtn.setOnClickListener(new RemindGoodListener(
 					(GenericActivity) getContext(), currentAssignee.getId(), good));
 		}
 
 
 
-
 		LinearLayout hline = new LinearLayout(getContext());
-		hline.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1));
+		LayoutParams hlinep = new LayoutParams(200,1);
+		hlinep.gravity = Gravity.CENTER_HORIZONTAL;
+		hline.setLayoutParams(hlinep);
 		hline.setBackgroundColor(Color.BLACK);
 
 		LinearLayout outerLayout = new LinearLayout(getContext());

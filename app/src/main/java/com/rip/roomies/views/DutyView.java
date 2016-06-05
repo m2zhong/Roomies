@@ -222,7 +222,7 @@ public class DutyView extends TaskView {
 
 		LinearLayout hline = new LinearLayout(getContext());
 		LayoutParams hlinep = new LayoutParams(200,1);
-		hlinep.gravity=Gravity.CENTER_HORIZONTAL;
+		hlinep.gravity = Gravity.CENTER_HORIZONTAL;
 		hline.setLayoutParams(hlinep);
 		hline.setBackgroundColor(Color.BLACK);
 
