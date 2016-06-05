@@ -138,7 +138,7 @@ public class GroupController {
 					databaseGroup = databaseGroup.addUsers(activeUser);
 
 				if (databaseGroup != null) {
-					Group.setActiveGroup(group);
+					Group.setActiveGroup(databaseGroup);
 				}
 
 				return databaseGroup;
