@@ -74,6 +74,17 @@ public class Images {
 		return bmp;
 	}
 
+	public static Bitmap getScaledDownBitmap(byte[] image, int width, int height) {
+		BitmapFactory.Options options = new BitmapFactory.Options();
+		options.inJustDecodeBounds = true;
+		BitmapFactory.decodeByteArray(image, 0, image.length, options);
+
+		options.inSampleSize = getSampleSize(options, width, height);
+
+		options.inJustDecodeBounds = false;
+		return BitmapFactory.decodeByteArray(image, 0, image.length, options);
+	}
+
 	/**
 	 * Get the sample size based off the options object and the desired width/height.
 	 * @param options The options that contains image original size

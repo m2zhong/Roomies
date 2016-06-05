@@ -37,7 +37,7 @@ public class AddBulletin extends GenericActivity {
 				//pass the 3 fields back to activities.home.Home
 				Intent intent = new Intent();
 				intent.putExtra("Key_New_Content", content.getText().toString());
-				setResult(RESULT_CODE_ADD_BULLETIN, intent);
+				setResult(RESULT_OK, intent);
 				finish();
 			}
 
