@@ -140,7 +140,7 @@ public class CompleteGoodListener implements View.OnClickListener {
 //		GoodController.getController().completeGood(this, good.getId());
 
 		try {
-			ServerRequest.completeCommonGood(User.getActiveUser().getFirstName(), good.getName());
+			ServerRequest.completeCommonGood(good.getId(),User.getActiveUser().getFirstName(), good.getName());
 		}
 		catch (URISyntaxException e) {
 			throw new RuntimeException(e);

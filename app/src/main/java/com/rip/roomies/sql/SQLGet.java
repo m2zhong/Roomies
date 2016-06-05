@@ -225,7 +225,6 @@ public class SQLGet {
 					String resultName = rs.getString("Name");
 					String resultDescription = rs.getString("Description");
 					int resultGroup = rs.getInt("GroupID");
-//					String time = rs.getString("TimeReminded");
 
 					SQLQuery.execute(String.format(Locale.US, SQLStrings.GET_USER_TASKS,
 							group.getId(), user.getId()));
@@ -423,6 +422,8 @@ public class SQLGet {
 					String resultDescription = rs.getString("Description");
 					float resultAmount = rs.getFloat("Amount");
 					int resultOweeID = rs.getInt("OweeID");
+					Timestamp time = rs.getTimestamp("TimeReminded");
+
 					String resultName;
 					if(User.getActiveUser().getId() == resultOweeID) {
 						resultAmount = -resultAmount;
@@ -436,7 +437,7 @@ public class SQLGet {
 
 					Bill temp = new Bill(resultOwnerId, resultId, resultName, resultDescription,
 							resultAmount, resultOweeID);
-
+					temp.setTime(time);
 					bills.add(temp);
 				}
 
@@ -534,7 +535,7 @@ public class SQLGet {
 					String resultName = rs.getString("Name");
 					String resultDescription = rs.getString("Description");
 					int resultGroup = rs.getInt("GroupID");
-
+					Timestamp time = rs.getTimestamp("TimeReminded");
 					User u = new User(
 							rs.getInt("ID"),
 							rs.getString("FirstName"),
@@ -545,14 +546,9 @@ public class SQLGet {
 							rs.getBytes("ProfileIcon")
 					);
 
-//					ResultSet rset = SQLQuery.execute( "EXEC GetDutyTimeDiff @id = " + resultId);
-//					rset.next();
-//					int timeDiff = rset.getInt(1);
-//					log.info("duty time difference is " + timeDiff);
-
 					Good temp = new Good(resultId, resultName, resultDescription, resultGroup, u, null);
 					temp = temp.getRotation();
-
+					temp.setTime(time);
 					goods.add(temp);
 
 				}
@@ -615,8 +611,10 @@ public class SQLGet {
 				temp = users.toArray(temp);
 
 				// Return a new user object
-				return new Good(good.getId(), good.getName(), good.getDescription(),
+				Good temp_good = new Good(good.getId(), good.getName(), good.getDescription(),
 						good.getGroupId(), good.getAssignee(), temp);
+				temp_good.setTime(good.getTime());
+				return temp_good;
 			}
 		}
 		catch (Exception e) {

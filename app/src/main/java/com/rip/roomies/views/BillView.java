@@ -173,7 +173,7 @@ public class BillView extends LinearLayout {
 				this, name,
 				amount, description));
 
-		remindBill.setOnClickListener(new RemindBillListener(this, bill));
+		remindBill.setOnClickListener(new RemindBillListener(remindBill,this, bill));
 
 
 

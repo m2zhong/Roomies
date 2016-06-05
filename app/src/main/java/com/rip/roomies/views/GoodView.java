@@ -167,8 +167,20 @@ public class GoodView extends TaskView {
 		else{
 			actBtn.setText("Remind");
 			actBtn.setPadding(90, 50, 90 , 50);
-			actBtn.setOnClickListener(new RemindGoodListener(
+			actBtn.setOnClickListener(new RemindGoodListener( actBtn ,
 					(GenericActivity) getContext(), currentAssignee.getId(), good));
+
+			if(good.reminded()) {
+				actBtn.setBackground(getResources().getDrawable(R.drawable.rec_border_gray));
+				actBtn.setTextColor(getResources().getColor(R.color.black_overlay));
+				actBtn.setEnabled(false);
+			}
+			else {
+				actBtn.setBackground(getResources().getDrawable(R.drawable.rec_border_pink));
+				actBtn.setTextColor(getResources().getColor(R.color.pink));
+				actBtn.setEnabled(true);
+
+			}
 		}
 
 

@@ -29,12 +29,12 @@ public class ServerRequest {
 		Server.getConnection().emit(SocketStrings.PASSWORD_RETRIEVE, userId, userEmail);
 	}
 
-	public static void completeDuty(String receiverName, String dutyName)throws URISyntaxException{
-		Server.getConnection().emit(SocketStrings.COMPLETE_DUTY, receiverName, dutyName);
+	public static void completeDuty(int dutyId, String receiverName, String dutyName)throws URISyntaxException{
+		Server.getConnection().emit(SocketStrings.COMPLETE_DUTY, dutyId, receiverName, dutyName);
 	}
 
-	public static void completeCommonGood(String receiverName, String csgName)throws URISyntaxException{
-		Server.getConnection().emit(SocketStrings.COMPLETE_CSG, receiverName, csgName);
+	public static void completeCommonGood(int csgId, String receiverName, String csgName)throws URISyntaxException{
+		Server.getConnection().emit(SocketStrings.COMPLETE_CSG, csgId, receiverName, csgName);
 	}
 
 	public static void remindDuty(int dutyId, int receiverId, String dutyName)throws URISyntaxException{

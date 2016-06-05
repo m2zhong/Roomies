@@ -208,13 +208,19 @@ public class DutyView extends TaskView {
 		else{
 			actBtn.setText("Remind");
 			actBtn.setPadding(10, 20, 10 , 20);
-			actBtn.setOnClickListener(new RemindDutyListener(
+			actBtn.setOnClickListener(new RemindDutyListener(actBtn ,
 					(GenericActivity) getContext(), currentAssignee.getId(), duty));
 
-			if(duty.reminded())
+			if(duty.reminded()) {
+				actBtn.setBackground(getResources().getDrawable(R.drawable.rec_border_gray));
+				actBtn.setTextColor(getResources().getColor(R.color.black_overlay));
 				actBtn.setEnabled(false);
-			else
+			}
+			else {
+				actBtn.setBackground(getResources().getDrawable(R.drawable.rec_border_pink));
+				actBtn.setTextColor(getResources().getColor(R.color.pink));
 				actBtn.setEnabled(true);
+			}
 		}
 
 

@@ -207,8 +207,9 @@ public abstract class Task<TLog extends TaskLog, T extends Task<TLog, T>> implem
 	}
 
 	public boolean reminded() {
-
-		long oldTime =  time.getTime();
+		long oldTime = 0;
+		if(time != null)
+		   oldTime =  time.getTime();
 		long currentTime = System.currentTimeMillis();
 		long timeDiff = (currentTime - oldTime);
 		return (timeDiff < 86400000);
