@@ -20,6 +20,9 @@ public class BillController {
     private static BillController controller;
     private BillContainer bills;
     private Bills activity;
+    String flip_amount;
+    int oweeId;
+    int ownerId;
 
     /**
      * Gets the singleton bill controller.
@@ -38,20 +41,29 @@ public class BillController {
                            final BillContainer oweyou_bills_container,
                            final int oweeID) {
 
-        if(amount.startsWith("-"))
-            this.bills = youowe_bills_container;
-        else
-            this.bills = oweyou_bills_container;
 
+
+        if(amount.startsWith("-")) {
+            this.bills = youowe_bills_container;
+            flip_amount = amount.replace("-", "");
+            oweeId = User.getActiveUser().getId();
+            ownerId = oweeID;
+        }
+        else {
+            this.bills = oweyou_bills_container;
+            flip_amount = amount;
+            oweeId = oweeID;
+            ownerId = User.getActiveUser().getId();
+        }
         // Create and run a new thread
         new AsyncTask<Void, Void, Bill>() {
             @Override
             protected Bill doInBackground(Void... v) {
                 log.info(String.format(Locale.US, InfoStrings.CREATEBILL_CONTROLLER,
-                        name, description, Float.parseFloat(amount)));
+                        name, description, Float.parseFloat(flip_amount)));
 
                 // Create request user and get response from createUser()
-                Bill request = new Bill(name, description, Float.parseFloat(amount), oweeID);
+                Bill request = new Bill(ownerId, name, description, Float.parseFloat(flip_amount), oweeId);
                 Bill response = request.createBill();
                 return response;
             }

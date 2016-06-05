@@ -188,6 +188,8 @@ public class BillView extends LinearLayout {
 		name.setTypeface(Typeface.DEFAULT_BOLD);
 		description.setTextColor(getResources().getColor(R.color.black_overlay));
 
+
+
 		/* Removing negative sign in amount in YouOwe */
 		if (bill.getAmount()< 0)
 			amount.setText('$' + String.valueOf(bill.getAmount()).substring(1));

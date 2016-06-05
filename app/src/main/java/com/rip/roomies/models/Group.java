@@ -6,7 +6,6 @@ import com.rip.roomies.sql.SQLFind;
 import com.rip.roomies.sql.SQLGet;
 import com.rip.roomies.util.InfoStrings;
 
-import java.util.Arrays;
 import java.util.logging.Logger;
 
 /**
@@ -189,5 +188,13 @@ public class Group {
 
 	public User[] getMembers() {
 		return members;
+	}
+
+	public User getMember(int id){
+		for(User user:members){
+			if(user.getId() == id)
+				return user;
+		}
+		return null;
 	}
 }

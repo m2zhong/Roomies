@@ -37,7 +37,8 @@ public class Bill {
      * @param description The descipriton associated with this bill.
      * @param amount The amount associated with this bill.
      */
-    public Bill(String name, String description, float amount, int oweeID) {
+    public Bill(int ownerID, String name, String description, float amount, int oweeID) {
+        this.ownerID = ownerID;
         this.name = name;
         this.description = description;
         this.amount = amount;
