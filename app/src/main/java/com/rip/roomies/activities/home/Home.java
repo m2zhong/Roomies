@@ -66,6 +66,7 @@ public class Home extends GenericActivity {
 
 	private final int RESULT_CODE_MODIFY_BULLETIN = 1;
 	private final int RESULT_CODE_ADD_BULLETIN = 2;
+	final Activity self = this;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -88,10 +89,14 @@ public class Home extends GenericActivity {
 		user = User.getActiveUser();
 		first_name = user.getFirstName();
 		username.setText(" " + first_name + "!");
+		username.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				startActivity(new Intent(self, Profile.class));
+			}
+		});
 
 		ImageView profileBadge = (ImageView) findViewById(R.id.home_profilepicture);
-
-		final Activity self = this;
 		profileBadge.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {

@@ -63,7 +63,7 @@
 	<string name="addbill_name">What is it for?</string>
 	<string name="addbill_amount">How Much is it?</string>
 	<string name="addbill_who">Who to charge</string>
-	<string name="addbill_request">Request</string>
+	<string name="addbill_request">They Owe</string>
 	<string name="addbill_pay">Pay</string>
 	<string name="addbill_submit">Submit</string>
 
@@ -106,6 +106,6 @@
 	<string name="join_group_header">Join Group</string>
 	<string name="join_groupbtn">Join Group</string>
 	<string name="addbill_des_length">(100 Characters)</string>
-	<string name="addbill_owe">Owe</string>
+	<string name="addbill_owe">I Owe</string>
 	<string name="home_edit_profile_hint">Edit Profile</string>
 </resources>
