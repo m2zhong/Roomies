@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.controllers.DutyController;
 import com.rip.roomies.functions.CompleteDutyFunction;
+import com.rip.roomies.functions.CompleteGoodFunction;
 import com.rip.roomies.models.Duty;
 import com.rip.roomies.models.User;
 import com.rip.roomies.server.ServerRequest;
@@ -22,12 +23,13 @@ import java.util.logging.Logger;
 /**
  * This class represents the listener for when a duty is marked as completed.
  */
-public class CompleteDutyListener implements View.OnClickListener, CompleteDutyFunction {
+public class CompleteDutyListener implements View.OnClickListener {
 	private static final Logger log = Logger.getLogger(CompleteDutyListener.class.getName());
 
 	private Duty duty;
 	private GenericActivity activity;
 	private PopupWindow popupWindow;
+	private CompleteDutyFunction funct;
 
 	/**
 	 * Complete Duty Listener Constructor
@@ -35,8 +37,10 @@ public class CompleteDutyListener implements View.OnClickListener, CompleteDutyF
 	 * @param context  Activity that is using the listener
 	 * @param duty  The existing duty object in a view
 	 */
-	public CompleteDutyListener(GenericActivity context, Duty duty, PopupWindow popUpWindow) {
+	public CompleteDutyListener(GenericActivity context, CompleteDutyFunction funct,
+	                            Duty duty, PopupWindow popUpWindow) {
 		this.duty = duty;
+		this.funct = funct;
 		this.activity = context;
 		this.popupWindow = popUpWindow;
 	}
@@ -66,25 +70,12 @@ public class CompleteDutyListener implements View.OnClickListener, CompleteDutyF
 
 		log.info(InfoStrings.COMPLETE_DUTY_EVENT);
 		/* Complete Duty Activity*/
-		DutyController.getController().completeDuty(this, duty.getId());
+		DutyController.getController().completeDuty(funct, duty.getId());
 
 		try {
 			ServerRequest.completeDuty(User.getActiveUser().getFirstName(), duty.getName());
 		} catch (URISyntaxException e) {
 			throw new RuntimeException(e);
 		}
-	}
-
-	@Override
-	public void completeDutyFail() {
-		Toast.makeText(activity, DisplayStrings.COMPLETE_DUTY_FAIL, Toast.LENGTH_LONG).show();
-	}
-
-	@Override
-	public void completeDutySuccess(Duty duty) {
-		Intent i = activity.getIntent();
-		i.putExtra("Duty", duty);
-		activity.setResult(Activity.RESULT_OK, i);
-		activity.finish();
 	}
 }
