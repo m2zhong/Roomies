@@ -120,7 +120,7 @@ public class HomeController {
 
             @Override
             protected void onPostExecute(Bulletin[] result) {
-                if (result != null && container.getBulletins().length != 0) {
+                if (result != null && result.length != 0) {
 	                noBulletinsMsg.setVisibility(View.GONE);
                     for (Bulletin bull : result) {
                             container.addBulletin(bull);
