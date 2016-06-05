@@ -25,7 +25,7 @@
 				android:background="@color/colorPrimary"
 				android:gravity="center_horizontal"
 				android:padding="10dp"
-				android:text="Add Duties"
+				android:text="Modify Duty"
 				android:textColor="@color/colorAccent"
 				android:textSize="30sp" />
 
@@ -108,7 +108,8 @@
 					android:width="50dp"
 					android:background="@drawable/circleblue"
 					android:text="+"
-					android:textSize="25dp" />
+					android:textSize="25dp"
+					android:textColor="@color/colorAccent"/>
 
 				<Button
 					android:id="@+id/rem_user_btn"
@@ -117,7 +118,8 @@
 					android:layout_margin="2dp"
 					android:background="@drawable/circleblue"
 					android:text="-"
-					android:textSize="25dp" />
+					android:textSize="25dp"
+					android:textColor="@color/colorAccent"/>
 
 			</LinearLayout>
 

@@ -43,6 +43,7 @@
 			android:paddingBottom="5dp"
 			android:textColorHint="@color/text"
 			android:textSize="20sp"
+			android:textCursorDrawable="@null"
 			android:textColor="@color/colorAccent"
 
 			/>

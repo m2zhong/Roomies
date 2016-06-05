@@ -47,6 +47,7 @@
 				android:background="@drawable/rec_inputbox_gray"
 				android:textColor="@color/black"
 				android:textSize="30sp"
+				android:textCursorDrawable="@null"
 				android:hint="0.00"/>
 
 			<LinearLayout

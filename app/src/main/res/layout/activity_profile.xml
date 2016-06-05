@@ -185,10 +185,10 @@
                 android:layout_marginTop="30dp"
                 android:background="@drawable/rec_border_pink"
                 android:fontFamily="sans-serif"
-                android:padding="10dp"
+                android:padding="20dp"
                 android:text="@string/settings_changepassword"
                 android:textColor="@color/pink"
-                android:textSize="30sp" />
+                android:textSize="20sp" />
 
 
 	        <Button
@@ -200,10 +200,10 @@
 		        android:layout_marginTop="10dp"
 		        android:background="@drawable/rec_border_green"
 		        android:fontFamily="sans-serif"
-		        android:padding="10dp"
+		        android:padding="20dp"
 		        android:text="@string/settings_inviteusers"
 		        android:textColor="@color/green"
-		        android:textSize="30sp" />
+		        android:textSize="20sp" />
 
 
             <!--<Button

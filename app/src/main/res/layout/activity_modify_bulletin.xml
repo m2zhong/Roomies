@@ -35,6 +35,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:background="@drawable/edittextlight"
+                android:textCursorDrawable="@null"
                 android:inputType="textMultiLine"
                 android:height="300dp"
                 android:textSize="30dp"
