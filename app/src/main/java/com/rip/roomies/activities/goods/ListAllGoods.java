@@ -29,6 +29,7 @@ public class ListAllGoods extends GenericActivity implements ListAllGoodsFunctio
 	@Override
 	public void onCreate(Bundle savedInstance) {
 		Button addGood;
+		Button goodLogs;
 
 		super.onCreate(savedInstance);
 		setContentView(R.layout.activity_list_all_goods);
@@ -36,6 +37,7 @@ public class ListAllGoods extends GenericActivity implements ListAllGoodsFunctio
 		/* Linking xml objects to java */
 		gc = (GoodContainer) findViewById(R.id.good_list);
 		addGood = (Button) findViewById(R.id.good_addbtn);
+		goodLogs = (Button) findViewById(R.id.logs_btn);
 
 		final Activity self = this;
 
@@ -45,6 +47,13 @@ public class ListAllGoods extends GenericActivity implements ListAllGoodsFunctio
 			@Override
 			public void onClick(View view) {
 				startActivityForResult(new Intent(self, CreateGood.class), GoodView.ADD_GOOD);
+			}
+		});
+
+		goodLogs.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(self, ListGoodLogs.class));
 			}
 		});
 	}
