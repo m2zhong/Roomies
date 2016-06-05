@@ -40,6 +40,7 @@
 			android:layout_margin="5dp"
 			android:textColor="@color/black"
 			android:background="@drawable/edittextlight"
+			android:textCursorDrawable="@null"
 			android:inputType="textShortMessage|textMultiLine"
 			android:maxLength="100"
 			android:hint="@string/addbill_des_length"
@@ -61,6 +62,7 @@
 			android:layout_margin="5dp"
 			android:textColor="@color/black"
 			android:background="@drawable/edittextlight"
+			android:textCursorDrawable="@null"
 			android:inputType="numberDecimal"
 			android:textSize="25sp" />
 
