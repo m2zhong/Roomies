@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.rip.roomies.R;
 import com.rip.roomies.activities.GenericActivity;
 import com.rip.roomies.controllers.GoodController;
+import com.rip.roomies.functions.CompleteGoodFunction;
 import com.rip.roomies.functions.ListAllGoodsFunction;
 import com.rip.roomies.models.Good;
 import com.rip.roomies.util.DisplayStrings;
@@ -22,7 +23,7 @@ import java.util.logging.Logger;
 /**
  * Created by johndoney on 5/30/16.
  */
-public class ListAllGoods extends GenericActivity implements ListAllGoodsFunction {
+public class ListAllGoods extends GenericActivity implements ListAllGoodsFunction, CompleteGoodFunction {
 	private static final Logger log = Logger.getLogger(ListAllGoods.class.getName());
 	GoodContainer gc;
 
@@ -117,5 +118,15 @@ public class ListAllGoods extends GenericActivity implements ListAllGoodsFunctio
 			Good good = data.getExtras().getParcelable("Good");
 			gc.removeGood(good);
 		}
+	}
+
+	@Override
+	public void completeGoodFail() {
+		Toast.makeText(this, DisplayStrings.COMPLETE_GOOD_FAIL, Toast.LENGTH_LONG).show();
+	}
+
+	@Override
+	public void completeGoodSuccess(Good good) {
+		gc.modifyGood(good);
 	}
 }

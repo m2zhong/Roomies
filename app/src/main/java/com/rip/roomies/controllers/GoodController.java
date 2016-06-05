@@ -220,7 +220,7 @@ public class GoodController {
 	 * Attempts to mark the duty with the specified id as completed.
 	 * @param funct The funct to post results to
 	 * @param id The unique id of this duty in the database
-	 *//*
+	 */
 	public void completeGood(final CompleteGoodFunction funct, final int id, final double amount) {
 		// Create and run a new thread
 		new AsyncTask<Void, Void, Good>() {
@@ -244,8 +244,9 @@ public class GoodController {
 				}
 			}
 		}.execute();
-	}*/
+	}
 
+	/*
 	public void completeGood(final CompleteGoodFunction funct, final int id) {
 		// Create and run a new thread
 		new AsyncTask<Void, Void, Good>() {
@@ -269,5 +270,5 @@ public class GoodController {
 				}
 			}
 		}.execute();
-	}
+	}*/
 }
