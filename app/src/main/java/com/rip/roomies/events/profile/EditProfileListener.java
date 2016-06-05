@@ -135,7 +135,6 @@ public class EditProfileListener implements View.OnClickListener, UpdateProfileF
 	    i.putExtra("FirstName", user.getFirstName());
         activity.setResult(Activity.RESULT_OK, i);
 		activity.finish();
-	    activity.toHome();
     }
 
 	public void setUpdated(boolean isUpdated) {
