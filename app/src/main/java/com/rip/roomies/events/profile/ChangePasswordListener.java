@@ -5,6 +5,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.rip.roomies.activities.GenericActivity;
+import com.rip.roomies.application.SaveSharedPreference;
 import com.rip.roomies.controllers.ProfileController;
 import com.rip.roomies.functions.ChangePassFunction;
 import com.rip.roomies.util.DisplayStrings;
@@ -65,6 +66,7 @@ public class ChangePasswordListener implements View.OnClickListener, ChangePassF
     @Override
     public void changePassSuccess() {
         Toast.makeText(activity, "Successfully changed password!!!", Toast.LENGTH_SHORT).show();
+        SaveSharedPreference.setPassword(activity, newPassword.getText().toString());
         activity.finish();
     }
 
